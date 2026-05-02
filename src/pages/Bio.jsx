@@ -25,7 +25,7 @@ export default function Bio() {
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
                     className="text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-6"
                 >
-                    A little bit about <span className="text-accent">me!</span>
+                    A little bit about <span className="text-accent">me</span>
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 30 }}

@@ -17,7 +17,7 @@ const allProjects = [
         badges: ["Growth Marketing", "UX/UI Design", "Data Analytics", "AI Business Strategy"],
         link: "https://account.start2impact.it/profile/alberto-scalia"
     },
-       {
+    {
         title: "Glacier – Prototype app",
         subtitle: "Designed for people who plan trips in places where the weather decides everything. A travel app for the Nordic countries — built around uncertainty.",
         image: "/portfolio/assets/images/project6.webp",
