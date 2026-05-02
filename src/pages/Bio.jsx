@@ -110,11 +110,11 @@ export default function Bio() {
                                 <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-accent ring-4 ring-background"></span>
                                 <span className="font-mono text-xs text-zinc-500 mb-2 block">Present</span>
                                 <h3 className="text-xl font-bold font-sans text-blue mb-1">Open to opportunities</h3>
-                                <span className="text-sm font-medium text-zinc-500 block mb-3">Fulltime or freelance</span>
+                                <span className="text-sm font-medium text-zinc-500 block mb-3">Full time or freelance</span>
                                 <p className="text-zinc-500 leading-relaxed">  Full-time roles and collaborations — especially where design and strategy overlap.</p>
                             </motion.div>
                             <motion.div variants={itemVariants} className="relative">
-                                <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-accent ring-4 ring-background"></span>
+                                <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-zinc-700 ring-4 ring-background"></span>
                                 <span className="font-mono text-xs text-zinc-500 mb-2 block">2022 - Present</span>
                                 <h3 className="text-xl font-bold font-sans text-blue mb-1">Art Director</h3>
                                 <span className="text-sm font-medium text-zinc-500 block mb-3">lay0ut magazine, Forward magazine</span>
