@@ -34,8 +34,8 @@ export default function HeroParallax() {
                             transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.1 }}
                             className="font-sans font-bold text-4xl md:text-6xl lg:text-7xl tracking-tighter leading-[0.9] text-blue"
                         >
-                            Design Driven, <br />
-                            <span className="text-accent">Growth Focused</span>
+                            Editorial Precision, <br />
+                            <span className="text-accent">Digital Performance</span>
                         </motion.h1>
                     </div>
 
@@ -45,7 +45,7 @@ export default function HeroParallax() {
                         transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.3 }}
                         className="max-w-xl text-lg md:text-xl text-zinc-500 leading-relaxed font-sans"
                     >
-                        I'm Alberto. I transform aesthetics into performance by optimizing every pixel for conversion. I constantly seek visual synthesis, because I hate clutter and, above all, serif fonts used without sense.
+                        I'm Alberto. I bring editorial art direction into UX/UI and growth design — translating visual hierarchy, typography, and information architecture into interfaces that are as clear as they are effective.
                     </motion.p>
 
                     <motion.div

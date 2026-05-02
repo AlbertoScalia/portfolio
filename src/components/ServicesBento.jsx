@@ -50,7 +50,7 @@ export default function ServicesBento() {
                         <div>
                             <h3 className="text-2xl font-bold font-sans tracking-tight mb-4 text-blue">Art Direction <br /> & Strategy</h3>
                             <p className="text-zinc-500 font-sans leading-relaxed">
-                                I nurse magazines and editorial series, trying to convince them they can be beautiful without losing their compass.
+                                I design editorial systems — magazines, book series, brand identities — where visual consistency and strategic clarity are the same thing.
                             </p>
                         </div>
                     </LiquidCard>
@@ -65,7 +65,7 @@ export default function ServicesBento() {
                         <div>
                             <h3 className="text-2xl font-bold font-sans tracking-tight mb-4 text-blue">Brand Identity <br /> & Growth</h3>
                             <p className="text-zinc-500 font-sans leading-relaxed">
-                                I design brands (or logos, call them what you want) that should survive the next three governments and all TikTok trends.
+                                I build visual identities grounded in research and built to last — coherent across print, digital, and whatever comes next.
                             </p>
                         </div>
                     </LiquidCard>
@@ -80,7 +80,7 @@ export default function ServicesBento() {
                         <div>
                             <h3 className="text-2xl font-bold font-sans tracking-tight mb-4 text-blue">UX/UI <br /> & Conversion</h3>
                             <p className="text-zinc-500 font-sans leading-relaxed">
-                                I design digital paths so fluid that the user ends up buying something without even realizing it, distracted by the beauty of the fonts.
+                                I design interfaces where visual hierarchy does the heavy lifting — reducing friction, guiding attention, and making the next action feel obvious.
                             </p>
                         </div>
                     </LiquidCard>
