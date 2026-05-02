@@ -6,17 +6,24 @@ import { Link } from 'react-router-dom';
 const projects = [
     {
         title: "IsolaBio – Re-design website",
-        subtitle: "UX/UI design for an organic food website.",
+        subtitle: "A brand that smelled like soil and sold like a startup. Re-design from research to prototype.",
         image: "/portfolio/assets/images/project12.webp",
         badges: ["UX/UI Design", "Web Design"],
         link: "https://www.behance.net/gallery/247551635/Re-design-Isola-Bio"
     },
     {
         title: "Start2impact Master Projects",
-        subtitle: "A comprehensive collection of personal projects developed during the Master's program in Growth Marketing, UX/UI Design, and Data Analytics.",
+        subtitle: "Growth strategy, UX design, data analysis — all in one place. The projects where I stopped specializing and started connecting the dots.",
         image: "/portfolio/assets/images/project0.webp",
         badges: ["Growth Marketing", "UX/UI Design", "Data Analytics", "AI Business Strategy"],
         link: "https://account.start2impact.it/profile/alberto-scalia"
+    },
+        {
+        title: "Glacier – Prototype app",
+        subtitle: "Designed for people who plan trips in places where the weather decides everything. A travel app for the Nordic countries — built around uncertainty.",
+        image: "/portfolio/assets/images/project6.webp",
+        badges: ["UX/UI Design", "App Design"],
+        link: "https://www.behance.net/gallery/210705375/Glacier"
     },
     {
         title: "Forward magazine",
@@ -38,13 +45,6 @@ const projects = [
         image: "/portfolio/assets/images/project1.webp",
         badges: ["Art Direction", "Editorial Design", "Layout"],
         link: "https://www.industriaeletteratura.it/prodotto/le-chitarre-del-pedrollo/"
-    },
-    {
-        title: "Glacier – Prototype app",
-        subtitle: "UX/UI design for a travel app in the Nordic countries.",
-        image: "/portfolio/assets/images/project6.webp",
-        badges: ["UX/UI Design", "App Design"],
-        link: "https://www.behance.net/gallery/210705375/Glacier"
     }
 ];
 
@@ -110,7 +110,7 @@ export default function WorksGallery() {
             <div className="mt-12 flex justify-center md:hidden">
                 <Link to="/works">
                     <MagneticButton className="bg-blue text-light hover:bg-blue/80 border-white/10 transition-all">
-                        View all projects
+                        Sse more projects
                     </MagneticButton>
                 </Link>
             </div>

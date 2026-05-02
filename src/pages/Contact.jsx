@@ -58,7 +58,7 @@ export default function Contact() {
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
                     className="text-zinc-500 text-xl font-sans max-w-2xl mx-auto"
                 >
-                    Let's talk, before the idea expires. I am always open to new collaborations. Fill out the form or write to me: I promise not to reply with a &ldquo;we'll let you know&ldquo;.
+                    Let's talk, before the idea expires. I am always open to new collaborations. Fill out the form or write to me: I promise to read it, think about it, and actually get back to you.
                 </motion.p>
             </header>
 

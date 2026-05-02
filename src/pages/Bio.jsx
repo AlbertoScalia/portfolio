@@ -33,7 +33,7 @@ export default function Bio() {
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
                     className="text-zinc-500 text-xl font-sans max-w-2xl mx-auto"
                 >
-                    Or: how I learned to stop worrying about light space and love brevity.
+                    Or: how I learned to stop worrying about light space and love brevity. 
                 </motion.p>
             </header>
 
@@ -106,12 +106,19 @@ export default function Bio() {
                         </h2>
 
                         <div className="flex flex-col gap-8 border-l border-blue/10 pl-8 ml-4">
+                                                    <motion.div variants={itemVariants} className="relative">
+                                <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-accent ring-4 ring-background"></span>
+                                <span className="font-mono text-xs text-zinc-500 mb-2 block">Present</span>
+                                <h3 className="text-xl font-bold font-sans text-blue mb-1">Open to opportunities</h3>
+                                <span className="text-sm font-medium text-zinc-500 block mb-3">Fulltime or freelance</span>
+                                <p className="text-zinc-500 leading-relaxed">  Full-time roles and collaborations — especially where design and strategy overlap.</p>
+                            </motion.div>
                             <motion.div variants={itemVariants} className="relative">
                                 <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-accent ring-4 ring-background"></span>
                                 <span className="font-mono text-xs text-zinc-500 mb-2 block">2022 - Present</span>
                                 <h3 className="text-xl font-bold font-sans text-blue mb-1">Art Director</h3>
                                 <span className="text-sm font-medium text-zinc-500 block mb-3">lay0ut magazine, Forward magazine</span>
-                                <p className="text-zinc-500 leading-relaxed">I try to balance editorial rigor with a contemporary vision, taking care of the visual identity of publications ranging from underground culture to scientific innovation.</p>
+                                <p className="text-zinc-500 leading-relaxed"> From underground zines to peer-reviewed science — I've designed both, and they've taught me everything about hierarchy.</p>
                             </motion.div>
 
                             <motion.div variants={itemVariants} className="relative">
