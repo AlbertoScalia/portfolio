@@ -132,7 +132,7 @@ export default function Bio() {
                             <motion.div variants={itemVariants} className="relative">
                                 <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-zinc-700 ring-4 ring-background"></span>
                                 <span className="font-mono text-xs text-zinc-500 mb-2 block">2021 - 2026</span>
-                                <h3 className="text-xl font-bold font-sans text-blue mb-1">Freelance Editorial Designer</h3>
+                                <h3 className="text-xl font-bold font-sans text-blue mb-1">Freelance Graphic Designer</h3>
                                 <span className="text-sm font-medium text-zinc-500 block mb-3">Various Independent Publishers</span>
                                 <p className="text-zinc-500 leading-relaxed">I take care of visual identities and typesetting for 12 independent publishers and academic institutions, delivering over 50 book projects.</p>
                             </motion.div>
