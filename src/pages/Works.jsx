@@ -119,44 +119,46 @@ export default function Works() {
                 </motion.p>
             </header>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {allProjects.map((project, idx) => (
-                    <motion.a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        key={idx}
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ delay: (idx % 3) * 0.1, type: "spring", stiffness: 100, damping: 20 }}
-                        className="group block"
-                    >
-                        <LiquidCard className="p-2 h-full flex flex-col rounded-[2rem] shadow-none border border-zinc-200 bg-white">
-                            <div className="relative w-full aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-6">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    loading="lazy"
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                />                            </div>
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {allProjects.map((project, idx) => (
+        <motion.a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            key={idx}
+            className="group block"
+        >
+            <LiquidCard className="h-full flex flex-col shadow-none">
+                {/* L'immagine segue il raggio della card ma non ha padding interno */}
+                <div className="relative w-full aspect-[4/3] overflow-hidden border-b border-blue group-hover:border-accent transition-colors">
+                    <img
+                        src={project.image}
+                        alt={project.title}
+                        loading="lazy"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                </div>
 
-                            <div className="px-4 pb-6 mt-auto">
-                                <h3 className="text-xl font-bold font-sans tracking-tight mb-2 group-hover:text-accent transition-colors">{project.title}</h3>
-                                <p className="text-zinc-500 text-sm mb-6 leading-relaxed">{project.subtitle}</p>
+                <div className="px-6 py-8 mt-auto">
+                    <h3 className="text-xl font-bold font-sans tracking-tight mb-2 group-hover:text-accent transition-colors">
+                        {project.title}
+                    </h3>
+                    <p className="text-zinc-500 text-sm mb-6 leading-relaxed">
+                        {project.subtitle}
+                    </p>
 
-                                <div className="flex flex-wrap gap-2">
-                                    {project.badges.map((badge, bIdx) => (
-                                        <span key={bIdx} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500">
-                                            {badge}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </LiquidCard>
-                    </motion.a>
-                ))}
-            </div>
+                    <div className="flex flex-wrap gap-2">
+                        {project.badges.map((badge, bIdx) => (
+                            <span key={bIdx} className="px-3 py-1 rounded-full border border-blue/20 text-xs font-mono text-zinc-500">
+                                {badge}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+            </LiquidCard>
+        </motion.a>
+    ))}
+</div>
 
             <motion.div
                 initial={{ opacity: 0 }}

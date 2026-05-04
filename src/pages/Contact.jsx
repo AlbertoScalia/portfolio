@@ -69,34 +69,34 @@ export default function Contact() {
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
                     className="lg:col-span-5 flex flex-col gap-6"
                 >
-                    <LiquidCard className="p-8 flex items-center gap-6 group shadow-none border border-zinc-200 bg-white rounded-[2rem] transition-all duration-500">
-                        <div className="w-14 h-14 rounded-2xl bg-blue/5 border border-blue/10 flex items-center justify-center shrink-0 group-hover:bg-accent/10 group-hover:border-accent/30 transition-colors">
-                            <Phone size={24} weight="duotone" className="text-blue group-hover:text-accent transition-colors" />
-                        </div>
-                        <div>
-                            <span className="block text-[10px] font-bold font-sans text-zinc-400 uppercase tracking-[0.2em] mb-1">
-                                Where you can call me
-                            </span>
-                            <span className="text-lg font-bold font-sans text-blue group-hover:text-accent transition-colors duration-300">
-                                Number available upon request
-                            </span>
-                        </div>
-                    </LiquidCard>
+<LiquidCard className="p-8 flex items-center gap-6 group shadow-none border border-blue hover:border-accent bg-white rounded-[2rem] transition-colors duration-300">
+    <div className="w-14 h-14 rounded-2xl bg-blue/5 border border-blue/10 flex items-center justify-center shrink-0 group-hover:bg-accent/10 group-hover:border-accent/30 transition-colors">
+        <Phone size={24} weight="duotone" className="text-blue group-hover:text-accent transition-colors" />
+    </div>
+    <div>
+        <span className="block text-[10px] font-bold font-sans text-zinc-400 uppercase tracking-[0.2em] mb-1">
+            Where you can call me
+        </span>
+        <span className="text-lg font-bold font-sans text-blue group-hover:text-accent transition-colors duration-300">
+            Number available upon request
+        </span>
+    </div>
+</LiquidCard>
 
-                    {/* Location Card */}
-                    <LiquidCard className="p-8 flex items-center gap-6 group shadow-none border border-zinc-200 bg-white rounded-[2rem] transition-all duration-500">
-                        <div className="w-14 h-14 rounded-2xl bg-blue/5 border border-blue/10 flex items-center justify-center shrink-0 group-hover:bg-accent/10 group-hover:border-accent/30 transition-colors">
-                            <MapPin size={24} weight="duotone" className="text-blue group-hover:text-accent transition-colors" />
-                        </div>
-                        <div>
-                            <span className="block text-[10px] font-bold font-sans text-zinc-400 uppercase tracking-[0.2em] mb-1">
-                                Where I live
-                            </span>
-                            <span className="text-lg font-bold font-sans text-blue group-hover:text-accent transition-colors duration-300">
-                                Acireale, CT, Italy
-                            </span>
-                        </div>
-                    </LiquidCard>
+{/* Location Card */}
+<LiquidCard className="p-8 flex items-center gap-6 group shadow-none border border-blue hover:border-accent bg-white rounded-[2rem] transition-colors duration-300">
+    <div className="w-14 h-14 rounded-2xl bg-blue/5 border border-blue/10 flex items-center justify-center shrink-0 group-hover:bg-accent/10 group-hover:border-accent/30 transition-colors">
+        <MapPin size={24} weight="duotone" className="text-blue group-hover:text-accent transition-colors" />
+    </div>
+    <div>
+        <span className="block text-[10px] font-bold font-sans text-zinc-400 uppercase tracking-[0.2em] mb-1">
+            Where I live
+        </span>
+        <span className="text-lg font-bold font-sans text-blue group-hover:text-accent transition-colors duration-300">
+            Acireale, CT, Italy
+        </span>
+    </div>
+</LiquidCard>
                 </motion.section>
 
                 <motion.section

@@ -6,14 +6,13 @@ import Home from './pages/Home';
 import Works from './pages/Works';
 import Bio from './pages/Bio';
 import Contact from './pages/Contact';
+import Grain from './components/ui/Grain'; // Importa il componente Grain
 
-// A wrapper to handle the navbar background state across routes
 function Layout() {
     const [navBackground, setNavBackground] = useState(false);
     const location = useLocation();
 
     useEffect(() => {
-        // Scroll to top on route change
         window.scrollTo(0, 0);
     }, [location.pathname]);
 
@@ -31,16 +30,23 @@ function Layout() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-background text-foreground antialiased relative flex flex-col">
+        /* Aggiunto bg-[#f5f3f0] per garantire la base corretta alla grana */
+        <div className="min-h-screen bg-[#f5f3f0] text-foreground antialiased relative flex flex-col">
+            
+            {/* 1. La grana ora è qui: fissa e visibile in ogni rotta */}
+            <Grain />
+
             <Navbar navBackground={navBackground} />
-            <div className="flex-grow">
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/works" element={<Works />} />
-                    <Route path="/bio" element={<Bio />} />
-                    <Route path="/contact" element={<Contact />} />
-                </Routes>
-            </div>
+            
+<div className="flex-grow relative z-10"> {/* Questo z-10 solleva Bio, Works e Contact insieme */}
+    <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/works" element={<Works />} />
+        <Route path="/bio" element={<Bio />} />
+        <Route path="/contact" element={<Contact />} />
+    </Routes>
+</div>
+            
             <Footer />
         </div>
     );

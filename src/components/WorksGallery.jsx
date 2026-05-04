@@ -18,7 +18,7 @@ const projects = [
         badges: ["Growth Marketing", "UX/UI Design", "Data Analytics", "AI Business Strategy"],
         link: "https://account.start2impact.it/profile/alberto-scalia"
     },
-        {
+    {
         title: "Glacier – Prototype app",
         subtitle: "Designed for people who plan trips in places where the weather decides everything. A travel app for the Nordic countries — built around uncertainty.",
         image: "/portfolio/assets/images/project6.webp",
@@ -56,11 +56,6 @@ export default function WorksGallery() {
                     Here's how I spent <br />
                     <span className="text-accent">my latest late nights</span>
                 </h2>
-                <Link to="/works" className="hidden md:inline-flex">
-                    <MagneticButton className="bg-blue text-light hover:bg-blue/80 border border-white/10 transition-all">
-                        View all
-                    </MagneticButton>
-                </Link>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -76,8 +71,9 @@ export default function WorksGallery() {
                         transition={{ delay: idx * 0.1, type: "spring", stiffness: 100, damping: 20 }}
                         className="group block"
                     >
-                        <LiquidCard className="p-2 h-full flex flex-col rounded-[2rem] shadow-none border border-zinc-200 bg-white">
-                            <div className="relative w-full aspect-[4/3] rounded-[1.5rem] overflow-hidden mb-6">
+                        <LiquidCard className="h-full flex flex-col shadow-none">
+                            {/* L'immagine occupa la parte superiore senza padding per un look pulito[cite: 1, 2] */}
+                            <div className="relative w-full aspect-[4/3] overflow-hidden border-b border-blue group-hover:border-accent transition-colors">
                                 <img
                                     src={project.image}
                                     alt={project.title}
@@ -86,7 +82,7 @@ export default function WorksGallery() {
                                 />
                             </div>
 
-                            <div className="px-4 pb-6 mt-auto">
+                            <div className="px-6 py-8 mt-auto">
                                 <h3 className="text-xl font-bold font-sans tracking-tight mb-2 group-hover:text-accent transition-colors">
                                     {project.title}
                                 </h3>
@@ -96,7 +92,7 @@ export default function WorksGallery() {
 
                                 <div className="flex flex-wrap gap-2">
                                     {project.badges.map((badge, bIdx) => (
-                                        <span key={bIdx} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500">
+                                        <span key={bIdx} className="px-3 py-1 rounded-full border border-blue/20 text-xs font-mono text-zinc-500">
                                             {badge}
                                         </span>
                                     ))}
@@ -106,11 +102,10 @@ export default function WorksGallery() {
                     </motion.a>
                 ))}
             </div>
-
-            <div className="mt-12 flex justify-center md:hidden">
+            <div className="mt-12 flex justify-center">
                 <Link to="/works">
                     <MagneticButton className="bg-blue text-light hover:bg-blue/80 border-white/10 transition-all">
-                        Sse more projects
+                        See more projects
                     </MagneticButton>
                 </Link>
             </div>

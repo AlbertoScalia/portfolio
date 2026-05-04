@@ -40,7 +40,8 @@ export default function Bio() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
                 {/* Sidebar: Skills */}
                 <aside className="lg:col-span-4">
-                    <LiquidCard className="p-8 sticky top-32 shadow-none border border-zinc-200 bg-white rounded-[2rem]">
+                    {/* Card con bordo blue, hover accent e transizione fluida */}
+                    <LiquidCard className="group p-8 sticky top-32 shadow-none border border-blue hover:border-accent bg-white rounded-[2rem] transition-colors duration-300">
                         <h2 className="text-sm font-sans font-bold text-zinc-400 tracking-widest uppercase mb-10 flex items-center gap-2">
                             <PenNib size={18} weight="duotone" className="text-accent" /> Skills & Technologies
                         </h2>
@@ -48,7 +49,7 @@ export default function Bio() {
                         <div className="space-y-10">
                             {/* Design & Creative Suite */}
                             <div>
-                                <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80">Design & Creative Suite</h3>
+                                <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">Design & Creative Suite</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {["Adobe Creative Suite", "Figma", "Affinity Suite", "Visual Identity", "Editorial Design", "Branding Strategy", "Typography"].map(skill => (
                                         <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
@@ -60,7 +61,7 @@ export default function Bio() {
 
                             {/* UX/UI Design */}
                             <div>
-                                <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80">UX/UI Design</h3>
+                                <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">UX/UI Design</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {["User Research", "Discovery", "UX Writing", "Wireframing", "High-Fidelity Prototyping", "Usability Test", "Accessibility", "User-Centric Design", "Interaction Design"].map(skill => (
                                         <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
@@ -72,7 +73,7 @@ export default function Bio() {
 
                             {/* Strategy & Growth */}
                             <div>
-                                <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80">Strategy & Growth</h3>
+                                <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">Strategy & Growth</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {["Growth Marketing", "Funnel Optimization", "Meta Ads", "Google Ads", "GA4", "GTM", "Looker Studio", "Tableau", "SQL"].map(skill => (
                                         <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
@@ -84,7 +85,7 @@ export default function Bio() {
 
                             {/* AI, Dev & Management */}
                             <div>
-                                <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80">AI, Dev & Management</h3>
+                                <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">AI, Dev & Management</h3>
                                 <div className="flex flex-wrap gap-2">
                                     {["AI Strategy", "Prompt Engineering", "AI Agents", "n8n Automation", "Web Development", "Responsive Design", "SAP B1", "EKR KIT"].map(skill => (
                                         <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
@@ -99,19 +100,19 @@ export default function Bio() {
 
                 {/* Main Content: Experience & Education */}
                 <div className="lg:col-span-8 flex flex-col gap-16">
-
+                    {/* ... Restante contenuto (Experience & Education) invariato ... */}
                     <motion.section variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true }}>
                         <h2 className="text-2xl font-sans font-bold mb-10 flex items-center gap-4">
                             <Briefcase size={28} weight="duotone" className="text-accent" /> Professional Experience
                         </h2>
-
                         <div className="flex flex-col gap-8 border-l border-blue/10 pl-8 ml-4">
-                                                    <motion.div variants={itemVariants} className="relative">
+                            {/* Le singole voci dell'esperienza */}
+                            <motion.div variants={itemVariants} className="relative">
                                 <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-accent ring-4 ring-background"></span>
                                 <span className="font-mono text-xs text-zinc-500 mb-2 block">Present</span>
                                 <h3 className="text-xl font-bold font-sans text-blue mb-1">Open to opportunities</h3>
                                 <span className="text-sm font-medium text-zinc-500 block mb-3">Full time or freelance</span>
-                                <p className="text-zinc-500 leading-relaxed">  Full-time roles and collaborations — especially where design and strategy overlap.</p>
+                                <p className="text-zinc-500 leading-relaxed">Full-time roles and collaborations — especially where design and strategy overlap.</p>
                             </motion.div>
                             <motion.div variants={itemVariants} className="relative">
                                 <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-zinc-700 ring-4 ring-background"></span>

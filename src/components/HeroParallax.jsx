@@ -55,13 +55,13 @@ export default function HeroParallax() {
                         className="flex flex-wrap gap-4 mt-4"
                     >
                         <Link to="/works">
-                            <MagneticButton className="bg-accent text-white px-8 py-4 rounded-full font-bold whitespace-nowrap hover:brightness-80">
+                            <MagneticButton                     className="inline-flex items-center justify-center px-8 py-4 font-sans font-bold rounded-full bg-accent text-white hover:bg-zinc-800 transition-all shadow-xl shadow-black/5">
                                 View projects
                             </MagneticButton>
                         </Link>
 
                         <Link to="/contact">
-                            <MagneticButton className="bg-blue text-light hover:bg-blue/80 border border-white/10 transition-all">
+                            <MagneticButton                     className="inline-flex items-center justify-center px-8 py-4 font-sans font-bold rounded-full bg-blue text-white hover:bg-zinc-800 transition-all shadow-xl shadow-black/5">
                                 Contact me
                             </MagneticButton>
                         </Link>
