@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+// 1. Sostituisci BrowserRouter con HashRouter
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Works from './pages/Works';
 import Bio from './pages/Bio';
 import Contact from './pages/Contact';
-import Grain from './components/ui/Grain'; // Importa il componente Grain
+import Grain from './components/ui/Grain';
 
 function Layout() {
     const [navBackground, setNavBackground] = useState(false);
@@ -30,22 +31,18 @@ function Layout() {
     }, []);
 
     return (
-        /* Aggiunto bg-[#f5f3f0] per garantire la base corretta alla grana */
         <div className="min-h-screen bg-[#f5f3f0] text-foreground antialiased relative flex flex-col">
-            
-            {/* 1. La grana ora è qui: fissa e visibile in ogni rotta */}
             <Grain />
-
             <Navbar navBackground={navBackground} />
             
-<div className="flex-grow relative z-10"> {/* Questo z-10 solleva Bio, Works e Contact insieme */}
-    <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/works" element={<Works />} />
-        <Route path="/bio" element={<Bio />} />
-        <Route path="/contact" element={<Contact />} />
-    </Routes>
-</div>
+            <div className="flex-grow relative z-10">
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/works" element={<Works />} />
+                    <Route path="/bio" element={<Bio />} />
+                    <Route path="/contact" element={<Contact />} />
+                </Routes>
+            </div>
             
             <Footer />
         </div>
@@ -54,7 +51,9 @@ function Layout() {
 
 function App() {
     return (
-        <Router basename="/portfolio">
+        /* 2. Rimuovi basename="/portfolio" perché con HashRouter non serve più */
+        /* La navigazione avverrà dopo il simbolo # (es. /portfolio/#/bio) */
+        <Router>
             <Layout />
         </Router>
     );
