@@ -5,7 +5,7 @@ import { BehanceLogo, GithubLogo, LinkedinLogo } from '@phosphor-icons/react';
 export default function Footer() {
     return (
         /* 1. Cambiato bg-white in bg-blue e rimosso il bordo grigio */
-        <footer className="relative z-10 bg-blue pt-24 pb-12 rounded-t-[4rem]">
+        <footer className="relative z-10 bg-blue pt-16 pb-12 rounded-t-[4rem]">
             <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between gap-12">
                 <div className="max-w-sm">
                     {/* 2. Testo ora bianco (o light) */}
@@ -53,7 +53,7 @@ export default function Footer() {
             </div>
 
             {/* 5. Bordo inferiore e copyright adattati al blu */}
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-24 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-xs text-white/30 font-mono">
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-xs text-white/30 font-mono">
                 <p>&copy; {new Date().getFullYear()} Alberto Scalia. All rights reserved.</p>
             </div>
         </footer>

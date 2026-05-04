@@ -29,7 +29,7 @@ const projects = [
 
 export default function WorksGallery() {
     return (
-        <section id="progetti" className="relative py-32 px-6 lg:px-12 w-full mx-auto max-w-7xl">
+        <section id="progetti" className="relative py-16 px-6 lg:px-12 w-full mx-auto max-w-7xl">
             <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
                 <h2 className="text-4xl md:text-6xl font-sans font-bold tracking-tighter">
                     Here's how I spent <br />
