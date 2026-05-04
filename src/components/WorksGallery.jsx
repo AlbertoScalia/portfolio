@@ -12,20 +12,6 @@ const projects = [
         link: "https://www.behance.net/gallery/247551635/Re-design-Isola-Bio"
     },
     {
-        title: "Start2impact Master Projects",
-        subtitle: "Growth strategy, UX design, data analysis — all in one place. The projects where I stopped specializing and started connecting the dots.",
-        image: "/portfolio/assets/images/project0.webp",
-        badges: ["Growth Marketing", "UX/UI Design", "Data Analytics", "AI Business Strategy"],
-        link: "https://account.start2impact.it/profile/alberto-scalia"
-    },
-    {
-        title: "Glacier – Prototype app",
-        subtitle: "Designed for people who plan trips in places where the weather decides everything. A travel app for the Nordic countries — built around uncertainty.",
-        image: "/portfolio/assets/images/project6.webp",
-        badges: ["UX/UI Design", "App Design"],
-        link: "https://www.behance.net/gallery/210705375/Glacier"
-    },
-    {
         title: "Forward magazine",
         subtitle: "Art direction and design for a healthcare and multimedia horizon scanning project.",
         image: "/portfolio/assets/images/project2.webp",
@@ -33,18 +19,11 @@ const projects = [
         link: "https://forward.recentiprogressi.it/it/"
     },
     {
-        title: "lay0ut magazine – senza scheletro",
-        subtitle: "Art direction and experimental layout work for lay0ut magazine.",
-        image: "/portfolio/assets/images/project3.webp",
-        badges: ["Art Direction", "Editorial Design", "Layout"],
-        link: "https://www.layoutmagazine.it/senza-scheletro-il-nuovo-cartaceo-di-leiaut-megasin/"
-    },
-    {
-        title: "Le chitarre del Pedrollo",
-        subtitle: "Editorial project focused on lutherie for the Conservatory of Vicenza.",
-        image: "/portfolio/assets/images/project1.webp",
-        badges: ["Art Direction", "Editorial Design", "Layout"],
-        link: "https://www.industriaeletteratura.it/prodotto/le-chitarre-del-pedrollo/"
+        title: "Glacier – Prototype app",
+        subtitle: "Designed for people who plan trips in places where the weather decides everything. A travel app for the Nordic countries — built around uncertainty.",
+        image: "/portfolio/assets/images/project6.webp",
+        badges: ["UX/UI Design", "App Design"],
+        link: "https://www.behance.net/gallery/210705375/Glacier"
     }
 ];
 
