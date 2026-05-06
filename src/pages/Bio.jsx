@@ -46,55 +46,55 @@ export default function Bio() {
                             <PenNib size={18} weight="duotone" className="text-accent" /> Skills & Technologies
                         </h2>
 
-                        <div className="space-y-10">
-                            {/* Design & Creative Suite */}
-                            <div>
-                                <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">Design & Creative Suite</h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {["Adobe Creative Suite", "Figma", "Affinity Suite", "Visual Identity", "Editorial Design", "Branding Strategy", "Typography"].map(skill => (
-                                        <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
+<div className="space-y-10">
+    {/* Core Design & Art Direction */}
+    <div>
+        <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">Editorial & Visual Arts</h3>
+        <div className="flex flex-wrap gap-2">
+            {["Editorial Design", "Visual Identity", "Typography", "Branding Strategy", "Adobe Creative Suite", "Affinity Suite"].map(skill => (
+                <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
+                    {skill}
+                </span>
+            ))}
+        </div>
+    </div>
 
-                            {/* UX/UI Design */}
-                            <div>
-                                <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">UX/UI Design</h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {["User Research", "Discovery", "UX Writing", "Wireframing", "High-Fidelity Prototyping", "Usability Test", "Accessibility", "User-Centric Design", "Interaction Design"].map(skill => (
-                                        <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
+    {/* Digital Product & UX */}
+    <div>
+        <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">UX/UI & Product</h3>
+        <div className="flex flex-wrap gap-2">
+            {["Figma", "User Research", "Information Architecture", "Wireframing", "Interactive Prototyping", "Usability Testing", "Design Systems"].map(skill => (
+                <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
+                    {skill}
+                </span>
+            ))}
+        </div>
+    </div>
 
-                            {/* Strategy & Growth */}
-                            <div>
-                                <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">Strategy & Growth</h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {["Growth Marketing", "Funnel Optimization", "Meta Ads", "Google Ads", "GA4", "GTM", "Looker Studio", "Tableau", "SQL"].map(skill => (
-                                        <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
+    {/* AI & Automation (Il tuo vero boost) */}
+    <div>
+        <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">AI & Workflow Automation</h3>
+        <div className="flex flex-wrap gap-2">
+            {["Prompt Engineering", "AI Agents", "n8n Automation", "LLM Implementation", "Workflow Optimization"].map(skill => (
+                <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
+                    {skill}
+                </span>
+            ))}
+        </div>
+    </div>
 
-                            {/* AI, Dev & Management */}
-                            <div>
-                                <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">AI, Dev & Management</h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {["AI Strategy", "Prompt Engineering", "AI Agents", "n8n Automation", "Web Development", "Responsive Design", "SAP B1", "EKR KIT"].map(skill => (
-                                        <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
+    {/* Marketing & Development */}
+    <div>
+        <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">Tech & Growth</h3>
+        <div className="flex flex-wrap gap-2">
+            {["Web Development", "Growth Marketing", "SAP Business One", "EKR KIT", "Data-Driven Design"].map(skill => (
+                <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
+                    {skill}
+                </span>
+            ))}
+        </div>
+    </div>
+</div>
                     </LiquidCard>
                 </aside>
 

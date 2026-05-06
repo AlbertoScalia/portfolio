@@ -55,7 +55,7 @@ export default function HeroParallax() {
                         className="flex flex-wrap gap-4 mt-4"
                     >
                         <Link to="/works">
-                            <MagneticButton                     className="inline-flex items-center justify-center px-8 py-4 font-sans font-bold rounded-full bg-accent text-white hover:bg-zinc-800 transition-all shadow-xl shadow-black/5">
+                            <MagneticButton className="inline-flex items-center justify-center px-8 py-4 font-sans font-bold rounded-full bg-accent text-white hover:bg-zinc-800 transition-all shadow-xl shadow-black/5">
                                 View projects
                             </MagneticButton>
                         </Link>
@@ -80,11 +80,13 @@ export default function HeroParallax() {
                         style={{ y: imageY }}
                         className="relative w-56 lg:w-80"
                     >
-                        <img
-                            src={`${import.meta.env.BASE_URL}assets/images/logo_sito.webp`}
-                            alt="Alberto Scalia Logo"
-                            className="w-full h-auto object-contain"
-                        />
+<img
+    src={`${import.meta.env.BASE_URL}assets/images/logo_sito.webp`}
+    alt="Alberto Scalia Logo"
+    className="w-full h-auto object-contain"
+    loading="eager" // Carica immediatamente perché è nella parte alta della pagina
+    decoding="async"
+/>
                     </motion.div>
                 </motion.div>
 

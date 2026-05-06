@@ -60,40 +60,12 @@ const allProjects = [
         link: "https://www.flacoedizioni.com"
     },
     {
-        title: "Eclecta — Brand and Guidelines",
-        subtitle: "Brand identity development and editorial user manual consistent between print and web.",
-        image: "/portfolio/assets/images/project7.webp",
-        badges: ["Brand Identity", "Typography"],
-        link: "https://www.behance.net/gallery/122876217/Eclecta-marchio-e-norme-editoriali-"
-    },
-    {
         title: "Social Identity Socrates",
         subtitle: "Visual identity and creative strategy for cultural storytelling through sports.",
         image: "/portfolio/assets/images/project8.webp",
         badges: ["Social Media", "Branding"],
         link: "https://www.behance.net/gallery/210490221/Socrates-Sport-Storie-Societa"
     },
-    {
-        title: "Evaporato in una nuvola rossa",
-        subtitle: "Visual identity for an exhibition in memory of Fabrizio De André.",
-        image: "/portfolio/assets/images/project9.webp",
-        badges: ["Visual Art", "Photography"],
-        link: "https://www.behance.net/gallery/117560683/EVAPORATO-in-una-NUVOLA-ROSSA"
-    },
-    {
-        title: "Infographic - Ti faccio nero, buco!",
-        subtitle: "A visual deep dive into Black Holes, translating complex astrophysics into an accessible infographic.",
-        image: "/portfolio/assets/images/project11.webp",
-        badges: ["Infographic Design", "Data Visualization"],
-        link: "https://www.behance.net/gallery/121555913/Infographic-Ti-faccio-nero-buco"
-    },
-    {
-        title: "Il Destino della Terra",
-        subtitle: "An infographic illustrating the global pollution crisis and its environmental consequences.",
-        image: "/portfolio/assets/images/project10.webp",
-        badges: ["Infographic Design", "Data Visualization", "Environmental Design"],
-        link: "https://www.behance.net/gallery/116122765/Infographic-Il-Destino-della-Terra"
-    }
 ];
 
 export default function Works() {

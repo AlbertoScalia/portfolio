@@ -41,14 +41,11 @@ export default function ClientsMarquee() {
                                 width="192"
                                 height="80"
                                 // Ottimizzazione: caricamento pigro e decodifica asincrona
-                                loading="lazy"
                                 decoding="async"
                                 className="w-full h-auto object-contain pointer-events-none grayscale brightness-50 contrast-125"
                                 // Ottimizzazione: filtro applicato tramite CSS standard, limitando i calcoli GPU
                                 style={{ 
                                     filter: 'brightness(0) saturate(100%) invert(8%) sepia(21%) saturate(542%) hue-rotate(176deg) brightness(94%) contrast(92%)',
-                                    backfaceVisibility: 'hidden',
-                                    transform: 'translateZ(0)' 
                                 }}
                             />
                         </div>
