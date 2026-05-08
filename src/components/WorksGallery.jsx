@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import LiquidCard from './ui/LiquidCard';
 import MagneticButton from './ui/MagneticButton';
 import { Link } from 'react-router-dom';
 
@@ -29,7 +28,7 @@ const projects = [
 
 export default function WorksGallery() {
     return (
-        <section id="progetti" className="relative py-16 px-6 lg:px-12 w-full mx-auto max-w-7xl">
+        <section id="progetti" className="relative py-24 px-6 lg:px-12 w-full mx-auto max-w-7xl">
             <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-8">
                 <h2 className="text-4xl md:text-6xl font-sans font-bold tracking-tighter">
                     Here's how I spent <br />
@@ -37,53 +36,59 @@ export default function WorksGallery() {
                 </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="flex flex-col gap-16">
                 {projects.map((project, idx) => (
                     <motion.a
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
                         key={idx}
-                        initial={{ opacity: 0, y: 50 }}
+                        initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-50px" }}
-                        transition={{ delay: idx * 0.1, type: "spring", stiffness: 100, damping: 20 }}
-                        className="group block"
+                        viewport={{ once: true, margin: "-100px" }}
+                        className="group flex flex-col gap-4"
                     >
-                        <LiquidCard className="h-full flex flex-col shadow-none">
-                            {/* L'immagine occupa la parte superiore senza padding per un look pulito[cite: 1, 2] */}
-                            <div className="relative w-full aspect-[4/3] overflow-hidden border-b border-blue group-hover:border-accent transition-colors">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    loading="lazy"
-                                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                            </div>
+                        {/* Filetto superiore */}
+                        <div className="w-full border-t border-blue/20 group-hover:border-accent transition-colors duration-500" />
 
-                            <div className="px-6 py-8 mt-auto">
-                                <h3 className="text-xl font-bold font-sans tracking-tight mb-2 group-hover:text-accent transition-colors">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                            {/* Descrizione separata */}
+                            <div className="order-2 md:order-1 pt-2">
+                                <h3 className="text-lg font-bold font-sans tracking-tight mb-2 group-hover:text-accent transition-colors">
                                     {project.title}
                                 </h3>
-                                <p className="text-zinc-500 text-sm mb-6 leading-relaxed">
+                                <p className="text-zinc-500 text-xs mb-4 leading-relaxed max-w-sm">
                                     {project.subtitle}
                                 </p>
 
-                                <div className="flex flex-wrap gap-2">
+                                <div className="flex flex-wrap gap-1.5">
                                     {project.badges.map((badge, bIdx) => (
-                                        <span key={bIdx} className="px-3 py-1 rounded-full border border-blue/20 text-xs font-mono text-zinc-500">
+                                        <span key={bIdx} className="px-2 py-0.5 rounded-full border border-blue/20 text-[9px] font-mono text-zinc-400 uppercase tracking-wider">
                                             {badge}
                                         </span>
                                     ))}
                                 </div>
                             </div>
-                        </LiquidCard>
+
+                            {/* Immagine con bordi squadrati */}
+                            <div className="md:col-span-2 order-1 md:order-2">
+                                <div className="relative w-full aspect-[16/8] overflow-hidden bg-zinc-100">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        loading="lazy"
+                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </motion.a>
                 ))}
             </div>
-            <div className="mt-12 flex justify-center">
+
+            <div className="mt-24 flex justify-center">
                 <Link to="/works">
-                    <MagneticButton className="bg-blue text-light hover:bg-blue/80 border-white/10 transition-all">
+                    <MagneticButton className="bg-blue text-light hover:bg-blue/80 border border-white/10 transition-all">
                         See more projects
                     </MagneticButton>
                 </Link>

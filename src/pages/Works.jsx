@@ -71,66 +71,73 @@ const allProjects = [
 export default function Works() {
     return (
         <main className="pt-40 pb-20 px-6 lg:px-12 w-full mx-auto max-w-7xl min-h-screen">
-            <header className="mb-24 text-center">
+            {/* Header - Sbandierato a sinistra con dimensioni originali */}
+            <header className="mb-24 text-left">
                 <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-6"
+                    className="text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-8"
                 >
                     My experience <br />
-                    <span className="text-accent text-4xl md:text-6xl">(and my dark circles)</span>
+                    <span className="text-accent text-3xl md:text-5xl">(and my dark circles)</span>
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-                    className="text-zinc-500 text-xl font-sans max-w-2xl mx-auto"
+                    className="text-zinc-500 text-xl font-sans max-w-2xl leading-relaxed"
                 >
                     No fluff. Just the projects that changed something — a product, a brand, a perception.
                 </motion.p>
             </header>
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {allProjects.map((project, idx) => (
-        <motion.a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            key={idx}
-            className="group block"
-        >
-            <LiquidCard className="h-full flex flex-col shadow-none">
-                {/* L'immagine segue il raggio della card ma non ha padding interno */}
-                <div className="relative w-full aspect-[4/3] overflow-hidden border-b border-blue group-hover:border-accent transition-colors">
-                    <img
-                        src={project.image}
-                        alt={project.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                </div>
+            <div className="flex flex-col gap-16">
+                {allProjects.map((project, idx) => (
+                    <motion.a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        key={idx}
+                        className="group flex flex-col gap-4"
+                    >
+                        {/* Filetto superiore */}
+                        <div className="w-full border-t border-blue group-hover:border-accent transition-colors" />
 
-                <div className="px-6 py-8 mt-auto">
-                    <h3 className="text-xl font-bold font-sans tracking-tight mb-2 group-hover:text-accent transition-colors">
-                        {project.title}
-                    </h3>
-                    <p className="text-zinc-500 text-sm mb-6 leading-relaxed">
-                        {project.subtitle}
-                    </p>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                            {/* Descrizione */}
+                            <div className="order-2 md:order-1 pt-2">
+                                <h3 className="text-lg font-bold font-sans tracking-tight mb-2 group-hover:text-accent transition-colors">
+                                    {project.title}
+                                </h3>
+                                <p className="text-zinc-500 text-xs mb-4 leading-relaxed max-w-sm">
+                                    {project.subtitle}
+                                </p>
 
-                    <div className="flex flex-wrap gap-2">
-                        {project.badges.map((badge, bIdx) => (
-                            <span key={bIdx} className="px-3 py-1 rounded-full border border-blue/20 text-xs font-mono text-zinc-500">
-                                {badge}
-                            </span>
-                        ))}
-                    </div>
-                </div>
-            </LiquidCard>
-        </motion.a>
-    ))}
-</div>
+                                <div className="flex flex-wrap gap-1.5">
+                                    {project.badges.map((badge, bIdx) => (
+                                        <span key={bIdx} className="px-2 py-0.5 rounded-full border border-blue/20 text-[9px] font-mono text-zinc-400 uppercase tracking-wider">
+                                            {badge}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Immagine - Forzata visibilità senza LiquidCard se crea conflitti */}
+                            <div className="md:col-span-2 order-1 md:order-2">
+                                <div className="relative w-full aspect-[16/8] overflow-hidden bg-zinc-100">
+                                    <img
+                                        src={project.image}
+                                        alt={project.title}
+                                        loading="lazy"
+                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    </motion.a>
+                ))}
+            </div>
 
             <motion.div
                 initial={{ opacity: 0 }}

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import LiquidCard from '../components/ui/LiquidCard';
 import { Briefcase, GraduationCap, PenNib } from '@phosphor-icons/react';
 
 export default function Bio() {
@@ -16,12 +15,32 @@ export default function Bio() {
         show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 20 } }
     };
 
+    const skillCategories = [
+        {
+            title: "Editorial & Visual Arts",
+            skills: ["Editorial Design", "Visual Identity", "Typography", "Branding Strategy", "Adobe Creative Suite", "Affinity Suite"]
+        },
+        {
+            title: "UX/UI & Product",
+            skills: ["Figma", "User Research", "Information Architecture", "Wireframing", "Interactive Prototyping", "Usability Testing", "Design Systems"]
+        },
+        {
+            title: "AI & Workflow Automation",
+            skills: ["Prompt Engineering", "AI Agents", "n8n Automation", "LLM Implementation", "Workflow Optimization"]
+        },
+        {
+            title: "Tech & Growth",
+            skills: ["Web Development", "Growth Marketing", "SAP Business One", "EKR KIT", "Data-Driven Design"]
+        }
+    ];
+
     return (
         <main className="pt-40 pb-20 px-6 lg:px-12 w-full mx-auto max-w-7xl min-h-screen">
-            <header className="mb-24 text-center">
+            {/* Header - Sbandierato a sinistra, dimensioni originali */}
+            <header className="mb-24 text-left">
                 <motion.h1
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
                     className="text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-6"
                 >
@@ -31,173 +50,102 @@ export default function Bio() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-                    className="text-zinc-500 text-xl font-sans max-w-2xl mx-auto"
+                    className="text-zinc-500 text-xl font-sans max-w-2xl leading-relaxed"
                 >
                     Or: how I learned to stop worrying about light space and love brevity. 
                 </motion.p>
             </header>
 
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                {/* Sidebar: Skills */}
-                <aside className="lg:col-span-4">
-                    {/* Card con bordo blue, hover accent e transizione fluida */}
-                    <LiquidCard className="group p-8 sticky top-32 shadow-none border border-blue hover:border-accent bg-white rounded-[2rem] transition-colors duration-300">
-                        <h2 className="text-sm font-sans font-bold text-zinc-400 tracking-widest uppercase mb-10 flex items-center gap-2">
+            {/* Skills Section - Filetto spessore LiquidCard */}
+            <section className="mb-32">
+                <div className="w-full border-t border-blue mb-12" />
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+                    <div className="col-span-1">
+                        <h2 className="text-sm font-sans font-bold text-blue tracking-widest uppercase flex items-center gap-2 mb-4">
                             <PenNib size={18} weight="duotone" className="text-accent" /> Skills & Technologies
                         </h2>
-
-<div className="space-y-10">
-    {/* Core Design & Art Direction */}
-    <div>
-        <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">Editorial & Visual Arts</h3>
-        <div className="flex flex-wrap gap-2">
-            {["Editorial Design", "Visual Identity", "Typography", "Branding Strategy", "Adobe Creative Suite", "Affinity Suite"].map(skill => (
-                <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
-                    {skill}
-                </span>
-            ))}
-        </div>
-    </div>
-
-    {/* Digital Product & UX */}
-    <div>
-        <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">UX/UI & Product</h3>
-        <div className="flex flex-wrap gap-2">
-            {["Figma", "User Research", "Information Architecture", "Wireframing", "Interactive Prototyping", "Usability Testing", "Design Systems"].map(skill => (
-                <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
-                    {skill}
-                </span>
-            ))}
-        </div>
-    </div>
-
-    {/* AI & Automation (Il tuo vero boost) */}
-    <div>
-        <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">AI & Workflow Automation</h3>
-        <div className="flex flex-wrap gap-2">
-            {["Prompt Engineering", "AI Agents", "n8n Automation", "LLM Implementation", "Workflow Optimization"].map(skill => (
-                <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
-                    {skill}
-                </span>
-            ))}
-        </div>
-    </div>
-
-    {/* Marketing & Development */}
-    <div>
-        <h3 className="text-[10px] text-blue uppercase font-black tracking-[0.15em] mb-4 opacity-80 group-hover:text-accent transition-colors">Tech & Growth</h3>
-        <div className="flex flex-wrap gap-2">
-            {["Web Development", "Growth Marketing", "SAP Business One", "EKR KIT", "Data-Driven Design"].map(skill => (
-                <span key={skill} className="px-3 py-1 rounded-full bg-blue/5 border border-blue/10 text-xs font-mono text-zinc-500 whitespace-nowrap">
-                    {skill}
-                </span>
-            ))}
-        </div>
-    </div>
-</div>
-                    </LiquidCard>
-                </aside>
-
-                {/* Main Content: Experience & Education */}
-                <div className="lg:col-span-8 flex flex-col gap-16">
-                    {/* ... Restante contenuto (Experience & Education) invariato ... */}
-                    <motion.section variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true }}>
-                        <h2 className="text-2xl font-sans font-bold mb-10 flex items-center gap-4">
-                            <Briefcase size={28} weight="duotone" className="text-accent" /> Professional Experience
-                        </h2>
-                        <div className="flex flex-col gap-8 border-l border-blue/10 pl-8 ml-4">
-                            {/* Le singole voci dell'esperienza */}
-                            <motion.div variants={itemVariants} className="relative">
-                                <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-accent ring-4 ring-background"></span>
-                                <span className="font-mono text-xs text-zinc-500 mb-2 block">Present</span>
-                                <h3 className="text-xl font-bold font-sans text-blue mb-1">Open to opportunities</h3>
-                                <span className="text-sm font-medium text-zinc-500 block mb-3">Full time or freelance</span>
-                                <p className="text-zinc-500 leading-relaxed">Full-time roles and collaborations — especially where design and strategy overlap.</p>
-                            </motion.div>
-                            <motion.div variants={itemVariants} className="relative">
-                                <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-zinc-700 ring-4 ring-background"></span>
-                                <span className="font-mono text-xs text-zinc-500 mb-2 block">2022 - Present</span>
-                                <h3 className="text-xl font-bold font-sans text-blue mb-1">Art Director</h3>
-                                <span className="text-sm font-medium text-zinc-500 block mb-3">lay0ut magazine, Forward magazine</span>
-                                <p className="text-zinc-500 leading-relaxed"> From underground zines to peer-reviewed science — I've designed both, and they've taught me everything about hierarchy.</p>
-                            </motion.div>
-
-                            <motion.div variants={itemVariants} className="relative">
-                                <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-zinc-700 ring-4 ring-background"></span>
-                                <span className="font-mono text-xs text-zinc-500 mb-2 block">2025 - 2026</span>
-                                <h3 className="text-xl font-bold font-sans text-blue mb-1">Graphic Designer</h3>
-                                <span className="text-sm font-medium text-zinc-500 block mb-3">Life Electronics SpA</span>
-                                <p className="text-zinc-500 leading-relaxed">I dress tech products without forgetting barcodes. I manage the entire packaging cycle by integrating creativity with complex management systems like SAP and EKR KIT.</p>
-                            </motion.div>
-
-                            <motion.div variants={itemVariants} className="relative">
-                                <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-zinc-700 ring-4 ring-background"></span>
-                                <span className="font-mono text-xs text-zinc-500 mb-2 block">2021 - 2026</span>
-                                <h3 className="text-xl font-bold font-sans text-blue mb-1">Freelance Graphic Designer</h3>
-                                <span className="text-sm font-medium text-zinc-500 block mb-3">Various Independent Publishers</span>
-                                <p className="text-zinc-500 leading-relaxed">I take care of visual identities and typesetting for 12 independent publishers and academic institutions, delivering over 50 book projects.</p>
-                            </motion.div>
-
-                            <motion.div variants={itemVariants} className="relative">
-                                <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-zinc-700 ring-4 ring-background"></span>
-                                <span className="font-mono text-xs text-zinc-500 mb-2 block">2021 - 2023</span>
-                                <h3 className="text-xl font-bold font-sans text-blue mb-1">Graphic Design Intern</h3>
-                                <span className="text-sm font-medium text-zinc-500 block mb-3">LetteraVentidue Edizioni</span>
-                                <p className="text-zinc-500 leading-relaxed">A total immersion in the world of books: from the choice of paper to the millimetric precision of typographic grids.</p>
-                            </motion.div>
-                        </div>
-                    </motion.section>
-
-                    <motion.section variants={containerVariants} initial="hidden" whileInView="show" viewport={{ once: true }}>
-                        <h2 className="text-2xl font-sans font-bold mb-10 flex items-center gap-4">
-                            <GraduationCap size={28} weight="duotone" className="text-accent" /> Education
-                        </h2>
-
-                        <div className="flex flex-col gap-8 border-l border-blue/10 pl-8 ml-4">
-                            <motion.div variants={itemVariants} className="relative">
-                                <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-accent ring-4 ring-background"></span>
-                                <span className="font-mono text-xs text-zinc-500 mb-2 block">2025 - 2026</span>
-                                <h3 className="text-xl font-bold font-sans text-blue mb-1">Growth Marketing & AI Agents Master</h3>
-                                <span className="text-sm font-medium text-zinc-500 block mb-3">start2impact</span>
-                                <p className="text-zinc-500 leading-relaxed">A multidisciplinary path that combines strategic marketing, UX/UI design, and data analysis with a strong focus on artificial intelligence. You can take a look at my profile and my projects <a href="https://account.start2impact.it/profile/alberto-scalia
-" className="text-accent mb-3" >here.</a></p>
-                            </motion.div>
-
-                            <motion.div variants={itemVariants} className="relative">
-                                <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-zinc-700 ring-4 ring-background"></span>
-                                <span className="font-mono text-xs text-zinc-500 mb-2 block">2024</span>
-                                <h3 className="text-xl font-bold font-sans text-blue mb-1">Complete UX Design Course</h3>
-                                <span className="text-sm font-medium text-zinc-500 block mb-3">corsoux.it</span>
-                                <p className="text-zinc-500 leading-relaxed">Where I understood that a test with a real user is worth more than a thousand hours of brainstorming in an agency.</p>
-                            </motion.div>
-
-                            <motion.div variants={itemVariants} className="relative">
-                                <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-zinc-700 ring-4 ring-background"></span>
-                                <span className="font-mono text-xs text-zinc-500 mb-2 block">2023</span>
-                                <h3 className="text-xl font-bold font-sans text-blue mb-1">Master in Full Stack Web Developer</h3>
-                                <span className="text-sm font-medium text-zinc-500 block mb-3">Boolean</span>
-                                <p className="text-zinc-500 leading-relaxed">Where I stopped asking developers if a design was feasible and started writing the code myself.</p>
-                            </motion.div>
-
-                            <motion.div variants={itemVariants} className="relative">
-                                <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-zinc-700 ring-4 ring-background"></span>
-                                <span className="font-mono text-xs text-zinc-500 mb-2 block">2021</span>
-                                <h3 className="text-xl font-bold font-sans text-blue mb-1">Master in Publishing</h3>
-                                <span className="text-sm font-medium text-zinc-500 block mb-3">Scuola del Libro</span>
-                                <p className="text-zinc-500 leading-relaxed">Practically a survival master for anyone who wants to print beautiful things without getting a nervous breakdown between one draft and another.</p>
-                            </motion.div>
-
-                            <motion.div variants={itemVariants} className="relative">
-                                <span className="absolute -left-[45px] top-1 w-3 h-3 rounded-full bg-zinc-700 ring-4 ring-background"></span>
-                                <span className="font-mono text-xs text-zinc-500 mb-2 block">2017 - 2020</span>
-                                <h3 className="text-xl font-bold font-sans text-blue mb-1">Bachelor's Degree in Visual Communication Design</h3>
-                                <span className="text-sm font-medium text-zinc-500 block mb-3">Accademia di Belle Arti di Catania</span>
-                                <p className="text-zinc-500 leading-relaxed">The foundations of everything I break and rebuild today. From color theory to rigid typography.</p>
-                            </motion.div>
-                        </div>
-                    </motion.section>
-
+                    </div>
+                    <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
+                        {skillCategories.map((cat, idx) => (
+                            <div key={idx}>
+                                <h3 className="text-[10px] text-zinc-400 uppercase font-black tracking-[0.15em] mb-4">
+                                    {cat.title}
+                                </h3>
+                                <div className="flex flex-wrap gap-2">
+                                    {cat.skills.map(skill => (
+                                        <span key={skill} className="px-2 py-1 rounded-full border border-blue/10 text-[11px] font-mono text-zinc-500 whitespace-nowrap">
+                                            {skill}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 </div>
+            </section>
+
+            {/* Experience & Education Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
+                
+                {/* Experience Column */}
+                <motion.section 
+                    variants={containerVariants} 
+                    initial="hidden" 
+                    whileInView="show" 
+                    viewport={{ once: true }}
+                >
+                    <div className="w-full border-t border-blue mb-12" />
+                    <h2 className="text-2xl font-sans font-bold mb-12 flex items-center gap-4 text-blue">
+                        <Briefcase size={28} weight="duotone" className="text-accent" /> Professional Experience
+                    </h2>
+                    
+                    <div className="space-y-12">
+                        {[
+                            { date: "Present", title: "Open to opportunities", sub: "Full time or freelance", desc: "Full-time roles and collaborations — especially where design and strategy overlap." },
+                            { date: "2022 - Present", title: "Art Director", sub: "lay0ut magazine, Forward magazine", desc: "From underground zines to peer-reviewed science — I've designed both, and they've taught me everything about hierarchy." },
+                            { date: "2025 - 2026", title: "Graphic Designer", sub: "Life Electronics SpA", desc: "I dress tech products without forgetting barcodes. I manage the entire packaging cycle by integrating creativity with complex management systems like SAP and EKR KIT." },
+                            { date: "2021 - 2026", title: "Freelance Graphic Designer", sub: "Various Independent Publishers", desc: "I take care of visual identities and typesetting for 12 independent publishers and academic institutions, delivering over 50 book projects." },
+                            { date: "2021 - 2023", title: "Graphic Design Intern", sub: "LetteraVentidue Edizioni", desc: "A total immersion in the world of books: from the choice of paper to the millimetric precision of typographic grids." }
+                        ].map((exp, i) => (
+                            <motion.div key={i} variants={itemVariants} className="flex flex-col gap-1 text-left">
+                                <span className="font-mono text-xs text-zinc-500 mb-2 block tracking-wider uppercase">{exp.date}</span>
+                                <h3 className="text-xl font-bold font-sans text-blue mb-1">{exp.title}</h3>
+                                <span className="text-sm font-medium text-zinc-500 block mb-3">{exp.sub}</span>
+                                <p className="text-zinc-500 leading-relaxed text-sm max-w-md">{exp.desc}</p>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.section>
+
+                {/* Education Column */}
+                <motion.section 
+                    variants={containerVariants} 
+                    initial="hidden" 
+                    whileInView="show" 
+                    viewport={{ once: true }}
+                >
+                    <div className="w-full border-t border-blue mb-12" />
+                    <h2 className="text-2xl font-sans font-bold mb-12 flex items-center gap-4 text-blue">
+                        <GraduationCap size={28} weight="duotone" className="text-accent" /> Education
+                    </h2>
+
+                    <div className="space-y-12">
+                        {[
+                            { date: "2025 - 2026", title: "Growth Marketing & AI Agents Master", sub: "start2impact", desc: <>A multidisciplinary path that combines strategic marketing, UX/UI design, and data analysis with a strong focus on artificial intelligence. Puoi vedere il mio profilo e i miei progetti <a href="https://account.start2impact.it/profile/alberto-scalia" className="text-accent hover:underline">qui.</a></> },
+                            { date: "2024", title: "Complete UX Design Course", sub: "corsoux.it", desc: "Where I understood that a test with a real user is worth more than a thousand hours of brainstorming in an agency." },
+                            { date: "2023", title: "Master in Full Stack Web Developer", sub: "Boolean", desc: "Where I stopped asking developers if a design was feasible and started writing the code myself." },
+                            { date: "2021", title: "Master in Publishing", sub: "Scuola del Libro", desc: "Practically a survival master for anyone who wants to print beautiful things without getting a nervous breakdown between one draft and another." },
+                            { date: "2017 - 2020", title: "Bachelor's Degree in Visual Communication Design", sub: "Accademia di Belle Arti di Catania", desc: "The foundations of everything I break and rebuild today. From color theory to rigid typography." }
+                        ].map((edu, i) => (
+                            <motion.div key={i} variants={itemVariants} className="flex flex-col gap-1 text-left">
+                                <span className="font-mono text-xs text-zinc-500 mb-2 block tracking-wider uppercase">{edu.date}</span>
+                                <h3 className="text-xl font-bold font-sans text-blue mb-1">{edu.title}</h3>
+                                <span className="text-sm font-medium text-zinc-500 block mb-3">{edu.sub}</span>
+                                <div className="text-zinc-500 leading-relaxed text-sm max-w-md">{edu.desc}</div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </motion.section>
             </div>
         </main>
     );
