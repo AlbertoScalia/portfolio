@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import MagneticButton from './ui/MagneticButton';
+import { ArrowUpRight } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 
 export default function HeroParallax() {
@@ -11,86 +11,83 @@ export default function HeroParallax() {
         offset: ["start start", "end start"],
     });
 
-    const imageY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-    const textY = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-    const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
     return (
         <section
             ref={ref}
-            className="relative min-h-[100dvh] w-full overflow-hidden flex items-center justify-center pt-32 pb-12 px-6 lg:px-12"
+            className="relative min-h-[90dvh] w-full flex flex-col justify-center pt-32 pb-12 px-6 lg:px-12 max-w-7xl mx-auto font-sans"
         >
-            <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-
-                {/* Text Content */}
-                <motion.div
-                    style={{ y: textY, opacity }}
-                    className="relative z-10 flex flex-col items-start gap-8 order-2 lg:order-1"
+            <motion.div style={{ opacity, y }} className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                {/* Logo Container - Ora appare SOPRA su mobile (ordine 1) */}
+                <motion.div 
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.1 }}
+                    className="lg:col-span-4 flex justify-start lg:justify-end order-1 lg:order-2"
                 >
-                    <div className="flex flex-col">
+                    <img
+                        src={`${import.meta.env.BASE_URL}assets/images/logo_sito.webp`}
+                        alt="Logo"
+                        className="w-32 md:w-48 lg:w-full max-w-[280px] h-auto object-contain"
+                    />
+                </motion.div>
+
+                {/* Text Content - Ordine 2 su mobile per stare sotto il logo */}
+                <div className="lg:col-span-8 text-left z-10 order-2 lg:order-1">
+                    <div className="flex flex-col mb-12">
                         <motion.h1
-                            initial={{ opacity: 0, y: 40 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.1 }}
-                            className="font-sans font-bold text-4xl md:text-6xl lg:text-7xl tracking-tighter leading-[0.9] text-blue"
+                            initial={{ opacity: 0, x: -30 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+                            className="font-bold text-4xl md:text-6xl lg:text-7xl tracking-tighter leading-[1.1] text-blue mb-8"
                         >
                             Editorial Precision, <br />
                             <span className="text-accent">Digital Performance</span>
                         </motion.h1>
+                        
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                            className="text-zinc-500 text-lg md:text-xl leading-relaxed max-w-2xl"
+                        >
+                            I'm Alberto. I bring editorial art direction into UX/UI and growth design — translating visual hierarchy, typography, and information architecture into interfaces.
+                        </motion.p>
                     </div>
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 40 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.3 }}
-                        className="max-w-xl text-lg md:text-xl text-zinc-500 leading-relaxed font-sans"
-                    >
-                        I'm Alberto. I bring editorial art direction into UX/UI and growth design — translating visual hierarchy, typography, and information architecture into interfaces that are as clear as they are effective.
-                    </motion.p>
-
+                    {/* Pulsanti */}
                     <motion.div
-                        initial={{ opacity: 0, y: 40 }}
+                        initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.4 }}
-                        className="flex flex-wrap gap-4 mt-4"
+                        transition={{ delay: 0.3 }}
+                        className="group flex flex-col gap-8 w-full md:w-fit"
                     >
-                        <Link to="/works">
-                            <MagneticButton className="inline-flex items-center justify-center px-8 py-4 font-sans font-bold rounded-full bg-accent text-white hover:bg-zinc-800 transition-all shadow-xl shadow-black/5">
-                                View projects
-                            </MagneticButton>
-                        </Link>
+                        <div className="w-full border-t border-blue group-hover:border-accent transition-colors duration-300" />
+                        
+                        <div className="flex flex-wrap gap-4 md:gap-6">
+                            <Link to="/works" className="flex items-center gap-4 group/btn">
+                                <div className="px-8 md:px-10 py-4 md:py-5 bg-blue text-white rounded-full flex items-center gap-3 transition-all group-hover/btn:bg-accent shadow-xl shadow-blue/5">
+                                    <span className="font-bold tracking-tight uppercase text-xs md:text-sm">
+                                        View projects
+                                    </span>
+                                    <ArrowUpRight size={18} weight="bold" />
+                                </div>
+                            </Link>
 
-                        <Link to="/contact">
-                            <MagneticButton                     className="inline-flex items-center justify-center px-8 py-4 font-sans font-bold rounded-full bg-blue text-white hover:bg-zinc-800 transition-all shadow-xl shadow-black/5">
-                                Contact me
-                            </MagneticButton>
-                        </Link>
+                            <Link to="/contact" className="flex items-center gap-4 group/btn">
+                                <div className="px-8 md:px-10 py-4 md:py-5 bg-transparent border border-blue/20 text-blue rounded-full flex items-center gap-3 transition-all hover:bg-blue/5">
+                                    <span className="font-bold tracking-tight uppercase text-xs md:text-sm">
+                                        Contact me
+                                    </span>
+                                </div>
+                            </Link>
+                        </div>
                     </motion.div>
-                </motion.div>
-
-                {/* Image Section */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.2 }}
-                    style={{ opacity }}
-                    className="relative w-full flex justify-center lg:justify-end items-center order-1 lg:order-2"
-                >
-                    <motion.div
-                        style={{ y: imageY }}
-                        className="relative w-56 lg:w-80"
-                    >
-<img
-    src={`${import.meta.env.BASE_URL}assets/images/logo_sito.webp`}
-    alt="Alberto Scalia Logo"
-    className="w-full h-auto object-contain"
-    loading="eager" // Carica immediatamente perché è nella parte alta della pagina
-    decoding="async"
-/>
-                    </motion.div>
-                </motion.div>
-
-            </div>
+                </div>
+            </motion.div>
         </section>
     );
 }

@@ -1,11 +1,10 @@
 import { motion } from 'framer-motion';
-import LiquidCard from '../components/ui/LiquidCard';
-import MagneticButton from '../components/ui/MagneticButton';
+import { ArrowUpRight } from '@phosphor-icons/react';
 
 const allProjects = [
     {
         title: "IsolaBio – Re-design website",
-        subtitle: "A brand that smelled like soil and sold like a startup. Re-design from research to prototype.",
+        subtitle: "Redesign of the Isola Bio website in desktop and mobile versions, with updated visual hierarchy, layout system, and responsive design.",
         image: "/portfolio/assets/images/project12.webp",
         badges: ["UX/UI Design", "Web Design"],
         link: "https://www.behance.net/gallery/247551635/Re-design-Isola-Bio"
@@ -19,49 +18,49 @@ const allProjects = [
     },
     {
         title: "Glacier – Prototype app",
-        subtitle: "Designed for people who plan trips in places where the weather decides everything. A travel app for the Nordic countries — built around uncertainty.",
+        subtitle: "Design a mobile app for extreme cold-weather adventure travel. The challenge was creating an interface that felt immersive and destination-specific without sacrificing usability in a content-heavy travel context.",
         image: "/portfolio/assets/images/project6.webp",
         badges: ["UX/UI Design", "App Design"],
         link: "https://www.behance.net/gallery/210705375/Glacier"
     },
     {
         title: "Forward magazine",
-        subtitle: "Art direction and design for a healthcare and multimedia horizon scanning project.",
+        subtitle: "Il Pensiero Scientifico Editore needed art direction for four consecutive issues of Forward, their healthcare and medical culture magazine.",
         image: "/portfolio/assets/images/project2.webp",
         badges: ["Art Direction", "Editorial Design", "Layout"],
         link: "https://forward.recentiprogressi.it/it/"
     },
     {
         title: "lay0ut magazine – senza scheletro",
-        subtitle: "Art direction and experimental layout work for lay0ut magazine.",
+        subtitle: "Design a new issue of lay0ut magazine as a standalone editorial project with a specific structural constraint: free signatures, like a newspaper, rather than a fixed page sequence.",
         image: "/portfolio/assets/images/project3.webp",
         badges: ["Art Direction", "Editorial Design", "Layout"],
         link: "https://www.layoutmagazine.it/senza-scheletro-il-nuovo-cartaceo-di-leiaut-megasin/"
     },
     {
         title: "Le chitarre del Pedrollo",
-        subtitle: "Editorial project focused on lutherie for the Conservatory of Vicenza.",
+        subtitle: "A scholarly volume documenting a historic guitar collection at the Conservatoire of Vicenza required a rigorous visual approach, with full-bleed instrument photography, detailed captions, and bilingual Italian-English text.",
         image: "/portfolio/assets/images/project1.webp",
         badges: ["Art Direction", "Editorial Design", "Layout"],
         link: "https://www.industriaeletteratura.it/prodotto/le-chitarre-del-pedrollo/"
     },
     {
         title: "Cassandra – Poster",
-        subtitle: "Visual communication based on bold typography and strong chromatic contrasts.",
+        subtitle: "An art installation at Spazio Volta in Bergamo needed a printed piece that functioned as both documentation and object — something a visitor would keep, not discard.",
         image: "/portfolio/assets/images/project4.webp",
         badges: ["Graphic Design", "Poster Art"],
         link: "https://www.behance.net/gallery/210458155/Cassandra-Poster-promozionale"
     },
     {
         title: "Flaco Edizioni Group Books",
-        subtitle: "Interior layout design for technical manuals (SEO, Web Marketing).",
+        subtitle: "High-volume interior layout for a publisher with a fast-moving, diverse catalog spanning marketing, SEO, personal growth, and popular science.",
         image: "/portfolio/assets/images/project5.webp",
         badges: ["Editorial Design", "Layout"],
         link: "https://www.flacoedizioni.com"
     },
     {
         title: "Social Identity Socrates",
-        subtitle: "Visual identity and creative strategy for cultural storytelling through sports.",
+        subtitle: "A recurring festival needed an identity strong enough to anchor multiple editions while staying flexible across posters, programs, social, and merchandise.",
         image: "/portfolio/assets/images/project8.webp",
         badges: ["Social Media", "Branding"],
         link: "https://www.behance.net/gallery/210490221/Socrates-Sport-Storie-Societa"
@@ -71,7 +70,6 @@ const allProjects = [
 export default function Works() {
     return (
         <main className="pt-40 pb-20 px-6 lg:px-12 w-full mx-auto max-w-7xl min-h-screen">
-            {/* Header - Sbandierato a sinistra con dimensioni originali */}
             <header className="mb-24 text-left">
                 <motion.h1
                     initial={{ opacity: 0, x: -30 }}
@@ -80,7 +78,7 @@ export default function Works() {
                     className="text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-8"
                 >
                     My experience <br />
-                    <span className="text-accent text-3xl md:text-5xl">(and my dark circles)</span>
+                    <span className="text-accent">(and my dark circles)</span>
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 30 }}
@@ -101,13 +99,11 @@ export default function Works() {
                         key={idx}
                         className="group flex flex-col gap-4"
                     >
-                        {/* Filetto superiore */}
-                        <div className="w-full border-t border-blue group-hover:border-accent transition-colors" />
+                        <div className="w-full border-t border-blue group-hover:border-accent transition-colors duration-300" />
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-                            {/* Descrizione */}
-                            <div className="order-2 md:order-1 pt-2">
-                                <h3 className="text-lg font-bold font-sans tracking-tight mb-2 group-hover:text-accent transition-colors">
+                            <div className="order-2 md:order-1 pt-2 text-left">
+                                <h3 className="text-lg font-bold font-sans tracking-tight mb-2 group-hover:text-accent transition-colors uppercase">
                                     {project.title}
                                 </h3>
                                 <p className="text-zinc-500 text-xs mb-4 leading-relaxed max-w-sm">
@@ -123,7 +119,6 @@ export default function Works() {
                                 </div>
                             </div>
 
-                            {/* Immagine - Forzata visibilità senza LiquidCard se crea conflitti */}
                             <div className="md:col-span-2 order-1 md:order-2">
                                 <div className="relative w-full aspect-[16/8] overflow-hidden bg-zinc-100">
                                     <img
@@ -139,16 +134,30 @@ export default function Works() {
                 ))}
             </div>
 
+            {/* Pulsante Archivio - Stilizzato e sbandierato a sinistra */}
             <motion.div
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="mt-24 text-center"
+                className="mt-24 group flex flex-col gap-8 text-left"
             >
-                <a href="https://www.behance.net/gallery/244847487/Personal-Portfolio-2021-2026" target="_blank" rel="noopener noreferrer">
-                    <MagneticButton className="bg-blue text-light hover:bg-blue/80 border border-white/10 transition-all">
-                        Check the complete archive
-                    </MagneticButton>
+                <div className="w-full border-t border-blue group-hover:border-accent transition-colors duration-300" />
+                
+                <a 
+                    href="https://www.behance.net/gallery/244847487/Personal-Portfolio-2021-2026" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 group/btn"
+                >
+                    <div className="px-10 py-5 bg-blue text-white rounded-full flex items-center gap-3 transition-all group-hover/btn:bg-accent">
+                        <span className="font-sans font-bold tracking-tight uppercase text-sm">
+                            Check the complete archive
+                        </span>
+                        <ArrowUpRight size={20} weight="bold" />
+                    </div>
+                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest opacity-0 group-hover/btn:opacity-100 transition-opacity">
+                        (Behance Archive)
+                    </span>
                 </a>
             </motion.div>
         </main>

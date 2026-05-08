@@ -1,25 +1,25 @@
 import { motion } from 'framer-motion';
-import MagneticButton from './ui/MagneticButton';
+import { ArrowUpRight } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 
 const projects = [
     {
         title: "IsolaBio – Re-design website",
-        subtitle: "A brand that smelled like soil and sold like a startup. Re-design from research to prototype.",
+        subtitle: "Redesign of the Isola Bio website in desktop and mobile versions, with updated visual hierarchy, layout system, and responsive design.",
         image: "/portfolio/assets/images/project12.webp",
         badges: ["UX/UI Design", "Web Design"],
         link: "https://www.behance.net/gallery/247551635/Re-design-Isola-Bio"
     },
     {
         title: "Forward magazine",
-        subtitle: "Art direction and design for a healthcare and multimedia horizon scanning project.",
+        subtitle: "Il Pensiero Scientifico Editore needed art direction for four consecutive issues of Forward, their healthcare and medical culture magazine.",
         image: "/portfolio/assets/images/project2.webp",
         badges: ["Art Direction", "Editorial Design", "Layout"],
         link: "https://forward.recentiprogressi.it/it/"
     },
     {
         title: "Glacier – Prototype app",
-        subtitle: "Designed for people who plan trips in places where the weather decides everything. A travel app for the Nordic countries — built around uncertainty.",
+        subtitle: "Design a mobile app for extreme cold-weather adventure travel. The challenge was creating an interface that felt immersive and destination-specific without sacrificing usability in a content-heavy travel context.",
         image: "/portfolio/assets/images/project6.webp",
         badges: ["UX/UI Design", "App Design"],
         link: "https://www.behance.net/gallery/210705375/Glacier"
@@ -43,18 +43,16 @@ export default function WorksGallery() {
                         target="_blank"
                         rel="noopener noreferrer"
                         key={idx}
-                        initial={{ opacity: 0, y: 30 }}
+                        initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true, margin: "-100px" }}
                         className="group flex flex-col gap-4"
                     >
-                        {/* Filetto superiore */}
-                        <div className="w-full border-t border-blue/20 group-hover:border-accent transition-colors duration-500" />
+                        <div className="w-full border-t border-blue group-hover:border-accent transition-colors duration-300" />
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-                            {/* Descrizione separata */}
-                            <div className="order-2 md:order-1 pt-2">
-                                <h3 className="text-lg font-bold font-sans tracking-tight mb-2 group-hover:text-accent transition-colors">
+                            <div className="order-2 md:order-1 pt-2 text-left">
+                                <h3 className="text-lg font-bold tracking-tight mb-2 group-hover:text-accent transition-colors uppercase">
                                     {project.title}
                                 </h3>
                                 <p className="text-zinc-500 text-xs mb-4 leading-relaxed max-w-sm">
@@ -70,7 +68,6 @@ export default function WorksGallery() {
                                 </div>
                             </div>
 
-                            {/* Immagine con bordi squadrati */}
                             <div className="md:col-span-2 order-1 md:order-2">
                                 <div className="relative w-full aspect-[16/8] overflow-hidden bg-zinc-100">
                                     <img
@@ -86,13 +83,23 @@ export default function WorksGallery() {
                 ))}
             </div>
 
-            <div className="mt-24 flex justify-center">
-                <Link to="/works">
-                    <MagneticButton className="bg-blue text-light hover:bg-blue/80 border border-white/10 transition-all">
-                        See more projects
-                    </MagneticButton>
+            <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="mt-24 group flex flex-col gap-8 text-left"
+            >
+                <div className="w-full border-t border-blue group-hover:border-accent transition-colors duration-300" />
+                
+                <Link to="/works" className="flex items-center gap-4 group/btn">
+                    <div className="px-10 py-5 bg-blue text-white rounded-full flex items-center gap-3 transition-all group-hover/btn:bg-accent">
+                        <span className="font-bold tracking-tight uppercase text-sm">
+                            See more projects
+                        </span>
+                        <ArrowUpRight size={20} weight="bold" />
+                    </div>
                 </Link>
-            </div>
+            </motion.div>
         </section>
     );
 }

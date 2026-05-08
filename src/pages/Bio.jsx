@@ -36,7 +36,7 @@ export default function Bio() {
 
     return (
         <main className="pt-40 pb-20 px-6 lg:px-12 w-full mx-auto max-w-7xl min-h-screen">
-            {/* Header - Sbandierato a sinistra, dimensioni originali */}
+            {/* Header - Left-aligned, original dimensions */}
             <header className="mb-24 text-left">
                 <motion.h1
                     initial={{ opacity: 0, x: -30 }}
@@ -56,7 +56,7 @@ export default function Bio() {
                 </motion.p>
             </header>
 
-            {/* Skills Section - Filetto spessore LiquidCard */}
+            {/* Skills Section - LiquidCard thickness divider */}
             <section className="mb-32">
                 <div className="w-full border-t border-blue mb-12" />
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
@@ -131,7 +131,7 @@ export default function Bio() {
 
                     <div className="space-y-12">
                         {[
-                            { date: "2025 - 2026", title: "Growth Marketing & AI Agents Master", sub: "start2impact", desc: <>A multidisciplinary path that combines strategic marketing, UX/UI design, and data analysis with a strong focus on artificial intelligence. Puoi vedere il mio profilo e i miei progetti <a href="https://account.start2impact.it/profile/alberto-scalia" className="text-accent hover:underline">qui.</a></> },
+                            { date: "2025 - 2026", title: "Growth Marketing & AI Agents Master", sub: "start2impact", desc: <>A multidisciplinary path that combines strategic marketing, UX/UI design, and data analysis with a strong focus on artificial intelligence. You can view my profile and projects <a href="https://account.start2impact.it/profile/alberto-scalia" className="text-accent hover:underline">here.</a></> },
                             { date: "2024", title: "Complete UX Design Course", sub: "corsoux.it", desc: "Where I understood that a test with a real user is worth more than a thousand hours of brainstorming in an agency." },
                             { date: "2023", title: "Master in Full Stack Web Developer", sub: "Boolean", desc: "Where I stopped asking developers if a design was feasible and started writing the code myself." },
                             { date: "2021", title: "Master in Publishing", sub: "Scuola del Libro", desc: "Practically a survival master for anyone who wants to print beautiful things without getting a nervous breakdown between one draft and another." },
