@@ -31,28 +31,21 @@ export default function Navbar() {
                 layout
                 className={cn(
                     'pointer-events-auto transition-all duration-500 flex flex-col items-center w-full max-w-7xl px-6 lg:px-12',
-                    // Rimosso bg-white o bg-zinc: ora è sempre trasparente per mostrare lo sfondo del sito
-                    // Aggiunto un leggero backdrop-blur solo per migliorare la leggibilità dei testi se passano sopra immagini
                     scrolled ? 'backdrop-blur-xl shadow-none' : 'bg-transparent',
-                    isOpen && 'h-screen bg-zinc-50' // Solo qui il colore serve per coprire il sito da mobile
+                    isOpen && 'h-screen bg-zinc-50'
                 )}
             >
                 {/* Filetto Superiore */}
                 <div className="w-full border-t border-blue/10 mt-6" />
 
                 <div className="flex items-center justify-between w-full py-4">
-                    {/* LOGO A SINISTRA */}
+                    {/* LOGO A SINISTRA - Sostituito Alberto Scalia con logo_nav.webp */}
                     <Link to="/" onClick={closeMenu} className="flex items-center h-10 group">
                         <img 
-                            src="/portfolio/assets/images/Logo.png" 
+                            src={`${import.meta.env.BASE_URL}assets/images/Logo_nav.webp`} 
                             alt="Logo" 
                             className="h-full w-auto object-contain block"
-                            onError={(e) => {
-                                e.target.style.display = 'none';
-                                e.target.nextSibling.style.display = 'block';
-                            }}
                         />
-                        <span className="hidden font-bold text-blue text-xl tracking-tighter">alberto scalia</span>
                     </Link>
 
                     {/* MENU DESKTOP A DESTRA */}

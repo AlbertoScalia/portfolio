@@ -1,43 +1,40 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowUpRight } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 
 export default function HeroParallax() {
-    const ref = useRef(null);
-
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start start", "end start"],
-    });
-
-    const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-    const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-
     return (
         <section
-            ref={ref}
             className="relative min-h-[90dvh] w-full flex flex-col justify-center pt-24 pb-8 px-6 lg:px-12 max-w-7xl mx-auto font-sans"
         >
-            <motion.div style={{ opacity, y }} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <motion.div 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
+            >
                 
-                {/* Logo Container */}
+                {/* Profile Image Container */}
                 <motion.div 
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.1 }}
-                    className="lg:col-span-4 flex flex-col items-start gap-4 order-1 lg:order-2"
+                    transition={{ delay: 0.2 }}
+                    className="lg:col-span-4 flex flex-col items-start lg:items-center gap-6 order-1 lg:order-2"
                 >
-                    {/* Contenitore con w-fit per vincolare la larghezza del testo a quella dell'immagine */}
-                    <div className="w-fit flex flex-col gap-4">
+                    <div className="w-fit flex flex-col items-start lg:items-center gap-4">
                         <img
-                            src={`${import.meta.env.BASE_URL}assets/images/logo_sito.webp`}
-                            alt="Logo"
-                            className="w-32 md:w-48 lg:w-full max-w-[280px] h-auto object-contain"
+                            src={`${import.meta.env.BASE_URL}assets/images/profile.webp`} 
+                            alt="Alberto Scalia"
+                            className="w-40 h-40 lg:w-80 lg:h-80 object-contain"
                         />
-                        <p className="font-mono text-[10px] md:text-xs uppercase tracking-[0.15em] text-blue/100 text-justify">
-                            Art Director | <br />Graphic & UX/UI Designer
-                        </p>
+                        
+                        <div className="flex flex-col gap-1 items-start lg:items-center">
+                            {/* Nome Alberto Scalia con br e qualifica sotto */}
+                            <p className="font-mono text-[10px] md:text-xs uppercase tracking-[0.15em] text-blue/80 text-left lg:text-center">
+                                                               Alberto Scalia <br /> 
+ Art Director | Graphic & UX/UI Designer
+                            </p>
+                        </div>
                     </div>
                 </motion.div>
 
@@ -47,7 +44,7 @@ export default function HeroParallax() {
                         <motion.h1
                             initial={{ opacity: 0, x: -30 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+                            transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.3 }}
                             className="font-bold text-4xl md:text-6xl lg:text-7xl tracking-tighter leading-[1.1] text-blue mb-8"
                         >
                             Editorial Precision, <br />
@@ -57,17 +54,18 @@ export default function HeroParallax() {
                         <motion.p
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.2 }}
+                            transition={{ delay: 0.5 }}
                             className="text-zinc-500 text-lg md:text-xl leading-relaxed max-w-2xl"
                         >
-                            I'm Alberto. I bring editorial art direction into UX/UI and growth design — translating visual hierarchy, typography, and information architecture into interfaces.
+                            I'm Alberto. <br />
+                            I bring editorial art direction into UX/UI and growth design — translating visual hierarchy, typography, and information architecture into interfaces.
                         </motion.p>
                     </div>
 
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
+                        transition={{ delay: 0.6 }}
                         className="group flex flex-col gap-2 w-full md:w-fit"
                     >
                         <div className="flex flex-wrap gap-4 md:gap-6">

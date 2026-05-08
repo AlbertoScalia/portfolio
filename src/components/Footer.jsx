@@ -8,7 +8,12 @@ export default function Footer() {
         <footer className="relative z-10 bg-blue pt-16 pb-12 rounded-none">
             <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between gap-12 text-left">
                 <div className="max-w-sm">
-                    <h3 className="font-sans font-bold text-2xl tracking-tighter mb-4 text-white">alberto scalia</h3>
+                    {/* Logo con dimensioni ulteriormente aumentate (h-14 invece di h-12) */}
+                    <img 
+                        src={`${import.meta.env.BASE_URL}assets/images/Logo_footer.webp`} 
+                        alt="Logo" 
+                        className="h-14 w-auto object-contain mb-4"
+                    />
                     <p className="text-white/60 text-sm leading-relaxed mb-6">
                         Art Director | Graphic & UX/UI Designer
                     </p>
