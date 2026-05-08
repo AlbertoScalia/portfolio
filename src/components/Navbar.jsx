@@ -102,7 +102,7 @@ export default function Navbar() {
                             exit={{ opacity: 0 }}
                             className="w-full flex flex-col items-center justify-center flex-1"
                         >
-                            <div className="flex flex-col gap-8 text-center">
+                            <div className="flex flex-col gap-6 text-center">
                                 {[
                                     { name: 'Works', path: '/works' },
                                     { name: 'Bio', path: '/bio' },

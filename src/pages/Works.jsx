@@ -144,9 +144,9 @@ export default function Works() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="mt-24 group flex flex-col gap-8 text-left"
+                className="mt-16 md:mt-24 group flex flex-col gap-2 text-left"
             >
-                <div className="w-full border-t border-blue group-hover:border-accent transition-colors duration-300" />
+                <div className="group-hover:border-accent transition-colors duration-300" />
                 
                 <a 
                     href="https://www.behance.net/gallery/244847487/Personal-Portfolio-2021-2026" 

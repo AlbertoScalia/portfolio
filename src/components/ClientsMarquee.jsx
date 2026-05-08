@@ -19,7 +19,7 @@ export default function ClientsMarquee() {
     const marqueeItems = [...clients, ...clients];
 
     return (
-        <section className="py-24 overflow-hidden font-sans">
+        <section className="py-12 md:py-24 overflow-hidden font-sans">
             {/* Header Marquee */}
             <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-20 text-left">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -96,9 +96,9 @@ export default function ClientsMarquee() {
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
-                    className="group flex flex-col gap-8"
+                    className="group flex flex-col gap-2"
                 >
-                    <div className="w-full border-t border-blue group-hover:border-accent transition-colors duration-300" />
+                    <div className="group-hover:border-accent transition-colors duration-300" />
                     
                     <a 
                         href="mailto:albscalia@gmail.com"

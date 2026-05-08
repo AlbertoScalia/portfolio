@@ -35,7 +35,7 @@ export default function Bio() {
     ];
 
     return (
-        <main className="pt-40 pb-20 px-6 lg:px-12 w-full mx-auto max-w-7xl min-h-screen">
+        <main className="pt-32 md:pt-40 pb-20 px-6 lg:px-12 w-full mx-auto max-w-7xl min-h-screen">
             {/* Header */}
             <header className="mb-24 text-left">
                 <motion.h1

@@ -92,9 +92,9 @@ export default function WorksGallery() {
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="mt-24 group flex flex-col gap-8 text-left"
+                className="mt-16 md:mt-24 group flex flex-col gap-2 text-left"
             >
-                <div className="w-full border-t border-blue group-hover:border-accent transition-colors duration-300" />
+                <div className="group-hover:border-accent transition-colors duration-300" />
                 
                 <Link to="/works" className="flex items-center gap-4 group/btn">
                     <div className="px-10 py-5 bg-blue text-white rounded-full flex items-center gap-3 transition-all group-hover/btn:bg-accent">

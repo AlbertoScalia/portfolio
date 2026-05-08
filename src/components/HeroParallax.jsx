@@ -17,9 +17,9 @@ export default function HeroParallax() {
     return (
         <section
             ref={ref}
-            className="relative min-h-[90dvh] w-full flex flex-col justify-center pt-32 pb-12 px-6 lg:px-12 max-w-7xl mx-auto font-sans"
+            className="relative min-h-[90dvh] w-full flex flex-col justify-center pt-24 pb-8 px-6 lg:px-12 max-w-7xl mx-auto font-sans"
         >
-            <motion.div style={{ opacity, y }} className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <motion.div style={{ opacity, y }} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 
                 {/* Logo Container - Ora appare SOPRA su mobile (ordine 1) */}
                 <motion.div 
@@ -63,9 +63,9 @@ export default function HeroParallax() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
-                        className="group flex flex-col gap-8 w-full md:w-fit"
+                        className="group flex flex-col gap-2 w-full md:w-fit"
                     >
-                        <div className="w-full border-t border-blue group-hover:border-accent transition-colors duration-300" />
+                        <div className="group-hover:border-accent transition-colors duration-300" />
                         
                         <div className="flex flex-wrap gap-4 md:gap-6">
                             <Link to="/works" className="flex items-center gap-4 group/btn">
