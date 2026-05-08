@@ -29,7 +29,7 @@ export default function ClientsMarquee() {
                         viewport={{ once: true }}
                     >
                         <h2 className="text-4xl md:text-6xl font-bold tracking-tighter text-balance text-blue">
-                            Who <span className="text-accent">trusted</span> me:
+                            Who <span className="text-accent">trusted</span> me
                         </h2>
                     </motion.div>
                     <motion.div
@@ -44,12 +44,12 @@ export default function ClientsMarquee() {
                 </div>
             </div>
 
-            {/* Marquee Loop */}
+            {/* Marquee Loop - Ottimizzato per fluidità */}
             <div className="relative w-full overflow-hidden flex border-y border-blue/5 py-12 bg-zinc-50/30">
                 <motion.div
                     animate={{ x: ["0%", "-50%"] }}
                     transition={{ ease: "linear", duration: 40, repeat: Infinity }}
-                    className="flex whitespace-nowrap items-center gap-16 md:gap-32 px-8"
+                    className="flex whitespace-nowrap items-center gap-16 md:gap-32 px-8 will-change-transform"
                 >
                     {marqueeItems.map((client, idx) => (
                         <div key={idx} className="flex-shrink-0 w-32 md:w-40 opacity-40 hover:opacity-100 transition-opacity duration-500">
@@ -60,6 +60,7 @@ export default function ClientsMarquee() {
                                 height="60"
                                 decoding="async"
                                 className="w-full h-auto object-contain pointer-events-none grayscale"
+                                style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
                             />
                         </div>
                     ))}
@@ -90,6 +91,7 @@ export default function ClientsMarquee() {
                     </motion.div>
                 </div>
 
+                {/* Rimosso w-fit: ora il filetto occupa tutta la larghezza del grid/contenitore */}
                 <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}

@@ -106,17 +106,22 @@ export default function Works() {
                                 <h3 className="text-lg font-bold font-sans tracking-tight mb-2 group-hover:text-accent transition-colors uppercase">
                                     {project.title}
                                 </h3>
-                                <p className="text-zinc-500 text-xs mb-4 leading-relaxed max-w-sm">
+                                <p className="text-zinc-500 mb-4 leading-relaxed max-w-sm">
                                     {project.subtitle}
                                 </p>
 
-                                <div className="flex flex-wrap gap-1.5">
-                                    {project.badges.map((badge, bIdx) => (
-                                        <span key={bIdx} className="px-2 py-0.5 rounded-full border border-blue/20 text-[9px] font-mono text-zinc-400 uppercase tracking-wider">
-                                            {badge}
-                                        </span>
-                                    ))}
-                                </div>
+<div className="flex flex-wrap gap-x-4 gap-y-2 mt-auto">
+    {project.badges.map((badge, bIdx) => (
+        <span 
+            key={bIdx} 
+            className="flex items-center text-[10px] font-mono uppercase tracking-[0.15em] text-zinc-400"
+        >
+            {/* Un piccolo rombo o punto prima del testo per un tocco tecnico */}
+            <span className="text-accent mr-2">/</span>
+            {badge}
+        </span>
+    ))}
+</div>
                             </div>
 
                             <div className="md:col-span-2 order-1 md:order-2">

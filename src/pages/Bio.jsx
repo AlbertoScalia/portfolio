@@ -36,13 +36,13 @@ export default function Bio() {
 
     return (
         <main className="pt-40 pb-20 px-6 lg:px-12 w-full mx-auto max-w-7xl min-h-screen">
-            {/* Header - Left-aligned, original dimensions */}
+            {/* Header */}
             <header className="mb-24 text-left">
                 <motion.h1
                     initial={{ opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-6"
+                    className="text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-6 text-blue"
                 >
                     A little bit about <span className="text-accent">me</span>
                 </motion.h1>
@@ -56,24 +56,28 @@ export default function Bio() {
                 </motion.p>
             </header>
 
-            {/* Skills Section - LiquidCard thickness divider */}
+            {/* Skills Section - Nuova Grafica Badge */}
             <section className="mb-32">
                 <div className="w-full border-t border-blue mb-12" />
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                     <div className="col-span-1">
                         <h2 className="text-sm font-sans font-bold text-blue tracking-widest uppercase flex items-center gap-2 mb-4">
-                            <PenNib size={18} weight="duotone" className="text-accent" /> Skills & Technologies
+                            <PenNib size={18} weight="duotone" className="text-accent" /> Skills & Tech
                         </h2>
                     </div>
                     <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
                         {skillCategories.map((cat, idx) => (
-                            <div key={idx}>
+                            <div key={`cat-${idx}`}>
                                 <h3 className="text-[10px] text-zinc-400 uppercase font-black tracking-[0.15em] mb-4">
                                     {cat.title}
                                 </h3>
-                                <div className="flex flex-wrap gap-2">
-                                    {cat.skills.map(skill => (
-                                        <span key={skill} className="px-2 py-1 rounded-full border border-blue/10 text-[11px] font-mono text-zinc-500 whitespace-nowrap">
+                                <div className="flex flex-wrap gap-x-5 gap-y-2">
+                                    {cat.skills.map((skill, sIdx) => (
+                                        <span 
+                                            key={`skill-${idx}-${sIdx}`} 
+                                            className="flex items-center text-[11px] font-mono uppercase tracking-wider text-zinc-500"
+                                        >
+                                            <span className="text-accent mr-2 font-bold">/</span>
                                             {skill}
                                         </span>
                                     ))}

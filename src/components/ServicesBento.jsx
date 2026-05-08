@@ -84,7 +84,7 @@ export default function ServicesBento() {
                                 {service.title}
                             </h3>
                             
-                            <p className="text-zinc-500 text-sm font-sans leading-relaxed">
+                            <p className="text-zinc-500 font-sans leading-relaxed">
                                 {service.description}
                             </p>
                         </div>
