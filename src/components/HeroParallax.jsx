@@ -21,21 +21,27 @@ export default function HeroParallax() {
         >
             <motion.div style={{ opacity, y }} className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 
-                {/* Logo Container - Ora appare SOPRA su mobile (ordine 1) */}
+                {/* Logo Container */}
                 <motion.div 
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.1 }}
-                    className="lg:col-span-4 flex justify-start lg:justify-end order-1 lg:order-2"
+                    className="lg:col-span-4 flex flex-col items-start gap-4 order-1 lg:order-2"
                 >
-                    <img
-                        src={`${import.meta.env.BASE_URL}assets/images/logo_sito.webp`}
-                        alt="Logo"
-                        className="w-32 md:w-48 lg:w-full max-w-[280px] h-auto object-contain"
-                    />
+                    {/* Contenitore con w-fit per vincolare la larghezza del testo a quella dell'immagine */}
+                    <div className="w-fit flex flex-col gap-4">
+                        <img
+                            src={`${import.meta.env.BASE_URL}assets/images/logo_sito.webp`}
+                            alt="Logo"
+                            className="w-32 md:w-48 lg:w-full max-w-[280px] h-auto object-contain"
+                        />
+                        <p className="font-mono text-[10px] md:text-xs uppercase tracking-[0.15em] text-blue/100 text-justify">
+                            Art Director | <br />Graphic & UX/UI Designer
+                        </p>
+                    </div>
                 </motion.div>
 
-                {/* Text Content - Ordine 2 su mobile per stare sotto il logo */}
+                {/* Text Content */}
                 <div className="lg:col-span-8 text-left z-10 order-2 lg:order-1">
                     <div className="flex flex-col mb-12">
                         <motion.h1
@@ -58,15 +64,12 @@ export default function HeroParallax() {
                         </motion.p>
                     </div>
 
-                    {/* Pulsanti */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
                         className="group flex flex-col gap-2 w-full md:w-fit"
                     >
-                        <div className="group-hover:border-accent transition-colors duration-300" />
-                        
                         <div className="flex flex-wrap gap-4 md:gap-6">
                             <Link to="/works" className="flex items-center gap-4 group/btn">
                                 <div className="px-8 md:px-10 py-4 md:py-5 bg-blue text-white rounded-full flex items-center gap-3 transition-all group-hover/btn:bg-accent shadow-xl shadow-blue/5">
