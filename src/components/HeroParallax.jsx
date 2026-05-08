@@ -19,7 +19,8 @@ export default function HeroParallax() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.2 }}
-                    className="lg:col-span-4 flex flex-col items-start lg:items-center gap-6 order-1 lg:order-2"
+                    /* Aggiunto mt-12 per distanziarlo dalla navbar su mobile, rimosso su desktop con lg:mt-0 */
+                    className="lg:col-span-4 flex flex-col items-start lg:items-center gap-6 order-1 lg:order-2 mt-12 lg:mt-0"
                 >
                     <div className="w-fit flex flex-col items-start lg:items-center gap-4">
                         <img
@@ -29,10 +30,9 @@ export default function HeroParallax() {
                         />
                         
                         <div className="flex flex-col gap-1 items-start lg:items-center">
-                            {/* Nome Alberto Scalia con br e qualifica sotto */}
-                            <p className="font-mono text-[10px] md:text-xs uppercase tracking-[0.15em] text-blue/80 text-left lg:text-center">
-                                                               Alberto Scalia <br /> 
- Art Director | Graphic & UX/UI Designer
+                            <p className="font-mono text-[10px] md:text-xs uppercase tracking-[0.15em] text-blue/50 text-left lg:text-center">
+                                                            Alberto Scalia<br />
+    Art Director | Graphic & UX/UI Designer
                             </p>
                         </div>
                     </div>

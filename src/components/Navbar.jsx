@@ -87,15 +87,16 @@ export default function Navbar() {
                 <div className="w-full border-t border-blue/10" />
 
                 {/* MENU MOBILE CONTENT */}
+
                 <AnimatePresence>
                     {isOpen && (
                         <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="w-full flex flex-col items-center justify-center flex-1"
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            className="w-full flex flex-col items-center justify-start pt-32 flex-1"
                         >
-                            <div className="flex flex-col gap-6 text-center">
+                            <div className="flex flex-col gap-8 text-center">
                                 {[
                                     { name: 'Works', path: '/works' },
                                     { name: 'Bio', path: '/bio' },
@@ -106,8 +107,11 @@ export default function Navbar() {
                                         to={link.path}
                                         onClick={closeMenu}
                                         className={cn(
-                                            "text-4xl font-bold tracking-tighter transition-colors",
-                                            isActive(link.path) ? "text-accent" : "text-blue"
+                                            "text-5xl font-bold tracking-tighter transition-all duration-300 outline-none", 
+                                            // Stato base, hover e active (clic/tocco)
+                                            isActive(link.path) 
+                                                ? "text-accent" 
+                                                : "text-blue hover:text-accent active:text-accent"
                                         )}
                                     >
                                         {link.name}
