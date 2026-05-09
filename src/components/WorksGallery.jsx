@@ -36,6 +36,7 @@ export default function WorksGallery() {
                 </h2>
             </div>
 
+
             <div className="flex flex-col gap-16">
                 {projects.map((project, idx) => (
                     <motion.a
@@ -52,10 +53,10 @@ export default function WorksGallery() {
 
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
                             <div className="order-2 md:order-1 pt-2 text-left">
-                                <h3 className="text-lg font-bold tracking-tight mb-2 group-hover:text-accent transition-colors uppercase">
+                                <h3 className="text-lg font-bold tracking-tight mb-2 text-blue group-hover:text-accent transition-colors uppercase">
                                     {project.title}
                                 </h3>
-                                <p className="text-zinc-500 mb-4 leading-relaxed max-w-sm">
+                                <p className="text-zinc-500 mb-4 leading-relaxed max-w-sm landscape:text-sm">
                                     {project.subtitle}
                                 </p>
 
@@ -73,16 +74,19 @@ export default function WorksGallery() {
                             </div>
 
                             <div className="md:col-span-2 order-1 md:order-2">
-                                <div className="relative w-full aspect-[16/8] overflow-hidden bg-accent/10 rounded-2xl">
+                                <div className="relative w-full aspect-[16/8] overflow-hidden rounded-2xl bg-blue">
                                     <img
                                         src={project.image}
                                         alt={project.title}
                                         loading="lazy"
                                         className="absolute inset-0 w-full h-full object-cover transition-all duration-700 
-                                                   grayscale opacity-100 
-                                                   group-hover:grayscale-0 group-hover:opacity-100 group-hover:contrast-100 group-hover:scale-105"
+                                                   grayscale contrast-[1.2] brightness-[0.8] 
+                                                   group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105"
                                     />
-                                    <div className="absolute inset-0 bg-accent/40 multiply group-hover:bg-transparent transition-colors duration-700" />
+                                    {/* Overlay Duotone con Mix Blend Mode Screen per effetto Accent */}
+                                    <div 
+                                        className="absolute inset-0 bg-accent mix-blend-screen opacity-80 group-hover:opacity-0 transition-opacity duration-700" 
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -99,7 +103,7 @@ export default function WorksGallery() {
                 <div className="group-hover:border-accent transition-colors duration-300" />
                 
                 <Link to="/works" className="flex items-center gap-4 group/btn">
-                    <div className="px-10 py-5 bg-blue text-white rounded-full flex items-center gap-3 transition-all group-hover/btn:bg-accent">
+                    <div className="px-10 py-5 bg-blue text-white rounded-full flex items-center gap-3 transition-all group-hover/btn:bg-accent shadow-xl shadow-blue/5">
                         <span className="font-bold tracking-tight uppercase text-sm">
                             See more projects
                         </span>
