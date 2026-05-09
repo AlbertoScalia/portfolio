@@ -7,9 +7,9 @@ export default {
     theme: {
         extend: {
             colors: {
-                background: "#FAFAFA", // Light background
+                background: "#FFFFFF", // Light background
                 accent: "#FF6B00", // Custom accent color
-                light: "#FAFAFA", // Map text-light to new dark color
+                light: "#FFFFFF", // Map text-light to new dark color
                 blue: "#1a1f36", // Everything blue must be dark blue
             },
             fontFamily: {

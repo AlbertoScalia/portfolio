@@ -29,7 +29,7 @@ function Layout() {
     }, []);
 
     return (
-        <div className="min-h-screen bg-[#f5f3f0] text-foreground antialiased relative flex flex-col">
+        <div className="min-h-screen text-foreground antialiased relative flex flex-col">
             <Navbar navBackground={navBackground} />
             
             <div className="flex-grow relative z-10">

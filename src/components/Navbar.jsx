@@ -39,16 +39,33 @@ export default function Navbar() {
                 <div className="w-full border-t border-blue/10 mt-6" />
 
                 <div className="flex items-center justify-between w-full py-4">
-                    {/* LOGO A SINISTRA - Sostituito Alberto Scalia con logo_nav.webp */}
-                    <Link to="/" onClick={closeMenu} className="flex items-center h-10 group">
+                    {/* LOGO A SINISTRA con hover accent */}
+                    <Link 
+                        to="/" 
+                        onClick={closeMenu} 
+                        className="flex items-center h-10 group relative"
+                    >
                         <img 
                             src={`${import.meta.env.BASE_URL}assets/images/Logo_nav.webp`} 
                             alt="Logo" 
-                            className="h-full w-auto object-contain block"
+                            className="h-full w-auto object-contain block transition-opacity duration-300 group-hover:opacity-0"
+                        />
+                        <div 
+                            className="absolute inset-0 bg-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            style={{
+                                maskImage: `url(${import.meta.env.BASE_URL}assets/images/Logo_nav.webp)`,
+                                WebkitMaskImage: `url(${import.meta.env.BASE_URL}assets/images/Logo_nav.webp)`,
+                                maskSize: 'contain',
+                                WebkitMaskSize: 'contain',
+                                maskRepeat: 'no-repeat',
+                                WebkitMaskRepeat: 'no-repeat',
+                                maskPosition: 'left center',
+                                WebkitMaskPosition: 'left center'
+                            }}
                         />
                     </Link>
 
-                    {/* MENU DESKTOP A DESTRA */}
+                    {/* MENU DESKTOP A DESTRA - Blu di base, Accent in hover, no underline */}
                     <div className="hidden md:flex items-center gap-10">
                         {[
                             { name: 'Works', path: '/works' },
@@ -59,15 +76,11 @@ export default function Navbar() {
                                 key={link.path}
                                 to={link.path}
                                 className={cn(
-                                    "text-[15px] font-bold tracking-tight transition-all duration-300 relative group/link",
-                                    isActive(link.path) ? "text-blue" : "text-zinc-400 hover:text-blue"
+                                    "text-[15px] font-bold tracking-tight transition-colors duration-300",
+                                    isActive(link.path) ? "text-accent" : "text-blue hover:text-accent"
                                 )}
                             >
                                 {link.name}
-                                <span className={cn(
-                                    "absolute -bottom-1 left-0 h-[2px] bg-accent transition-all duration-300",
-                                    isActive(link.path) ? "w-full" : "w-0 group-hover/link:w-full"
-                                )} />
                             </Link>
                         ))}
                     </div>
@@ -87,7 +100,6 @@ export default function Navbar() {
                 <div className="w-full border-t border-blue/10" />
 
                 {/* MENU MOBILE CONTENT */}
-
                 <AnimatePresence>
                     {isOpen && (
                         <motion.div
@@ -108,7 +120,6 @@ export default function Navbar() {
                                         onClick={closeMenu}
                                         className={cn(
                                             "text-5xl font-bold tracking-tighter transition-all duration-300 outline-none", 
-                                            // Stato base, hover e active (clic/tocco)
                                             isActive(link.path) 
                                                 ? "text-accent" 
                                                 : "text-blue hover:text-accent active:text-accent"

@@ -110,36 +110,39 @@ export default function Works() {
                                     {project.subtitle}
                                 </p>
 
-<div className="flex flex-wrap gap-x-4 gap-y-2 mt-auto">
-    {project.badges.map((badge, bIdx) => (
-        <span 
-            key={bIdx} 
-            className="flex items-center text-[10px] font-mono uppercase tracking-[0.15em] text-zinc-400"
-        >
-            {/* Un piccolo rombo o punto prima del testo per un tocco tecnico */}
-            <span className="text-accent mr-2">/</span>
-            {badge}
-        </span>
-    ))}
-</div>
-                            </div>
-
-                            <div className="md:col-span-2 order-1 md:order-2">
-                                <div className="relative w-full aspect-[16/8] overflow-hidden bg-zinc-100">
-                                    <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        loading="lazy"
-                                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                                    />
+                                <div className="flex flex-wrap gap-x-4 gap-y-2 mt-auto">
+                                    {project.badges.map((badge, bIdx) => (
+                                        <span 
+                                            key={bIdx} 
+                                            className="flex items-center text-[10px] font-mono uppercase tracking-[0.15em] text-zinc-400"
+                                        >
+                                            <span className="text-accent mr-2">/</span>
+                                            {badge}
+                                        </span>
+                                    ))}
                                 </div>
                             </div>
+
+<div className="md:col-span-2 order-1 md:order-2">
+    {/* bg-accent/20 aggiunge solo un tocco di colore di fondo */}
+    <div className="relative w-full aspect-[16/8] overflow-hidden bg-accent/10 rounded-2xl">
+        <img
+            src={project.image}
+            alt={project.title}
+            loading="lazy"
+            className="absolute inset-0 w-full h-full object-cover transition-all duration-700 
+                       grayscale opacity-100 
+                       group-hover:grayscale-0 group-hover:opacity-100 group-hover:contrast-100 group-hover:scale-105"
+        />
+        {/* Overlay leggero per colorare senza appesantire */}
+        <div className="absolute inset-0 bg-accent/40 multiply group-hover:bg-transparent transition-colors duration-700" />
+    </div>
+</div>
                         </div>
                     </motion.a>
                 ))}
             </div>
 
-            {/* Pulsante Archivio - Stilizzato e sbandierato a sinistra */}
             <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
