@@ -15,7 +15,7 @@ export default function Footer() {
                         className="h-14 w-auto object-contain mb-4"
                     />
                     <p className="text-white/60 text-sm leading-relaxed mb-6">
-                        Art Director | Graphic & UX/UI Designer
+                        Art Director | Graphic & UI Designer
                     </p>
                 </div>
 

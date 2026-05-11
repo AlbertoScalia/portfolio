@@ -33,7 +33,7 @@ export default function ServicesBento() {
             icon: RocketLaunch
         },
         {
-            title: "UX/UI & Conversion",
+            title: "User Interface Design",
             description: "I design interfaces where visual hierarchy does the heavy lifting — reducing friction, guiding attention, and making the next action feel obvious.",
             icon: CursorClick
         }
