@@ -16,21 +16,21 @@ export default function Bio() {
     };
 
     const skillCategories = [
-        {
+{
             title: "Editorial & Visual Arts",
-            skills: ["Editorial Design", "Visual Identity", "Typography", "Branding Strategy", "Adobe Creative Suite", "Affinity Suite"]
+            skills: ["Visual Identity", "Editorial Design", "Branding Strategy", "Typography", "Adobe Creative Suite", "Affinity Suite"]
         },
         {
-            title: "UX/UI & Product",
-            skills: ["Figma", "User Research", "Information Architecture", "Wireframing", "Interactive Prototyping", "Usability Testing", "Design Systems"]
+            title: "UI & Product",
+            skills: ["Figma", "Wireframing", "High-Fidelity Prototyping", "Miro", "Khroma", "Uizard"]
         },
         {
             title: "AI & Workflow Automation",
-            skills: ["Prompt Engineering", "AI Agents", "n8n Automation", "LLM Implementation", "Workflow Optimization"]
+            skills: ["AI Business Strategy", "Prompt Engineering", "AI Agents", "n8n Automation", "Lovable", "Claude", "Perplexity", "Gemini", "ChatGPT"]
         },
         {
             title: "Tech & Growth",
-            skills: ["Web Development", "Growth Marketing", "SAP Business One", "EKR KIT", "Data-Driven Design"]
+            skills: ["HTML5", "CSS3", "Responsive Design", "Tailwind CSS", "Bootstrap"]
         }
     ];
 
