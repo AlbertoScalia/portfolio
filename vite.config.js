@@ -3,7 +3,9 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
-  base: '/portfolio/',
+  // Assicurati che questo coincida esattamente con il nome della repository
+  // Safari è molto rigido sui percorsi che iniziano e finiscono con lo slash
+  base: '/portfolio/', 
   plugins: [react()],
   resolve: {
     alias: {
@@ -12,5 +14,17 @@ export default defineConfig({
   },
   build: {
     outDir: 'docs',
+    // Genera file con nomi puliti per evitare problemi di cache su Safari
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+  },
+  // Forza la gestione corretta dei moduli su browser mobile
+  server: {
+    fs: {
+      allow: ['..'],
+    },
   },
 });
