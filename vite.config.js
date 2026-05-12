@@ -3,8 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
-  // Assicurati che questo coincida esattamente con il nome della repository
-  // Safari è molto rigido sui percorsi che iniziano e finiscono con lo slash
+  // Assicurati che l'URL termini sempre con lo slash quando lo apri su iPhone
   base: '/portfolio/', 
   plugins: [react()],
   resolve: {
@@ -14,17 +13,17 @@ export default defineConfig({
   },
   build: {
     outDir: 'docs',
-    // Genera file con nomi puliti per evitare problemi di cache su Safari
+    // 1. Forza la compatibilità con browser più vecchi (Safari 13/14)
+    target: 'es2015',
+    // 2. Evita che esbuild usi sintassi troppo moderne che Safari iOS a volte blocca
+    cssTarget: 'chrome61',
     rollupOptions: {
       output: {
-        manualChunks: undefined,
+        // 3. Rendi i nomi dei file più semplici per evitare problemi di MIME type su Safari
+        entryFileNames: `assets/[name].js`,
+        chunkFileNames: `assets/[name].js`,
+        assetFileNames: `assets/[name].[ext]`
       },
-    },
-  },
-  // Forza la gestione corretta dei moduli su browser mobile
-  server: {
-    fs: {
-      allow: ['..'],
     },
   },
 });
