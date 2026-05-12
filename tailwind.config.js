@@ -12,11 +12,12 @@ export default {
                 light: "#FFFFFF", // Map text-light to new dark color
                 blue: "#1a1f36", // Everything blue must be dark blue
             },
-            fontFamily: {
-                sans: ['Inter', 'sans-serif'],
-                mono: ['JetBrains Mono', 'monospace'],
-                display: ['Inter', 'sans-serif'],
-            },
+fontFamily: {
+    // Il nome deve corrispondere a quello del pacchetto Fontsource
+    sans: ['Geist Sans', 'Inter', 'sans-serif'],
+    mono: ['Geist Mono', 'monospace'],
+    display: ['Geist Sans', 'sans-serif'],
+},
         },
     },
     plugins: [],

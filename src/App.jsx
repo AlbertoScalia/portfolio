@@ -11,35 +11,49 @@ function Layout() {
     const [navBackground, setNavBackground] = useState(false);
     const location = useLocation();
 
+    // Fix per iOS: lo scroll viene eseguito dopo un brevissimo delay 
+    // per assicurarsi che il DOM sia stato renderizzato correttamente.
     useEffect(() => {
-        window.scrollTo(0, 0);
+        const timeoutId = setTimeout(() => {
+            window.scrollTo({
+                top: 0,
+                left: 0,
+                behavior: 'instant' // 'instant' evita conflitti con smooth scroll di CSS
+            });
+        }, 10);
+        return () => clearTimeout(timeoutId);
     }, [location.pathname]);
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 100) {
+            // throttle o semplice controllo dello scroll
+            if (window.scrollY > 50) {
                 setNavBackground(true);
             } else {
                 setNavBackground(false);
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
-        <div className="min-h-screen text-foreground antialiased relative flex flex-col">
+        /* Rimossa la classe 'antialiased' e 'relative' dal wrapper principale 
+           se causano problemi di sfarfallio su Safari */
+        <div className="min-h-screen flex flex-col w-full">
             <Navbar navBackground={navBackground} />
             
-            <div className="flex-grow relative z-10">
+            {/* 'relative z-10' a volte causa problemi di rendering su iOS 
+                se ci sono altri elementi con position fixed. Usalo con cautela. */}
+            <main className="flex-grow">
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/works" element={<Works />} />
                     <Route path="/bio" element={<Bio />} />
                     <Route path="/contact" element={<Contact />} />
                 </Routes>
-            </div>
+            </main>
             
             <Footer />
         </div>
