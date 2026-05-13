@@ -11,19 +11,16 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  build: {
-    outDir: 'docs',
-    // 1. Forza la compatibilità con browser più vecchi (Safari 13/14)
-    target: 'es2015',
-    // 2. Evita che esbuild usi sintassi troppo moderne che Safari iOS a volte blocca
-    cssTarget: 'chrome61',
-    rollupOptions: {
-      output: {
-        // 3. Rendi i nomi dei file più semplici per evitare problemi di MIME type su Safari
-        entryFileNames: `assets/[name].js`,
-        chunkFileNames: `assets/[name].js`,
-        assetFileNames: `assets/[name].[ext]`
-      },
+build: {
+  outDir: 'docs',
+  target: 'es2015',
+  cssTarget: 'chrome61',
+  rollupOptions: {
+    output: {
+      entryFileNames: `assets/[name].js`,
+      chunkFileNames: `assets/[name].js`,
+      assetFileNames: `assets/[name].[ext]`
     },
   },
+},
 });

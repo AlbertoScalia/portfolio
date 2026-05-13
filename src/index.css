@@ -12,17 +12,18 @@
     text-wrap: balance;
   }
 }
+@font-face {
+  font-display: swap; /* già incluso in @fontsource, ma verifica */
+}
 
 html, body {
-  /* Elimina max-width: 100vw che causa bug di rendering su Safari iOS */
   width: 100%;
   min-height: 100%;
   overflow-x: hidden;
-  scroll-behavior: smooth;
-  /* Migliora l'esperienza di scrolling su dispositivi Apple */
+  /* RIMOSSO: scroll-behavior: smooth; */
   -webkit-overflow-scrolling: touch;
   background-color: #f5f3f0;
-}
+}s
 
 body {
   /* Utilizza position relative per gestire meglio i livelli z-index dei componenti React */
