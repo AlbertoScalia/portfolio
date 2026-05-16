@@ -13,10 +13,9 @@ export default {
                 blue: "#1a1f36", // Everything blue must be dark blue
             },
 fontFamily: {
-    // Il nome deve corrispondere a quello del pacchetto Fontsource
-    sans: ['Geist Sans', 'Inter', 'sans-serif'],
-    mono: ['Geist Mono', 'monospace'],
-    display: ['Geist Sans', 'sans-serif'],
+  sans: ['Inter', 'sans-serif'],
+  mono: ['monospace'],
+  display: ['Inter', 'sans-serif'],
 },
         },
     },

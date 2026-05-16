@@ -126,9 +126,11 @@ export default function Works() {
                             <div className="md:col-span-2 order-1 md:order-2">
                                 <div className="relative w-full aspect-[16/8] overflow-hidden rounded-2xl bg-blue">
                                     <img
-                                        src={project.image}
-                                        alt={project.title}
-                                        loading="lazy"
+    src={project.image}
+    alt={project.title}
+    loading="lazy"
+    width="800"
+    height="400"
                                         className="absolute inset-0 w-full h-full object-cover transition-all duration-700 
                                                    grayscale contrast-[1.2] brightness-[0.8] 
                                                    group-hover:grayscale-0 group-hover:contrast-100 group-hover:brightness-100 group-hover:scale-105"

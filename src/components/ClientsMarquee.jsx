@@ -46,11 +46,12 @@ export default function ClientsMarquee() {
 
             {/* Marquee Loop - Ottimizzato per fluidità */}
             <div className="relative w-full overflow-hidden flex border-y border-blue/5 py-12 bg-zinc-50/30">
-                <motion.div
-                    animate={{ x: ["0%", "-50%"] }}
-                    transition={{ ease: "linear", duration: 40, repeat: Infinity }}
-                    className="flex whitespace-nowrap items-center gap-16 md:gap-32 px-8 will-change-transform"
-                >
+<motion.div
+    animate={{ x: ["0%", "-50%"] }}
+    transition={{ ease: "linear", duration: 40, repeat: Infinity }}
+    className="flex whitespace-nowrap items-center gap-16 md:gap-32 px-8"
+    style={{ willChange: 'transform', transform: 'translateZ(0)' }}
+>
                     {marqueeItems.map((client, idx) => (
                         <div key={idx} className="flex-shrink-0 w-32 md:w-40 opacity-40 hover:opacity-100 transition-opacity duration-500">
                             <img

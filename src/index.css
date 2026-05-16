@@ -4,7 +4,6 @@
 
 @layer utilities {
   .liquid-glass {
-    /* Assicurati che 'primary' sia definito nel tailwind.config.js, altrimenti usa brandBlue o accent */
     @apply bg-white/40 backdrop-blur-xl border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_20px_40px_-15px_rgba(0,0,0,0.5)];
   }
 
@@ -12,30 +11,23 @@
     text-wrap: balance;
   }
 }
-@font-face {
-  font-display: swap; /* già incluso in @fontsource, ma verifica */
-}
 
 html, body {
   width: 100%;
   min-height: 100%;
   overflow-x: hidden;
-  /* RIMOSSO: scroll-behavior: smooth; */
   -webkit-overflow-scrolling: touch;
   background-color: #f5f3f0;
-}s
+}
 
 body {
-  /* Utilizza position relative per gestire meglio i livelli z-index dei componenti React */
   position: relative;
   background-color: #f5f3f0;
   color: rgb(26, 31, 54);
-  /* Ottimizzazione rendering caratteri */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Fix specifico per evitare flickering durante lo scroll su iPhone */
 #root {
   width: 100%;
   overflow-x: hidden;
