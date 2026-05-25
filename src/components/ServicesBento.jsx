@@ -24,12 +24,12 @@ export default function ServicesBento() {
     const services = [
         {
             title: "Art Direction & Strategy",
-            description: "I design editorial systems — magazines, book series, brand identities — where visual consistency and strategic clarity are the same thing.",
+            description: "I design editorial systems — magazines, book series, and cultural projects — where visual consistency and strategic clarity are the same thing.",
             icon: BookOpen
         },
         {
             title: "Brand Identity & Growth",
-            description: "I build visual identities grounded in research and built to last — coherent across print, digital, and whatever comes next.",
+            description: "I build scalable visual identities grounded in research and built to last — coherent across packaging, print, digital, and whatever comes next.",
             icon: RocketLaunch
         },
         {
