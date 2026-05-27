@@ -106,9 +106,9 @@ export default function Bio() {
                     <div className="space-y-12">
                         {[
                             { date: "Present", title: "Open to opportunities", sub: "Full time or freelance", desc: "Full-time roles and collaborations — especially where design and strategy overlap." },
-                            { date: "2022 - Present", title: "Art Director", sub: "lay0ut magazine, Forward magazine", desc: "From underground zines to peer-reviewed science — I've designed both, and they've taught me everything about hierarchy." },
-                            { date: "2025 - 2026", title: "Graphic Designer", sub: "Life Electronics SpA", desc: "I dress tech products without forgetting barcodes. I manage the entire packaging cycle by integrating creativity with complex management systems like SAP and EKR KIT." },
-                            { date: "2021 - 2026", title: "Freelance Graphic Designer", sub: "Various Independent Publishers", desc: "I take care of visual identities and typesetting for 12 independent publishers and academic institutions, delivering over 50 book projects." },
+                            { date: "2022 - Present", title: "Visual & Editorial Designer", sub: "lay0ut magazine, Forward magazine", desc: "From underground zines to peer-reviewed science — I've designed both, and they've taught me everything about hierarchy." },
+                            { date: "2025 - 2026", title: "Visual & Brand Designer", sub: "Life Electronics SpA", desc: "I dress tech products without forgetting barcodes. I manage the entire packaging cycle by integrating creativity with complex management systems like SAP and EKR KIT." },
+                            { date: "2021 - 2026", title: "Freelance Visual & Editorial Designer", sub: "Various Independent Publishers", desc: "I take care of visual identities and typesetting for 12 independent publishers and academic institutions, delivering over 50 book projects." },
                             { date: "2021 - 2023", title: "Graphic Design Intern", sub: "LetteraVentidue Edizioni", desc: "A total immersion in the world of books: from the choice of paper to the millimetric precision of typographic grids." }
                         ].map((exp, i) => (
                             <motion.div key={i} variants={itemVariants} className="flex flex-col gap-1 text-left">

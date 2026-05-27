@@ -23,7 +23,7 @@ export default function ServicesBento() {
 
     const services = [
         {
-            title: "Art Direction & Strategy",
+            title: "Visual Strategy & Direction",
             description: "I design editorial systems — magazines, book series, and cultural projects — where visual consistency and strategic clarity are the same thing.",
             icon: BookOpen
         },

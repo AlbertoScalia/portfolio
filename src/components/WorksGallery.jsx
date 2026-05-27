@@ -12,9 +12,9 @@ const projects = [
     },
     {
         title: "Forward magazine",
-        subtitle: "Il Pensiero Scientifico Editore needed art direction for four consecutive issues of Forward, their healthcare and medical culture magazine.",
+        subtitle: "Il Pensiero Scientifico Editore entrusted me with the visual design and layout of four consecutive issues of Forward, their magazine dedicated to healthcare and medical culture.",
         image: "/portfolio/assets/images/project2.webp",
-        badges: ["Art Direction", "Editorial Design", "Layout"],
+        badges: ["Editorial Design", "Layout"],
         link: "https://forward.recentiprogressi.it/it/"
     },
     {
