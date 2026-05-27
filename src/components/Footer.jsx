@@ -15,7 +15,7 @@ export default function Footer() {
                         className="h-14 w-auto object-contain mb-4"
                     />
                     <p className="text-white/60 text-sm leading-relaxed mb-6">
-Visual Designer | Editorial, Branding & UI Design                    </p>
+Visual & Interface Designer                 </p>
                 </div>
 
                 <div className="grid grid-cols-2 gap-12 text-left">

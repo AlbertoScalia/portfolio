@@ -32,7 +32,7 @@ export default function HeroParallax() {
                         <div className="flex flex-col gap-1 items-start lg:items-center">
                             <p className="font-mono text-[10px] md:text-xs uppercase tracking-[0.15em] text-blue/50 text-left lg:text-center">
                                                             Alberto Scalia<br />
-    Visual Designer | Editorial, Branding & UI Design
+    Visual & Interface Designer
                             </p>
                         </div>
                     </div>
