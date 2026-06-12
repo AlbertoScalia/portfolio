@@ -50,7 +50,7 @@ export default function Contact() {
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
                     className="text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-6"
                 >
-                    Let's talk about your <span className="text-accent">project</span>
+                    Let's <span className="text-accent">talk</span>
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 30 }}
@@ -58,7 +58,7 @@ export default function Contact() {
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
                     className="text-zinc-500 text-xl font-sans max-w-2xl leading-relaxed"
                 >
-                    Let's talk, before the idea expires. I am always open to new collaborations. Fill out the form or write to me directly.
+                    I am open to full-time roles and collaborations — especially where design and strategy overlap. Fill out the form or write to me directly.
                 </motion.p>
             </header>
 

@@ -13,6 +13,7 @@ const clients = [
     { name: "Life Electronics", logo: "/portfolio/assets/images/Logo9.webp" },
     { name: "Compagnia Aliberti", logo: "/portfolio/assets/images/Logo10.webp" },
     { name: "lay0ut magazine", logo: "/portfolio/assets/images/Logo12.webp" },
+        { name: "Gyada Cosmetics S.r.l.", logo: "/portfolio/assets/images/Logo13.webp" },
 ];
 
 export default function ClientsMarquee() {

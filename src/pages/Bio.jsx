@@ -105,7 +105,7 @@ export default function Bio() {
                     
                     <div className="space-y-12">
                         {[
-                            { date: "Present", title: "Open to opportunities", sub: "Full time or freelance", desc: "Full-time roles and collaborations — especially where design and strategy overlap." },
+                                                        { date: "2026 - Present", title: "Visual & Brand Designer", sub: "Gyada Cosmetics S.r.l.", desc: "I manage the entire packaging cycle for cosmetic lines, from realistic mockups to print-ready artwork."},
                             { date: "2022 - Present", title: "Visual & Editorial Designer", sub: "lay0ut magazine, Forward magazine", desc: "From underground zines to peer-reviewed science — I've designed both, and they've taught me everything about hierarchy." },
                             { date: "2025 - 2026", title: "Visual & Brand Designer", sub: "Life Electronics SpA", desc: "I dress tech products without forgetting barcodes. I manage the entire packaging cycle by integrating creativity with complex management systems like SAP and EKR KIT." },
                             { date: "2021 - 2026", title: "Visual & Book Designer", sub: "Various Independent Publishers", desc: "I take care of visual identities and typesetting for 12 independent publishers and academic institutions, delivering over 50 book projects." },
