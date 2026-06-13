@@ -32,7 +32,7 @@ export default function Navbar() {
                 className={cn(
                     'pointer-events-auto transition-all duration-500 flex flex-col items-center w-full max-w-7xl px-6 lg:px-12',
                     scrolled ? 'backdrop-blur-xl shadow-none' : 'bg-transparent',
-                    isOpen && 'h-screen bg-zinc-50'
+                    isOpen && 'h-screen'
                 )}
             >
                 {/* Filetto Superiore */}

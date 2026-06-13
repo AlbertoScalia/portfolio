@@ -84,7 +84,7 @@ export default function Works() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-                    className="text-zinc-500 text-xl font-sans max-w-2xl leading-relaxed"
+                    className="text-xl font-sans max-w-2xl leading-relaxed"
                 >
                     No fluff. Just the projects that changed something — a product, a brand, a perception.
                 </motion.p>
@@ -114,7 +114,7 @@ export default function Works() {
                                     {project.badges.map((badge, bIdx) => (
                                         <span 
                                             key={bIdx} 
-                                            className="flex items-center text-[10px] font-mono uppercase tracking-[0.15em] text-zinc-400"
+                                            className="flex items-center text-[10px] font-mono uppercase tracking-[0.15em]"
                                         >
                                             <span className="text-accent mr-2">/</span>
                                             {badge}
@@ -166,7 +166,7 @@ export default function Works() {
                         </span>
                         <ArrowUpRight size={20} weight="bold" />
                     </div>
-                    <span className="text-[10px] font-mono text-zinc-400 uppercase tracking-widest opacity-0 group-hover/btn:opacity-100 transition-opacity">
+                    <span className="text-[10px] font-mono uppercase tracking-widest opacity-0 group-hover/btn:opacity-100 transition-opacity">
                         (Behance Archive)
                     </span>
                 </a>

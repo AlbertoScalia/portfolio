@@ -38,10 +38,10 @@ function Layout() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    return (
-        /* Rimossa la classe 'antialiased' e 'relative' dal wrapper principale 
-           se causano problemi di sfarfallio su Safari */
-        <div className="min-h-screen flex flex-col w-full">
+return (
+    /* Rimossa la classe 'antialiased' e 'relative' dal wrapper principale 
+       se causano problemi di sfarfallio su Safari */
+    <div className="min-h-screen flex flex-col w-full bg-background">
             <Navbar navBackground={navBackground} />
             
             {/* 'relative z-10' a volte causa problemi di rendering su iOS 

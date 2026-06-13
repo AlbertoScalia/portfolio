@@ -50,7 +50,7 @@ export default function Bio() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-                    className="text-zinc-500 text-xl font-sans max-w-2xl leading-relaxed"
+                    className="text-xl font-sans max-w-2xl leading-relaxed"
                 >
                     Or: how I learned to stop worrying about light space and love brevity. 
                 </motion.p>
@@ -68,14 +68,14 @@ export default function Bio() {
                     <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
                         {skillCategories.map((cat, idx) => (
                             <div key={`cat-${idx}`}>
-                                <h3 className="text-[10px] text-zinc-400 uppercase font-black tracking-[0.15em] mb-4">
+                                <h3 className="text-[10px] uppercase font-black tracking-[0.15em] mb-4">
                                     {cat.title}
                                 </h3>
                                 <div className="flex flex-wrap gap-x-5 gap-y-2">
                                     {cat.skills.map((skill, sIdx) => (
                                         <span 
                                             key={`skill-${idx}-${sIdx}`} 
-                                            className="flex items-center text-[11px] font-mono uppercase tracking-wider text-zinc-500"
+                                            className="flex items-center text-[11px] font-mono uppercase tracking-wider"
                                         >
                                             <span className="text-accent mr-2 font-bold">/</span>
                                             {skill}
@@ -105,17 +105,17 @@ export default function Bio() {
                     
                     <div className="space-y-12">
                         {[
-                                                        { date: "2026 - Present", title: "Visual & Brand Designer", sub: "Gyada Cosmetics S.r.l.", desc: "I manage the entire packaging cycle for cosmetic lines, from realistic mockups to print-ready artwork."},
+                            { date: "2026 - Present", title: "Visual & Brand Designer", sub: "Gyada Cosmetics S.r.l.", desc: "I manage the entire packaging cycle for cosmetic lines, from realistic mockups to print-ready artwork."},
                             { date: "2022 - Present", title: "Visual & Editorial Designer", sub: "lay0ut magazine, Forward magazine", desc: "From underground zines to peer-reviewed science — I've designed both, and they've taught me everything about hierarchy." },
                             { date: "2025 - 2026", title: "Visual & Brand Designer", sub: "Life Electronics SpA", desc: "I dress tech products without forgetting barcodes. I manage the entire packaging cycle by integrating creativity with complex management systems like SAP and EKR KIT." },
                             { date: "2021 - 2026", title: "Visual & Book Designer", sub: "Various Independent Publishers", desc: "I take care of visual identities and typesetting for 12 independent publishers and academic institutions, delivering over 50 book projects." },
                             { date: "2021 - 2023", title: "Graphic Design Intern", sub: "LetteraVentidue Edizioni", desc: "A total immersion in the world of books: from the choice of paper to the millimetric precision of typographic grids." }
                         ].map((exp, i) => (
                             <motion.div key={i} variants={itemVariants} className="flex flex-col gap-1 text-left">
-                                <span className="font-mono text-xs text-zinc-500 mb-2 block tracking-wider uppercase">{exp.date}</span>
+                                <span className="font-mono text-xs mb-2 block tracking-wider uppercase">{exp.date}</span>
                                 <h3 className="text-xl font-bold font-sans text-blue mb-1">{exp.title}</h3>
-                                <span className="text-sm font-medium text-zinc-500 block mb-3">{exp.sub}</span>
-                                <p className="text-zinc-500 leading-relaxed text-sm max-w-md">{exp.desc}</p>
+                                <span className="text-sm font-medium block mb-3">{exp.sub}</span>
+                                <p className="leading-relaxed text-sm max-w-md">{exp.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -142,10 +142,10 @@ export default function Bio() {
                             { date: "2017 - 2020", title: "Bachelor's Degree in Visual Communication Design", sub: "Accademia di Belle Arti di Catania", desc: "The foundations of everything I break and rebuild today. From color theory to rigid typography." }
                         ].map((edu, i) => (
                             <motion.div key={i} variants={itemVariants} className="flex flex-col gap-1 text-left">
-                                <span className="font-mono text-xs text-zinc-500 mb-2 block tracking-wider uppercase">{edu.date}</span>
+                                <span className="font-mono text-xs mb-2 block tracking-wider uppercase">{edu.date}</span>
                                 <h3 className="text-xl font-bold font-sans text-blue mb-1">{edu.title}</h3>
-                                <span className="text-sm font-medium text-zinc-500 block mb-3">{edu.sub}</span>
-                                <div className="text-zinc-500 leading-relaxed text-sm max-w-md">{edu.desc}</div>
+                                <span className="text-sm font-medium block mb-3">{edu.sub}</span>
+                                <div className="leading-relaxed text-sm max-w-md">{edu.desc}</div>
                             </motion.div>
                         ))}
                     </div>

@@ -17,13 +17,13 @@ html, body {
   min-height: 100%;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  background-color: #f5f3f0;
+  background-color: #F8F3EF;
 }
 
 body {
   position: relative;
-  background-color: #f5f3f0;
-  color: rgb(26, 31, 54);
+  background-color: #F8F3EF;
+  color: #2B4A9A;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

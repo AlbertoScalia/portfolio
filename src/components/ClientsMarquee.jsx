@@ -38,7 +38,7 @@ export default function ClientsMarquee() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <p className="text-xl text-zinc-500 leading-relaxed max-w-prose">
+                        <p className="text-xl leading-relaxed max-w-prose">
                              Over 12 publishers and brands have trusted me so far—and honestly, their bravery is quite inspiring.
                         </p>
                     </motion.div>
@@ -46,7 +46,7 @@ export default function ClientsMarquee() {
             </div>
 
             {/* Marquee Loop - Ottimizzato per fluidità */}
-            <div className="relative w-full overflow-hidden flex border-y border-blue/5 py-12 bg-zinc-50/30">
+            <div className="relative w-full overflow-hidden flex border-y border-blue/5 py-12">
 <motion.div
     animate={{ x: ["0%", "-50%"] }}
     transition={{ ease: "linear", duration: 40, repeat: Infinity }}
@@ -87,7 +87,7 @@ export default function ClientsMarquee() {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <p className="text-xl text-zinc-500 leading-relaxed max-w-prose">
+                        <p className="text-xl leading-relaxed max-w-prose">
                             Let's talk about it together and turn your idea into reality.
                         </p>
                     </motion.div>

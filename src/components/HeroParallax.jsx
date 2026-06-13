@@ -55,7 +55,7 @@ export default function HeroParallax() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.5 }}
-                            className="text-zinc-500 text-lg md:text-xl leading-relaxed max-w-2xl"
+                            className="text-lg md:text-xl leading-relaxed max-w-2xl"
                         >
                             I'm Alberto, a versatile and polyhedric UI designer with a solid background in high-end Editorial Design. Driven by a deep interest in marketing strategy, I bridge the gap between traditional visual excellence and digital innovation, creating intuitive, accessible, and user-centered interfaces.
                         </motion.p>

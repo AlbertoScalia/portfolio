@@ -57,7 +57,7 @@ export default function ServicesBento() {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                 >
-                    <p className="text-xl text-zinc-500 leading-relaxed font-sans max-w-prose">
+                    <p className="text-xl leading-relaxed font-sans max-w-prose">
                         Or, I translate your &rdquo;I'm not sure what I want, but I'll know it when I see it&rdquo; into something that won't make graphic designers cry.
                     </p>
                 </motion.div>
@@ -84,7 +84,7 @@ export default function ServicesBento() {
                                 {service.title}
                             </h3>
                             
-                            <p className="text-zinc-500 font-sans leading-relaxed">
+                            <p className="font-sans leading-relaxed">
                                 {service.description}
                             </p>
                         </div>

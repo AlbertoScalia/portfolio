@@ -7,10 +7,10 @@ export default {
     theme: {
         extend: {
             colors: {
-                background: "#FFFFFF", // Light background
+                background: "#F8F3EF", // Light background
                 accent: "#FF6B00", // Custom accent color
-                light: "#FFFFFF", // Map text-light to new dark color
-                blue: "#1a1f36", // Everything blue must be dark blue
+                light: "#F8F3EF", // Map text-light to new dark color
+                blue: "#2B4A9A", // Everything blue must be dark blue
             },
 fontFamily: {
   sans: ['Inter', 'sans-serif'],

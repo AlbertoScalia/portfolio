@@ -56,7 +56,7 @@ export default function Contact() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-                    className="text-zinc-500 text-xl font-sans max-w-2xl leading-relaxed"
+                    className="text-blue text-xl font-sans max-w-2xl leading-relaxed"
                 >
                     I am open to full-time roles and collaborations — especially where design and strategy overlap. Fill out the form or write to me directly.
                 </motion.p>
@@ -77,7 +77,7 @@ export default function Contact() {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold font-sans tracking-tight mb-2 text-blue group-hover:text-accent transition-colors">Phone</h3>
-                                <p className="text-zinc-500 text-sm font-sans">Number available upon request</p>
+                                <p className="text-sm font-sans">Number available upon request</p>
                             </div>
                         </div>
                     </div>
@@ -90,7 +90,7 @@ export default function Contact() {
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold font-sans tracking-tight mb-2 text-blue group-hover:text-accent transition-colors">Location</h3>
-                                <p className="text-zinc-500 text-sm font-sans">Acireale, CT, Italy</p>
+                                <p className="text-sm font-sans">Acireale, CT, Italy</p>
                             </div>
                         </div>
                     </div>
@@ -107,42 +107,42 @@ export default function Contact() {
                     <form onSubmit={handleSubmit} className="flex flex-col gap-10">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                             <div className="flex flex-col gap-3 text-left">
-                                <label htmlFor="name" className="text-[10px] font-black font-sans text-zinc-400 uppercase tracking-widest">Name *</label>
+                                <label htmlFor="name" className="text-[10px] font-black font-sans uppercase tracking-widest">Name *</label>
                                 <input
                                     type="text" id="name" name="name" required
                                     value={formData.name} onChange={handleChange}
                                     placeholder="How should I save you?"
-                                    className="bg-transparent border-b border-blue/20 py-4 text-blue placeholder:text-zinc-300 focus:outline-none focus:border-accent transition-colors font-sans text-lg"
+                                    className="bg-transparent border-b border-blue/20 py-4 text-blue placeholder:text-zinc400 focus:outline-none focus:border-accent transition-colors font-sans text-lg"
                                 />
                             </div>
                             <div className="flex flex-col gap-3 text-left">
-                                <label htmlFor="email" className="text-[10px] font-black font-sans text-zinc-400 uppercase tracking-widest">Email *</label>
+                                <label htmlFor="email" className="text-[10px] font-black font-sans uppercase tracking-widest">Email *</label>
                                 <input
                                     type="email" id="email" name="email" required
                                     value={formData.email} onChange={handleChange}
                                     placeholder="Where can I write to you?"
-                                    className="bg-transparent border-b border-blue/20 py-4 text-blue placeholder:text-zinc-300 focus:outline-none focus:border-accent transition-colors font-sans text-lg"
+                                    className="bg-transparent border-b border-blue/20 py-4 text-blue placeholder:text-zinc-400 focus:outline-none focus:border-accent transition-colors font-sans text-lg"
                                 />
                             </div>
                         </div>
 
                         <div className="flex flex-col gap-3 text-left">
-                            <label htmlFor="subject" className="text-[10px] font-black font-sans text-zinc-400 uppercase tracking-widest">Subject *</label>
+                            <label htmlFor="subject" className="text-[10px] font-black font-sans uppercase tracking-widest">Subject *</label>
                             <input
                                 type="text" id="subject" name="subject" required
                                 value={formData.subject} onChange={handleChange}
                                 placeholder="What do you want to talk about?"
-                                className="bg-transparent border-b border-blue/20 py-4 text-blue placeholder:text-zinc-300 focus:outline-none focus:border-accent transition-colors font-sans text-lg"
+                                className="bg-transparent border-b border-blue/20 py-4 text-blue placeholder:text-zinc-400 focus:outline-none focus:border-accent transition-colors font-sans text-lg"
                             />
                         </div>
 
                         <div className="flex flex-col gap-3 text-left">
-                            <label htmlFor="message" className="text-[10px] font-black font-sans text-zinc-400 uppercase tracking-widest">Message *</label>
+                            <label htmlFor="message" className="text-[10px] font-black font-sans uppercase tracking-widest">Message *</label>
                             <textarea
                                 id="message" name="message" rows="4" required
                                 value={formData.message} onChange={handleChange}
                                 placeholder="Summarize your idea (if you can)."
-                                className="bg-transparent border-b border-blue/20 py-4 text-blue placeholder:text-zinc-300 focus:outline-none focus:border-accent transition-colors font-sans text-lg resize-none"
+                                className="bg-transparent border-b border-blue/20 py-4 text-blue placeholder:text-zinc-400 focus:outline-none focus:border-accent transition-colors font-sans text-lg resize-none"
                             ></textarea>
                         </div>
 

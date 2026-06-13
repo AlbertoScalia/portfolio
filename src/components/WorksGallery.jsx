@@ -56,7 +56,7 @@ export default function WorksGallery() {
                                 <h3 className="text-lg font-bold tracking-tight mb-2 text-blue group-hover:text-accent transition-colors uppercase">
                                     {project.title}
                                 </h3>
-                                <p className="text-zinc-500 mb-4 leading-relaxed max-w-sm landscape:text-sm">
+                                <p className="mb-4 leading-relaxed max-w-sm landscape:text-sm">
                                     {project.subtitle}
                                 </p>
 
@@ -64,7 +64,7 @@ export default function WorksGallery() {
                                     {project.badges.map((badge, bIdx) => (
                                         <span 
                                             key={bIdx} 
-                                            className="flex items-center text-[10px] font-mono uppercase tracking-[0.15em] text-zinc-400"
+                                            className="flex items-center text-[10px] font-mono uppercase tracking-[0.15em]"
                                         >
                                             <span className="text-accent mr-2">/</span>
                                             {badge}
