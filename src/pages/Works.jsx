@@ -106,7 +106,7 @@ export default function Works() {
                                 <h3 className="text-lg font-bold font-sans tracking-tight mb-2 text-blue group-hover:text-accent transition-colors uppercase">
                                     {project.title}
                                 </h3>
-                                <p className="text-zinc-500 mb-4 leading-relaxed max-w-sm landscape:text-sm">
+                                <p className="mb-4 leading-relaxed max-w-sm landscape:text-sm">
                                     {project.subtitle}
                                 </p>
 
