@@ -10,7 +10,7 @@ export default {
                 background: "#F8F3EF", // Light background
                 accent: "#FF6B00", // Custom accent color
                 light: "#F8F3EF", // Map text-light to new dark color
-                blue: "#2B4A9A", // Everything blue must be dark blue
+                blue: "#1A1F36", // Everything blue must be dark blue
             },
 fontFamily: {
   sans: ['Inter', 'sans-serif'],
