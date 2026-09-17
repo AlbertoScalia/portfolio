@@ -62,7 +62,7 @@ const allProjects = [
 
 export default function WorksGallery() {
     return (
-        <section id="workgallery" className="pt-32 pb-20 w-full min-h-screen bg-[#0d0d0d] text-white overflow-x-hidden">
+        <section id="workgallery" className="pt-32 pb-20 w-full min-h-screen text-white overflow-x-hidden">
             <header className="mb-20 text-center px-6 lg:px-12 max-w-7xl mx-auto flex flex-col items-center">
                 <motion.h1
                     initial={{ opacity: 0, y: -20 }}
