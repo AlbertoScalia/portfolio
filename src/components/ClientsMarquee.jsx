@@ -27,7 +27,7 @@ export default function ClientsMarquee() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-6 text-center text-white"
+                    className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
                 >
                     Who trusted me <br />
                     <span className="font-serif font-normal text-white">(and survived to tell)</span>
@@ -72,7 +72,7 @@ export default function ClientsMarquee() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-6 text-center text-white"
+                    className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
                 >
                     Do you have a <br />
                     <span className="font-serif font-normal text-white">project in mind?</span>

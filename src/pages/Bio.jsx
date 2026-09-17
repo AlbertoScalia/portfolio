@@ -42,7 +42,7 @@ export default function Bio() {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-6 text-center text-white"
+                    className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
                 >
                     A little bit <br />
                     <span className="font-serif font-normal text-white">about me</span>
