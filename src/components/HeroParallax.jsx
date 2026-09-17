@@ -1,93 +1,135 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from '@phosphor-icons/react';
-import { Link } from 'react-router-dom';
+import { ArrowUpRight, BookOpen, RocketLaunch, CursorClick } from '@phosphor-icons/react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-export default function HeroParallax() {
+export default function HeroSection() {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const scrollToWork = (e) => {
+        e.preventDefault();
+
+        const performScroll = () => {
+            const element = document.getElementById('workgallery');
+            if (element) {
+                const yOffset = -60;
+                const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                window.scrollTo({ top: y, behavior: 'smooth' });
+            }
+        };
+
+        if (location.pathname === '/') {
+            performScroll();
+        } else {
+            navigate('/');
+            setTimeout(performScroll, 200);
+        }
+    };
+
+    const staggerContainer = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const itemFade = {
+        hidden: { opacity: 0, y: 20 },
+        show: { 
+            opacity: 1, 
+            y: 0, 
+            transition: { type: 'spring', stiffness: 100, damping: 20 } 
+        }
+    };
+
+    const services = [
+        {
+            title: "Visual Strategy & Direction",
+            description: "I design editorial systems — magazines, book series, and cultural projects — where visual consistency and strategic clarity are the same thing.",
+            icon: BookOpen
+        },
+        {
+            title: "Brand Identity & Growth",
+            description: "I build scalable visual identities grounded in research and built to last — coherent across packaging, print, digital, and whatever comes next.",
+            icon: RocketLaunch
+        },
+        {
+            title: "User Interface Design",
+            description: "I design interfaces where visual hierarchy does the heavy lifting — reducing friction, guiding attention, and making the next action feel obvious.",
+            icon: CursorClick
+        }
+    ];
+
     return (
-        <section
-            className="relative min-h-[90dvh] w-full flex flex-col justify-center pt-24 pb-8 px-6 lg:px-12 max-w-7xl mx-auto font-sans"
-        >
-            <motion.div 
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center"
-            >
-                
-                {/* Profile Image Container */}
-                <motion.div 
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.2 }}
-                    /* Aggiunto mt-12 per distanziarlo dalla navbar su mobile, rimosso su desktop con lg:mt-0 */
-                    className="lg:col-span-4 flex flex-col items-start lg:items-center gap-6 order-1 lg:order-2 mt-12 lg:mt-0"
+        <section className="relative w-full pt-32 px-6 lg:px-12 text-white font-sans">
+            {/* PARTE HERO */}
+            <div className="max-w-7xl mx-auto flex flex-col items-center text-center mb-24">
+                <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                    className="mb-4"
                 >
-                    <div className="w-fit flex flex-col items-start lg:items-center gap-4">
-                        <img
-                            src={`${import.meta.env.BASE_URL}assets/images/profile.webp`} 
-                            alt="Alberto Scalia"
-                            className="w-40 h-40 lg:w-80 lg:h-80 object-contain"
-                        />
-                        
-                        <div className="flex flex-col gap-1 items-start lg:items-center">
-                            <p className="font-mono text-[10px] md:text-xs uppercase tracking-[0.15em] text-blue/50 text-left lg:text-center">
-                                                            Alberto Scalia<br />
-    Visual & Interface Designer
-                            </p>
-                        </div>
-                    </div>
                 </motion.div>
 
-                {/* Text Content */}
-                <div className="lg:col-span-8 text-left z-10 order-2 lg:order-1">
-                    <div className="flex flex-col mb-12">
-                        <motion.h1
-                            initial={{ opacity: 0, x: -30 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.3 }}
-                            className="font-bold text-4xl md:text-6xl lg:text-7xl tracking-tighter leading-[1.1] text-blue mb-8"
-                        >
-                            Editorial Precision, <br />
-                            <span className="text-accent">Digital Performance</span>
-                        </motion.h1>
-                        
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.5 }}
-                            className="text-lg md:text-xl leading-relaxed max-w-2xl"
-                        >
-                            I'm Alberto, a versatile and polyhedric UI designer with a solid background in high-end Editorial Design. Driven by a deep interest in marketing strategy, I bridge the gap between traditional visual excellence and digital innovation, creating intuitive, accessible, and user-centered interfaces.
-                        </motion.p>
-                    </div>
+                <motion.h1
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
+                    className="text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[1.05] text-white mb-8 max-w-5xl"
+                >
+                    Editorial Precision, <br />
+                    <span className="font-serif text-white font-normal">Digital Performance</span>
+                </motion.h1>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.6 }}
-                        className="group flex flex-col gap-2 w-full md:w-fit"
-                    >
-                        <div className="flex flex-wrap gap-4 md:gap-6">
-                            <Link to="/works" className="flex items-center gap-4 group/btn">
-                                <div className="px-8 md:px-10 py-4 md:py-5 bg-blue text-white rounded-full flex items-center gap-3 transition-all group-hover/btn:bg-accent shadow-xl shadow-blue/5">
-                                    <span className="font-bold tracking-tight uppercase text-xs md:text-sm">
-                                        View projects
-                                    </span>
-                                    <ArrowUpRight size={18} weight="bold" />
-                                </div>
-                            </Link>
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="text-lg md:text-xl leading-relaxed max-w-2xl text-white/70 text-center"
+                >
+I'm Alberto, a versatile UI designer with a solid background in high-end Editorial Design — here is what I do:                </motion.p>
+            </div>
 
-                            <Link to="/contact" className="flex items-center gap-4 group/btn">
-                                <div className="px-8 md:px-10 py-4 md:py-5 bg-transparent border border-blue/20 text-blue rounded-full flex items-center gap-3 transition-all hover:bg-blue/5">
-                                    <span className="font-bold tracking-tight uppercase text-xs md:text-sm">
-                                        Contact me
-                                    </span>
+            {/* PARTE SERVIZI */}
+            <div id="filosofia" className="w-full max-w-7xl mx-auto">
+                <motion.div
+                    variants={staggerContainer}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.2 }}
+                    className="flex flex-col gap-12 w-full mb-20"
+                >
+                    {services.map((service, idx) => (
+                        <motion.div key={idx} variants={itemFade} className="group flex flex-col text-left w-full">
+                            <div className="w-full border-t border-white/20 group-hover:border-white transition-colors duration-500 mb-8" />
+                            
+                            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start w-full">
+                                <div className="md:col-span-1">
+                                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                                        <service.icon size={24} weight="duotone" className="text-white" />
+                                    </div>
                                 </div>
-                            </Link>
-                        </div>
-                    </motion.div>
-                </div>
-            </motion.div>
+                                
+                                <div className="md:col-span-4">
+                                    <h3 className="text-3xl font-serif font-normal tracking-tight text-white">
+                                        {service.title}
+                                    </h3>
+                                </div>
+                                
+                                <div className="md:col-span-7">
+                                    <p className="font-sans text-base leading-relaxed text-white/70">
+                                        {service.description}
+                                    </p>
+                                </div>
+                            </div>
+                        </motion.div>
+                    ))}
+                </motion.div>
+            </div>
         </section>
     );
 }

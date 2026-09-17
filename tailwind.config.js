@@ -1,23 +1,16 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: [
-        "./index.html",
-        "./src/**/*.{js,ts,jsx,tsx}",
-    ],
-    theme: {
-        extend: {
-            colors: {
-                background: "#F8F3EF", // Light background
-                accent: "#FF6B00", // Custom accent color
-                light: "#F8F3EF", // Map text-light to new dark color
-                blue: "#1A1F36", // Everything blue must be dark blue
-            },
-fontFamily: {
-  sans: ['Inter', 'sans-serif'],
-  mono: ['monospace'],
-  display: ['Inter', 'sans-serif'],
-},
-        },
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        serif: ['"Instrument Serif"', 'serif'],
+        sans: ['Inter', 'sans-serif'],
+      },
     },
-    plugins: [],
+  },
+  plugins: [],
 }

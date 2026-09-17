@@ -40,53 +40,60 @@ export default function ServicesBento() {
     ];
 
     return (
-        <section id="filosofia" className="relative py-12 md:py-24 px-6 lg:px-12 w-full max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24 items-center">
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+        <section id="filosofia" className="relative py-12 md:py-24 px-6 lg:px-12 w-full max-w-7xl mx-auto text-white">
+            {/* Header centrato */}
+            <header className="mb-20 text-center max-w-7xl mx-auto flex flex-col items-center">
+                <motion.h2
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
+                    transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                    className="text-5xl md:text-7xl font-sans font-bold tracking-tighter mb-6 text-center text-white"
                 >
-                    <h2 className="text-4xl md:text-6xl font-sans font-bold tracking-tighter text-balance text-blue">
-                        &ldquo;Design is listening <br />
-                        <span className="text-accent">made visible</span>&rdquo;
-                    </h2>
-                </motion.div>
-                <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    "Design is listening <br />
+                    <span className="font-serif font-normal text-white">made visible"</span>
+                </motion.h2>
+                <motion.p
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
+                    transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
+                    className="text-xl font-sans max-w-2xl leading-relaxed text-white/70 text-center"
                 >
-                    <p className="text-xl leading-relaxed font-sans max-w-prose">
-                        Or, I translate your &rdquo;I'm not sure what I want, but I'll know it when I see it&rdquo; into something that won't make graphic designers cry.
-                    </p>
-                </motion.div>
-            </div>
+                    Or, I translate your &ldquo;I'm not sure what I want, but I'll know it when I see it&rdquo; into something that won't make graphic designers cry.
+                </motion.p>
+            </header>
 
+            {/* Servizi Incolonnati uno sotto l'altro */}
             <motion.div
                 variants={staggerContainer}
                 initial="hidden"
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
-                className="grid grid-cols-1 md:grid-cols-3 gap-12"
+                className="flex flex-col gap-12 w-full"
             >
                 {services.map((service, idx) => (
-                    <motion.div key={idx} variants={itemFade} className="group flex flex-col">
-                        {/* Filetto superiore a tutta larghezza */}
-                        <div className="w-full border-t border-blue/20 group-hover:border-accent transition-colors duration-500 mb-8" />
+                    <motion.div key={idx} variants={itemFade} className="group flex flex-col text-left">
+                        <div className="w-full border-t border-white/20 group-hover:border-white transition-colors duration-500 mb-8" />
                         
-                        <div className="flex flex-col h-full">
-                            <div className="w-10 h-10 rounded-lg bg-blue/5 flex items-center justify-center mb-6 group-hover:bg-accent/10 transition-colors">
-                                <service.icon size={22} weight="duotone" className="text-blue group-hover:text-accent transition-colors" />
+                        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                            <div className="md:col-span-1">
+                                <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+                                    <service.icon size={24} weight="duotone" className="text-white" />
+                                </div>
                             </div>
                             
-                            <h3 className="text-lg font-bold font-sans tracking-tight mb-3 text-blue group-hover:text-accent transition-colors">
-                                {service.title}
-                            </h3>
+                            <div className="md:col-span-4">
+                                <h3 className="text-3xl font-serif font-normal tracking-tight text-white">
+                                    {service.title}
+                                </h3>
+                            </div>
                             
-                            <p className="font-sans leading-relaxed">
-                                {service.description}
-                            </p>
+                            <div className="md:col-span-7">
+                                <p className="font-sans text-base leading-relaxed text-white/70">
+                                    {service.description}
+                                </p>
+                            </div>
                         </div>
                     </motion.div>
                 ))}

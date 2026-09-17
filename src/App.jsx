@@ -3,7 +3,6 @@ import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-d
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
-import Works from './pages/Works';
 import Bio from './pages/Bio';
 import Contact from './pages/Contact';
 
@@ -49,7 +48,6 @@ return (
             <main className="flex-grow">
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/works" element={<Works />} />
                     <Route path="/bio" element={<Bio />} />
                     <Route path="/contact" element={<Contact />} />
                 </Routes>
