@@ -53,11 +53,10 @@ export default function Navbar() {
                 layout
                 className={cn(
                     'pointer-events-auto transition-all duration-500 flex flex-col items-center w-full px-6 lg:px-12 text-white',
-                    scrolled ? 'backdrop-blur-xl shadow-none bg-black/40' : 'bg-transparent',
-                    isOpen && 'h-screen bg-background'
+                    isOpen ? 'h-screen bg-black' : scrolled ? 'backdrop-blur-xl shadow-none bg-black/40' : 'bg-transparent'
                 )}
             >
-                <div className="flex items-center justify-between w-full py-6">
+                <div className="flex items-center justify-between w-full py-6 shrink-0">
                     {/* LOGO A SINISTRA */}
                     <Link 
                         to="/" 
@@ -138,7 +137,7 @@ export default function Navbar() {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            className="w-full flex flex-col items-center justify-start pt-32 flex-1"
+                            className="w-full flex flex-col items-center justify-start pt-32 flex-1 bg-black"
                         >
                             <div className="flex flex-col gap-8 text-center">
                                 <a
