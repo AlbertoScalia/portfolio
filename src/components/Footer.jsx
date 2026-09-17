@@ -27,8 +27,8 @@ export default function Footer() {
     };
 
     return (
-        <footer className="w-full bg-transparent text-white pt-20 pb-12 px-6 lg:px-12">
-            <div className="w-full border-t border-white/20 pt-16">
+        <footer className="w-full bg-[#EC3814] text-white pb-12 px-6 lg:px-12">
+            <div className="w-full pt-16">
                 <div className="flex flex-col md:flex-row justify-between gap-12 text-left">
                     
                     {/* Brand / Info */}
@@ -46,9 +46,6 @@ export default function Footer() {
                     {/* Navigation & Social */}
                     <div className="grid grid-cols-2 gap-16 text-left">
                         <div>
-                            <h4 className="text-[10px] font-mono font-bold uppercase tracking-widest text-white/40 mb-6">
-                                Navigation
-                            </h4>
                             <ul className="flex flex-col gap-3 font-sans text-sm font-light uppercase tracking-wider">
                                 <li>
                                     <Link to="/" className="text-white/70 hover:text-white transition-colors">
@@ -78,9 +75,7 @@ export default function Footer() {
                         </div>
 
                         <div>
-                            <h4 className="text-[10px] font-mono font-bold uppercase tracking-widest text-white/40 mb-6">
-                                Social
-                            </h4>
+
                             <div className="flex gap-3">
                                 {[
                                     { icon: BehanceLogo, href: "https://www.behance.net/albescalia" },

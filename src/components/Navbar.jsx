@@ -52,7 +52,7 @@ export default function Navbar() {
             <motion.nav
                 layout
                 className={cn(
-                    'pointer-events-auto transition-all duration-500 flex flex-col items-center w-full px-6 lg:px-12',
+                    'pointer-events-auto transition-all duration-500 flex flex-col items-center w-full px-6 lg:px-12 text-white',
                     scrolled ? 'backdrop-blur-xl shadow-none bg-black/40' : 'bg-transparent',
                     isOpen && 'h-screen bg-background'
                 )}
@@ -70,7 +70,7 @@ export default function Navbar() {
                             className="h-full w-auto object-contain block transition-opacity duration-300 group-hover:opacity-0"
                         />
                         <div 
-                            className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            className="absolute inset-0 bg-[#EC3814] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                             style={{
                                 maskImage: `url(${import.meta.env.BASE_URL}assets/images/Logo_nav.webp)`,
                                 WebkitMaskImage: `url(${import.meta.env.BASE_URL}assets/images/Logo_nav.webp)`,
@@ -85,7 +85,7 @@ export default function Navbar() {
                     </Link>
 
                     {/* TESTO CENTRATO (SOLO DESKTOP) */}
-                    <div className="hidden md:block absolute left-1/2 -translate-x-1/2 text-center pointer-events-none">
+                    <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 text-center pointer-events-none">
                         <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50">
                             Alberto Scalia — Visual & Interface Designer
                         </span>
@@ -96,7 +96,7 @@ export default function Navbar() {
                         <a
                             href="#workgallery"
                             onClick={scrollToWork}
-                            className="text-sm font-light tracking-wider text-white/70 hover:text-white transition-colors duration-300 uppercase cursor-pointer"
+                            className="text-sm font-light tracking-wider text-white/70 hover:text-[#EC3814] transition-colors duration-300 uppercase cursor-pointer"
                         >
                             WORK
                         </a>
@@ -104,7 +104,7 @@ export default function Navbar() {
                             to="/bio"
                             className={cn(
                                 "text-sm font-light tracking-wider transition-colors duration-300 uppercase",
-                                isActive('/bio') ? "text-white" : "text-white/70 hover:text-white"
+                                isActive('/bio') ? "text-[#EC3814]" : "text-white/70 hover:text-[#EC3814]"
                             )}
                         >
                             ABOUT
@@ -113,7 +113,7 @@ export default function Navbar() {
                             to="/contact"
                             className={cn(
                                 "text-sm font-light tracking-wider transition-colors duration-300 uppercase",
-                                isActive('/contact') ? "text-white" : "text-white/70 hover:text-white"
+                                isActive('/contact') ? "text-[#EC3814]" : "text-white/70 hover:text-[#EC3814]"
                             )}
                         >
                             CONTACT
@@ -144,7 +144,7 @@ export default function Navbar() {
                                 <a
                                     href="#workgallery"
                                     onClick={scrollToWork}
-                                    className="text-4xl font-light tracking-tight text-white/60 hover:text-white transition-all duration-300 uppercase cursor-pointer"
+                                    className="text-4xl font-light tracking-tight text-white/60 hover:text-[#EC3814] transition-all duration-300 uppercase cursor-pointer"
                                 >
                                     WORK
                                 </a>
@@ -153,7 +153,7 @@ export default function Navbar() {
                                     onClick={closeMenu}
                                     className={cn(
                                         "text-4xl font-light tracking-tight transition-all duration-300 uppercase", 
-                                        isActive('/bio') ? "text-white" : "text-white/60 hover:text-white"
+                                        isActive('/bio') ? "text-[#EC3814]" : "text-white/60 hover:text-[#EC3814]"
                                     )}
                                 >
                                     ABOUT
@@ -163,7 +163,7 @@ export default function Navbar() {
                                     onClick={closeMenu}
                                     className={cn(
                                         "text-4xl font-light tracking-tight transition-all duration-300 uppercase", 
-                                        isActive('/contact') ? "text-white" : "text-white/60 hover:text-white"
+                                        isActive('/contact') ? "text-[#EC3814]" : "text-white/60 hover:text-[#EC3814]"
                                     )}
                                 >
                                     CONTACT

@@ -13,12 +13,12 @@ html, body {
   min-height: 100%;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  background-color: #1a1918;
+  background-color: #000000;
 }
 
 body {
   position: relative;
-  background-color: #1a1918;
+  background-color: #000000;
   color: #e8e8e8;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

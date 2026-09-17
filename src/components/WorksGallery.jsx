@@ -68,10 +68,10 @@ export default function WorksGallery() {
                     initial={{ opacity: 0, y: -20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center"
+                    className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
                 >
                     My experience <br />
-                    <span className="font-serif font-normal text-white">(and my dark circles)</span>
+                    <span className="font-serif font-normal text-[#EC3814]">(and my dark circles)</span>
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -105,7 +105,7 @@ export default function WorksGallery() {
                         </div>
 
                         <div className="flex flex-col gap-2 pt-6 px-6 lg:px-12">
-                            <h3 className="text-3xl font-serif font-normal text-white group-hover:text-white/80 transition-colors">
+                            <h3 className="text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300">
                                 {project.title}
                             </h3>
 
@@ -117,7 +117,7 @@ export default function WorksGallery() {
                                 {project.badges.map((badge, bIdx) => (
                                     <span 
                                         key={bIdx} 
-                                        className="text-[10px] font-mono uppercase tracking-widest text-white/40"
+                                        className="text-[10px] font-mono uppercase tracking-widest text-white/40 group-hover:text-white/70 transition-colors"
                                     >
                                         / {badge}
                                     </span>
@@ -138,7 +138,7 @@ export default function WorksGallery() {
                     href="https://www.behance.net/gallery/244847487/Personal-Portfolio-2021-2026" 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors group/btn"
+                    className="inline-flex items-center gap-3 text-white hover:text-[#EC3814] transition-colors duration-300 group/btn"
                 >
                     <span className="font-light tracking-wider uppercase text-sm md:text-base">
                         Check the complete archive

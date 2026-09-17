@@ -45,7 +45,7 @@ export default function Bio() {
                     className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
                 >
                     A little bit <br />
-                    <span className="font-serif font-normal text-white">about me</span>
+                    <span className="font-serif font-normal text-[#EC3814]">about me</span>
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -58,12 +58,12 @@ export default function Bio() {
             </header>
 
             {/* Skills Section */}
-            <section className="mb-32">
-                <div className="w-full border-t border-white/20 mb-12" />
+            <section className="mb-32 group">
+                <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300 mb-12" />
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
                     <div className="col-span-1">
-                        <h2 className="text-2xl md:text-3xl font-serif font-normal text-white flex items-center gap-3 mb-4">
-                            <PenNib size={24} weight="duotone" className="text-white" /> Skills & Tech
+                        <h2 className="text-2xl md:text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300 flex items-center gap-3 mb-4">
+                            <PenNib size={24} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors duration-300" /> Skills & Tech
                         </h2>
                     </div>
                     <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
@@ -76,9 +76,9 @@ export default function Bio() {
                                     {cat.skills.map((skill, sIdx) => (
                                         <span 
                                             key={`skill-${idx}-${sIdx}`} 
-                                            className="flex items-center text-[11px] font-mono uppercase tracking-wider text-white/70"
+                                            className="flex items-center text-[11px] font-mono uppercase tracking-wider text-white/70 hover:text-white transition-colors cursor-default"
                                         >
-                                            <span className="text-white mr-2 font-bold">/</span>
+                                            <span className="text-[#EC3814] mr-2 font-bold">/</span>
                                             {skill}
                                         </span>
                                     ))}
@@ -98,10 +98,11 @@ export default function Bio() {
                     initial="hidden" 
                     whileInView="show" 
                     viewport={{ once: true }}
+                    className="group"
                 >
-                    <div className="w-full border-t border-white/20 mb-12" />
-                    <h2 className="text-2xl md:text-3xl font-serif font-normal mb-12 flex items-center gap-4 text-white">
-                        <Briefcase size={28} weight="duotone" className="text-white" /> Professional Experience
+                    <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300 mb-12" />
+                    <h2 className="text-2xl md:text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300 mb-12 flex items-center gap-4">
+                        <Briefcase size={28} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors duration-300" /> Professional Experience
                     </h2>
                     
                     <div className="space-y-12">
@@ -112,9 +113,9 @@ export default function Bio() {
                             { date: "2021 - 2026", title: "Visual & Book Designer", sub: "Various Independent Publishers", desc: "I take care of visual identities and typesetting for 12 independent publishers and academic institutions, delivering over 50 book projects." },
                             { date: "2021 - 2023", title: "Graphic Design Intern", sub: "LetteraVentidue Edizioni", desc: "A total immersion in the world of books: from the choice of paper to the millimetric precision of typographic grids." }
                         ].map((exp, i) => (
-                            <motion.div key={i} variants={itemVariants} className="flex flex-col gap-1 text-left">
+                            <motion.div key={i} variants={itemVariants} className="flex flex-col gap-1 text-left group/item">
                                 <span className="font-mono text-xs mb-2 block tracking-wider uppercase text-white/40">{exp.date}</span>
-                                <h3 className="text-xl font-bold font-sans text-white mb-1">{exp.title}</h3>
+                                <h3 className="text-xl font-bold font-sans text-white group-hover/item:text-[#EC3814] transition-colors mb-1">{exp.title}</h3>
                                 <span className="text-sm font-sans font-medium text-white/80 block mb-3">{exp.sub}</span>
                                 <p className="leading-relaxed text-sm font-sans text-white/70 max-w-md">{exp.desc}</p>
                             </motion.div>
@@ -128,23 +129,24 @@ export default function Bio() {
                     initial="hidden" 
                     whileInView="show" 
                     viewport={{ once: true }}
+                    className="group"
                 >
-                    <div className="w-full border-t border-white/20 mb-12" />
-                    <h2 className="text-2xl md:text-3xl font-serif font-normal mb-12 flex items-center gap-4 text-white">
-                        <GraduationCap size={28} weight="duotone" className="text-white" /> Education
+                    <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300 mb-12" />
+                    <h2 className="text-2xl md:text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300 mb-12 flex items-center gap-4">
+                        <GraduationCap size={28} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors duration-300" /> Education
                     </h2>
 
                     <div className="space-y-12">
                         {[
-                            { date: "2025 - 2026", title: "Growth Marketing & AI Agents Master", sub: "start2impact", desc: <>A multidisciplinary path that combines strategic marketing, UX/UI design, and data analysis with a strong focus on artificial intelligence. You can view my profile and projects <a href="https://account.start2impact.it/profile/alberto-scalia" target="_blank" rel="noopener noreferrer" className="text-white underline hover:text-white/80">here.</a></> },
+                            { date: "2025 - 2026", title: "Growth Marketing & AI Agents Master", sub: "start2impact", desc: <>A multidisciplinary path that combines strategic marketing, UX/UI design, and data analysis with a strong focus on artificial intelligence. You can view my profile and projects <a href="https://account.start2impact.it/profile/alberto-scalia" target="_blank" rel="noopener noreferrer" className="underline text-[#EC3814] hover:text-white transition-colors">here.</a></> },
                             { date: "2024", title: "Complete UX Design Course", sub: "corsoux.it", desc: "Where I understood that a test with a real user is worth more than a thousand hours of brainstorming in an agency." },
                             { date: "2023", title: "Master in Full Stack Web Developer", sub: "Boolean", desc: "Where I stopped asking developers if a design was feasible and started writing the code myself." },
                             { date: "2021", title: "Master in Publishing", sub: "Scuola del Libro", desc: "Practically a survival master for anyone who wants to print beautiful things without getting a nervous breakdown between one draft and another." },
                             { date: "2017 - 2020", title: "Bachelor's Degree in Visual Communication Design", sub: "Accademia di Belle Arti di Catania", desc: "The foundations of everything I break and rebuild today. From color theory to rigid typography." }
                         ].map((edu, i) => (
-                            <motion.div key={i} variants={itemVariants} className="flex flex-col gap-1 text-left">
+                            <motion.div key={i} variants={itemVariants} className="flex flex-col gap-1 text-left group/item">
                                 <span className="font-mono text-xs mb-2 block tracking-wider uppercase text-white/40">{edu.date}</span>
-                                <h3 className="text-xl font-bold font-sans text-white mb-1">{edu.title}</h3>
+                                <h3 className="text-xl font-bold font-sans text-white group-hover/item:text-[#EC3814] transition-colors mb-1">{edu.title}</h3>
                                 <span className="text-sm font-sans font-medium text-white/80 block mb-3">{edu.sub}</span>
                                 <div className="leading-relaxed text-sm font-sans text-white/70 max-w-md">{edu.desc}</div>
                             </motion.div>

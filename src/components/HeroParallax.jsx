@@ -82,7 +82,7 @@ export default function HeroSection() {
                     className="text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[1.05] text-white mb-8 max-w-5xl"
                 >
                     Editorial Precision, <br />
-                    <span className="font-serif text-white font-normal">Digital Performance</span>
+                    <span className="font-serif font-normal text-[#EC3814]">Digital Performance</span>
                 </motion.h1>
 
                 <motion.p
@@ -91,7 +91,8 @@ export default function HeroSection() {
                     transition={{ delay: 0.2 }}
                     className="text-lg md:text-xl leading-relaxed max-w-2xl text-white/70 text-center"
                 >
-I'm Alberto, a versatile UI designer with a solid background in high-end Editorial Design — here is what I do:                </motion.p>
+                    I'm Alberto, a versatile UI designer with a solid background in high-end Editorial Design — here is what I do:
+                </motion.p>
             </div>
 
             {/* PARTE SERVIZI */}
@@ -105,17 +106,17 @@ I'm Alberto, a versatile UI designer with a solid background in high-end Editori
                 >
                     {services.map((service, idx) => (
                         <motion.div key={idx} variants={itemFade} className="group flex flex-col text-left w-full">
-                            <div className="w-full border-t border-white/20 group-hover:border-white transition-colors duration-500 mb-8" />
+                            <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300 mb-8" />
                             
                             <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start w-full">
                                 <div className="md:col-span-1">
-                                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
-                                        <service.icon size={24} weight="duotone" className="text-white" />
+                                    <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:bg-[#EC3814]/10 group-hover:border-[#EC3814]/30 transition-colors">
+                                        <service.icon size={24} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors" />
                                     </div>
                                 </div>
                                 
                                 <div className="md:col-span-4">
-                                    <h3 className="text-3xl font-serif font-normal tracking-tight text-white">
+                                    <h3 className="text-3xl font-serif font-normal tracking-tight text-white group-hover:text-[#EC3814] transition-colors">
                                         {service.title}
                                     </h3>
                                 </div>

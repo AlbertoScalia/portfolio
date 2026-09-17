@@ -30,7 +30,7 @@ export default function ClientsMarquee() {
                     className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
                 >
                     Who trusted me <br />
-                    <span className="font-serif font-normal text-white">(and survived to tell)</span>
+                    <span className="font-serif font-normal text-[#EC3814]">(and survived to tell)</span>
                 </motion.h2>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -51,22 +51,36 @@ export default function ClientsMarquee() {
                     style={{ willChange: 'transform', transform: 'translateZ(0)' }}
                 >
                     {marqueeItems.map((client, idx) => (
-                        <div key={idx} className="flex-shrink-0 w-32 md:w-40 opacity-40 hover:opacity-100 transition-opacity duration-500">
+                        <div key={idx} className="flex-shrink-0 w-32 md:w-40 relative group h-12 flex items-center justify-center">
+                            {/* Logo Bianco (di base) */}
                             <img
                                 src={client.logo}
                                 alt={client.name}
                                 width="160"
                                 height="60"
                                 decoding="async"
-                                className="w-full h-auto object-contain pointer-events-none grayscale invert"
+                                className="w-full h-full object-contain pointer-events-none grayscale invert opacity-40 group-hover:opacity-0 transition-opacity duration-300"
                                 style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+                            />
+                            {/* Logo Arancione (in Hover via CSS Mask) */}
+                            <div 
+                                className="absolute inset-0 bg-[#EC3814] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                style={{
+                                    maskImage: `url(${client.logo})`,
+                                    WebkitMaskImage: `url(${client.logo})`,
+                                    maskSize: 'contain',
+                                    WebkitMaskSize: 'contain',
+                                    maskRepeat: 'no-repeat',
+                                    WebkitMaskRepeat: 'no-repeat',
+                                    maskPosition: 'center'
+                                }}
                             />
                         </div>
                     ))}
                 </motion.div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-32 text-center flex flex-col items-center">
+            <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-32 text-center flex flex-col items-center group/cta">
                 <motion.h2
                     initial={{ opacity: 0, y: -20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -75,7 +89,7 @@ export default function ClientsMarquee() {
                     className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
                 >
                     Do you have a <br />
-                    <span className="font-serif font-normal text-white">project in mind?</span>
+                    <span className="font-serif font-normal text-[#EC3814]">project in mind?</span>
                 </motion.h2>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -95,12 +109,12 @@ export default function ClientsMarquee() {
                 >
                     <a 
                         href="mailto:albscalia@gmail.com"
-                        className="inline-flex items-center gap-3 text-white hover:text-white/80 transition-colors group/btn"
+                        className="inline-flex items-center gap-3 text-white hover:text-[#EC3814] transition-colors duration-300 group/btn"
                     >
                         <span className="font-light tracking-wider uppercase text-sm md:text-base">
                             Let's start the conversation
                         </span>
-                        <ArrowUpRight size={20} weight="bold" className="group-hover/btn:rotate-45 transition-transform text-white" />
+                        <ArrowUpRight size={20} weight="bold" className="group-hover/btn:rotate-45 transition-transform" />
                     </a>
                 </motion.div>
             </div>

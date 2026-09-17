@@ -50,7 +50,7 @@ export default function Contact() {
                     className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
                 >
                     Let's <br />
-                    <span className="font-serif font-normal text-white">talk</span>
+                    <span className="font-serif font-normal text-[#EC3814]">talk</span>
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -69,26 +69,26 @@ export default function Contact() {
                     className="lg:col-span-4 flex flex-col gap-16"
                 >
                     <div className="group flex flex-col gap-8 text-left">
-                        <div className="w-full border-t border-white/20 group-hover:border-white transition-colors duration-300" />
+                        <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300" />
                         <div className="flex items-start gap-6">
-                            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/10 transition-colors">
-                                <Phone size={24} weight="duotone" className="text-white" />
+                            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#EC3814]/10 group-hover:border-[#EC3814]/30 transition-colors">
+                                <Phone size={24} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors" />
                             </div>
                             <div>
-                                <h3 className="text-2xl font-serif font-normal tracking-tight mb-2 text-white">Phone</h3>
+                                <h3 className="text-2xl font-serif font-normal tracking-tight mb-2 text-white group-hover:text-[#EC3814] transition-colors">Phone</h3>
                                 <p className="text-sm font-sans text-white/70">Number available upon request</p>
                             </div>
                         </div>
                     </div>
 
                     <div className="group flex flex-col gap-8 text-left">
-                        <div className="w-full border-t border-white/20 group-hover:border-white transition-colors duration-300" />
+                        <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300" />
                         <div className="flex items-start gap-6">
-                            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-white/10 transition-colors">
-                                <MapPin size={24} weight="duotone" className="text-white" />
+                            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#EC3814]/10 group-hover:border-[#EC3814]/30 transition-colors">
+                                <MapPin size={24} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors" />
                             </div>
                             <div>
-                                <h3 className="text-2xl font-serif font-normal tracking-tight mb-2 text-white">Location</h3>
+                                <h3 className="text-2xl font-serif font-normal tracking-tight mb-2 text-white group-hover:text-[#EC3814] transition-colors">Location</h3>
                                 <p className="text-sm font-sans text-white/70">Acireale, CT, Italy</p>
                             </div>
                         </div>
@@ -100,7 +100,7 @@ export default function Contact() {
                     animate={{ opacity: 1, x: 0 }}
                     className="lg:col-span-8 group flex flex-col gap-8"
                 >
-                    <div className="w-full border-t border-white/20 group-hover:border-white transition-colors duration-300" />
+                    <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300" />
                     
                     <form onSubmit={handleSubmit} className="flex flex-col gap-10">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -110,7 +110,7 @@ export default function Contact() {
                                     type="text" id="name" name="name" required
                                     value={formData.name} onChange={handleChange}
                                     placeholder="How should I save you?"
-                                    className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-white transition-colors font-sans text-lg"
+                                    className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-[#EC3814] transition-colors font-sans text-lg"
                                 />
                             </div>
                             <div className="flex flex-col gap-3 text-left">
@@ -119,7 +119,7 @@ export default function Contact() {
                                     type="email" id="email" name="email" required
                                     value={formData.email} onChange={handleChange}
                                     placeholder="Where can I write to you?"
-                                    className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-white transition-colors font-sans text-lg"
+                                    className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-[#EC3814] transition-colors font-sans text-lg"
                                 />
                             </div>
                         </div>
@@ -130,7 +130,7 @@ export default function Contact() {
                                 type="text" id="subject" name="subject" required
                                 value={formData.subject} onChange={handleChange}
                                 placeholder="What do you want to talk about?"
-                                className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-white transition-colors font-sans text-lg"
+                                className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-[#EC3814] transition-colors font-sans text-lg"
                             />
                         </div>
 
@@ -140,7 +140,7 @@ export default function Contact() {
                                 id="message" name="message" rows="4" required
                                 value={formData.message} onChange={handleChange}
                                 placeholder="Summarize your idea (if you can)."
-                                className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-white transition-colors font-sans text-lg resize-none"
+                                className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-[#EC3814] transition-colors font-sans text-lg resize-none"
                             ></textarea>
                         </div>
 
@@ -149,15 +149,15 @@ export default function Contact() {
                                 <button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="flex items-center gap-3 bg-transparent text-white hover:text-white/80 transition-colors disabled:opacity-50 group/btn border-none cursor-pointer"
+                                    className="flex items-center gap-3 bg-transparent text-white hover:text-[#EC3814] transition-colors disabled:opacity-50 group/btn border-none cursor-pointer"
                                 >
                                     <span className="font-light tracking-wider uppercase text-sm md:text-base">
                                         {isSubmitting ? 'Sending...' : "Start the conversation"}
                                     </span>
                                     {!isSubmitting ? (
-                                        <ArrowUpRight size={20} weight="bold" className="group-hover/btn:rotate-45 transition-transform text-white" />
+                                        <ArrowUpRight size={20} weight="bold" className="group-hover/btn:rotate-45 transition-transform" />
                                     ) : (
-                                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                                        <div className="w-5 h-5 border-2 border-white/30 border-t-[#EC3814] rounded-full animate-spin" />
                                     )}
                                 </button>
                                 
