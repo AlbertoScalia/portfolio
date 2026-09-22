@@ -8,7 +8,7 @@ export default {
     extend: {
       fontFamily: {
         serif: ['"Instrument Serif"', 'serif'],
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Manrope', 'sans-serif'],
       },
     },
   },

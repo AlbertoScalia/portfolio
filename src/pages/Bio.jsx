@@ -1,7 +1,14 @@
-import { motion } from 'framer-motion';
-import { Briefcase, GraduationCap, PenNib } from '@phosphor-icons/react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { PenNib, Briefcase, GraduationCap, Plus, Minus } from '@phosphor-icons/react';
 
 export default function Bio() {
+    const [openExp, setOpenExp] = useState(null);
+    const [openEdu, setOpenEdu] = useState(null);
+
+    const toggleExp = (i) => setOpenExp(openExp === i ? null : i);
+    const toggleEdu = (i) => setOpenEdu(openEdu === i ? null : i);
+
     const containerVariants = {
         hidden: { opacity: 0 },
         show: {
@@ -34,9 +41,50 @@ export default function Bio() {
         }
     ];
 
+    const experiences = [
+        { 
+            date: "2026 - Present", 
+            title: "Visual & Brand Designer", 
+            sub: <><a href="https://gyadacosmetics.com/" target="_blank" rel="noopener noreferrer" className="underline text-[#EC3814] hover:text-white transition-colors">Gyada Cosmetics S.r.l.</a></>, 
+            desc: "I manage the entire packaging cycle for cosmetic lines, from realistic mockups to print-ready artwork." 
+        },
+        { 
+            date: "2022 - Present", 
+            title: "Visual & Editorial Designer", 
+            sub: <><a href="https://www.layoutmagazine.it/" target="_blank" rel="noopener noreferrer" className="underline text-[#EC3814] hover:text-white transition-colors">lay0ut magazine</a>, <a href="https://forward.recentiprogressi.it/it/" target="_blank" rel="noopener noreferrer" className="underline text-[#EC3814] hover:text-white transition-colors">Forward magazine</a></>, 
+            desc: "From underground zines to peer-reviewed science — I've designed both, and they've taught me everything about hierarchy." 
+        },
+        { 
+            date: "2025 - 2026", 
+            title: "Visual & Brand Designer", 
+            sub: <><a href="https://www.life-electronics.com/it" target="_blank" rel="noopener noreferrer" className="underline text-[#EC3814] hover:text-white transition-colors">Life Electronics SpA</a></>, 
+            desc: "I dress tech products without forgetting barcodes. I manage the entire packaging cycle by integrating creativity with complex management systems like SAP and EKR KIT." 
+        },
+        { 
+            date: "2021 - 2026", 
+            title: "Visual & Book Designer", 
+            sub: "Various Independent Publishers", 
+            desc: "I take care of visual identities and typesetting for 12 independent publishers and academic institutions, delivering over 50 book projects." 
+        },
+        { 
+            date: "2021 - 2023", 
+            title: "Graphic Design Intern", 
+            sub: <><a href="https://letteraventidue.com/it/" target="_blank" rel="noopener noreferrer" className="underline text-[#EC3814] hover:text-white transition-colors">LetteraVentidue Edizioni</a></>, 
+            desc: "A total immersion in the world of books: from the choice of paper to the millimetric precision of typographic grids." 
+        }
+    ];
+
+    const education = [
+        { date: "2025 - 2026", title: "Growth Marketing & AI Agents Master", sub: "start2impact", desc: <>A multidisciplinary path that combines strategic marketing, UX/UI design, and data analysis with a strong focus on artificial intelligence. You can view my profile and projects <a href="https://account.start2impact.it/profile/alberto-scalia" target="_blank" rel="noopener noreferrer" className="underline text-[#EC3814] hover:text-white transition-colors">here.</a></> },
+        { date: "2024", title: "Complete UX Design Course", sub: "corsoux.it", desc: "Where I understood that a test with a real user is worth more than a thousand hours of brainstorming in an agency." },
+        { date: "2023", title: "Master in Full Stack Web Developer", sub: "Boolean", desc: "Where I stopped asking developers if a design was feasible and started writing the code myself." },
+        { date: "2021", title: "Master in Publishing", sub: "Scuola del Libro", desc: "Practically a survival master for anyone who wants to print beautiful things without getting a nervous breakdown between one draft and another." },
+        { date: "2017 - 2020", title: "Bachelor's Degree in Visual Communication Design", sub: "Accademia di Belle Arti di Catania", desc: "The foundations of everything I break and rebuild today. From color theory to rigid typography." }
+    ];
+
     return (
-        <main className="pt-40 pb-20 px-6 lg:px-12 w-full mx-auto max-w-7xl min-h-screen text-white">
-            {/* Header Centrato */}
+        <main className="pt-40 pb-20 px-6 lg:px-12 w-full mx-auto max-w-7xl min-h-screen text-white font-sans">
+            {/* Header */}
             <header className="mb-24 text-center max-w-7xl mx-auto flex flex-col items-center">
                 <motion.h1
                     initial={{ opacity: 0, y: -20 }}
@@ -57,28 +105,33 @@ export default function Bio() {
                 </motion.p>
             </header>
 
-            {/* Skills Section */}
-            <section className="mb-32 group">
-                <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300 mb-12" />
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
-                    <div className="col-span-1">
-                        <h2 className="text-2xl md:text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300 flex items-center gap-3 mb-4">
-                            <PenNib size={24} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors duration-300" /> Skills & Tech
-                        </h2>
-                    </div>
-                    <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-10">
+            {/* Layout a 2 Colonne Principali */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-20 items-start">
+                
+                {/* Colonna Sinistra: Skills & Tech */}
+                <motion.aside 
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="lg:col-span-4 lg:sticky lg:top-28 group"
+                >
+                    <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300 mb-8" />
+                    <h2 className="text-2xl md:text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300 flex items-center gap-3 mb-8">
+                        <PenNib size={28} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors duration-300" /> Skills & Tech
+                    </h2>
+
+                    <div className="space-y-8">
                         {skillCategories.map((cat, idx) => (
                             <div key={`cat-${idx}`}>
-                                <h3 className="text-[10px] uppercase font-sans font-black tracking-[0.15em] mb-4 text-white">
+                                <h3 className="text-[10px] uppercase font-black tracking-[0.15em] mb-3 text-white">
                                     {cat.title}
                                 </h3>
-                                <div className="flex flex-wrap gap-x-5 gap-y-2">
+                                <div className="flex flex-wrap gap-x-4 gap-y-2">
                                     {cat.skills.map((skill, sIdx) => (
                                         <span 
                                             key={`skill-${idx}-${sIdx}`} 
                                             className="flex items-center text-[11px] font-mono uppercase tracking-wider text-white/70 hover:text-white transition-colors cursor-default"
                                         >
-                                            <span className="text-[#EC3814] mr-2 font-bold">/</span>
+                                            <span className="text-[#EC3814] mr-1.5 font-bold">/</span>
                                             {skill}
                                         </span>
                                     ))}
@@ -86,73 +139,132 @@ export default function Bio() {
                             </div>
                         ))}
                     </div>
-                </div>
-            </section>
+                </motion.aside>
 
-            {/* Experience & Education Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
-                
-                {/* Experience Column */}
-                <motion.section 
-                    variants={containerVariants} 
-                    initial="hidden" 
-                    whileInView="show" 
-                    viewport={{ once: true }}
-                    className="group"
+                {/* Colonna Destra: Experience & Education */}
+                <motion.div 
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    className="lg:col-span-8 space-y-20"
                 >
-                    <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300 mb-12" />
-                    <h2 className="text-2xl md:text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300 mb-12 flex items-center gap-4">
-                        <Briefcase size={28} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors duration-300" /> Professional Experience
-                    </h2>
                     
-                    <div className="space-y-12">
-                        {[
-                            { date: "2026 - Present", title: "Visual & Brand Designer", sub: "Gyada Cosmetics S.r.l.", desc: "I manage the entire packaging cycle for cosmetic lines, from realistic mockups to print-ready artwork."},
-                            { date: "2022 - Present", title: "Visual & Editorial Designer", sub: "lay0ut magazine, Forward magazine", desc: "From underground zines to peer-reviewed science — I've designed both, and they've taught me everything about hierarchy." },
-                            { date: "2025 - 2026", title: "Visual & Brand Designer", sub: "Life Electronics SpA", desc: "I dress tech products without forgetting barcodes. I manage the entire packaging cycle by integrating creativity with complex management systems like SAP and EKR KIT." },
-                            { date: "2021 - 2026", title: "Visual & Book Designer", sub: "Various Independent Publishers", desc: "I take care of visual identities and typesetting for 12 independent publishers and academic institutions, delivering over 50 book projects." },
-                            { date: "2021 - 2023", title: "Graphic Design Intern", sub: "LetteraVentidue Edizioni", desc: "A total immersion in the world of books: from the choice of paper to the millimetric precision of typographic grids." }
-                        ].map((exp, i) => (
-                            <motion.div key={i} variants={itemVariants} className="flex flex-col gap-1 text-left group/item">
-                                <span className="font-mono text-xs mb-2 block tracking-wider uppercase text-white/40">{exp.date}</span>
-                                <h3 className="text-xl font-bold font-sans text-white group-hover/item:text-[#EC3814] transition-colors mb-1">{exp.title}</h3>
-                                <span className="text-sm font-sans font-medium text-white/80 block mb-3">{exp.sub}</span>
-                                <p className="leading-relaxed text-sm font-sans text-white/70 max-w-md">{exp.desc}</p>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.section>
+                    {/* Professional Experience */}
+                    <motion.section 
+                        variants={containerVariants} 
+                        initial="hidden" 
+                        whileInView="show" 
+                        viewport={{ once: true }}
+                        className="group"
+                    >
+                        <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300 mb-8" />
+                        <h2 className="text-2xl md:text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300 flex items-center gap-4 mb-8">
+                            <Briefcase size={28} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors duration-300" /> Professional Experience
+                        </h2>
 
-                {/* Education Column */}
-                <motion.section 
-                    variants={containerVariants} 
-                    initial="hidden" 
-                    whileInView="show" 
-                    viewport={{ once: true }}
-                    className="group"
-                >
-                    <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300 mb-12" />
-                    <h2 className="text-2xl md:text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300 mb-12 flex items-center gap-4">
-                        <GraduationCap size={28} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors duration-300" /> Education
-                    </h2>
+                        <div className="divide-y divide-white/10 border-b border-white/10">
+                            {experiences.map((exp, i) => (
+                                <motion.div key={i} variants={itemVariants} className="py-5 group/item">
+                                    <button
+                                        onClick={() => toggleExp(i)}
+                                        className="w-full flex items-center justify-between text-left focus:outline-none"
+                                    >
+                                        <div className="grid grid-cols-1 sm:grid-cols-12 w-full gap-1 sm:gap-4 items-baseline pr-4">
+                                            <span className="sm:col-span-4 font-mono text-xs text-white/40 uppercase tracking-wider">
+                                                {exp.date}
+                                            </span>
+                                            <div className="sm:col-span-8">
+                                                <h3 className="text-lg font-bold font-sans text-white group-hover/item:text-[#EC3814] transition-colors">
+                                                    {exp.title}
+                                                </h3>
+                                                <span className="text-sm font-sans font-medium text-white/80 block">
+                                                    {exp.sub}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="text-white/40 group-hover/item:text-[#EC3814] transition-colors shrink-0">
+                                            {openExp === i ? <Minus size={18} /> : <Plus size={18} />}
+                                        </div>
+                                    </button>
 
-                    <div className="space-y-12">
-                        {[
-                            { date: "2025 - 2026", title: "Growth Marketing & AI Agents Master", sub: "start2impact", desc: <>A multidisciplinary path that combines strategic marketing, UX/UI design, and data analysis with a strong focus on artificial intelligence. You can view my profile and projects <a href="https://account.start2impact.it/profile/alberto-scalia" target="_blank" rel="noopener noreferrer" className="underline text-[#EC3814] hover:text-white transition-colors">here.</a></> },
-                            { date: "2024", title: "Complete UX Design Course", sub: "corsoux.it", desc: "Where I understood that a test with a real user is worth more than a thousand hours of brainstorming in an agency." },
-                            { date: "2023", title: "Master in Full Stack Web Developer", sub: "Boolean", desc: "Where I stopped asking developers if a design was feasible and started writing the code myself." },
-                            { date: "2021", title: "Master in Publishing", sub: "Scuola del Libro", desc: "Practically a survival master for anyone who wants to print beautiful things without getting a nervous breakdown between one draft and another." },
-                            { date: "2017 - 2020", title: "Bachelor's Degree in Visual Communication Design", sub: "Accademia di Belle Arti di Catania", desc: "The foundations of everything I break and rebuild today. From color theory to rigid typography." }
-                        ].map((edu, i) => (
-                            <motion.div key={i} variants={itemVariants} className="flex flex-col gap-1 text-left group/item">
-                                <span className="font-mono text-xs mb-2 block tracking-wider uppercase text-white/40">{edu.date}</span>
-                                <h3 className="text-xl font-bold font-sans text-white group-hover/item:text-[#EC3814] transition-colors mb-1">{edu.title}</h3>
-                                <span className="text-sm font-sans font-medium text-white/80 block mb-3">{edu.sub}</span>
-                                <div className="leading-relaxed text-sm font-sans text-white/70 max-w-md">{edu.desc}</div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </motion.section>
+                                    <AnimatePresence>
+                                        {openExp === i && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: "auto", opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                transition={{ duration: 0.25 }}
+                                                className="overflow-hidden"
+                                            >
+                                                <p className="pt-4 pb-2 sm:pl-[33.33%] text-sm font-sans text-white/70 leading-relaxed">
+                                                    {exp.desc}
+                                                </p>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.section>
+
+                    {/* Education */}
+                    <motion.section 
+                        variants={containerVariants} 
+                        initial="hidden" 
+                        whileInView="show" 
+                        viewport={{ once: true }}
+                        className="group"
+                    >
+                        <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300 mb-8" />
+                        <h2 className="text-2xl md:text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300 flex items-center gap-4 mb-8">
+                            <GraduationCap size={28} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors duration-300" /> Education & Certifications
+                        </h2>
+
+                        <div className="divide-y divide-white/10 border-b border-white/10">
+                            {education.map((edu, i) => (
+                                <motion.div key={i} variants={itemVariants} className="py-5 group/item">
+                                    <button
+                                        onClick={() => toggleEdu(i)}
+                                        className="w-full flex items-center justify-between text-left focus:outline-none"
+                                    >
+                                        <div className="grid grid-cols-1 sm:grid-cols-12 w-full gap-1 sm:gap-4 items-baseline pr-4">
+                                            <span className="sm:col-span-4 font-mono text-xs text-white/40 uppercase tracking-wider">
+                                                {edu.date}
+                                            </span>
+                                            <div className="sm:col-span-8">
+                                                <h3 className="text-lg font-bold font-sans text-white group-hover/item:text-[#EC3814] transition-colors">
+                                                    {edu.title}
+                                                </h3>
+                                                <span className="text-sm font-sans font-medium text-white/80 block">
+                                                    {edu.sub}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="text-white/40 group-hover/item:text-[#EC3814] transition-colors shrink-0">
+                                            {openEdu === i ? <Minus size={18} /> : <Plus size={18} />}
+                                        </div>
+                                    </button>
+
+                                    <AnimatePresence>
+                                        {openEdu === i && (
+                                            <motion.div
+                                                initial={{ height: 0, opacity: 0 }}
+                                                animate={{ height: "auto", opacity: 1 }}
+                                                exit={{ height: 0, opacity: 0 }}
+                                                transition={{ duration: 0.25 }}
+                                                className="overflow-hidden"
+                                            >
+                                                <div className="pt-4 pb-2 sm:pl-[33.33%] text-sm font-sans text-white/70 leading-relaxed">
+                                                    {edu.desc}
+                                                </div>
+                                            </motion.div>
+                                        )}
+                                    </AnimatePresence>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </motion.section>
+
+                </motion.div>
             </div>
         </main>
     );

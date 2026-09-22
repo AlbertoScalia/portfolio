@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from '@phosphor-icons/react';
+import { Link } from 'react-router-dom';
 
 const clients = [
     { name: "Apogeo Editore", logo: `${import.meta.env.BASE_URL}assets/images/Logo1.webp` },
@@ -107,15 +108,15 @@ export default function ClientsMarquee() {
                     viewport={{ once: true }}
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
                 >
-                    <a 
-                        href="mailto:albscalia@gmail.com"
+<Link 
+                        to="/contact"
                         className="inline-flex items-center gap-3 text-white hover:text-[#EC3814] transition-colors duration-300 group/btn"
                     >
                         <span className="font-light tracking-wider uppercase text-sm md:text-base">
                             Let's start the conversation
                         </span>
                         <ArrowUpRight size={20} weight="bold" className="group-hover/btn:rotate-45 transition-transform" />
-                    </a>
+                    </Link>
                 </motion.div>
             </div>
         </section>
