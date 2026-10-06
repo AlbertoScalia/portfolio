@@ -39,7 +39,7 @@ export default function Footer() {
                             className="h-12 w-auto object-contain mb-4 filter brightness-0 invert"
                         />
                         <p className="text-white/70 text-sm font-sans leading-relaxed">
-                            Visual & Interface Designer
+                            UI & Visual Designer
                         </p>
                     </div>
 

@@ -31,7 +31,7 @@ export default function Navbar() {
         closeMenu();
 
         const performScroll = () => {
-            const element = document.getElementById('workgallery');
+            const element = document.getElementById('work');
             if (element) {
                 const yOffset = -60;
                 const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
@@ -86,14 +86,14 @@ export default function Navbar() {
                     {/* TESTO CENTRATO (SOLO DESKTOP) */}
                     <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 text-center pointer-events-none">
                         <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50">
-                            Alberto Scalia — Visual & Interface Designer
+                            Alberto Scalia — UI & Visual Designer
                         </span>
                     </div>
 
                     {/* MENU DESKTOP A DESTRA */}
                     <div className="hidden md:flex items-center gap-8 shrink-0">
                         <a
-                            href="#workgallery"
+                            href="#work"
                             onClick={scrollToWork}
                             className="text-sm font-light tracking-wider text-white/70 hover:text-[#EC3814] transition-colors duration-300 uppercase cursor-pointer"
                         >
@@ -141,7 +141,7 @@ export default function Navbar() {
                         >
                             <div className="flex flex-col gap-8 text-center">
                                 <a
-                                    href="#workgallery"
+                                    href="#work"
                                     onClick={scrollToWork}
                                     className="text-4xl font-light tracking-tight text-white/60 hover:text-[#EC3814] transition-all duration-300 uppercase cursor-pointer"
                                 >

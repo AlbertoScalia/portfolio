@@ -1,5 +1,4 @@
 import HeroParallax from '../components/HeroParallax';
-import WorksGallery from '../components/WorksGallery';
 import ClientsMarquee from '../components/ClientsMarquee';
 
 export default function Home() {
@@ -13,7 +12,6 @@ export default function Home() {
 
             <main className="relative z-10">
                 <HeroParallax />
-                <WorksGallery />
                 <ClientsMarquee />
             </main>
         </div>
