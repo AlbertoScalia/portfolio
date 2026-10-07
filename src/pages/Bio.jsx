@@ -79,7 +79,7 @@ export default function Bio() {
         { date: "2025 - 2026", title: "Growth Marketing & AI Agents Master", sub: "start2impact", desc: <>A multidisciplinary path that combines strategic marketing, UX/UI design, and data analysis with a strong focus on artificial intelligence. You can view my profile and projects <a href="https://account.start2impact.it/profile/alberto-scalia" target="_blank" rel="noopener noreferrer" className="underline text-[#EC3814] hover:text-white transition-colors focus-visible:outline-2 focus-visible:outline-[#EC3814]">here.</a></> },
         { date: "2024", title: "Complete UX Design Course", sub: "corsoux.it", desc: "Where I understood that a test with a real user is worth more than a thousand hours of brainstorming in an agency." },
         { date: "2023", title: "Master in Full Stack Web Developer", sub: "Boolean", desc: "Where I stopped asking developers if a design was feasible and started writing the code myself." },
-        { date: "2021", title: "Master in Publishing", sub: "Scuola del Libro", desc: "Practically a survival master for anyone who wants to print beautiful things without getting a nervous breakdown between one draft and another." },
+        { date: "2021", title: "Master in Publishing", sub: "Scuola del Libro", desc: "An intensive program focused on print production, typography grids, and editorial project management." },
         { date: "2017 - 2020", title: "Bachelor's Degree in Visual Communication Design", sub: "Accademia di Belle Arti di Catania", desc: "The foundations of everything I break and rebuild today. From color theory to rigid typography." }
     ];
 
@@ -101,7 +101,7 @@ export default function Bio() {
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
                     className="text-xl font-sans max-w-2xl leading-relaxed text-white/85 text-center"
                 >
-                    Or: how I learned to stop worrying about white space and love brevity. 
+                    A overview of my professional background, skills, and background in design. 
                 </motion.p>
             </header>
 

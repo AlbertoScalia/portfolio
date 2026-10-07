@@ -32,7 +32,7 @@ export default function ClientsMarquee() {
                     className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
                 >
                     Who trusted me <br />
-                    <span className="font-serif font-normal text-[#EC3814]">(and survived to tell)</span>
+                    <span className="font-serif font-normal text-[#EC3814]">(and kept coming back)</span>
                 </motion.h2>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -41,7 +41,7 @@ export default function ClientsMarquee() {
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
                     className="text-xl font-sans max-w-2xl leading-relaxed text-white/85 text-center"
                 >
-                    Over 12 publishers and brands have trusted me so far — and honestly, their bravery is quite inspiring.
+                    Over 12 publishers and brands have trusted me so far — delivering impactful and consistent results.
                 </motion.p>
             </header>
 
@@ -91,6 +91,18 @@ export default function ClientsMarquee() {
                     Do you have a <br />
                     <span className="font-serif font-normal text-[#EC3814]">project in mind?</span>
                 </motion.h2>
+
+                {/* Badge Open to UX/UI roles in brand orange */}
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EC3814]/10 border border-[#EC3814]/30 text-[#EC3814] text-xs font-mono tracking-wider uppercase mb-6"
+                >
+                    <span className="w-2 h-2 rounded-full bg-[#EC3814] animate-pulse" />
+                    Open to UX/UI roles — Available immediately
+                </motion.div>
+
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}

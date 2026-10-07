@@ -110,7 +110,7 @@ export default function Contact() {
                                 <input
                                     type="text" id="name" name="name" required
                                     value={formData.name} onChange={handleChange}
-                                    placeholder="How should I save you?"
+                                    placeholder="Your name or company"
                                     className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#EC3814] transition-colors font-sans text-lg"
                                 />
                             </div>
@@ -140,7 +140,7 @@ export default function Contact() {
                             <textarea
                                 id="message" name="message" rows="4" required
                                 value={formData.message} onChange={handleChange}
-                                placeholder="Summarize your idea (if you can)."
+                                placeholder="Tell me about your project..."
                                 className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#EC3814] transition-colors font-sans text-lg resize-none"
                             ></textarea>
                         </div>
