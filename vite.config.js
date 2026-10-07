@@ -11,7 +11,7 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: 'dist',
+    outDir: 'docs',
     target: 'es2015',
     cssTarget: 'chrome61',
     rollupOptions: {
