@@ -10,7 +10,7 @@ export default function Footer() {
         e.preventDefault();
 
         const performScroll = () => {
-            const element = document.getElementById('workgallery');
+            const element = document.getElementById('work');
             if (element) {
                 const yOffset = -60;
                 const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
@@ -35,10 +35,10 @@ export default function Footer() {
                     <div className="max-w-sm flex flex-col items-start">
                         <img 
                             src={`${import.meta.env.BASE_URL}assets/images/Logo_footer.webp`} 
-                            alt="Logo" 
+                            alt="Alberto Scalia — Visual & Interface Designer" 
                             className="h-12 w-auto object-contain mb-4 filter brightness-0 invert"
                         />
-                        <p className="text-white/70 text-sm font-sans leading-relaxed">
+                        <p className="text-white font-sans leading-relaxed text-sm">
                             UI & Visual Designer
                         </p>
                     </div>
@@ -46,28 +46,28 @@ export default function Footer() {
                     {/* Navigation & Social */}
                     <div className="grid grid-cols-2 gap-16 text-left">
                         <div>
-                            <ul className="flex flex-col gap-3 font-sans text-sm font-light uppercase tracking-wider">
+                            <ul className="flex flex-col gap-3 font-sans text-sm font-medium uppercase tracking-wider">
                                 <li>
-                                    <Link to="/" className="text-white/70 hover:text-white transition-colors">
+                                    <Link to="/" className="text-white hover:underline focus-visible:outline-2 focus-visible:outline-white">
                                         HOME
                                     </Link>
                                 </li>
                                 <li>
                                     <a 
-                                        href="#workgallery" 
+                                        href="#work" 
                                         onClick={scrollToWork} 
-                                        className="text-white/70 hover:text-white transition-colors cursor-pointer"
+                                        className="text-white hover:underline cursor-pointer focus-visible:outline-2 focus-visible:outline-white"
                                     >
                                         WORK
                                     </a>
                                 </li>
                                 <li>
-                                    <Link to="/bio" className="text-white/70 hover:text-white transition-colors">
+                                    <Link to="/bio" className="text-white hover:underline focus-visible:outline-2 focus-visible:outline-white">
                                         ABOUT
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link to="/contact" className="text-white/70 hover:text-white transition-colors">
+                                    <Link to="/contact" className="text-white hover:underline focus-visible:outline-2 focus-visible:outline-white">
                                         CONTACT
                                     </Link>
                                 </li>
@@ -75,12 +75,11 @@ export default function Footer() {
                         </div>
 
                         <div>
-
                             <div className="flex gap-3">
                                 {[
-                                    { icon: BehanceLogo, href: "https://www.behance.net/albescalia" },
-                                    { icon: GithubLogo, href: "https://github.com/AlbertoScalia" },
-                                    { icon: LinkedinLogo, href: "https://www.linkedin.com/in/alberto-scalia/" }
+                                    { name: "Behance Profile", icon: BehanceLogo, href: "https://www.behance.net/albescalia" },
+                                    { name: "GitHub Profile", icon: GithubLogo, href: "https://github.com/AlbertoScalia" },
+                                    { name: "LinkedIn Profile", icon: LinkedinLogo, href: "https://www.linkedin.com/in/alberto-scalia/" }
                                 ].map((social, i) => (
                                     <motion.a
                                         key={i}
@@ -88,7 +87,8 @@ export default function Footer() {
                                         href={social.href}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white/80 hover:text-black hover:bg-white hover:border-white transition-all duration-300"
+                                        aria-label={social.name}
+                                        className="w-10 h-10 rounded-full border border-white flex items-center justify-center text-white hover:text-black hover:bg-white transition-all duration-300 focus-visible:outline-2 focus-visible:outline-white"
                                     >
                                         <social.icon size={18} weight="bold" />
                                     </motion.a>
@@ -98,8 +98,8 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Bottom Bar */}
-                <div className="mt-16 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between text-[10px] text-white/40 font-mono tracking-widest uppercase">
+                {/* Bottom Bar con contrasto migliorato */}
+                <div className="mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between text-xs text-white font-mono tracking-widest uppercase">
                     <p>&copy; {new Date().getFullYear()} Alberto Scalia. All rights reserved.</p>
                 </div>
             </div>

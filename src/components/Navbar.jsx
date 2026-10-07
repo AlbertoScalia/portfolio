@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '../utils/cn';
 
@@ -8,6 +8,7 @@ export default function Navbar() {
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const shouldReduceMotion = useReducedMotion();
 
     const isActive = (path) => location.pathname === path;
     const closeMenu = () => setIsOpen(false);
@@ -50,7 +51,7 @@ export default function Navbar() {
     return (
         <div className="fixed top-0 left-0 right-0 z-[9999] w-full pointer-events-none font-sans">
             <motion.nav
-                layout
+                layout={!shouldReduceMotion}
                 className={cn(
                     'pointer-events-auto transition-all duration-500 flex flex-col items-center w-full px-6 lg:px-12 text-white',
                     isOpen ? 'h-screen bg-black' : scrolled ? 'backdrop-blur-xl shadow-none bg-black/40' : 'bg-transparent'
@@ -61,11 +62,12 @@ export default function Navbar() {
                     <Link 
                         to="/" 
                         onClick={closeMenu} 
-                        className="flex items-center h-8 group relative shrink-0"
+                        className="flex items-center h-8 group relative shrink-0 focus-visible:outline-2 focus-visible:outline-[#EC3814] rounded-sm"
+                        aria-label="Alberto Scalia — Home"
                     >
                         <img 
                             src={`${import.meta.env.BASE_URL}assets/images/Logo_nav.webp`} 
-                            alt="Logo" 
+                            alt="Alberto Scalia Logo" 
                             className="h-full w-auto object-contain block transition-opacity duration-300 group-hover:opacity-0"
                         />
                         <div 
@@ -85,7 +87,7 @@ export default function Navbar() {
 
                     {/* TESTO CENTRATO (SOLO DESKTOP) */}
                     <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 text-center pointer-events-none">
-                        <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/50">
+                        <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/70">
                             Alberto Scalia — UI & Visual Designer
                         </span>
                     </div>
@@ -95,14 +97,14 @@ export default function Navbar() {
                         <a
                             href="#work"
                             onClick={scrollToWork}
-                            className="text-sm font-light tracking-wider text-white/70 hover:text-[#EC3814] transition-colors duration-300 uppercase cursor-pointer"
+                            className="text-sm font-light tracking-wider text-white/70 hover:text-[#EC3814] transition-colors duration-300 uppercase cursor-pointer focus-visible:outline-2 focus-visible:outline-[#EC3814] rounded-sm"
                         >
                             WORK
                         </a>
                         <Link
                             to="/bio"
                             className={cn(
-                                "text-sm font-light tracking-wider transition-colors duration-300 uppercase",
+                                "text-sm font-light tracking-wider transition-colors duration-300 uppercase focus-visible:outline-2 focus-visible:outline-[#EC3814] rounded-sm",
                                 isActive('/bio') ? "text-[#EC3814]" : "text-white/70 hover:text-[#EC3814]"
                             )}
                         >
@@ -111,7 +113,7 @@ export default function Navbar() {
                         <Link
                             to="/contact"
                             className={cn(
-                                "text-sm font-light tracking-wider transition-colors duration-300 uppercase",
+                                "text-sm font-light tracking-wider transition-colors duration-300 uppercase focus-visible:outline-2 focus-visible:outline-[#EC3814] rounded-sm",
                                 isActive('/contact') ? "text-[#EC3814]" : "text-white/70 hover:text-[#EC3814]"
                             )}
                         >
@@ -119,10 +121,12 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    {/* MOBILE TOGGLE */}
+                    {/* MOBILE TOGGLE CON NOMI ACCESSIBILI E FOCUS VISIBILE */}
                     <button
                         onClick={() => setIsOpen(!isOpen)}
-                        className="flex flex-col gap-1.5 p-3 md:hidden focus:outline-none"
+                        aria-label="Toggle navigation menu"
+                        aria-expanded={isOpen}
+                        className="flex flex-col gap-1.5 p-3 md:hidden focus-visible:outline-2 focus-visible:outline-[#EC3814] focus-visible:outline-offset-2 rounded-md"
                     >
                         <motion.span animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 8 : 0 }} className="block w-6 h-[2px] bg-white" />
                         <motion.span animate={{ opacity: isOpen ? 0 : 1 }} className="block w-6 h-[2px] bg-white" />
@@ -143,7 +147,7 @@ export default function Navbar() {
                                 <a
                                     href="#work"
                                     onClick={scrollToWork}
-                                    className="text-4xl font-light tracking-tight text-white/60 hover:text-[#EC3814] transition-all duration-300 uppercase cursor-pointer"
+                                    className="text-4xl font-light tracking-tight text-white/80 hover:text-[#EC3814] transition-all duration-300 uppercase cursor-pointer focus-visible:outline-2 focus-visible:outline-[#EC3814] rounded-md"
                                 >
                                     WORK
                                 </a>
@@ -151,8 +155,8 @@ export default function Navbar() {
                                     to="/bio"
                                     onClick={closeMenu}
                                     className={cn(
-                                        "text-4xl font-light tracking-tight transition-all duration-300 uppercase", 
-                                        isActive('/bio') ? "text-[#EC3814]" : "text-white/60 hover:text-[#EC3814]"
+                                        "text-4xl font-light tracking-tight transition-all duration-300 uppercase focus-visible:outline-2 focus-visible:outline-[#EC3814] rounded-md", 
+                                        isActive('/bio') ? "text-[#EC3814]" : "text-white/80 hover:text-[#EC3814]"
                                     )}
                                 >
                                     ABOUT
@@ -161,8 +165,8 @@ export default function Navbar() {
                                     to="/contact"
                                     onClick={closeMenu}
                                     className={cn(
-                                        "text-4xl font-light tracking-tight transition-all duration-300 uppercase", 
-                                        isActive('/contact') ? "text-[#EC3814]" : "text-white/60 hover:text-[#EC3814]"
+                                        "text-4xl font-light tracking-tight transition-all duration-300 uppercase focus-visible:outline-2 focus-visible:outline-[#EC3814] rounded-md", 
+                                        isActive('/contact') ? "text-[#EC3814]" : "text-white/80 hover:text-[#EC3814]"
                                     )}
                                 >
                                     CONTACT

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "preview": "vite preview",
-    "build": "vite build && cp docs/index.html docs/404.html && touch docs/.nojekyll"
+    "build": "vite build"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

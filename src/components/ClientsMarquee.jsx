@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowUpRight } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 
@@ -19,6 +19,7 @@ const clients = [
 
 export default function ClientsMarquee() {
     const marqueeItems = [...clients, ...clients];
+    const shouldReduceMotion = useReducedMotion();
 
     return (
         <section className="py-12 md:py-24 overflow-hidden font-sans text-white">
@@ -38,32 +39,30 @@ export default function ClientsMarquee() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-                    className="text-xl font-sans max-w-2xl leading-relaxed text-white/70 text-center"
+                    className="text-xl font-sans max-w-2xl leading-relaxed text-white/85 text-center"
                 >
                     Over 12 publishers and brands have trusted me so far — and honestly, their bravery is quite inspiring.
                 </motion.p>
             </header>
 
-            <div className="relative w-full overflow-hidden flex border-y border-white/10 py-12">
+            {/* Marquee con supporto a prefers-reduced-motion */}
+            <div className="relative w-full overflow-hidden flex border-y border-white/20 py-12">
                 <motion.div
-                    animate={{ x: ["0%", "-50%"] }}
+                    animate={shouldReduceMotion ? { x: "0%" } : { x: ["0%", "-50%"] }}
                     transition={{ ease: "linear", duration: 40, repeat: Infinity }}
                     className="flex whitespace-nowrap items-center gap-16 md:gap-32 px-8"
                     style={{ willChange: 'transform', transform: 'translateZ(0)' }}
                 >
                     {marqueeItems.map((client, idx) => (
                         <div key={idx} className="flex-shrink-0 w-32 md:w-40 relative group h-12 flex items-center justify-center">
-                            {/* Logo Bianco (di base) */}
                             <img
                                 src={client.logo}
                                 alt={client.name}
                                 width="160"
                                 height="60"
                                 decoding="async"
-                                className="w-full h-full object-contain pointer-events-none grayscale invert opacity-40 group-hover:opacity-0 transition-opacity duration-300"
-                                style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
+                                className="w-full h-full object-contain pointer-events-none grayscale invert opacity-60 group-hover:opacity-0 transition-opacity duration-300"
                             />
-                            {/* Logo Arancione (in Hover via CSS Mask) */}
                             <div 
                                 className="absolute inset-0 bg-[#EC3814] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                                 style={{
@@ -97,7 +96,7 @@ export default function ClientsMarquee() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-                    className="text-xl font-sans max-w-2xl leading-relaxed text-white/70 text-center mb-12"
+                    className="text-xl font-sans max-w-2xl leading-relaxed text-white/85 text-center mb-12"
                 >
                     Let's talk about it together and turn your idea into reality.
                 </motion.p>
@@ -108,9 +107,9 @@ export default function ClientsMarquee() {
                     viewport={{ once: true }}
                     transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
                 >
-<Link 
+                    <Link 
                         to="/contact"
-                        className="inline-flex items-center gap-3 text-white hover:text-[#EC3814] transition-colors duration-300 group/btn"
+                        className="inline-flex items-center gap-3 text-white hover:text-[#EC3814] transition-colors duration-300 group/btn focus-visible:outline-2 focus-visible:outline-[#EC3814] rounded-sm"
                     >
                         <span className="font-light tracking-wider uppercase text-sm md:text-base">
                             Let's start the conversation
