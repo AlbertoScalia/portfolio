@@ -32,7 +32,8 @@ const sections = [
                     additionalImages: [
                         `${import.meta.env.BASE_URL}assets/images/detail5.webp`,
                         `${import.meta.env.BASE_URL}assets/images/detail6.webp`,
-                                                `${import.meta.env.BASE_URL}assets/images/detail7.webp`,
+                        `${import.meta.env.BASE_URL}assets/images/detail7.webp`,
+                                                `${import.meta.env.BASE_URL}assets/images/detail7.5.webp`,
 
                     ],
                 }
@@ -166,6 +167,7 @@ export default function HeroSection() {
                                                         src={project.image}
                                                         alt={project.title}
                                                         loading="lazy"
+                                                        decoding="async"
                                                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                                                     />
                                                 </div>
@@ -203,6 +205,7 @@ export default function HeroSection() {
                                                         src={project.image}
                                                         alt={project.title}
                                                         loading="lazy"
+                                                        decoding="async"
                                                         className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                                                     />
                                                 </div>
@@ -265,12 +268,13 @@ export default function HeroSection() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={() => setSelectedProject(null)}
-                        className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-28 bg-black/80 backdrop-blur-md overflow-y-auto"
+                        className="fixed inset-0 z-50 flex items-start justify-center p-4 pt-28 bg-black/80 overflow-y-auto"
                     >
                         <motion.div
-                            initial={{ scale: 0.95, opacity: 0 }}
+                            initial={{ scale: 0.98, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.95, opacity: 0 }}
+                            exit={{ scale: 0.98, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
                             onClick={(e) => e.stopPropagation()}
                             className="relative w-full max-w-4xl bg-[#121212] border border-white/20 p-6 md:p-10 rounded-lg text-white my-auto"
                         >
@@ -295,7 +299,9 @@ export default function HeroSection() {
                                         key={imgIdx}
                                         src={imgSrc}
                                         alt={`${selectedProject.title} detail ${imgIdx + 1}`}
-                                        className="w-full rounded object-cover"
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="w-full rounded object-cover min-h-[200px] bg-white/5"
                                     />
                                 ))}
                             </div>
