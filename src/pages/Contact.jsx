@@ -51,7 +51,7 @@ export default function Contact() {
                     className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
                 >
                     Let's <br />
-                    <span className="font-serif font-normal text-[#EC3814]">talk</span>
+                    <span className="  text-[#EC3814]">talk</span>
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
@@ -76,7 +76,7 @@ export default function Contact() {
                                 <Phone size={24} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors" aria-hidden="true" />
                             </div>
                             <div>
-                                <h2 className="text-2xl font-serif font-normal tracking-tight mb-2 text-white group-hover:text-[#EC3814] transition-colors">Phone</h2>
+                                <h2 className="text-2xl   tracking-tight mb-2 text-white group-hover:text-[#EC3814] transition-colors">Phone</h2>
                                 <p className="text-sm font-sans text-white/85">Number available upon request</p>
                             </div>
                         </div>
@@ -89,7 +89,7 @@ export default function Contact() {
                                 <MapPin size={24} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors" aria-hidden="true" />
                             </div>
                             <div>
-                                <h2 className="text-2xl font-serif font-normal tracking-tight mb-2 text-white group-hover:text-[#EC3814] transition-colors">Location</h2>
+                                <h2 className="text-2xl   tracking-tight mb-2 text-white group-hover:text-[#EC3814] transition-colors">Location</h2>
                                 <p className="text-sm font-sans text-white/85">Acireale, CT, Italy</p>
                             </div>
                         </div>

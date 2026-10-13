@@ -93,7 +93,7 @@ export default function Bio() {
                     className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
                 >
                     A little bit <br />
-                    <span className="font-serif font-normal text-[#EC3814]">about me</span>
+                    <span className="text-[#EC3814]">about me</span>
                 </motion.h1>
                 <motion.p
                     initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
@@ -112,7 +112,7 @@ export default function Bio() {
                     className="lg:col-span-4 lg:sticky lg:top-28 group"
                 >
                     <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300 mb-8" />
-                    <h2 className="text-2xl md:text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300 flex items-center gap-3 mb-8">
+                    <h2 className="text-2xl md:text-3xl   text-white group-hover:text-[#EC3814] transition-colors duration-300 flex items-center gap-3 mb-8">
                         <PenNib size={28} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors duration-300" aria-hidden="true" /> Skills & Tech
                     </h2>
 
@@ -151,7 +151,7 @@ export default function Bio() {
                         className="group"
                     >
                         <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300 mb-8" />
-                        <h2 className="text-2xl md:text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300 flex items-center gap-4 mb-8">
+                        <h2 className="text-2xl md:text-3xl   text-white group-hover:text-[#EC3814] transition-colors duration-300 flex items-center gap-4 mb-8">
                             <Briefcase size={28} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors duration-300" aria-hidden="true" /> Professional Experience
                         </h2>
 
@@ -211,7 +211,7 @@ export default function Bio() {
                         className="group"
                     >
                         <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300 mb-8" />
-                        <h2 className="text-2xl md:text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300 flex items-center gap-4 mb-8">
+                        <h2 className="text-2xl md:text-3xl   text-white group-hover:text-[#EC3814] transition-colors duration-300 flex items-center gap-4 mb-8">
                             <GraduationCap size={28} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors duration-300" aria-hidden="true" /> Education & Certifications
                         </h2>
 

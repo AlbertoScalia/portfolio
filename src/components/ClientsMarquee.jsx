@@ -32,7 +32,7 @@ export default function ClientsMarquee() {
                     className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
                 >
                     Who trusted me <br />
-                    <span className="font-serif font-normal text-[#EC3814]">(and kept coming back)</span>
+                    <span className=" text-[#EC3814]">(and kept coming back)</span>
                 </motion.h2>
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
@@ -89,7 +89,7 @@ export default function ClientsMarquee() {
                     className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
                 >
                     Do you have a <br />
-                    <span className="font-serif font-normal text-[#EC3814]">project in mind?</span>
+                    <span className=" text-[#EC3814]">project in mind?</span>
                 </motion.h2>
 
                 {/* Badge Open to UX/UI roles in brand orange */}

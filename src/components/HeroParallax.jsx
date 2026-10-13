@@ -119,7 +119,7 @@ export default function HeroSection() {
                     className="text-5xl md:text-7xl lg:text-8xl tracking-tight leading-[1.05] text-white mb-8 max-w-5xl"
                 >
                     Editorial Precision, <br />
-                    <span className="font-serif font-normal text-[#EC3814]">Digital Performance</span>
+                    <span className="  text-[#EC3814]">Digital Performance</span>
                 </motion.h1>
 
                 <motion.p
@@ -139,7 +139,7 @@ export default function HeroSection() {
                         <div className="w-full border-t border-white/20 mb-12" />
 
                         <div className="max-w-7xl mx-auto px-6 lg:px-12 mb-12 flex flex-col items-center text-center">
-                            <h2 className="text-3xl md:text-4xl font-serif font-normal text-white mb-3">
+                            <h2 className="text-3xl md:text-4xl   text-white mb-3">
                                 {section.title}
                             </h2>
                             <p className="text-base font-sans text-white/85 max-w-2xl leading-relaxed text-center">
@@ -173,7 +173,7 @@ export default function HeroSection() {
                                                 </div>
 
                                                 <div className="flex flex-col gap-2 pt-6 px-6 lg:px-12">
-                                                    <h3 className="text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300">
+                                                    <h3 className="text-3xl   text-white group-hover:text-[#EC3814] transition-colors duration-300">
                                                         {project.title}
                                                     </h3>
 
@@ -211,7 +211,7 @@ export default function HeroSection() {
                                                 </div>
 
                                                 <div className="flex flex-col gap-2 pt-6 px-6 lg:px-12">
-                                                    <h3 className="text-3xl font-serif font-normal text-white group-hover:text-[#EC3814] transition-colors duration-300">
+                                                    <h3 className="text-3xl   text-white group-hover:text-[#EC3814] transition-colors duration-300">
                                                         {project.title}
                                                     </h3>
 
@@ -285,7 +285,7 @@ export default function HeroSection() {
                                 <X size={28} />
                             </button>
 
-                            <h2 className="text-3xl md:text-5xl font-serif mb-4 pr-8">
+                            <h2 className="text-3xl md:text-5xl  mb-4 pr-8">
                                 {selectedProject.title}
                             </h2>
 
