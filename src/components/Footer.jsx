@@ -1,108 +1,83 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BehanceLogo, GithubLogo, LinkedinLogo } from '@phosphor-icons/react';
 
+const NAME = 'Alberto Scalia';
+const ROLE = 'Visual & Interface Designer';
+const EMAIL = ''; // inserisci la tua email: se vuota non viene mostrata
+
+const socials = [
+  { name: 'Behance profile', icon: BehanceLogo, href: 'https://www.behance.net/albescalia' },
+  { name: 'GitHub profile', icon: GithubLogo, href: 'https://github.com/AlbertoScalia' },
+  { name: 'LinkedIn profile', icon: LinkedinLogo, href: 'https://www.linkedin.com/in/alberto-scalia/' },
+];
+
 export default function Footer() {
-    const location = useLocation();
-    const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const reduce = useReducedMotion();
+  const link = 'font-medium underline-offset-4 hover:underline';
 
-    const scrollToWork = (e) => {
-        e.preventDefault();
+  const goWork = (e) => {
+    e.preventDefault();
+    if (pathname === '/') {
+      document.getElementById('work')?.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+    } else {
+      navigate('/', { state: { scrollTo: 'work' } });
+    }
+  };
 
-        const performScroll = () => {
-            const element = document.getElementById('work');
-            if (element) {
-                const yOffset = -60;
-                const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-                window.scrollTo({ top: y, behavior: 'smooth' });
-            }
-        };
+  // Testo nero pieno sull'arancio: contrasto ~5:1 (il bianco era ~4.1:1, sotto AA)
+  return (
+    <footer className="on-brand bg-[#EC3814] px-6 pb-10 pt-20 text-black lg:px-12">
+      <div className="mx-auto max-w-[1600px]">
+        <div className="flex flex-col justify-between gap-12 md:flex-row">
+          <div className="max-w-sm">
+            <img
+              src={`${import.meta.env.BASE_URL}assets/images/Logo_footer.webp`}
+              alt={`${NAME}, ${ROLE}`}
+              className="mb-4 h-12 w-auto object-contain brightness-0"
+            />
+            <p className="text-base font-medium">{ROLE}</p>
+            {EMAIL && (
+              <a href={`mailto:${EMAIL}`} className="mt-3 inline-block underline underline-offset-4">
+                {EMAIL}
+              </a>
+            )}
+          </div>
 
-        if (location.pathname === '/') {
-            performScroll();
-        } else {
-            navigate('/');
-            setTimeout(performScroll, 200);
-        }
-    };
+          <div className="flex gap-16">
+            <nav aria-label="Footer">
+              <ul className="flex flex-col gap-3 text-base">
+                <li><Link to="/" className={link}>Home</Link></li>
+                <li><a href="#work" onClick={goWork} className={link}>Work</a></li>
+                <li><Link to="/bio" className={link}>About</Link></li>
+                <li><Link to="/contact" className={link}>Contact</Link></li>
+              </ul>
+            </nav>
+            <ul className="flex gap-3 self-start">
+              {socials.map(({ name, icon: Icon, href }) => (
+                <li key={name}>
+                  <motion.a
+                    whileHover={reduce ? undefined : { y: -2 }}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={name}
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-black transition-colors duration-300 hover:bg-black hover:text-white"
+                  >
+                    <Icon size={18} weight="bold" aria-hidden="true" />
+                  </motion.a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
 
-    return (
-        <footer className="w-full bg-[#EC3814] text-white pb-12 px-6 lg:px-12">
-            <div className="w-full pt-16">
-                <div className="flex flex-col md:flex-row justify-between gap-12 text-left">
-                    
-                    {/* Brand / Info */}
-                    <div className="max-w-sm flex flex-col items-start">
-                        <img 
-                            src={`${import.meta.env.BASE_URL}assets/images/Logo_footer.webp`} 
-                            alt="Alberto Scalia — Visual & Interface Designer" 
-                            className="h-12 w-auto object-contain mb-4 filter brightness-0 invert"
-                        />
-                        <p className="text-white font-sans leading-relaxed text-sm">
-                            UI & Visual Designer
-                        </p>
-                    </div>
-
-                    {/* Navigation & Social */}
-                    <div className="grid grid-cols-2 gap-16 text-left">
-                        <div>
-                            <ul className="flex flex-col gap-3 font-sans text-sm font-medium uppercase tracking-wider">
-                                <li>
-                                    <Link to="/" className="text-white hover:underline focus-visible:outline-2 focus-visible:outline-white">
-                                        HOME
-                                    </Link>
-                                </li>
-                                <li>
-                                    <a 
-                                        href="#work" 
-                                        onClick={scrollToWork} 
-                                        className="text-white hover:underline cursor-pointer focus-visible:outline-2 focus-visible:outline-white"
-                                    >
-                                        WORK
-                                    </a>
-                                </li>
-                                <li>
-                                    <Link to="/bio" className="text-white hover:underline focus-visible:outline-2 focus-visible:outline-white">
-                                        ABOUT
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/contact" className="text-white hover:underline focus-visible:outline-2 focus-visible:outline-white">
-                                        CONTACT
-                                    </Link>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <div className="flex gap-3">
-                                {[
-                                    { name: "Behance Profile", icon: BehanceLogo, href: "https://www.behance.net/albescalia" },
-                                    { name: "GitHub Profile", icon: GithubLogo, href: "https://github.com/AlbertoScalia" },
-                                    { name: "LinkedIn Profile", icon: LinkedinLogo, href: "https://www.linkedin.com/in/alberto-scalia/" }
-                                ].map((social, i) => (
-                                    <motion.a
-                                        key={i}
-                                        whileHover={{ y: -2 }}
-                                        href={social.href}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        aria-label={social.name}
-                                        className="w-10 h-10 rounded-full border border-white flex items-center justify-center text-white hover:text-black hover:bg-white transition-all duration-300 focus-visible:outline-2 focus-visible:outline-white"
-                                    >
-                                        <social.icon size={18} weight="bold" />
-                                    </motion.a>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Bottom Bar con contrasto migliorato */}
-                <div className="mt-16 pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between text-xs text-white font-mono tracking-widest uppercase">
-                    <p>&copy; {new Date().getFullYear()} Alberto Scalia. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
-    );
+        <p className="mt-16 border-t border-black/30 pt-8 text-sm">
+          &copy; {new Date().getFullYear()} {NAME}. All rights reserved.
+        </p>
+      </div>
+    </footer>
+  );
 }

@@ -1,178 +1,115 @@
 import { useState } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
-import { Phone, MapPin, ArrowUpRight } from '@phosphor-icons/react';
 import emailjs from '@emailjs/browser';
 
+const EMAIL = ''; // inserisci la tua email: se vuota non viene mostrata
+const LOCATION = 'Acireale, CT, Italy';
+
+// Se definisci le variabili VITE_EMAILJS_* in .env vengono usate quelle; altrimenti restano i valori attuali
+const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID ?? 'service_7lo9nij';
+const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID ?? 'template_79tdtxs';
+const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY ?? 'UFPDLKi81rCshxD1I';
+
+const empty = { name: '', email: '', subject: '', message: '', website: '' };
+
+function Field({ label, as: Tag = 'input', ...props }) {
+  return (
+    <div className="flex flex-col gap-2">
+      <label htmlFor={props.id} className="text-sm text-white/80">{label}</label>
+      <Tag
+        {...props}
+        required
+        className="border-b border-white/30 bg-transparent py-3 text-lg text-white transition-colors placeholder:text-white/45 focus:border-[#EC3814] focus:shadow-[0_1px_0_0_#EC3814] focus:outline-none"
+      />
+    </div>
+  );
+}
+
 export default function Contact() {
-    const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState(null);
-    const shouldReduceMotion = useReducedMotion();
+  const [form, setForm] = useState(empty);
+  const [status, setStatus] = useState('idle'); // idle | sending | success | error
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setIsSubmitting(true);
+  const onChange = (e) => {
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+    if (status !== 'sending') setStatus('idle');
+  };
 
-        const serviceID = 'service_7lo9nij';
-        const templateID = 'template_79tdtxs';
-        const publicKey = 'UFPDLKi81rCshxD1I';
-        const templateParams = {
-            name: formData.name,
-            email: formData.email,
-            subject: formData.subject,
-            message: formData.message,
-            current_time: new Date().toLocaleString('en-US')
-        };
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    if (form.website) return setStatus('success'); // honeypot: i bot compilano il campo nascosto
+    setStatus('sending');
+    try {
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        { name: form.name, email: form.email, subject: form.subject, message: form.message, current_time: new Date().toLocaleString('en-US') },
+        PUBLIC_KEY
+      );
+      setForm(empty);
+      setStatus('success');
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setStatus('error');
+    }
+  };
 
-        emailjs.send(serviceID, templateID, templateParams, publicKey)
-            .then(() => {
-                setSubmitStatus('success');
-                setFormData({ name: '', email: '', subject: '', message: '' });
-            })
-            .catch((error) => {
-                console.error('FAILED...', error);
-                alert("Oops! Error while sending.");
-            })
-            .finally(() => {
-                setIsSubmitting(false);
-                setTimeout(() => setSubmitStatus(null), 5000);
-            });
-    };
+  return (
+    <main id="main" className="mx-auto min-h-screen max-w-[1600px] px-6 pb-24 pt-40 lg:px-12">
+      <header className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-12">
+        <h1 className="font-display text-6xl leading-[0.95] tracking-tight md:col-span-7 md:text-9xl">Let's talk</h1>
+        <p className="text-lg leading-relaxed text-white/80 md:col-span-4 md:col-start-9 md:self-end">
+          I'm open to freelance projects and full-time roles, especially where design and strategy overlap. Use the form
+          {EMAIL ? ' or write to me directly' : ''}.
+        </p>
+      </header>
 
-    const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-    return (
-        <main className="pt-40 pb-20 px-6 lg:px-12 w-full mx-auto max-w-7xl min-h-screen text-white">
-            <header className="mb-24 text-center max-w-7xl mx-auto flex flex-col items-center">
-                <motion.h1
-                    initial={{ opacity: 0, y: shouldReduceMotion ? 0 : -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
-                >
-                    Let's <br />
-                    <span className="  text-[#EC3814]">talk</span>
-                </motion.h1>
-                <motion.p
-                    initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-                    className="text-xl font-sans max-w-2xl leading-relaxed text-white/85 text-center"
-                >
-                    I am open to full-time roles and collaborations — especially where design and strategy overlap. Fill out the form or write to me directly.
-                </motion.p>
-            </header>
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-24">
-                <motion.section
-                    initial={{ opacity: 0, x: shouldReduceMotion ? 0 : -30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="lg:col-span-4 flex flex-col gap-16"
-                >
-                    <div className="group flex flex-col gap-8 text-left">
-                        <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300" />
-                        <div className="flex items-start gap-6">
-                            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#EC3814]/10 group-hover:border-[#EC3814]/30 transition-colors">
-                                <Phone size={24} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors" aria-hidden="true" />
-                            </div>
-                            <div>
-                                <h2 className="text-2xl   tracking-tight mb-2 text-white group-hover:text-[#EC3814] transition-colors">Phone</h2>
-                                <p className="text-sm font-sans text-white/85">Number available upon request</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="group flex flex-col gap-8 text-left">
-                        <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300" />
-                        <div className="flex items-start gap-6">
-                            <div className="w-12 h-12 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-[#EC3814]/10 group-hover:border-[#EC3814]/30 transition-colors">
-                                <MapPin size={24} weight="duotone" className="text-white group-hover:text-[#EC3814] transition-colors" aria-hidden="true" />
-                            </div>
-                            <div>
-                                <h2 className="text-2xl   tracking-tight mb-2 text-white group-hover:text-[#EC3814] transition-colors">Location</h2>
-                                <p className="text-sm font-sans text-white/85">Acireale, CT, Italy</p>
-                            </div>
-                        </div>
-                    </div>
-                </motion.section>
-
-                <motion.section
-                    initial={{ opacity: 0, x: shouldReduceMotion ? 0 : 30 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    className="lg:col-span-8 group flex flex-col gap-8"
-                >
-                    <div className="w-full border-t border-white/20 group-hover:border-[#EC3814] transition-colors duration-300" />
-                    
-                    <form onSubmit={handleSubmit} className="flex flex-col gap-10">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                            <div className="flex flex-col gap-3 text-left">
-                                <label htmlFor="name" className="text-[10px] font-black font-sans uppercase tracking-widest text-white/80">Name *</label>
-                                <input
-                                    type="text" id="name" name="name" required
-                                    value={formData.name} onChange={handleChange}
-                                    placeholder="Your name or company"
-                                    className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#EC3814] transition-colors font-sans text-lg"
-                                />
-                            </div>
-                            <div className="flex flex-col gap-3 text-left">
-                                <label htmlFor="email" className="text-[10px] font-black font-sans uppercase tracking-widest text-white/80">Email *</label>
-                                <input
-                                    type="email" id="email" name="email" required
-                                    value={formData.email} onChange={handleChange}
-                                    placeholder="Where can I write to you?"
-                                    className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#EC3814] transition-colors font-sans text-lg"
-                                />
-                            </div>
-                        </div>
-
-                        <div className="flex flex-col gap-3 text-left">
-                            <label htmlFor="subject" className="text-[10px] font-black font-sans uppercase tracking-widest text-white/80">Subject *</label>
-                            <input
-                                type="text" id="subject" name="subject" required
-                                value={formData.subject} onChange={handleChange}
-                                placeholder="What do you want to talk about?"
-                                className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#EC3814] transition-colors font-sans text-lg"
-                            />
-                        </div>
-
-                        <div className="flex flex-col gap-3 text-left">
-                            <label htmlFor="message" className="text-[10px] font-black font-sans uppercase tracking-widest text-white/80">Message *</label>
-                            <textarea
-                                id="message" name="message" rows="4" required
-                                value={formData.message} onChange={handleChange}
-                                placeholder="Tell me about your project..."
-                                className="bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/50 focus:outline-none focus:border-[#EC3814] transition-colors font-sans text-lg resize-none"
-                            ></textarea>
-                        </div>
-
-                        <div className="flex flex-col md:flex-row items-center justify-center gap-8 mt-4">
-                            <div className="flex items-center gap-4 group/btn-container">
-                                <button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    className="flex items-center gap-3 bg-transparent text-white hover:text-[#EC3814] focus-visible:outline-2 focus-visible:outline-[#EC3814] transition-colors disabled:opacity-50 group/btn border-none cursor-pointer rounded-sm p-1"
-                                >
-                                    <span className="font-light tracking-wider uppercase text-sm md:text-base">
-                                        {isSubmitting ? 'Sending...' : "Start the conversation"}
-                                    </span>
-                                    {!isSubmitting ? (
-                                        <ArrowUpRight size={20} weight="bold" className="group-hover/btn:rotate-45 transition-transform" />
-                                    ) : (
-                                        <div className="w-5 h-5 border-2 border-white/30 border-t-[#EC3814] rounded-full animate-spin" />
-                                    )}
-                                </button>
-                                
-                                {submitStatus === 'success' && (
-                                    <motion.p initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} className="text-emerald-400 font-mono text-[10px] uppercase tracking-widest flex items-center gap-2">
-                                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                                        Success
-                                    </motion.p>
-                                )}
-                            </div>
-                        </div>
-                    </form>
-                </motion.section>
+      <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-24">
+        <aside className="lg:col-span-4">
+          <dl className="divide-y divide-white/15 border-y border-white/15">
+            {EMAIL && (
+              <div className="py-5">
+                <dt className="mb-1 text-sm text-white/60">Email</dt>
+                <dd className="text-lg"><a href={`mailto:${EMAIL}`} className="underline decoration-[#EC3814] underline-offset-4 hover:text-[#EC3814]">{EMAIL}</a></dd>
+              </div>
+            )}
+            <div className="py-5">
+              <dt className="mb-1 text-sm text-white/60">Location</dt>
+              <dd className="text-lg">{LOCATION}</dd>
             </div>
-        </main>
-    );
+            <div className="py-5">
+              <dt className="mb-1 text-sm text-white/60">Phone</dt>
+              <dd className="text-lg">Available upon request</dd>
+            </div>
+          </dl>
+        </aside>
+
+        <form onSubmit={onSubmit} className="flex flex-col gap-10 lg:col-span-8">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
+            <Field label="Name" id="name" name="name" type="text" autoComplete="name" value={form.name} onChange={onChange} placeholder="Your name or company" />
+            <Field label="Email" id="email" name="email" type="email" autoComplete="email" value={form.email} onChange={onChange} placeholder="Where can I reply?" />
+          </div>
+          <Field label="Subject" id="subject" name="subject" type="text" value={form.subject} onChange={onChange} placeholder="What do you want to talk about?" />
+          <Field label="Message" id="message" name="message" as="textarea" rows={5} value={form.message} onChange={onChange} placeholder="Tell me about your project" />
+
+          {/* Honeypot anti-spam: invisibile a chi usa il sito */}
+          <div aria-hidden="true" className="absolute -left-[9999px]">
+            <label>Website<input type="text" name="website" tabIndex={-1} autoComplete="off" value={form.website} onChange={onChange} /></label>
+          </div>
+
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+            <button
+              type="submit"
+              disabled={status === 'sending'}
+              className="inline-flex w-fit items-center gap-3 bg-[#EC3814] px-8 py-4 text-lg font-medium text-black transition-colors hover:bg-white disabled:opacity-60"
+            >
+              {status === 'sending' ? 'Sending…' : 'Send message'}
+            </button>
+            <p role="status" aria-live="polite" className={status === 'error' ? 'text-red-300' : 'text-white/85'}>
+              {status === 'success' && 'Message sent. Thank you, I will get back to you.'}
+              {status === 'error' && `Your message wasn't sent. Check your connection and try again${EMAIL ? `, or write to ${EMAIL}` : ''}.`}
+            </p>
+          </div>
+        </form>
+      </div>
+    </main>
+  );
 }

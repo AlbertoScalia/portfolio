@@ -1,135 +1,113 @@
-import { motion, useReducedMotion } from 'framer-motion';
-import { ArrowUpRight } from '@phosphor-icons/react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ArrowUpRight, Pause, Play } from '@phosphor-icons/react';
+
+const AVAILABILITY = 'OPEN TO UX/UI ROLES — AVAILABLE IMMEDIATELY';
+
+const logo = (n) => `${import.meta.env.BASE_URL}assets/images/Logo${n}.webp`;
 
 const clients = [
-    { name: "Apogeo Editore", logo: `${import.meta.env.BASE_URL}assets/images/Logo1.webp` },
-    { name: "LetteraVentidue", logo: `${import.meta.env.BASE_URL}assets/images/Logo2.webp` },
-    { name: "Ricca Editore", logo: `${import.meta.env.BASE_URL}assets/images/Logo3.webp` },
-    { name: "Il Pensiero Scientifico", logo: `${import.meta.env.BASE_URL}assets/images/Logo4.webp` },
-    { name: "Flaco Edizioni", logo: `${import.meta.env.BASE_URL}assets/images/Logo5.webp` },
-    { name: "Editori Riuniti", logo: `${import.meta.env.BASE_URL}assets/images/Logo6.webp` },
-    { name: "Scuola del Libro", logo: `${import.meta.env.BASE_URL}assets/images/Logo7.webp` },
-    { name: "Conservatorio Vicenza", logo: `${import.meta.env.BASE_URL}assets/images/Logo8.webp` },
-    { name: "Life Electronics", logo: `${import.meta.env.BASE_URL}assets/images/Logo9.webp` },
-    { name: "Compagnia Aliberti", logo: `${import.meta.env.BASE_URL}assets/images/Logo10.webp` },
-    { name: "lay0ut magazine", logo: `${import.meta.env.BASE_URL}assets/images/Logo12.webp` },
-    { name: "Gyada Cosmetics S.r.l.", logo: `${import.meta.env.BASE_URL}assets/images/Logo13.webp` },
+  { name: 'Apogeo Editore', logo: logo(1) },
+  { name: 'LetteraVentidue', logo: logo(2) },
+  { name: 'Ricca Editore', logo: logo(3) },
+  { name: 'Il Pensiero Scientifico', logo: logo(4) },
+  { name: 'Flaco Edizioni', logo: logo(5) },
+  { name: 'Editori Riuniti', logo: logo(6) },
+  { name: 'Scuola del Libro', logo: logo(7) },
+  { name: 'Conservatorio Vicenza', logo: logo(8) },
+  { name: 'Life Electronics', logo: logo(9) },
+  { name: 'Compagnia Aliberti', logo: logo(10) },
+  { name: 'lay0ut magazine', logo: logo(12) },
+  { name: 'Gyada Cosmetics S.r.l.', logo: logo(13) },
 ];
 
+function Logo({ client, decorative }) {
+  return (
+    <div className="group relative flex h-12 w-32 shrink-0 items-center justify-center md:w-40">
+      <img
+        src={client.logo}
+        alt={decorative ? '' : client.name}
+        width="160"
+        height="60"
+        loading="lazy"
+        decoding="async"
+        className="h-full w-full object-contain opacity-60 grayscale invert transition-opacity duration-300 group-hover:opacity-0"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[#EC3814] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        style={{
+          maskImage: `url(${client.logo})`,
+          WebkitMaskImage: `url(${client.logo})`,
+          maskSize: 'contain',
+          WebkitMaskSize: 'contain',
+          maskRepeat: 'no-repeat',
+          WebkitMaskRepeat: 'no-repeat',
+          maskPosition: 'center',
+          WebkitMaskPosition: 'center',
+        }}
+      />
+    </div>
+  );
+}
+
 export default function ClientsMarquee() {
-    const marqueeItems = [...clients, ...clients];
-    const shouldReduceMotion = useReducedMotion();
+  const [paused, setPaused] = useState(false);
+  const group = 'flex shrink-0 items-center gap-16 pr-16 md:gap-32 md:pr-32';
 
-    return (
-        <section className="py-12 md:py-24 overflow-hidden font-sans text-white">
-            <header className="mb-20 text-center px-6 lg:px-12 max-w-7xl mx-auto flex flex-col items-center">
-                <motion.h2
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
-                >
-                    Who trusted me <br />
-                    <span className=" text-[#EC3814]">(and kept coming back)</span>
-                </motion.h2>
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-                    className="text-xl font-sans max-w-2xl leading-relaxed text-white/85 text-center"
-                >
-                    Over 12 publishers and brands have trusted me so far — delivering impactful and consistent results.
-                </motion.p>
-            </header>
+  return (
+    <section className="overflow-hidden py-16 md:py-28">
+      <header className="mx-auto mb-16 grid max-w-[1600px] grid-cols-1 gap-6 px-6 md:grid-cols-12 lg:px-12">
+        <h2 className="font-display text-5xl leading-[1.05] md:col-span-7 md:text-7xl">
+                  <h2 className="font-display max-w-4xl text-5xl leading-[1.02] md:text-8xl">Who trusted me</h2>
 
-            {/* Marquee con supporto a prefers-reduced-motion */}
-            <div className="relative w-full overflow-hidden flex border-y border-white/20 py-12">
-                <motion.div
-                    animate={shouldReduceMotion ? { x: "0%" } : { x: ["0%", "-50%"] }}
-                    transition={{ ease: "linear", duration: 40, repeat: Infinity }}
-                    className="flex whitespace-nowrap items-center gap-16 md:gap-32 px-8"
-                    style={{ willChange: 'transform', transform: 'translateZ(0)' }}
-                >
-                    {marqueeItems.map((client, idx) => (
-                        <div key={idx} className="flex-shrink-0 w-32 md:w-40 relative group h-12 flex items-center justify-center">
-                            <img
-                                src={client.logo}
-                                alt={client.name}
-                                width="160"
-                                height="60"
-                                decoding="async"
-                                className="w-full h-full object-contain pointer-events-none grayscale invert opacity-60 group-hover:opacity-0 transition-opacity duration-300"
-                            />
-                            <div 
-                                className="absolute inset-0 bg-[#EC3814] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                                style={{
-                                    maskImage: `url(${client.logo})`,
-                                    WebkitMaskImage: `url(${client.logo})`,
-                                    maskSize: 'contain',
-                                    WebkitMaskSize: 'contain',
-                                    maskRepeat: 'no-repeat',
-                                    WebkitMaskRepeat: 'no-repeat',
-                                    maskPosition: 'center'
-                                }}
-                            />
-                        </div>
-                    ))}
-                </motion.div>
-            </div>
+        </h2>
+        <p className="text-lg leading-relaxed text-white/80 md:col-span-4 md:col-start-9 md:self-end">
+          {clients.length} publishers and brands have trusted me so far, with consistent results.
+        </p>
+      </header>
 
-            <div className="max-w-7xl mx-auto px-6 lg:px-12 mt-32 text-center flex flex-col items-center group/cta">
-                <motion.h2
-                    initial={{ opacity: 0, y: -20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                    className="text-5xl md:text-7xl font-sans tracking-tighter mb-6 text-center text-white"
-                >
-                    Do you have a <br />
-                    <span className=" text-[#EC3814]">project in mind?</span>
-                </motion.h2>
+      {/* Con prefers-reduced-motion l'animazione si ferma e la riga diventa scorrevole a mano */}
+      <div className="overflow-x-hidden border-y border-white/20 py-12 motion-reduce:overflow-x-auto">
+        <div className="marquee-track flex w-max" data-paused={paused}>
+          <ul className={group}>
+            {clients.map((c) => (
+              <li key={c.name}><Logo client={c} /></li>
+            ))}
+          </ul>
+          <ul className={group} aria-hidden="true">
+            {clients.map((c) => (
+              <li key={c.name}><Logo client={c} decorative /></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div className="mx-auto mt-4 flex max-w-[1600px] justify-end px-6 motion-reduce:hidden lg:px-12">
+        <button
+          type="button"
+          onClick={() => setPaused((p) => !p)}
+          aria-pressed={paused}
+          className="inline-flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-white"
+        >
+          {paused ? <Play size={16} weight="fill" aria-hidden="true" /> : <Pause size={16} weight="fill" aria-hidden="true" />}
+          {paused ? 'Play logos' : 'Pause logos'}
+        </button>
+      </div>
 
-                {/* Badge Open to UX/UI roles in brand orange */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#EC3814]/10 border border-[#EC3814]/30 text-[#EC3814] text-xs font-mono tracking-wider uppercase mb-6"
-                >
-                    <span className="w-2 h-2 rounded-full bg-[#EC3814] animate-pulse" />
-                    Open to UX/UI roles — Available immediately
-                </motion.div>
-
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
-                    className="text-xl font-sans max-w-2xl leading-relaxed text-white/85 text-center mb-12"
-                >
-                    Let's talk about it together and turn your idea into reality.
-                </motion.p>
-
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.2 }}
-                >
-                    <Link 
-                        to="/contact"
-                        className="inline-flex items-center gap-3 text-white hover:text-[#EC3814] transition-colors duration-300 group/btn focus-visible:outline-2 focus-visible:outline-[#EC3814] rounded-sm"
-                    >
-                        <span className="font-light tracking-wider uppercase text-sm md:text-base">
-                            Let's start the conversation
-                        </span>
-                        <ArrowUpRight size={20} weight="bold" className="group-hover/btn:rotate-45 transition-transform" />
-                    </Link>
-                </motion.div>
-            </div>
-        </section>
-    );
+      <div className="mx-auto mt-28 max-w-[1600px] px-6 lg:px-12">
+        <h2 className="font-display max-w-4xl text-5xl leading-[1.02] md:text-8xl">Do you have a project in mind?</h2>
+        <p className="mt-8 flex items-center gap-3 text-lg text-white">
+          <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#EC3814] motion-safe:animate-pulse" />
+          {AVAILABILITY}
+        </p>
+        <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/80">
+          Let's talk about it together and turn your idea into reality.
+        </p>
+        <Link to="/contact" className="group mt-10 inline-flex items-center gap-3 text-xl text-white transition-colors hover:text-[#EC3814]">
+          Get in touch
+          <ArrowUpRight size={22} weight="bold" aria-hidden="true" className="transition-transform group-hover:rotate-45" />
+        </Link>
+      </div>
+    </section>
+  );
 }

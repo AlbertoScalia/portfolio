@@ -1,30 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..700&family=Playfair+Display:wght@400..700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+@layer base {
+  html {
+    background-color: #000;
+    scroll-padding-top: 4rem; /* compensa la navbar fissa negli scroll ad ancora */
+  }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background-color: #000;
+    color: #f2f0ec;
+    /* clip (non hidden): non rompe position: sticky */
+    overflow-x: clip;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  :focus-visible {
+    outline: 2px solid #EC3814;
+    outline-offset: 3px;
+  }
+  .on-brand :focus-visible {
+    outline-color: #000;
   }
 }
 
-html, body {
-  width: 100%;
-  min-height: 100%;
-  overflow-x: hidden;
-  -webkit-overflow-scrolling: touch;
-  background-color: #000000;
+@layer components {
+  .marquee-track {
+    animation: marquee 45s linear infinite;
+  }
+  .marquee-track:hover,
+  .marquee-track:focus-within,
+  .marquee-track[data-paused='true'] {
+    animation-play-state: paused;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track { animation: none; }
+  }
 }
 
-body {
-  position: relative;
-  background-color: #000000;
-  color: #e8e8e8;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .font-display { font-family: 'Playfair Display', Georgia, serif; }
+  .font-body { font-family: 'Inter', system-ui, sans-serif; }
 }
 
-#root {
-  width: 100%;
-  overflow-x: hidden;
+@keyframes marquee {
+  to { transform: translateX(-50%); }
 }
