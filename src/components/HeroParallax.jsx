@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown } from '@phosphor-icons/react';
-import { GRAIN } from '../utils/grain';
 
 /* ---------- Contenuti ---------- */
 
@@ -12,19 +11,18 @@ const ROLE = 'Visual & Interface Designer';
 
 const PORTRAIT = `${import.meta.env.BASE_URL}assets/images/profile.webp`;
 
-// Titolo: peso semibold sulle prime due righe, light sulle ultime due
+// Titolo: peso semibold e blu per Editorial precision, light e rosso per digital performance
 const TITLE = [
-  { text: 'Editorial', weight: 'font-semibold' },
-  { text: 'precision,', weight: 'font-semibold' },
-  { text: 'digital', weight: 'font-light' },
-  { text: 'performance', weight: 'font-light' },
+  { text: 'Editorial', weight: 'font-semibold', color: 'text-[#364b9b]' },
+  { text: 'precision,', weight: 'font-semibold', color: 'text-[#364b9b]' },
+  { text: 'digital', weight: 'font-light', color: 'text-[#EC3814]' },
+  { text: 'performance', weight: 'font-light', color: 'text-[#EC3814]' },
 ];
 
 // Quanto ogni riga del titolo "resta indietro" rispetto allo scroll (px): crea l'effetto a ventaglio
 const TITLE_LAG = [40, 90, 140, 190];
 
 /* ---------- Livello parallax ---------- */
-// Sposta (y) e scala un elemento in base al progresso di scroll della hero (0 → 1).
 
 function Layer({ as = 'div', progress, y = [0, 0], scale = [1, 1], className, style, children }) {
   const Tag = motion[as];
@@ -70,35 +68,24 @@ export default function HeroParallax() {
 
   return (
     <section ref={ref} className="grid min-h-[100svh] grid-cols-1 overflow-hidden md:grid-cols-[58fr_42fr]">
-      {/* Colonna sinistra: blocco arancione con titolo */}
-      <div className="relative isolate flex items-end overflow-hidden bg-[#EC3814] px-6 pb-14 pt-36 md:items-center md:pb-20 md:pt-28 lg:px-12">
-        {/* Profondità: leggera luce in alto a sinistra, ombra in basso a destra */}
-        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.08] to-black/[0.12]" />
-
-        {/* Livello 1 (più lento): grana */}
-        <Layer
-          progress={scrollYProgress}
-          y={[0, px(160)]}
-          className="pointer-events-none absolute inset-x-0 -top-1/4 h-[150%] opacity-25 mix-blend-overlay"
-          style={{ backgroundImage: GRAIN }}
-        />
-
-        {/* Livello 2 (più veloce): cerchio decorativo, eco del ritratto */}
+      {/* Colonna sinistra: fondo pulito con titolo bicolore */}
+      <div className="relative isolate flex items-end overflow-hidden bg-white px-6 pb-14 pt-36 md:items-center md:pb-20 md:pt-28 lg:px-12">
+        {/* Cerchio decorativo in rosso/arancione (#EC3814) */}
         <Layer
           progress={scrollYProgress}
           y={[0, px(-100)]}
-          className="pointer-events-none absolute -bottom-[18%] -right-[24%] aspect-square w-[78%] rounded-full border border-white/25"
+          className="pointer-events-none absolute -bottom-[18%] -right-[24%] aspect-square w-[78%] rounded-full border border-[#EC3814]/25"
         />
 
-        {/* Livello 3: titolo, ogni riga con la sua velocità */}
+        {/* Titolo */}
         <motion.h1
           style={{ opacity: titleOpacity }}
-          className="relative text-[clamp(2.75rem,13vw,6rem)] leading-[0.95] tracking-[-0.045em] text-white md:text-[min(8.4vw,10rem)]"
+          className="relative text-[clamp(2.75rem,13vw,6rem)] leading-[0.95] tracking-[-0.045em] md:text-[min(8.4vw,10rem)]"
         >
-          {TITLE.map(({ text, weight }, i) => (
+          {TITLE.map(({ text, weight, color }, i) => (
             <Layer key={text} as="span" progress={scrollYProgress} y={[0, px(TITLE_LAG[i])]} className="block">
               <span className="-mb-[0.14em] block overflow-hidden pb-[0.14em]">
-                <motion.span {...reveal(i)} className={`block ${weight}`}>
+                <motion.span {...reveal(i)} className={`block ${weight} ${color}`}>
                   {text}
                 </motion.span>
               </span>
@@ -107,9 +94,9 @@ export default function HeroParallax() {
         </motion.h1>
 
         {/* Indicatore di scroll (decorativo) */}
-        <div aria-hidden="true" className="absolute bottom-8 left-6 hidden h-14 w-px overflow-hidden bg-white/30 md:block lg:left-12">
+        <div aria-hidden="true" className="absolute bottom-8 left-6 hidden h-14 w-px overflow-hidden bg-[#364b9b]/20 md:block lg:left-12">
           <motion.span
-            className="block h-5 w-px bg-white"
+            className="block h-5 w-px bg-[#364b9b]"
             initial={{ y: -20 }}
             animate={reduce ? { y: 0 } : { y: [-20, 56] }}
             transition={reduce ? { duration: 0 } : { duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
@@ -121,7 +108,7 @@ export default function HeroParallax() {
       <div className="flex flex-col justify-between gap-14 px-6 pb-14 pt-14 md:px-10 md:pb-20 md:pt-32 lg:px-16">
         <motion.div {...rise(0)} className="w-fit">
           <Layer progress={scrollYProgress} y={[0, px(-120)]} scale={[1, reduce ? 1 : 0.9]}>
-            <div className="relative isolate aspect-square w-[clamp(12rem,62vw,18rem)] overflow-hidden rounded-full border-[10px] border-[#fc655e] bg-white md:w-[clamp(12rem,27vw,28rem)]">
+            <div className="relative isolate aspect-square w-[clamp(12rem,62vw,18rem)] overflow-hidden rounded-full border-[10px] border-[#EC3814] bg-white md:w-[clamp(12rem,27vw,28rem)]">
               <img
                 src={PORTRAIT}
                 alt="Portrait of Alberto Scalia"

@@ -16,9 +16,6 @@ export default function Navbar() {
 
   const close = useCallback(() => setIsOpen(false), []);
 
-  // Sopra il blocco arancione della hero: logo e hamburger diventano bianchi
-  const onHero = pathname === '/' && !scrolled && !isOpen;
-
   const goWork = (e) => {
     e.preventDefault();
     close();
@@ -52,7 +49,7 @@ export default function Navbar() {
     };
   }, [isOpen, close]);
 
-  // Link desktop: sottolineatura che scorre da sinistra (sempre visibile sulla pagina attiva)
+  // Link desktop: sottolineatura che scorre da sinistra
   const desktopLink = (active) =>
     cn(
       "relative py-1 text-[15px] transition-colors duration-200 hover:text-[#EC3814] after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:bg-[#EC3814] after:transition-transform after:duration-300 after:content-['']",
@@ -108,7 +105,7 @@ export default function Navbar() {
           {/* Maschera Blu (#364b9b) di base */}
           <div
             aria-hidden="true"
-            className={cn('absolute inset-0 opacity-100 transition-opacity duration-300 group-hover:opacity-0', onHero ? 'bg-white' : 'bg-[#364b9b]')}
+            className="absolute inset-0 bg-[#364b9b] opacity-100 transition-opacity duration-300 group-hover:opacity-0"
             style={{
               maskImage: `url(${LOGO})`,
               WebkitMaskImage: `url(${LOGO})`,
@@ -120,10 +117,10 @@ export default function Navbar() {
               WebkitMaskPosition: 'left center',
             }}
           />
-          {/* Maschera Rossa (#EC3814) all'hover */}
+          {/* Maschera Arancione/Rossa (#EC3814) all'hover */}
           <div
             aria-hidden="true"
-            className={cn('absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100', onHero ? 'bg-[#364b9b]' : 'bg-[#EC3814]')}
+            className="absolute inset-0 bg-[#EC3814] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             style={{
               maskImage: `url(${LOGO})`,
               WebkitMaskImage: `url(${LOGO})`,
@@ -160,9 +157,9 @@ export default function Navbar() {
           aria-controls="mobile-menu"
           className="flex flex-col gap-1.5 rounded-md p-3 md:hidden"
         >
-          <motion.span animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 8 : 0 }} transition={{ duration: reduce ? 0 : 0.2 }} className={cn('block h-[2px] w-6', onHero ? 'bg-white' : 'bg-[#364b9b]')} />
-          <motion.span animate={{ opacity: isOpen ? 0 : 1 }} transition={{ duration: reduce ? 0 : 0.2 }} className={cn('block h-[2px] w-6', onHero ? 'bg-white' : 'bg-[#364b9b]')} />
-          <motion.span animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -8 : 0 }} transition={{ duration: reduce ? 0 : 0.2 }} className={cn('block h-[2px] w-6', onHero ? 'bg-white' : 'bg-[#364b9b]')} />
+          <motion.span animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 8 : 0 }} transition={{ duration: reduce ? 0 : 0.2 }} className="block h-[2px] w-6 bg-[#364b9b]" />
+          <motion.span animate={{ opacity: isOpen ? 0 : 1 }} transition={{ duration: reduce ? 0 : 0.2 }} className="block h-[2px] w-6 bg-[#364b9b]" />
+          <motion.span animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -8 : 0 }} transition={{ duration: reduce ? 0 : 0.2 }} className="block h-[2px] w-6 bg-[#364b9b]" />
         </button>
       </nav>
 
