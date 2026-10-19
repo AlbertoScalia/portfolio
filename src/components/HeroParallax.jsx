@@ -1,305 +1,66 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, X } from '@phosphor-icons/react';
+import { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { ArrowDown } from '@phosphor-icons/react';
+import { GRAIN } from '../utils/grain';
+
+/* ---------- Contenuti ---------- */
 
 const INTRO =
   "I'm Alberto, a visual and interface designer with a background in high-end editorial design. I build identities, magazines, packaging and interfaces that stay consistent from print to screen.";
 
-const img = (name) => `${import.meta.env.BASE_URL}assets/images/${name}`;
+const ROLE = 'Visual & Interface Designer';
 
-const sections = [
-  {
-    title: 'User Interface Design',
-    description:
-      'I design interfaces where visual hierarchy does the heavy lifting — reducing friction, guiding attention, and making the next action feel obvious.',
-    projects: [
-      {
-        title: 'IsolaBio – Re-design website',
-        subtitle:
-          'Redesign of the Isola Bio website in desktop and mobile versions, with updated visual hierarchy, layout system, and responsive design.',
-        image: img('project12.webp'),
-        badges: ['UX/UI Design', 'Web Design'],
-        details: {
-          roleDescription: `A narrative e-commerce project for "Isola Bio" designed to transform brand identity into a fluid and accessible shopping experience. The platform spans both desktop and mobile web interfaces, featuring interactive banners and custom graphics tailored for organic products.
+const PORTRAIT = `${import.meta.env.BASE_URL}assets/images/profile.webp`;
 
-My role covered the full project execution across four key phases:
-- Discovery & Strategy: Conducted 1 quantitative survey, 5 competitor analyses, and created 3 user personas with journey maps.
-- User Experience (UX): Developed an optimized sitemap, over 10 wireframe screens, and e-commerce navigation flows.
-- UI & Visual Design: Built an atomic design system, high-fidelity interactive prototypes, and custom graphical assets.
-- User Testing & Validation: Conducted 5 moderated test sessions, achieving a 100% completion rate and an 87.2/100 SUS score.`,
-          additionalImages: ['detail.webp', 'detail2.webp', 'detail3.webp', 'detail4.webp'].map(img),
-        },
-      },
-      {
-        title: 'Glacier – Prototype app',
-        subtitle:
-          'Design a mobile app for extreme cold-weather adventure travel. The challenge was creating an interface that felt immersive and destination-specific without sacrificing usability in a content-heavy travel context.',
-        image: img('project6.webp'),
-        badges: ['UX/UI Design', 'App Design'],
-        details: {
-          roleDescription: `A UX/UI design project for "GLACIER - born to be cold", a mobile application dedicated to extreme cold-weather adventure travel. The app features a landing/onboarding screen with options to sign in or register, a home feed with featured expeditions (e.g., Northern Lights in Iceland, North Fjords, Ice Fishing), and curated destination cards.
-
-My role encompassed the end-to-end design process over an 8-week timeline, including user research, user flows, information architecture, sketching, wireframing, UI design, and prototyping. Various design and research tools were utilized to craft the experience, including Figma, Adobe Photoshop, Adobe InDesign, Whimsical, Sketch, Google Forms, and pencil & paper.`,
-          additionalImages: ['detail5.webp', 'detail6.webp', 'detail7.webp', 'detail7.5.webp'].map(img),
-        },
-      },
-    ],
-  },
-  {
-    title: 'Visual Strategy & Direction',
-    description:
-      'I design editorial systems — magazines, book series, and cultural projects — where visual consistency and strategic clarity are the same thing.',
-    projects: [
-      {
-        title: 'Forward magazine',
-        subtitle:
-          'Il Pensiero Scientifico Editore entrusted me with the visual design and layout of four consecutive issues of Forward, their magazine dedicated to healthcare and medical culture.',
-        image: img('project2.webp'),
-        badges: ['Editorial Design', 'Layout'],
-        details: {
-          roleDescription: `An editorial design project for Forward #37-43, a magazine published by Il Pensiero Scientifico Editore dedicated to healthcare and medical culture. The project encompasses the layout design and cover design for six consecutive issues across 2025–2026.
-
-My role involved designing the interior spreads to balance complex data, infographics, expert interviews, and long-form articles within a clean, authoritative grid system.`,
-          additionalImages: ['detail8.webp'].map(img),
-        },
-      },
-      {
-        title: 'lay0ut magazine – senza scheletro',
-        subtitle:
-          'Design a new issue of lay0ut magazine as a standalone editorial project with a specific structural constraint: free signatures, like a newspaper, rather than a fixed page sequence.',
-        image: img('project3.webp'),
-        badges: ['Editorial Design', 'Layout'],
-        details: {
-          roleDescription: `An editorial design project for lay0ut magazine, an independent Italian cultural magazine, spanning from 2022 to 2025.
-
-My role focused on the magazine's layout and cover design, developed in collaboration with Giorgia Di Carlo. I worked on ensuring each issue maintained a distinct visual identity while prioritizing conceptual coherence, typographic experimentation, and overall visual consistency across the interior editorial spreads and covers.`,
-          additionalImages: ['detail9.webp', 'detail10.webp'].map(img),
-        },
-      },
-    ],
-  },
-  {
-    title: 'Brand Identity & Growth',
-    description:
-      'I build scalable visual identities grounded in research and built to last — coherent across packaging, print, digital, and whatever comes next.',
-    projects: [
-      {
-        title: 'Cassandra – Poster',
-        subtitle:
-          'An art installation at Spazio Volta in Bergamo needed a printed piece that functioned as both documentation and object — something a visitor would keep, not discard.',
-        image: img('project4.webp'),
-        badges: ['Graphic Design', 'Poster Art'],
-        details: {
-          roleDescription: `A graphic design project for Cassandra - Mozzarella Light, featuring a folding poster created for an art installation by the artistic duo Mozzarella Light, exhibited at Spazio Volta in Bergamo in 2023.
-
-My role focused on designing the folding poster layout, combining a moody, texture-rich photographic image of the installation with an experimental typographic treatment for the main title and text layouts.`,
-          additionalImages: ['detail11.webp'].map(img),
-        },
-      },
-      {
-        title: 'Social Identity Socrates',
-        subtitle:
-          'A recurring festival needed an identity strong enough to anchor multiple editions while staying flexible across posters, programs, social, and merchandise.',
-        image: img('project8.webp'),
-        badges: ['Social Media', 'Branding'],
-        details: {
-          roleDescription: `A full festival identity project for SÓCRATES – Sport Storie Società, a sports literature and culture event organized by Scuola del libro and Liberi Nantes in Rome between 2021 and 2023.
-
-My role, in collaboration with Giorgia Di Carlo, focused on designing the complete visual identity for the festival, which was applied across posters, printed program guides, and promotional materials over multiple editions of the event.`,
-          additionalImages: ['detail12.webp', 'detail13.webp'].map(img),
-        },
-      },
-    ],
-  },
+// Titolo: peso semibold sulle prime due righe, light sulle ultime due
+const TITLE = [
+  { text: 'Editorial', weight: 'font-semibold' },
+  { text: 'precision,', weight: 'font-semibold' },
+  { text: 'digital', weight: 'font-light' },
+  { text: 'performance', weight: 'font-light' },
 ];
 
-/* ---------- Modale progetto (accessibile: Esc, focus trap, scroll lock) ---------- */
+// Quanto ogni riga del titolo "resta indietro" rispetto allo scroll (px): crea l'effetto a ventaglio
+const TITLE_LAG = [40, 90, 140, 190];
 
-// Paragrafi separati da riga vuota; righe con "•" diventano lista, "Etichetta: testo" con etichetta in evidenza
-function Description({ text }) {
+/* ---------- Livello parallax ---------- */
+// Sposta (y) e scala un elemento in base al progresso di scroll della hero (0 → 1).
+
+function Layer({ as = 'div', progress, y = [0, 0], scale = [1, 1], className, style, children }) {
+  const Tag = motion[as];
+  const ty = useTransform(progress, [0, 1], y);
+  const ts = useTransform(progress, [0, 1], scale);
   return (
-    <div className="max-w-[68ch] space-y-5 text-lg leading-relaxed text-white/85">
-      {text.split('\n\n').map((block, i) => {
-        const lines = block.split('\n');
-        const intro = lines.filter((l) => !l.startsWith('•')).join(' ');
-        const items = lines.filter((l) => l.startsWith('•')).map((l) => l.slice(1).trim());
-        return (
-          <div key={i} className="space-y-3">
-            {intro && <p>{intro}</p>}
-            {items.length > 0 && (
-              <ul className="list-disc space-y-2 pl-5 marker:text-[#EC3814]">
-                {items.map((item, j) => {
-                  const [head, ...rest] = item.split(': ');
-                  return rest.length ? (
-                    <li key={j}>
-                      <strong className="font-semibold text-white">{head}:</strong> {rest.join(': ')}
-                    </li>
-                  ) : (
-                    <li key={j}>{item}</li>
-                  );
-                })}
-              </ul>
-            )}
-          </div>
-        );
-      })}
-    </div>
+    <Tag style={{ y: ty, scale: ts, ...style }} className={className}>
+      {children}
+    </Tag>
   );
 }
 
-function ProjectModal({ project, onClose }) {
-  const reduce = useReducedMotion();
-  const panel = useRef(null);
-  const closeBtn = useRef(null);
-
-  useEffect(() => {
-    const previous = document.activeElement;
-    document.body.style.overflow = 'hidden';
-    closeBtn.current?.focus();
-
-    const onKey = (e) => {
-      if (e.key === 'Escape') return onClose();
-      if (e.key !== 'Tab' || !panel.current) return;
-      const focusable = panel.current.querySelectorAll('a[href], button:not([disabled])');
-      if (!focusable.length) return;
-      const first = focusable[0];
-      const last = focusable[focusable.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    };
-
-    document.addEventListener('keydown', onKey);
-    return () => {
-      document.removeEventListener('keydown', onKey);
-      document.body.style.overflow = '';
-      previous?.focus?.();
-    };
-  }, [onClose]);
-
-  const { details } = project;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: reduce ? 0 : 0.2 }}
-      onClick={onClose}
-      className="fixed inset-0 z-[200] overflow-y-auto bg-black/85"
-    >
-      <div
-        ref={panel}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="project-modal-title"
-        onClick={(e) => e.stopPropagation()}
-        className="relative mx-auto my-6 w-[calc(100%-2rem)] max-w-4xl border border-white/15 bg-[#121212] p-6 md:my-16 md:p-12"
-      >
-        <button
-          ref={closeBtn}
-          type="button"
-          onClick={onClose}
-          aria-label="Close project details"
-          className="absolute right-4 top-4 p-2 text-white/70 transition-colors hover:text-white"
-        >
-          <X size={28} aria-hidden="true" />
-        </button>
-
-        <h2 id="project-modal-title" className="font-display mb-8 pr-12 text-4xl leading-tight md:text-6xl">
-          {project.title}
-        </h2>
-
-        <Description text={details.roleDescription} />
-
-        <div className="my-10 flex flex-col gap-6">
-          {details.additionalImages.map((src, i) => (
-            <img
-              key={src}
-              src={src}
-              alt={`${project.title}, detail ${i + 1} of ${details.additionalImages.length}`}
-              loading="lazy"
-              decoding="async"
-              className="min-h-[200px] w-full bg-white/5 object-cover"
-            />
-          ))}
-        </div>
-
-        {details.externalUrl && (
-          <a
-            href={details.externalUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[#EC3814] underline underline-offset-4"
-          >
-            View live project <ArrowUpRight size={18} aria-hidden="true" />
-          </a>
-        )}
-      </div>
-    </motion.div>
-  );
-}
-
-/* ---------- Card progetto ---------- */
-
-// Link "esteso": l'intera card è cliccabile, ma il vero controllo sta dentro l'h3 (tastiera e screen reader ok)
-const stretched =
-  "text-left after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-[#EC3814]";
-
-function ProjectCard({ project, onOpen }) {
-  const title = (
-    <span className="font-display text-3xl leading-tight transition-colors group-hover:text-[#EC3814] md:text-4xl">
-      {project.title}
-    </span>
-  );
-
-  return (
-    <article className="group relative flex w-full flex-col">
-      <div className="aspect-[16/10] overflow-hidden bg-neutral-900">
-        <img
-          src={project.image}
-          alt={`${project.title}, project preview`}
-          loading="lazy"
-          decoding="async"
-          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
-        />
-      </div>
-      <div className="flex flex-col gap-3 px-6 pt-6 lg:px-12">
-        <h3>
-          {project.details ? (
-            <button type="button" onClick={() => onOpen(project)} className={stretched}>
-              {title}
-            </button>
-          ) : (
-            <a href={project.link} target="_blank" rel="noopener noreferrer" className={stretched}>
-              {title}
-            </a>
-          )}
-        </h3>
-        <p className="max-w-xl text-[15px] leading-relaxed text-white/80">{project.subtitle}</p>
-        {project.highlight && <p className="text-[15px] font-medium text-white">{project.highlight}</p>}
-        <p className="text-sm text-white/60">{project.badges.join(', ')}</p>
-      </div>
-    </article>
-  );
-}
-
-/* ---------- Hero + lavori ---------- */
+/* ---------- Hero ---------- */
 
 export default function HeroParallax() {
   const reduce = useReducedMotion();
-  const [selected, setSelected] = useState(null);
-  const closeModal = useCallback(() => setSelected(null), []);
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
 
-  // L'unico momento orchestrato della pagina: ingresso del titolo
+  // Con "riduci movimento" attivo tutti gli spostamenti sono a zero
+  const px = (n) => (reduce ? 0 : n);
+
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.75], [1, reduce ? 1 : 0]);
+
+  // Entrata della colonna destra
   const rise = (i) => ({
     initial: { opacity: 0, y: reduce ? 0 : 48 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: reduce ? 0 : 0.9, delay: reduce ? 0 : i * 0.12, ease: [0.16, 1, 0.3, 1] },
+    transition: { duration: reduce ? 0 : 0.9, delay: reduce ? 0 : 0.3 + i * 0.12, ease: [0.16, 1, 0.3, 1] },
+  });
+
+  // Entrata del titolo: ogni riga sale da dietro una maschera
+  const reveal = (i) => ({
+    initial: { y: reduce ? 0 : '105%' },
+    animate: { y: 0 },
+    transition: { duration: reduce ? 0 : 1, delay: reduce ? 0 : 0.15 + i * 0.1, ease: [0.16, 1, 0.3, 1] },
   });
 
   const scrollToWork = (e) => {
@@ -308,63 +69,84 @@ export default function HeroParallax() {
   };
 
   return (
-    <>
-      <section className="mx-auto max-w-[1600px] px-6 pb-24 pt-36 md:pb-32 md:pt-48 lg:px-12">
-        {/* Serif = editoriale, grotesk = digitale: il titolo racconta la doppia competenza */}
-        <hh1 className="text-[clamp(3rem,9vw,8.5rem)] leading-[0.92] text-white">
-  <motion.span {...rise(0)} className="font-display block font-medium tracking-[-0.035em]">
-    Editorial precision,
-  </motion.span>
-  <motion.span {...rise(1)} className="font-body block font-medium tracking-[-0.05em] text-[#EC3814]">
-    digital performance
-  </motion.span>
-</hh1>
+    <section ref={ref} className="grid min-h-[100svh] grid-cols-1 overflow-hidden md:grid-cols-[58fr_42fr]">
+      {/* Colonna sinistra: blocco arancione con titolo */}
+      <div className="relative isolate flex items-end overflow-hidden bg-[#EC3814] px-6 pb-14 pt-36 md:items-center md:pb-20 md:pt-28 lg:px-12">
+        {/* Profondità: leggera luce in alto a sinistra, ombra in basso a destra */}
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/[0.08] to-black/[0.12]" />
 
-        <div className="mt-14 grid grid-cols-1 gap-8 md:mt-24 md:grid-cols-12">
-          <motion.p {...rise(2)} className="text-lg leading-relaxed text-white/80 md:col-span-5 md:col-start-7 md:text-xl">
-            {INTRO}
-          </motion.p>
-          <motion.div {...rise(3)} className="md:col-span-5 md:col-start-7">
-            <a href="#work" onClick={scrollToWork} className="inline-flex items-center gap-2 text-white transition-colors hover:text-[#EC3814]">
-              See selected work
-              <ArrowDown size={18} weight="bold" aria-hidden="true" />
-            </a>
-          </motion.div>
+        {/* Livello 1 (più lento): grana */}
+        <Layer
+          progress={scrollYProgress}
+          y={[0, px(160)]}
+          className="pointer-events-none absolute inset-x-0 -top-1/4 h-[150%] opacity-25 mix-blend-overlay"
+          style={{ backgroundImage: GRAIN }}
+        />
+
+        {/* Livello 2 (più veloce): cerchio decorativo, eco del ritratto */}
+        <Layer
+          progress={scrollYProgress}
+          y={[0, px(-100)]}
+          className="pointer-events-none absolute -bottom-[18%] -right-[24%] aspect-square w-[78%] rounded-full border border-white/25"
+        />
+
+        {/* Livello 3: titolo, ogni riga con la sua velocità */}
+        <motion.h1
+          style={{ opacity: titleOpacity }}
+          className="relative text-[clamp(2.75rem,13vw,6rem)] leading-[0.95] tracking-[-0.045em] text-white md:text-[min(8.4vw,10rem)]"
+        >
+          {TITLE.map(({ text, weight }, i) => (
+            <Layer key={text} as="span" progress={scrollYProgress} y={[0, px(TITLE_LAG[i])]} className="block">
+              <span className="-mb-[0.14em] block overflow-hidden pb-[0.14em]">
+                <motion.span {...reveal(i)} className={`block ${weight}`}>
+                  {text}
+                </motion.span>
+              </span>
+            </Layer>
+          ))}
+        </motion.h1>
+
+        {/* Indicatore di scroll (decorativo) */}
+        <div aria-hidden="true" className="absolute bottom-8 left-6 hidden h-14 w-px overflow-hidden bg-white/30 md:block lg:left-12">
+          <motion.span
+            className="block h-5 w-px bg-white"
+            initial={{ y: -20 }}
+            animate={reduce ? { y: 0 } : { y: [-20, 56] }}
+            transition={reduce ? { duration: 0 } : { duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          />
         </div>
-      </section>
+      </div>
 
-      <section id="work" aria-label="Selected work">
-        {sections.map((section) => (
-          <div key={section.title} className="mb-28">
-            <div className="border-t border-white/20" />
-            <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-6 px-6 py-12 md:grid-cols-12 lg:px-12">
-              <h2 className="font-display text-4xl leading-tight md:col-span-5 md:text-5xl">{section.title}</h2>
-              <p className="text-lg leading-relaxed text-white/80 md:col-span-5 md:col-start-7">{section.description}</p>
+      {/* Colonna destra: ritratto e presentazione */}
+      <div className="flex flex-col justify-between gap-14 px-6 pb-14 pt-14 md:px-10 md:pb-20 md:pt-32 lg:px-16">
+        <motion.div {...rise(0)} className="w-fit">
+          <Layer progress={scrollYProgress} y={[0, px(-120)]} scale={[1, reduce ? 1 : 0.9]}>
+            <div className="relative isolate aspect-square w-[clamp(12rem,62vw,18rem)] overflow-hidden rounded-full border-[10px] border-[#fc655e] bg-white md:w-[clamp(12rem,27vw,28rem)]">
+              <img
+                src={PORTRAIT}
+                alt="Portrait of Alberto Scalia"
+                decoding="async"
+                className="h-full w-full object-cover object-center contrast-125"
+              />
             </div>
-            <div className="grid grid-cols-1 gap-y-16 md:grid-cols-2">
-              {section.projects.map((project) => (
-                <ProjectCard key={project.title} project={project} onOpen={setSelected} />
-              ))}
+          </Layer>
+        </motion.div>
+
+        <motion.div {...rise(1)} className="max-w-md">
+          <Layer progress={scrollYProgress} y={[0, px(60)]}>
+            <p className="mb-5 text-sm font-medium text-[#364b9b]/80">{ROLE}</p>
+            <div className="border-t border-[#364b9b]/20 pt-6">
+              <p className="text-lg leading-snug text-[#364b9b] md:text-xl">{INTRO}</p>
+              <a href="#work" onClick={scrollToWork} className="group mt-8 inline-flex items-center gap-4 text-[#364b9b]">
+                <span className="font-medium transition-colors duration-300 group-hover:text-[#EC3814]">See selected work</span>
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
+                  <ArrowDown size={18} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:translate-y-0.5" />
+                </span>
+              </a>
             </div>
-          </div>
-        ))}
-
-        <div className="mx-auto flex max-w-[1600px] px-6 pb-8 lg:px-12">
-          <a
-            href="https://www.behance.net/gallery/244847487/Personal-Portfolio-2021-2026"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 text-lg text-white transition-colors hover:text-[#EC3814]"
-          >
-            View the full archive on Behance
-            <ArrowUpRight size={20} weight="bold" aria-hidden="true" className="transition-transform group-hover:rotate-45" />
-          </a>
-        </div>
-
-        <AnimatePresence>
-          {selected && <ProjectModal key={selected.title} project={selected} onClose={closeModal} />}
-        </AnimatePresence>
-      </section>
-    </>
+          </Layer>
+        </motion.div>
+      </div>
+    </section>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import HeroParallax from '../components/HeroParallax';
+import Work from '../components/Work';
 import ClientsMarquee from '../components/ClientsMarquee';
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
   return (
     <main id="main">
       <HeroParallax />
+      <Work />
       <ClientsMarquee />
     </main>
   );

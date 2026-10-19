@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion, useReducedMotion, useScroll } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '../utils/cn';
 
@@ -12,8 +12,12 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const reduce = useReducedMotion();
+  const { scrollYProgress } = useScroll();
 
   const close = useCallback(() => setIsOpen(false), []);
+
+  // Sopra il blocco arancione della hero: logo e hamburger diventano bianchi
+  const onHero = pathname === '/' && !scrolled && !isOpen;
 
   const goWork = (e) => {
     e.preventDefault();
@@ -34,7 +38,6 @@ export default function Navbar() {
 
   useEffect(close, [pathname, close]);
 
-  // Menu mobile aperto: Esc chiude, scroll di sfondo bloccato, chiude se si passa a desktop
   useEffect(() => {
     if (!isOpen) return;
     const onKey = (e) => e.key === 'Escape' && close();
@@ -49,13 +52,24 @@ export default function Navbar() {
     };
   }, [isOpen, close]);
 
+  // Link desktop: sottolineatura che scorre da sinistra (sempre visibile sulla pagina attiva)
   const desktopLink = (active) =>
     cn(
-      'text-[15px] transition-colors duration-200 hover:text-[#EC3814]',
-      active ? 'text-white underline decoration-[#EC3814] decoration-2 underline-offset-8' : 'text-white/75'
+      "relative py-1 text-[15px] transition-colors duration-200 hover:text-[#EC3814] after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:bg-[#EC3814] after:transition-transform after:duration-300 after:content-['']",
+      active
+        ? 'text-[#364b9b] after:scale-x-100'
+        : 'text-[#364b9b]/85 after:scale-x-0 hover:after:scale-x-100 motion-reduce:after:transition-none'
     );
   const mobileLink = (active) =>
-    cn('font-display text-5xl transition-colors hover:text-[#EC3814]', active ? 'text-[#EC3814]' : 'text-white');
+    cn('text-5xl font-semibold transition-colors hover:text-[#EC3814]', active ? 'text-[#EC3814]' : 'text-[#364b9b]');
+  const numClass = 'mr-4 align-top text-sm font-medium text-[#364b9b]/80';
+
+  // Entrata a cascata delle voci del menu mobile
+  const mobileItem = (i) => ({
+    initial: { opacity: 0, y: reduce ? 0 : 24 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: reduce ? 0 : 0.5, delay: reduce ? 0 : 0.08 + i * 0.07, ease: [0.16, 1, 0.3, 1] },
+  });
 
   const pages = [
     { to: '/bio', label: 'About' },
@@ -71,21 +85,45 @@ export default function Navbar() {
         Skip to content
       </a>
 
-      {/* Sfondo separato: backdrop-filter sul contenitore romperebbe l'overlay fixed del menu */}
       <div
         aria-hidden="true"
         className={cn(
           'absolute inset-0 transition-colors duration-300',
-          scrolled && !isOpen ? 'bg-black/60 backdrop-blur-xl' : 'bg-transparent'
+          scrolled && !isOpen ? 'bg-white/85 backdrop-blur-xl border-b border-[#364b9b]/10' : 'bg-transparent'
+        )}
+      />
+
+      {/* Barra di avanzamento della lettura */}
+      <motion.div
+        aria-hidden="true"
+        style={{ scaleX: scrollYProgress }}
+        className={cn(
+          'absolute inset-x-0 bottom-0 h-0.5 origin-left bg-[#EC3814] transition-opacity duration-300',
+          scrolled && !isOpen && !reduce ? 'opacity-100' : 'opacity-0'
         )}
       />
 
       <nav aria-label="Main" className="relative z-10 flex items-center justify-between px-6 py-5 lg:px-12">
-        <Link to="/" onClick={close} aria-label={`${NAME}, home`} className="group relative flex h-8 shrink-0 items-center rounded-sm">
-          <img src={LOGO} alt="" className="block h-full w-auto object-contain transition-opacity duration-300 group-hover:opacity-0" />
+        <Link to="/" onClick={close} aria-label={`${NAME}, home`} className="group relative flex h-8 w-28 shrink-0 items-center rounded-sm">
+          {/* Maschera Blu (#364b9b) di base */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[#EC3814] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            className={cn('absolute inset-0 opacity-100 transition-opacity duration-300 group-hover:opacity-0', onHero ? 'bg-white' : 'bg-[#364b9b]')}
+            style={{
+              maskImage: `url(${LOGO})`,
+              WebkitMaskImage: `url(${LOGO})`,
+              maskSize: 'contain',
+              WebkitMaskSize: 'contain',
+              maskRepeat: 'no-repeat',
+              WebkitMaskRepeat: 'no-repeat',
+              maskPosition: 'left center',
+              WebkitMaskPosition: 'left center',
+            }}
+          />
+          {/* Maschera Rossa (#EC3814) all'hover */}
+          <div
+            aria-hidden="true"
+            className={cn('absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100', onHero ? 'bg-[#364b9b]' : 'bg-[#EC3814]')}
             style={{
               maskImage: `url(${LOGO})`,
               WebkitMaskImage: `url(${LOGO})`,
@@ -122,9 +160,9 @@ export default function Navbar() {
           aria-controls="mobile-menu"
           className="flex flex-col gap-1.5 rounded-md p-3 md:hidden"
         >
-          <motion.span animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 8 : 0 }} transition={{ duration: reduce ? 0 : 0.2 }} className="block h-[2px] w-6 bg-white" />
-          <motion.span animate={{ opacity: isOpen ? 0 : 1 }} transition={{ duration: reduce ? 0 : 0.2 }} className="block h-[2px] w-6 bg-white" />
-          <motion.span animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -8 : 0 }} transition={{ duration: reduce ? 0 : 0.2 }} className="block h-[2px] w-6 bg-white" />
+          <motion.span animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 8 : 0 }} transition={{ duration: reduce ? 0 : 0.2 }} className={cn('block h-[2px] w-6', onHero ? 'bg-white' : 'bg-[#364b9b]')} />
+          <motion.span animate={{ opacity: isOpen ? 0 : 1 }} transition={{ duration: reduce ? 0 : 0.2 }} className={cn('block h-[2px] w-6', onHero ? 'bg-white' : 'bg-[#364b9b]')} />
+          <motion.span animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -8 : 0 }} transition={{ duration: reduce ? 0 : 0.2 }} className={cn('block h-[2px] w-6', onHero ? 'bg-white' : 'bg-[#364b9b]')} />
         </button>
       </nav>
 
@@ -136,20 +174,21 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduce ? 0 : 0.2 }}
-            className="fixed inset-0 z-0 bg-black px-6 pt-28 md:hidden"
+            className="fixed inset-0 z-0 bg-white px-6 pt-28 md:hidden"
           >
-            <ul className="flex flex-col gap-6">
-              <li>
+            <ul className="flex flex-col gap-6 border-t border-[#364b9b]/15 pt-8">
+              <motion.li {...mobileItem(0)}>
                 <a href="#work" onClick={goWork} className={mobileLink(false)}>
-                  Work
+                  <span className={numClass}>01</span>Work
                 </a>
-              </li>
-              {pages.map(({ to, label }) => (
-                <li key={to}>
+              </motion.li>
+              {pages.map(({ to, label }, i) => (
+                <motion.li key={to} {...mobileItem(i + 1)}>
                   <Link to={to} onClick={close} aria-current={pathname === to ? 'page' : undefined} className={mobileLink(pathname === to)}>
+                    <span className={numClass}>{String(i + 2).padStart(2, '0')}</span>
                     {label}
                   </Link>
-                </li>
+                </motion.li>
               ))}
             </ul>
           </motion.div>

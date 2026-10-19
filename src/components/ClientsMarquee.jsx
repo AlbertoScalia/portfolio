@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Pause, Play } from '@phosphor-icons/react';
+import Reveal from './Reveal';
 
 const AVAILABILITY = 'OPEN TO UX/UI ROLES — AVAILABLE IMMEDIATELY';
 
@@ -24,15 +25,22 @@ const clients = [
 function Logo({ client, decorative }) {
   return (
     <div className="group relative flex h-12 w-32 shrink-0 items-center justify-center md:w-40">
-      <img
-        src={client.logo}
-        alt={decorative ? '' : client.name}
-        width="160"
-        height="60"
-        loading="lazy"
-        decoding="async"
-        className="h-full w-full object-contain opacity-60 grayscale invert transition-opacity duration-300 group-hover:opacity-0"
+      {/* Maschera Blu (#364b9b) di base */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 bg-[#364b9b] opacity-80 transition-opacity duration-300 group-hover:opacity-0"
+        style={{
+          maskImage: `url(${client.logo})`,
+          WebkitMaskImage: `url(${client.logo})`,
+          maskSize: 'contain',
+          WebkitMaskSize: 'contain',
+          maskRepeat: 'no-repeat',
+          WebkitMaskRepeat: 'no-repeat',
+          maskPosition: 'center',
+          WebkitMaskPosition: 'center',
+        }}
       />
+      {/* Maschera Rossa (#EC3814) all'hover */}
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[#EC3814] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
@@ -56,19 +64,19 @@ export default function ClientsMarquee() {
   const group = 'flex shrink-0 items-center gap-16 pr-16 md:gap-32 md:pr-32';
 
   return (
-    <section className="overflow-hidden py-16 md:py-28">
-      <header className="mx-auto mb-16 grid max-w-[1600px] grid-cols-1 gap-6 px-6 md:grid-cols-12 lg:px-12">
-        <h2 className="font-display text-5xl leading-[1.05] md:col-span-7 md:text-7xl">
-                  <h2 className="font-display max-w-4xl text-5xl leading-[1.02] md:text-8xl">Who trusted me</h2>
-
-        </h2>
-        <p className="text-lg leading-relaxed text-white/80 md:col-span-4 md:col-start-9 md:self-end">
+    <section className="overflow-hidden py-16 md:py-28 text-[#364b9b]">
+      <header className="mx-auto mb-16 grid max-w-[1600px] grid-cols-1 gap-6 px-6 md:grid-cols-12 md:items-end lg:px-12">
+        <Reveal as="h2" className="max-w-4xl text-5xl leading-[1.02] md:col-span-7 md:text-8xl">
+          <span className="font-semibold text-[#364b9b]">Who </span>
+          <span className="font-light text-[#EC3814]">trusted me</span>
+        </Reveal>
+        <Reveal as="p" delay={0.1} className="text-lg leading-relaxed text-[#364b9b]/80 md:col-span-4 md:col-start-9">
           {clients.length} publishers and brands have trusted me so far, with consistent results.
-        </p>
+        </Reveal>
       </header>
 
-      {/* Con prefers-reduced-motion l'animazione si ferma e la riga diventa scorrevole a mano */}
-      <div className="overflow-x-hidden border-y border-white/20 py-12 motion-reduce:overflow-x-auto">
+      {/* Bordi e loghi sfumano ai lati */}
+      <div className="overflow-x-hidden border-y border-[#364b9b]/20 py-12 [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] motion-reduce:overflow-x-auto">
         <div className="marquee-track flex w-max" data-paused={paused}>
           <ul className={group}>
             {clients.map((c) => (
@@ -87,7 +95,7 @@ export default function ClientsMarquee() {
           type="button"
           onClick={() => setPaused((p) => !p)}
           aria-pressed={paused}
-          className="inline-flex items-center gap-2 text-sm text-white/70 transition-colors hover:text-white"
+          className="inline-flex items-center gap-2 text-sm text-[#364b9b]/80 transition-colors hover:text-[#364b9b]"
         >
           {paused ? <Play size={16} weight="fill" aria-hidden="true" /> : <Pause size={16} weight="fill" aria-hidden="true" />}
           {paused ? 'Play logos' : 'Pause logos'}
@@ -95,18 +103,26 @@ export default function ClientsMarquee() {
       </div>
 
       <div className="mx-auto mt-28 max-w-[1600px] px-6 lg:px-12">
-        <h2 className="font-display max-w-4xl text-5xl leading-[1.02] md:text-8xl">Do you have a project in mind?</h2>
-        <p className="mt-8 flex items-center gap-3 text-lg text-white">
-          <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#EC3814] motion-safe:animate-pulse" />
-          {AVAILABILITY}
-        </p>
-        <p className="mt-4 max-w-xl text-lg leading-relaxed text-white/80">
-          Let's talk about it together and turn your idea into reality.
-        </p>
-        <Link to="/contact" className="group mt-10 inline-flex items-center gap-3 text-xl text-white transition-colors hover:text-[#EC3814]">
-          Get in touch
-          <ArrowUpRight size={22} weight="bold" aria-hidden="true" className="transition-transform group-hover:rotate-45" />
-        </Link>
+        <Reveal as="h2" className="max-w-4xl text-5xl leading-[1.02] md:text-8xl">
+          <span className="font-semibold text-[#364b9b]">Do you have a </span>
+          <span className="font-light text-[#EC3814]">project in mind?</span>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <p className="mt-8 inline-flex items-center gap-3 rounded-full border border-[#364b9b]/25 px-5 py-2.5 text-sm font-medium text-[#364b9b]">
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#EC3814] motion-safe:animate-pulse" />
+            {AVAILABILITY}
+          </p>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-[#364b9b]/80">
+            Let's talk about it together and turn your idea into reality.
+          </p>
+          <Link to="/contact" className="group mt-10 inline-flex items-center gap-5 text-xl font-medium text-[#364b9b]">
+            <span className="transition-colors duration-300 group-hover:text-[#EC3814]">Get in touch</span>
+            <span className="flex h-14 w-14 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
+              <ArrowUpRight size={24} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
+            </span>
+          </Link>
+        </Reveal>
       </div>
     </section>
   );
