@@ -22,28 +22,13 @@ const clients = [
   { name: 'Gyada Cosmetics S.r.l.', logo: logo(13) },
 ];
 
-function Logo({ client, decorative }) {
+function Logo({ client }) {
+  // Una sola maschera: il colore cambia con una transizione di background (la metà dei livelli da disegnare)
   return (
     <div className="group relative flex h-12 w-32 shrink-0 items-center justify-center md:w-40">
-      {/* Maschera Blu (#364b9b) di base */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[#364b9b] opacity-80 transition-opacity duration-300 group-hover:opacity-0"
-        style={{
-          maskImage: `url(${client.logo})`,
-          WebkitMaskImage: `url(${client.logo})`,
-          maskSize: 'contain',
-          WebkitMaskSize: 'contain',
-          maskRepeat: 'no-repeat',
-          WebkitMaskRepeat: 'no-repeat',
-          maskPosition: 'center',
-          WebkitMaskPosition: 'center',
-        }}
-      />
-      {/* Maschera Rossa (#EC3814) all'hover */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-[#EC3814] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        className="absolute inset-0 bg-[#364b9b]/80 transition-colors duration-300 group-hover:bg-[#EC3814]"
         style={{
           maskImage: `url(${client.logo})`,
           WebkitMaskImage: `url(${client.logo})`,
@@ -75,20 +60,24 @@ export default function ClientsMarquee() {
         </Reveal>
       </header>
 
-      {/* Bordi e loghi sfumano ai lati */}
-      <div className="overflow-x-hidden border-y border-[#364b9b]/20 py-12 [-webkit-mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)] motion-reduce:overflow-x-auto">
-        <div className="marquee-track flex w-max" data-paused={paused}>
-          <ul className={group}>
-            {clients.map((c) => (
-              <li key={c.name}><Logo client={c} /></li>
-            ))}
-          </ul>
-          <ul className={group} aria-hidden="true">
-            {clients.map((c) => (
-              <li key={c.name}><Logo client={c} decorative /></li>
-            ))}
-          </ul>
+      {/* Loghi: ai lati due veli bianchi sfumati (più leggeri di una maschera sul contenitore animato) */}
+      <div className="relative">
+        <div className="overflow-x-hidden border-y border-[#364b9b]/20 py-12 motion-reduce:overflow-x-auto">
+          <div className="marquee-track flex w-max will-change-transform" data-paused={paused}>
+            <ul className={group}>
+              {clients.map((c) => (
+                <li key={c.name}><Logo client={c} /></li>
+              ))}
+            </ul>
+            <ul className={group} aria-hidden="true">
+              {clients.map((c) => (
+                <li key={c.name}><Logo client={c} /></li>
+              ))}
+            </ul>
+          </div>
         </div>
+        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 w-[10%] bg-gradient-to-r from-white to-transparent motion-reduce:hidden" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 w-[10%] bg-gradient-to-l from-white to-transparent motion-reduce:hidden" />
       </div>
       <div className="mx-auto mt-4 flex max-w-[1600px] justify-end px-6 motion-reduce:hidden lg:px-12">
         <button

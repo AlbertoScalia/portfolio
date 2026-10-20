@@ -86,7 +86,7 @@ export default function Navbar() {
         aria-hidden="true"
         className={cn(
           'absolute inset-0 transition-colors duration-300',
-          scrolled && !isOpen ? 'bg-white/85 backdrop-blur-xl border-b border-[#364b9b]/10' : 'bg-transparent'
+          scrolled && !isOpen ? 'bg-white/90 backdrop-blur-md border-b border-[#364b9b]/10' : 'bg-transparent'
         )}
       />
 
