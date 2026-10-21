@@ -6,6 +6,9 @@
   html {
     background-color: #ffffff;
     scroll-padding-top: 4rem;
+    /* evita lo scatto laterale quando il modale blocca lo scroll */
+    scrollbar-gutter: stable;
+    color-scheme: light;
   }
   body {
     font-family: 'Inter', system-ui, sans-serif;
@@ -25,8 +28,19 @@
     color: #ffffff;
   }
   :focus-visible {
-    outline: 2px solid #364b9b;
+    outline: 3px solid #364b9b;
     outline-offset: 3px;
+  }
+  /* il contenuto riceve il focus via script dopo un cambio pagina: nessun contorno */
+  #main:focus {
+    outline: none;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  /* dissolvenza morbida a ogni cambio pagina */
+  main {
+    animation: page-in 0.45s ease-out;
   }
   .on-brand :focus-visible {
     outline-color: #ffffff;
@@ -49,4 +63,12 @@
 
 @keyframes marquee {
   to { transform: translateX(-50%); }
+}
+
+@keyframes page-in {
+  from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  main { animation: none; }
 }

@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useReducedMotion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Pause, Play } from '@phosphor-icons/react';
 import Reveal from './Reveal';
+import Magnetic from './Magnetic';
 
 const AVAILABILITY = 'OPEN TO UX/UI ROLES — AVAILABLE IMMEDIATELY';
 
@@ -22,10 +24,12 @@ const clients = [
   { name: 'Gyada Cosmetics S.r.l.', logo: logo(13) },
 ];
 
-function Logo({ client }) {
+function Logo({ client, labelled }) {
   // Una sola maschera: il colore cambia con una transizione di background (la metà dei livelli da disegnare)
   return (
     <div className="group relative flex h-12 w-32 shrink-0 items-center justify-center md:w-40">
+      {/* Nome del cliente per gli screen reader: i loghi sono solo maschere decorative */}
+      {labelled && <span className="sr-only">{client.name}</span>}
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-[#364b9b]/80 transition-colors duration-300 group-hover:bg-[#EC3814]"
@@ -46,6 +50,7 @@ function Logo({ client }) {
 
 export default function ClientsMarquee() {
   const [paused, setPaused] = useState(false);
+  const reduce = useReducedMotion();
   const group = 'flex shrink-0 items-center gap-16 pr-16 md:gap-32 md:pr-32';
 
   return (
@@ -62,11 +67,17 @@ export default function ClientsMarquee() {
 
       {/* Loghi: ai lati due veli bianchi sfumati (più leggeri di una maschera sul contenitore animato) */}
       <div className="relative">
-        <div className="overflow-x-hidden border-y border-[#364b9b]/20 py-12 motion-reduce:overflow-x-auto">
+        {/* Con "riduci movimento" la fascia è ferma e scorrevole: serve il focus da tastiera */}
+        <div
+          role="region"
+          aria-label="Clients and publishers"
+          tabIndex={reduce ? 0 : undefined}
+          className="overflow-x-hidden border-y border-[#364b9b]/20 py-12 motion-reduce:overflow-x-auto"
+        >
           <div className="marquee-track flex w-max will-change-transform" data-paused={paused}>
             <ul className={group}>
               {clients.map((c) => (
-                <li key={c.name}><Logo client={c} /></li>
+                <li key={c.name}><Logo client={c} labelled /></li>
               ))}
             </ul>
             <ul className={group} aria-hidden="true">
@@ -83,7 +94,6 @@ export default function ClientsMarquee() {
         <button
           type="button"
           onClick={() => setPaused((p) => !p)}
-          aria-pressed={paused}
           className="inline-flex items-center gap-2 text-sm text-[#364b9b]/80 transition-colors hover:text-[#364b9b]"
         >
           {paused ? <Play size={16} weight="fill" aria-hidden="true" /> : <Pause size={16} weight="fill" aria-hidden="true" />}
@@ -99,7 +109,7 @@ export default function ClientsMarquee() {
 
         <Reveal delay={0.1}>
           <p className="mt-8 inline-flex items-center gap-3 rounded-full border border-[#364b9b]/25 px-5 py-2.5 text-sm font-medium text-[#364b9b]">
-            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#EC3814] motion-safe:animate-pulse" />
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#EC3814] motion-safe:animate-[pulse_1.8s_ease-in-out_2]" />
             {AVAILABILITY}
           </p>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-[#364b9b]/80">
@@ -107,9 +117,11 @@ export default function ClientsMarquee() {
           </p>
           <Link to="/contact" className="group mt-10 inline-flex items-center gap-5 text-xl font-medium text-[#364b9b]">
             <span className="transition-colors duration-300 group-hover:text-[#EC3814]">Get in touch</span>
-            <span className="flex h-14 w-14 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
-              <ArrowUpRight size={24} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
-            </span>
+            <Magnetic>
+              <span className="flex h-14 w-14 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
+                <ArrowUpRight size={24} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
+              </span>
+            </Magnetic>
           </Link>
         </Reveal>
       </div>

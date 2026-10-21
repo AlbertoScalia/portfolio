@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { ArrowUpRight } from '@phosphor-icons/react';
+import { ArrowUpRight, CheckCircle } from '@phosphor-icons/react';
 import Reveal from '../components/Reveal';
+import Magnetic from '../components/Magnetic';
+import usePageTitle from '../hooks/usePageTitle';
 
 const EMAIL = ''; // inserisci la tua email: se vuota non viene mostrata
 const LOCATION = 'Acireale, CT, Italy';
@@ -20,13 +22,14 @@ function Field({ label, as: Tag = 'input', ...props }) {
       <Tag
         {...props}
         required
-        className="border-b border-[#364b9b]/30 bg-transparent py-3 text-lg text-[#364b9b] transition-colors placeholder:text-[#364b9b]/80 hover:border-[#364b9b]/60 focus:border-[#EC3814] focus:shadow-[0_1px_0_0_#EC3814] focus:outline-none"
+        className="border-b border-[#364b9b]/70 bg-transparent py-3 text-lg text-[#364b9b] transition-colors placeholder:text-[#364b9b]/80 hover:border-[#364b9b] focus:border-[#EC3814] focus:shadow-[0_1px_0_0_#EC3814] focus:outline-none"
       />
     </div>
   );
 }
 
 export default function Contact() {
+  usePageTitle('Contact — Alberto Scalia');
   const [form, setForm] = useState(empty);
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
 
@@ -87,7 +90,7 @@ export default function Contact() {
           </dl>
         </Reveal>
 
-        <Reveal as="form" delay={0.25} onSubmit={onSubmit} className="flex flex-col gap-10 lg:col-span-8">
+        <Reveal as="form" aria-label="Contact form" delay={0.25} onSubmit={onSubmit} className="flex flex-col gap-10 lg:col-span-8">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
             <Field label="Name" id="name" name="name" type="text" autoComplete="name" value={form.name} onChange={onChange} placeholder="Your name or company" />
             <Field label="Email" id="email" name="email" type="email" autoComplete="email" value={form.email} onChange={onChange} placeholder="Where can I reply?" />
@@ -104,19 +107,31 @@ export default function Contact() {
             <button
               type="submit"
               disabled={status === 'sending'}
+              aria-busy={status === 'sending'}
               className="group inline-flex items-center gap-4 text-lg font-medium text-[#364b9b] disabled:opacity-60"
             >
               <span className="transition-colors duration-300 group-hover:text-[#EC3814]">
                 {status === 'sending' ? 'Sending…' : 'Send message'}
               </span>
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
-                <ArrowUpRight size={20} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
-              </span>
+              <Magnetic>
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
+                  <ArrowUpRight size={20} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
+                </span>
+              </Magnetic>
             </button>
-            <p role="status" aria-live="polite" className={status === 'error' ? 'text-red-700' : 'text-[#364b9b]/85'}>
-              {status === 'success' && 'Message sent. Thank you, I will get back to you.'}
-              {status === 'error' && `Your message wasn't sent. Check your connection and try again${EMAIL ? `, or write to ${EMAIL}` : ''}.`}
+            <p role="status" aria-live="polite" className="flex items-center gap-2 text-[#364b9b]/85">
+              {status === 'success' && (
+                <>
+                  <CheckCircle size={22} weight="fill" aria-hidden="true" className="shrink-0 text-[#364b9b]" />
+                  Message sent. Thank you, I will get back to you.
+                </>
+              )}
             </p>
+            {status === 'error' && (
+              <p role="alert" className="text-red-700">
+                {`Your message wasn't sent. Check your connection and try again${EMAIL ? `, or write to ${EMAIL}` : ''}.`}
+              </p>
+            )}
           </div>
         </Reveal>
       </div>

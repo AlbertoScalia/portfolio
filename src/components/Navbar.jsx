@@ -1,18 +1,31 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion, useScroll } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '../utils/cn';
+import Cursor from './Cursor';
 
 const NAME = 'Alberto Scalia';
 const LOGO = `${import.meta.env.BASE_URL}assets/images/Logo_nav.webp`;
 
 export default function Navbar() {
-  const { pathname } = useLocation();
+  const { pathname, state } = useLocation();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll();
+  const headerRef = useRef(null);
+  const toggleRef = useRef(null);
+  const prevPath = useRef(pathname);
+
+  // Transizione tra le pagine: ad ogni cambio rotta due tende (arancione e blu) salgono e scoprono la nuova pagina.
+  // Lo stato viene aggiornato durante il render, così la tenda compare nello stesso istante della nuova pagina.
+  const [lastPath, setLastPath] = useState(pathname);
+  const [curtainKey, setCurtainKey] = useState(0);
+  if (pathname !== lastPath) {
+    setLastPath(pathname);
+    setCurtainKey((k) => k + 1);
+  }
 
   const close = useCallback(() => setIsOpen(false), []);
 
@@ -35,14 +48,57 @@ export default function Navbar() {
 
   useEffect(close, [pathname, close]);
 
+  // Cambio pagina: torna in cima (tranne quando si arriva da "Work") e porta il focus sul contenuto,
+  // così tastiera e screen reader ripartono dalla nuova pagina
+  useEffect(() => {
+    if (prevPath.current === pathname) return;
+    prevPath.current = pathname;
+    if (!state?.scrollTo) window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    const main = document.getElementById('main');
+    if (main) {
+      main.setAttribute('tabindex', '-1');
+      main.focus({ preventScroll: true });
+    }
+  }, [pathname, state]);
+
+  // Menu mobile aperto: focus dentro il menu, contenuto sotto non raggiungibile, Esc chiude e restituisce il focus
   useEffect(() => {
     if (!isOpen) return;
-    const onKey = (e) => e.key === 'Escape' && close();
-    const onResize = () => window.innerWidth >= 768 && close();
+    const behind = Array.from(document.querySelectorAll('main, footer'));
+    behind.forEach((el) => el.setAttribute('inert', ''));
     document.body.style.overflow = 'hidden';
+    headerRef.current?.querySelector('#mobile-menu a')?.focus();
+
+    const focusables = () =>
+      Array.from(headerRef.current?.querySelectorAll('a[href], button:not([disabled])') ?? []).filter(
+        (el) => el.getClientRects().length > 0
+      );
+
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        close();
+        toggleRef.current?.focus();
+        return;
+      }
+      if (e.key !== 'Tab') return;
+      const items = focusables();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    const onResize = () => window.innerWidth >= 768 && close();
+
     window.addEventListener('keydown', onKey);
     window.addEventListener('resize', onResize);
     return () => {
+      behind.forEach((el) => el.removeAttribute('inert'));
       document.body.style.overflow = '';
       window.removeEventListener('keydown', onKey);
       window.removeEventListener('resize', onResize);
@@ -74,7 +130,8 @@ export default function Navbar() {
   ];
 
   return (
-    <header className="fixed inset-x-0 top-0 z-[100]">
+    <>
+    <header ref={headerRef} className="fixed inset-x-0 top-0 z-[100]">
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-20 focus:bg-white focus:px-4 focus:py-2 focus:text-black"
@@ -150,6 +207,7 @@ export default function Navbar() {
         </ul>
 
         <button
+          ref={toggleRef}
           type="button"
           onClick={() => setIsOpen((o) => !o)}
           aria-label={isOpen ? 'Close menu' : 'Open menu'}
@@ -192,5 +250,27 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </header>
+
+    {/* Tende di transizione (decorative, non bloccano i click, assenti con "riduci movimento") */}
+    {curtainKey > 0 && !reduce && (
+      <div key={curtainKey} aria-hidden="true" className="pointer-events-none fixed inset-0 z-[300]">
+        {[
+          { color: '#364b9b', delay: 0.1 },
+          { color: '#EC3814', delay: 0 },
+        ].map(({ color, delay }) => (
+          <motion.div
+            key={color}
+            initial={{ opacity: 0, y: '0%' }}
+            animate={{ opacity: [0, 1, 1], y: ['0%', '0%', '-115%'] }}
+            transition={{ duration: 0.85, delay, times: [0, 0.15, 1], ease: [0.76, 0, 0.24, 1] }}
+            style={{ backgroundColor: color, borderRadius: '0 0 50% 50% / 0 0 12% 12%' }}
+            className="absolute inset-0"
+          />
+        ))}
+      </div>
+    )}
+
+    <Cursor />
+    </>
   );
 }

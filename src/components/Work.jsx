@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { ArrowUpRight, X } from '@phosphor-icons/react';
+import { ArrowRight, ArrowUpRight, X } from '@phosphor-icons/react';
 import Reveal from './Reveal';
+import Magnetic from './Magnetic';
 
 const img = (name) => `${import.meta.env.BASE_URL}assets/images/${name}`;
 
@@ -146,8 +147,9 @@ function Description({ text }) {
   );
 }
 
-function ProjectModal({ project, onClose }) {
+function ProjectModal({ project, nextProject, onNext, onClose }) {
   const reduce = useReducedMotion();
+  const overlay = useRef(null);
   const panel = useRef(null);
   const closeBtn = useRef(null);
 
@@ -180,10 +182,17 @@ function ProjectModal({ project, onClose }) {
     };
   }, [onClose]);
 
+  // Passando al progetto successivo: si riparte dall'alto e il focus torna sul pulsante di chiusura
+  useEffect(() => {
+    overlay.current?.scrollTo?.({ top: 0 });
+    closeBtn.current?.focus();
+  }, [project.title]);
+
   const { details } = project;
 
   return (
     <motion.div
+      ref={overlay}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -191,8 +200,13 @@ function ProjectModal({ project, onClose }) {
       onClick={onClose}
       className="fixed inset-0 z-[200] overflow-y-auto bg-black/85"
     >
-      <div
+      <motion.div
+        key={project.title}
         ref={panel}
+        initial={{ opacity: 0, y: reduce ? 0 : 32 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: reduce ? 0 : 16 }}
+        transition={{ duration: reduce ? 0 : 0.35, ease: [0.16, 1, 0.3, 1] }}
         role="dialog"
         aria-modal="true"
         aria-labelledby="project-modal-title"
@@ -204,12 +218,12 @@ function ProjectModal({ project, onClose }) {
           type="button"
           onClick={onClose}
           aria-label="Close project details"
-          className="absolute right-4 top-4 p-2 text-[#364b9b]/70 transition-colors hover:text-[#364b9b]"
+          className="absolute right-4 top-4 p-2 text-[#364b9b]/80 transition-colors hover:text-[#364b9b]"
         >
           <X size={28} aria-hidden="true" />
         </button>
 
-        <h2 id="project-modal-title" className="mb-8 pr-12 text-4xl font-medium leading-tight md:text-6xl text-[#364b9b]">
+        <h2 id="project-modal-title" className="mb-8 pr-12 text-4xl font-semibold leading-tight md:text-6xl text-[#364b9b]">
           {project.title}
         </h2>
 
@@ -238,7 +252,25 @@ function ProjectModal({ project, onClose }) {
             View live project <ArrowUpRight size={18} aria-hidden="true" />
           </a>
         )}
-      </div>
+
+        {nextProject && nextProject.title !== project.title && (
+          <button
+            type="button"
+            onClick={onNext}
+            className="group mt-12 flex w-full items-center justify-between gap-6 border-t border-[#364b9b]/20 pt-8 text-left"
+          >
+            <span>
+              <span className="block text-sm font-medium text-[#364b9b]/80">Next project</span>
+              <span className="block text-2xl font-semibold text-[#364b9b] transition-colors group-hover:text-[#EC3814] md:text-4xl">
+                {nextProject.title}
+              </span>
+            </span>
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#364b9b] text-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
+              <ArrowRight size={20} weight="bold" aria-hidden="true" />
+            </span>
+          </button>
+        )}
+      </motion.div>
     </motion.div>
   );
 }
@@ -249,6 +281,7 @@ const stretched =
   "block w-full text-left after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-[#EC3814]";
 
 function ProjectCard({ project, onOpen }) {
+  const reduce = useReducedMotion();
   const title = (
     <span className="flex items-start justify-between gap-4">
       <span className="text-3xl leading-tight transition-colors group-hover:text-[#EC3814] md:text-4xl text-[#364b9b]">
@@ -264,17 +297,38 @@ function ProjectCard({ project, onOpen }) {
   );
 
   return (
-    <article className="group relative flex w-full flex-col">
-      <div className="aspect-[16/10] overflow-hidden bg-neutral-900">
-        <img
-          src={project.image}
-          alt={`${project.title}, project preview`}
-          loading="lazy"
-          decoding="async"
-          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
-        />
-      </div>
-      <div className="flex flex-col gap-3 px-6 pt-6 lg:px-12">
+    <article data-cursor={project.details ? 'View' : 'Visit'} className="group relative flex w-full flex-col">
+      {/* L'immagine si scopre dall'alto quando entra nel viewport */}
+      <motion.div
+        initial={reduce ? false : { clipPath: 'inset(0 0 100% 0)' }}
+        whileInView={{ clipPath: 'inset(0 0 0% 0)' }}
+        viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+        className="aspect-[16/10] overflow-hidden bg-neutral-900"
+      >
+        <motion.div
+          initial={reduce ? false : { scale: 1.12 }}
+          whileInView={{ scale: 1 }}
+          viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          className="h-full w-full"
+        >
+          <img
+            src={project.image}
+            alt={`${project.title}, project preview`}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
+          />
+        </motion.div>
+      </motion.div>
+      <motion.div
+        initial={reduce ? false : { opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true, margin: '0px 0px -10% 0px' }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="flex flex-col gap-3 px-6 pt-6 lg:px-12"
+      >
         <h3>
           {project.details ? (
             <button type="button" onClick={() => onOpen(project)} className={stretched}>
@@ -289,7 +343,7 @@ function ProjectCard({ project, onOpen }) {
         <p className="max-w-xl text-[15px] leading-relaxed text-[#364b9b]/80">{project.subtitle}</p>
         {project.highlight && <p className="text-[15px] font-medium text-[#364b9b]">{project.highlight}</p>}
         <p className="text-sm text-[#364b9b]/80">{project.badges.join(', ')}</p>
-      </div>
+      </motion.div>
     </article>
   );
 }
@@ -299,6 +353,13 @@ function ProjectCard({ project, onOpen }) {
 export default function Work() {
   const [selected, setSelected] = useState(null);
   const closeModal = useCallback(() => setSelected(null), []);
+
+  // Progetti che hanno una scheda: servono per il pulsante "Next project" del modale
+  const withDetails = sections.flatMap((s) => s.projects).filter((p) => p.details);
+  const nextOf = (p) => {
+    const i = withDetails.findIndex((x) => x.title === p.title);
+    return i === -1 ? null : withDetails[(i + 1) % withDetails.length];
+  };
 
   return (
     <section id="work" aria-label="Selected work">
@@ -332,14 +393,24 @@ export default function Work() {
           className="group inline-flex items-center gap-4 text-lg font-medium text-[#364b9b]"
         >
           <span className="transition-colors duration-300 group-hover:text-[#EC3814]">View the full archive on Behance</span>
-          <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
-            <ArrowUpRight size={20} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
-          </span>
+          <Magnetic>
+            <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
+              <ArrowUpRight size={20} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
+            </span>
+          </Magnetic>
         </a>
       </div>
 
       <AnimatePresence>
-        {selected && <ProjectModal key={selected.title} project={selected} onClose={closeModal} />}
+        {selected && (
+          <ProjectModal
+            key="project-modal"
+            project={selected}
+            nextProject={nextOf(selected)}
+            onNext={() => setSelected(nextOf(selected))}
+            onClose={closeModal}
+          />
+        )}
       </AnimatePresence>
     </section>
   );

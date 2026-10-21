@@ -1,10 +1,14 @@
 import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import HeroParallax from '../components/HeroParallax';
+import Tape from '../components/Tape';
 import Work from '../components/Work';
+import Stats from '../components/Stats';
 import ClientsMarquee from '../components/ClientsMarquee';
+import usePageTitle from '../hooks/usePageTitle';
 
 export default function Home() {
+  usePageTitle('Alberto Scalia — Visual & Interface Designer');
   const { state, pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -22,7 +26,9 @@ export default function Home() {
   return (
     <main id="main">
       <HeroParallax />
+      <Tape />
       <Work />
+      <Stats />
       <ClientsMarquee />
     </main>
   );

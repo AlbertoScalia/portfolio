@@ -2,6 +2,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowUp, BehanceLogo, GithubLogo, LinkedinLogo } from '@phosphor-icons/react';
 import { GRAIN } from '../utils/grain';
+import Magnetic from './Magnetic';
 
 const NAME = 'Alberto Scalia';
 const ROLE = 'Visual & Interface Designer';
@@ -28,7 +29,15 @@ export default function Footer() {
     }
   };
 
-  const toTop = () => window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+  // Torna in cima e sposta anche il focus, così chi usa la tastiera non resta in fondo alla pagina
+  const toTop = () => {
+    window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
+    const main = document.getElementById('main');
+    if (main) {
+      main.setAttribute('tabindex', '-1');
+      main.focus({ preventScroll: true });
+    }
+  };
 
   return (
     <footer className="on-brand relative isolate overflow-hidden bg-[#C72E0E] px-6 pb-10 pt-20 text-white lg:px-12">
@@ -69,7 +78,7 @@ export default function Footer() {
                     href={href}
                     target="_blank"
                     rel="noreferrer"
-                    aria-label={name}
+                    aria-label={`${name} (opens in a new tab)`}
                     className="flex h-10 w-10 items-center justify-center rounded-full border border-white text-white transition-colors duration-300 hover:bg-white hover:text-[#C72E0E]"
                   >
                     <Icon size={18} weight="bold" aria-hidden="true" />
@@ -84,14 +93,16 @@ export default function Footer() {
           <p className="text-sm text-white">
             &copy; {new Date().getFullYear()} {NAME}. All rights reserved.
           </p>
-          <button
-            type="button"
-            onClick={toTop}
-            aria-label="Back to top"
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white text-white transition-colors duration-300 hover:bg-white hover:text-[#C72E0E]"
-          >
-            <ArrowUp size={18} weight="bold" aria-hidden="true" />
-          </button>
+          <Magnetic>
+            <button
+              type="button"
+              onClick={toTop}
+              aria-label="Back to top"
+              className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white text-white transition-colors duration-300 hover:bg-white hover:text-[#C72E0E]"
+            >
+              <ArrowUp size={18} weight="bold" aria-hidden="true" />
+            </button>
+          </Magnetic>
         </div>
       </div>
     </footer>

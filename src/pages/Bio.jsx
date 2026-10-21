@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Minus, Plus } from '@phosphor-icons/react';
 import Reveal from '../components/Reveal';
+import usePageTitle from '../hooks/usePageTitle';
 
 const A = ({ href, children }) => (
   <a href={href} target="_blank" rel="noopener noreferrer" className="underline decoration-[#EC3814] underline-offset-4 transition-colors hover:text-[#EC3814]">
@@ -32,23 +33,25 @@ const education = [
   { date: '2017 – 2020', title: "Bachelor's Degree in Visual Communication Design", sub: <span className="underline decoration-[#EC3814] underline-offset-4">Accademia di Belle Arti di Catania</span>, desc: 'The foundations of everything I break and rebuild today. From color theory to rigid typography.' },
 ];
 
+// Il contenitore con l'id c'è sempre, così aria-controls punta a un elemento esistente anche a pannello chiuso
 function Panel({ id, isOpen, children }) {
   const reduce = useReducedMotion();
   return (
-    <AnimatePresence initial={false}>
-      {isOpen && (
-        <motion.div
-          id={id}
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: 'auto', opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: reduce ? 0 : 0.25 }}
-          className="overflow-hidden"
-        >
-          {children}
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <div id={id}>
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: reduce ? 0 : 0.25 }}
+            className="overflow-hidden"
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
@@ -132,6 +135,7 @@ function SkillsAccordion({ categories, id }) {
 }
 
 export default function Bio() {
+  usePageTitle('About — Alberto Scalia');
   return (
     <main id="main" className="mx-auto min-h-screen max-w-[1600px] px-6 pb-24 pt-40 text-[#364b9b] lg:px-12">
       <header className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">
