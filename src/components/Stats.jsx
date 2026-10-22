@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
-import { animate, useInView, useReducedMotion } from 'framer-motion';
+import { animate, useInView } from 'framer-motion';
+import useMotionPref from '../hooks/useMotionPref';
 import Reveal from './Reveal';
+import Guides from './Guides';
 
 const STATS = [
   { value: 50, suffix: '+', label: 'Book projects delivered' },
-  { value: 12, suffix: '', label: 'Publishers and institutions' },
+  { value: 12, suffix: '', label: 'Publishers and brands' },
 ];
 
 // Numero che conta fino al valore quando entra nel viewport.
@@ -12,7 +14,7 @@ const STATS = [
 function CountUp({ to, suffix }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '0px 0px -10% 0px' });
-  const reduce = useReducedMotion();
+  const reduce = useMotionPref();
   const [n, setN] = useState(reduce ? to : 0);
 
   useEffect(() => {
@@ -45,7 +47,8 @@ function CountUp({ to, suffix }) {
 
 export default function Stats() {
   return (
-    <section aria-labelledby="stats-title" className="relative overflow-hidden border-t border-[#364b9b]/20 py-20 md:py-32">
+    <section aria-labelledby="stats-title" className="relative overflow-hidden bg-[#F3F5FB] py-20 md:py-32">
+      <Guides />
       <div aria-hidden="true" className="pointer-events-none absolute -right-[12%] top-1/2 aspect-square w-[44%] -translate-y-1/2 rounded-full border border-[#EC3814]/25" />
 
       <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
@@ -60,7 +63,7 @@ export default function Stats() {
               <p className="text-[clamp(5rem,16vw,14rem)] font-semibold leading-[0.9] tracking-[-0.045em] text-[#364b9b]">
                 <CountUp to={value} suffix={suffix} />
               </p>
-              <p className="mt-4 text-lg text-[#364b9b]/80">{label}</p>
+              <p className="mt-4 text-lg text-[#364b9b]/90">{label}</p>
             </Reveal>
           ))}
         </ul>

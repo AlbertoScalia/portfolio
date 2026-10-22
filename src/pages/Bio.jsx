@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import useMotionPref from '../hooks/useMotionPref';
 import { Minus, Plus } from '@phosphor-icons/react';
 import Reveal from '../components/Reveal';
 import usePageTitle from '../hooks/usePageTitle';
@@ -18,24 +19,80 @@ const skillCategories = [
 ];
 
 const experiences = [
-  { date: '2026 – Present', title: 'Visual & Brand Designer', sub: <A href="https://gyadacosmetics.com/">Gyada Cosmetics S.r.l.</A>, desc: 'I manage the entire packaging cycle for cosmetic lines, from realistic mockups to print-ready artwork.' },
-  { date: '2022 – Present', title: 'Visual & Editorial Designer', sub: <><A href="https://www.layoutmagazine.it/">lay0ut magazine</A>, <A href="https://forward.recentiprogressi.it/it/">Forward magazine</A></>, desc: "From underground zines to peer-reviewed science — I've designed both, and they've taught me everything about hierarchy." },
-  { date: '2025 – 2026', title: 'Visual & Brand Designer', sub: <A href="https://www.life-electronics.com/it">Life Electronics SpA</A>, desc: 'I dress tech products without forgetting barcodes. I manage the entire packaging cycle by integrating creativity with complex management systems like SAP and EKR KIT.' },
-  { date: '2021 – 2026', title: 'Visual & Book Designer', sub: <span className="underline decoration-[#EC3814] underline-offset-4">Various Independent Publishers</span>, desc: 'I take care of visual identities and typesetting for 12 independent publishers and academic institutions, delivering over 50 book projects.' },
-  { date: '2021 – 2023', title: 'Graphic Design Intern', sub: <A href="https://letteraventidue.com/it/">LetteraVentidue Edizioni</A>, desc: 'A total immersion in the world of books: from the choice of paper to the millimetric precision of typographic grids.' },
+  {
+    date: 'Jun. 2026 – Present',
+    title: 'Visual & Brand Designer',
+    sub: <A href="https://gyadacosmetics.com/">Gyada Cosmetics S.r.l.</A>,
+    desc: 'Catania, Italy | Created and managed end-to-end graphic design for cosmetic lines, packaging layouts, product mockups, and print-ready artwork, elevating brand consistency and retail shelf appeal.',
+  },
+  {
+    date: 'Feb. 2025 – Present',
+    title: 'Visual & Editorial Designer',
+    sub: <A href="https://forward.recentiprogressi.it/it/">Forward magazine (Il Pensiero Scientifico Editore)</A>,
+    desc: 'Rome, Italy | Orchestrated graphic layout and cross-media identity, streamlining production workflows and establishing a cohesive brand language across all issues.',
+  },
+  {
+    date: 'May 2022 – May 2026',
+    title: 'Visual & Editorial Designer',
+    sub: <A href="https://www.layoutmagazine.it/">lay0ut magazine</A>,
+    desc: 'Milan, Italy | Curated layout design, grid systems, and typography for digital and print content, ensuring visual consistency and optimizing the reading experience.',
+  },
+  {
+    date: 'Jun. 2025 – Jan. 2026',
+    title: 'Visual & Brand Designer',
+    sub: <A href="https://www.life-electronics.com/it">Life Electronics S.p.A.</A>,
+    desc: 'Riposto, Catania, Italy | Designed packaging and updated website news using EKR KIT and SAP Business One to eliminate manual data-entry errors and accelerate time-to-market.',
+  },
+  {
+    date: 'Jul. 2021 – Jan. 2026',
+    title: 'Freelance Visual & Book Designer',
+    sub: <span className="underline decoration-[#EC3814] underline-offset-4">12+ publishers (incl. Flaco Edizioni Group, Editori Riuniti, Ricca Editore)</span>,
+    desc: 'Italy | Directed visual identity and typesetting for 12+ independent publishers, delivering 50+ high-profile editorial projects with 100% on-time print readiness.',
+  },
+  {
+    date: 'Nov. 2021 – Jan. 2023',
+    title: 'Graphic Design Intern',
+    sub: <A href="https://letteraventidue.com/it/">LetteraVentidue Edizioni</A>,
+    desc: 'Syracuse, Italy | Collaborated on architectural book design for international authors (Umberto Riva, Giorgio Grassi), ensuring total precision from draft to final print.',
+  },
 ];
 
 const education = [
-  { date: '2025 – 2026', title: 'Growth Marketing & AI Agents Master', sub: <span className="underline decoration-[#EC3814] underline-offset-4">start2impact</span>, desc: <>A multidisciplinary path that combines strategic marketing, UX/UI design, and data analysis with a strong focus on artificial intelligence. You can view my profile and projects <A href="https://account.start2impact.it/profile/alberto-scalia">here</A>.</> },
-  { date: '2024', title: 'Complete UX Design Course', sub: <span className="underline decoration-[#EC3814] underline-offset-4">corsoux.it</span>, desc: 'Where I understood that a test with a real user is worth more than a thousand hours of brainstorming in an agency.' },
-  { date: '2023', title: 'Master in Full Stack Web Developer', sub: <span className="underline decoration-[#EC3814] underline-offset-4">Boolean</span>, desc: 'Where I stopped asking developers if a design was feasible and started writing the code myself.' },
-  { date: '2021', title: 'Master in Publishing', sub: <span className="underline decoration-[#EC3814] underline-offset-4">Scuola del Libro</span>, desc: 'An intensive program focused on print production, typography grids, and editorial project management.' },
-  { date: '2017 – 2020', title: "Bachelor's Degree in Visual Communication Design", sub: <span className="underline decoration-[#EC3814] underline-offset-4">Accademia di Belle Arti di Catania</span>, desc: 'The foundations of everything I break and rebuild today. From color theory to rigid typography.' },
+  {
+    date: 'Oct. 2025 – Apr. 2026',
+    title: 'Master Growth Marketing and AI Agents',
+    sub: <A href="https://www.start2impact.it/">start2impact</A>,
+    desc: 'Rome, Italy | Case Study Project: IsolaBio. Competencies: Funnel Marketing, SEO Audit, Growth Marketing, UX/UI Discovery, Wireframing, User Testing, AI-Optimized UI, Prompt Engineering, Meta/Google Ads, Email Marketing, Advanced Excel, SQL, GA4, Tableau, Looker Studio, HTML/CSS, AI Agent Design.',
+  },
+  {
+    date: 'Sep. – Oct. 2024',
+    title: 'UX Design Course',
+    sub: <A href="https://corsoux.it/">CorsoUx.it</A>,
+    desc: 'Case Study Project: Glacier. Competencies: Information Architecture, Low/High-Fidelity Wireframing, Interactive Prototyping.',
+  },
+  {
+    date: 'Feb. – Sep. 2023',
+    title: 'Master Full Stack Web Developer',
+    sub: <A href="https://boolean.careers/">Boolean</A>,
+    desc: 'Milan, Italy | Competencies: HTML/CSS, JavaScript, Responsive Web Design, CMS Integration.',
+  },
+  {
+    date: 'Mar. – Jul. 2021',
+    title: 'Master Il lavoro editoriale',
+    sub: <A href="https://www.scuoladellibro.it/">Scuola del Libro</A>,
+    desc: 'Rome, Italy | Competencies: Editorial Project Management, Fiction & Non-fiction Editing, Proofreading, Publishing Supply Chain, Rights & Copyright, Distribution Strategy, Press Office.',
+  },
+  {
+    date: 'Sep. 2017 – Sep. 2020',
+    title: "Bachelor's Degree in Visual Communication Design",
+    sub: <A href="https://www.abacatania.it/">Academy of Fine Arts of Catania</A>,
+    desc: 'Catania, Italy | 110/110 cum laude. Competencies: Editorial Design, Typography, Brand Identity, Visual Strategy, Art History & Semiotics, Web Design, Print Production, Design Theory.',
+  },
 ];
 
 // Il contenitore con l'id c'è sempre, così aria-controls punta a un elemento esistente anche a pannello chiuso
 function Panel({ id, isOpen, children }) {
-  const reduce = useReducedMotion();
+  const reduce = useMotionPref();
   return (
     <div id={id}>
       <AnimatePresence initial={false}>
@@ -81,7 +138,7 @@ function Accordion({ items, id }) {
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="group flex w-full items-start justify-between gap-4 text-left"
                 >
-                  <span className="text-2xl leading-snug text-[#364b9b] transition-colors group-hover:text-[#EC3814]">{item.title}</span>
+                  <span className="text-2xl leading-snug text-[#364b9b] transition-[color,transform] duration-300 group-hover:translate-x-2 group-hover:text-[#EC3814] motion-reduce:transform-none">{item.title}</span>
                   <Toggle isOpen={isOpen} />
                 </button>
               </h3>
@@ -114,7 +171,7 @@ function SkillsAccordion({ categories, id }) {
                 onClick={() => setOpen(isOpen ? null : i)}
                 className="group flex w-full items-start justify-between gap-4 text-left"
               >
-                <span className="text-xl leading-snug text-[#364b9b] transition-colors group-hover:text-[#EC3814]">{cat.title}</span>
+                <span className="text-xl leading-snug text-[#364b9b] transition-[color,transform] duration-300 group-hover:translate-x-2 group-hover:text-[#EC3814] motion-reduce:transform-none">{cat.title}</span>
                 <Toggle isOpen={isOpen} />
               </button>
             </h3>

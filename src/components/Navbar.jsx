@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion, useScroll } from 'framer-motion';
+import { AnimatePresence, motion, useScroll } from 'framer-motion';
+import useMotionPref from '../hooks/useMotionPref';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '../utils/cn';
 import Cursor from './Cursor';
+import RollText from './RollText';
 
 const NAME = 'Alberto Scalia';
 const LOGO = `${import.meta.env.BASE_URL}assets/images/Logo_nav.webp`;
@@ -12,7 +14,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const reduce = useReducedMotion();
+  const reduce = useMotionPref();
   const { scrollYProgress } = useScroll();
   const headerRef = useRef(null);
   const toggleRef = useRef(null);
@@ -108,7 +110,7 @@ export default function Navbar() {
   // Link desktop: sottolineatura che scorre da sinistra
   const desktopLink = (active) =>
     cn(
-      "relative py-1 text-[15px] transition-colors duration-200 hover:text-[#EC3814] after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:bg-[#EC3814] after:transition-transform after:duration-300 after:content-['']",
+      "group relative py-1 text-[15px] transition-colors duration-200 hover:text-[#EC3814] after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:bg-[#EC3814] after:transition-transform after:duration-300 after:content-['']",
       active
         ? 'text-[#364b9b] after:scale-x-100'
         : 'text-[#364b9b]/85 after:scale-x-0 hover:after:scale-x-100 motion-reduce:after:transition-none'
@@ -194,13 +196,13 @@ export default function Navbar() {
         <ul className="hidden items-center gap-10 md:flex">
           <li>
             <a href="#work" onClick={goWork} className={desktopLink(false)}>
-              Work
+              <RollText>Work</RollText>
             </a>
           </li>
           {pages.map(({ to, label }) => (
             <li key={to}>
               <Link to={to} aria-current={pathname === to ? 'page' : undefined} className={desktopLink(pathname === to)}>
-                {label}
+                <RollText>{label}</RollText>
               </Link>
             </li>
           ))}

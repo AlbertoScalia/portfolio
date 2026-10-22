@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { useReducedMotion } from 'framer-motion';
+import useMotionPref from '../hooks/useMotionPref';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, Pause, Play } from '@phosphor-icons/react';
 import Reveal from './Reveal';
 import Magnetic from './Magnetic';
+import RollText from './RollText';
 
 const AVAILABILITY = 'OPEN TO UX/UI ROLES — AVAILABLE IMMEDIATELY';
 
@@ -50,7 +51,7 @@ function Logo({ client, labelled }) {
 
 export default function ClientsMarquee() {
   const [paused, setPaused] = useState(false);
-  const reduce = useReducedMotion();
+  const reduce = useMotionPref();
   const group = 'flex shrink-0 items-center gap-16 pr-16 md:gap-32 md:pr-32';
 
   return (
@@ -72,7 +73,7 @@ export default function ClientsMarquee() {
           role="region"
           aria-label="Clients and publishers"
           tabIndex={reduce ? 0 : undefined}
-          className="overflow-x-hidden border-y border-[#364b9b]/20 py-12 motion-reduce:overflow-x-auto"
+          className={`border-y border-[#364b9b]/20 py-12 ${reduce ? 'overflow-x-auto' : 'overflow-x-hidden'}`}
         >
           <div className="marquee-track flex w-max will-change-transform" data-paused={paused}>
             <ul className={group}>
@@ -87,10 +88,10 @@ export default function ClientsMarquee() {
             </ul>
           </div>
         </div>
-        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 left-0 w-[10%] bg-gradient-to-r from-white to-transparent motion-reduce:hidden" />
-        <div aria-hidden="true" className="pointer-events-none absolute inset-y-0 right-0 w-[10%] bg-gradient-to-l from-white to-transparent motion-reduce:hidden" />
+        <div aria-hidden="true" hidden={reduce} className="pointer-events-none absolute inset-y-0 left-0 w-[10%] bg-gradient-to-r from-white to-transparent" />
+        <div aria-hidden="true" hidden={reduce} className="pointer-events-none absolute inset-y-0 right-0 w-[10%] bg-gradient-to-l from-white to-transparent" />
       </div>
-      <div className="mx-auto mt-4 flex max-w-[1600px] justify-end px-6 motion-reduce:hidden lg:px-12">
+      <div className={`mx-auto mt-4 max-w-[1600px] justify-end px-6 lg:px-12 ${reduce ? 'hidden' : 'flex'}`}>
         <button
           type="button"
           onClick={() => setPaused((p) => !p)}
@@ -116,7 +117,9 @@ export default function ClientsMarquee() {
             Let's talk about it together and turn your idea into reality.
           </p>
           <Link to="/contact" className="group mt-10 inline-flex items-center gap-5 text-xl font-medium text-[#364b9b]">
-            <span className="transition-colors duration-300 group-hover:text-[#EC3814]">Get in touch</span>
+            <span className="transition-colors duration-300 group-hover:text-[#EC3814]">
+              <RollText>Get in touch</RollText>
+            </span>
             <Magnetic>
               <span className="flex h-14 w-14 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
                 <ArrowUpRight size={24} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />

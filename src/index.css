@@ -49,6 +49,10 @@
 
 @layer components {
   .marquee-track { animation: marquee 45s linear infinite; }
+  /* Mentre passi sopra la fascia: gli altri loghi si attenuano e resta in evidenza quello sotto il puntatore */
+  .marquee-track li { transition: opacity 0.3s ease; }
+  .marquee-track:hover li { opacity: 0.35; }
+  .marquee-track:hover li:hover { opacity: 1; }
   .marquee-track:hover,
   .marquee-track:focus-within,
   .marquee-track[data-paused='true'] { animation-play-state: paused; }
@@ -71,4 +75,16 @@
 
 @media (prefers-reduced-motion: reduce) {
   main { animation: none; }
+}
+
+/* Interruttore "Reduce motion" del sito (classe messa su <html> da useMotionPref) */
+.no-motion main,
+.no-motion .marquee-track,
+.no-motion [class*='animate-'] {
+  animation: none;
+}
+.no-motion *,
+.no-motion *::before,
+.no-motion *::after {
+  transition-duration: 0.01ms !important;
 }

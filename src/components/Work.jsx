@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion, useScroll, useTransform } from 'framer-motion';
+import useMotionPref from '../hooks/useMotionPref';
 import { ArrowRight, ArrowUpRight, X } from '@phosphor-icons/react';
 import Reveal from './Reveal';
 import Magnetic from './Magnetic';
+import RollText from './RollText';
 
 const img = (name) => `${import.meta.env.BASE_URL}assets/images/${name}`;
 
@@ -15,7 +17,7 @@ const sections = [
       'I design interfaces where visual hierarchy does the heavy lifting — reducing friction, guiding attention, and making the next action feel obvious.',
     projects: [
       {
-        title: 'IsolaBio – Re-design website',
+        title: 'IsolaBio',
         subtitle:
           'Redesign of the Isola Bio website in desktop and mobile versions, with updated visual hierarchy, layout system, and responsive design.',
         image: img('project12.webp'),
@@ -32,7 +34,7 @@ My role covered the full project execution across four key phases:
         },
       },
       {
-        title: 'Glacier – Prototype app',
+        title: 'Glacier – born to be cold',
         subtitle:
           'Design a mobile app for extreme cold-weather adventure travel. The challenge was creating an interface that felt immersive and destination-specific without sacrificing usability in a content-heavy travel context.',
         image: img('project6.webp'),
@@ -85,7 +87,7 @@ My role focused on the magazine's layout and cover design, developed in collabor
       'Visual identities and printed pieces that hold together across posters, programs and social, built to last beyond a single campaign.',
     projects: [
       {
-        title: 'Cassandra – Poster',
+        title: 'Cassandra',
         subtitle:
           'An art installation at Spazio Volta in Bergamo needed a printed piece that functioned as both documentation and object — something a visitor would keep, not discard.',
         image: img('project4.webp'),
@@ -98,7 +100,7 @@ My role focused on designing the folding poster layout, combining a moody, textu
         },
       },
       {
-        title: 'Social Identity Socrates',
+        title: 'Sócrates. Sport, Storie, Società',
         subtitle:
           'A recurring festival needed an identity strong enough to anchor multiple editions while staying flexible across posters, programs, social, and merchandise.',
         image: img('project8.webp'),
@@ -148,7 +150,7 @@ function Description({ text }) {
 }
 
 function ProjectModal({ project, nextProject, onNext, onClose }) {
-  const reduce = useReducedMotion();
+  const reduce = useMotionPref();
   const overlay = useRef(null);
   const panel = useRef(null);
   const closeBtn = useRef(null);
@@ -223,9 +225,16 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
           <X size={28} aria-hidden="true" />
         </button>
 
-        <h2 id="project-modal-title" className="mb-8 pr-12 text-4xl font-semibold leading-tight md:text-6xl text-[#364b9b]">
+        <h2 id="project-modal-title" className="mb-5 pr-12 text-4xl font-semibold leading-tight md:text-6xl text-[#364b9b]">
           {project.title}
         </h2>
+        <ul className="mb-8 flex flex-wrap gap-2">
+          {project.badges.map((b) => (
+            <li key={b} className="rounded-full border border-[#364b9b]/25 px-3 py-1 text-[13px] font-medium text-[#364b9b]">
+              {b}
+            </li>
+          ))}
+        </ul>
 
         <Description text={details.roleDescription} />
 
@@ -280,8 +289,12 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
 const stretched =
   "block w-full text-left after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-[#EC3814]";
 
-function ProjectCard({ project, onOpen }) {
-  const reduce = useReducedMotion();
+function ProjectCard({ project, number, onOpen }) {
+  const reduce = useMotionPref();
+  const cardRef = useRef(null);
+  // Parallasse: l'immagine scorre un po' dentro la sua cornice mentre la card attraversa lo schermo
+  const { scrollYProgress } = useScroll({ target: cardRef, offset: ['start end', 'end start'] });
+  const imgY = useTransform(scrollYProgress, [0, 1], reduce ? ['0%', '0%'] : ['-5%', '5%']);
   const title = (
     <span className="flex items-start justify-between gap-4">
       <span className="text-3xl leading-tight transition-colors group-hover:text-[#EC3814] md:text-4xl text-[#364b9b]">
@@ -297,7 +310,7 @@ function ProjectCard({ project, onOpen }) {
   );
 
   return (
-    <article data-cursor={project.details ? 'View' : 'Visit'} className="group relative flex w-full flex-col">
+    <article ref={cardRef} data-cursor={project.details ? 'View' : 'Visit'} className="group relative flex w-full flex-col">
       {/* L'immagine si scopre dall'alto quando entra nel viewport */}
       <motion.div
         initial={reduce ? false : { clipPath: 'inset(0 0 100% 0)' }}
@@ -311,15 +324,17 @@ function ProjectCard({ project, onOpen }) {
           whileInView={{ scale: 1 }}
           viewport={{ once: true, margin: '0px 0px -10% 0px' }}
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          className="h-full w-full"
+          className="relative h-full w-full"
         >
-          <img
-            src={project.image}
-            alt={`${project.title}, project preview`}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
-          />
+          <motion.div style={{ y: imgY }} className="absolute inset-x-0 -top-[6%] h-[112%]">
+            <img
+              src={project.image}
+              alt={`${project.title}, project preview`}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
+            />
+          </motion.div>
         </motion.div>
       </motion.div>
       <motion.div
@@ -329,6 +344,7 @@ function ProjectCard({ project, onOpen }) {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="flex flex-col gap-3 px-6 pt-6 lg:px-12"
       >
+        <p className="text-sm font-medium text-[#364b9b]/80">No. {String(number).padStart(2, '0')}</p>
         <h3>
           {project.details ? (
             <button type="button" onClick={() => onOpen(project)} className={stretched}>
@@ -342,7 +358,13 @@ function ProjectCard({ project, onOpen }) {
         </h3>
         <p className="max-w-xl text-[15px] leading-relaxed text-[#364b9b]/80">{project.subtitle}</p>
         {project.highlight && <p className="text-[15px] font-medium text-[#364b9b]">{project.highlight}</p>}
-        <p className="text-sm text-[#364b9b]/80">{project.badges.join(', ')}</p>
+        <ul className="mt-1 flex flex-wrap gap-2">
+          {project.badges.map((b) => (
+            <li key={b} className="rounded-full border border-[#364b9b]/25 px-3 py-1 text-[13px] font-medium text-[#364b9b]">
+              {b}
+            </li>
+          ))}
+        </ul>
       </motion.div>
     </article>
   );
@@ -378,8 +400,13 @@ export default function Work() {
             </Reveal>
           </div>
           <div className="grid grid-cols-1 gap-y-16 md:grid-cols-2">
-            {section.projects.map((project) => (
-              <ProjectCard key={project.title} project={project} onOpen={setSelected} />
+            {section.projects.map((project, i) => (
+              <ProjectCard
+                key={project.title}
+                project={project}
+                number={sections.slice(0, index).reduce((n, s) => n + s.projects.length, 0) + i + 1}
+                onOpen={setSelected}
+              />
             ))}
           </div>
         </div>
@@ -392,7 +419,9 @@ export default function Work() {
           rel="noopener noreferrer"
           className="group inline-flex items-center gap-4 text-lg font-medium text-[#364b9b]"
         >
-          <span className="transition-colors duration-300 group-hover:text-[#EC3814]">View the full archive on Behance</span>
+          <span className="transition-colors duration-300 group-hover:text-[#EC3814]">
+            <RollText>View the full archive on Behance</RollText>
+          </span>
           <Magnetic>
             <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
               <ArrowUpRight size={20} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />

@@ -3,6 +3,8 @@ import emailjs from '@emailjs/browser';
 import { ArrowUpRight, CheckCircle } from '@phosphor-icons/react';
 import Reveal from '../components/Reveal';
 import Magnetic from '../components/Magnetic';
+import RollText from '../components/RollText';
+import LocalTime from '../components/LocalTime';
 import usePageTitle from '../hooks/usePageTitle';
 
 const EMAIL = ''; // inserisci la tua email: se vuota non viene mostrata
@@ -58,7 +60,9 @@ export default function Contact() {
   };
 
   return (
-    <main id="main" className="mx-auto min-h-screen max-w-[1600px] px-6 pb-24 pt-40 text-[#364b9b] lg:px-12">
+    <main id="main" className="relative mx-auto min-h-screen max-w-[1600px] px-6 pb-24 pt-40 text-[#364b9b] lg:px-12">
+      <div aria-hidden="true" className="pointer-events-none absolute -right-[14%] top-24 aspect-square w-[42%] rounded-full border border-[#EC3814]/25" />
+
       <header className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">
         <Reveal as="h1" className="text-6xl leading-[0.95] md:col-span-7 md:text-9xl">
           <span className="font-semibold text-[#364b9b]">Let's </span>
@@ -71,20 +75,24 @@ export default function Contact() {
       </header>
 
       <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-24">
-        <Reveal as="aside" delay={0.15} className="lg:col-span-4">
-          <dl className="divide-y divide-[#364b9b]/15 border-y border-[#364b9b]/15">
+        <Reveal as="aside" delay={0.15} className="bg-[#F3F5FB] p-6 md:p-8 lg:col-span-4 lg:self-start">
+          <dl className="divide-y divide-[#364b9b]/15">
             {EMAIL && (
               <div className="py-5">
-                <dt className="mb-1 text-sm text-[#364b9b]/80">Email</dt>
+                <dt className="mb-1 text-sm text-[#364b9b]/90">Email</dt>
                 <dd className="text-lg"><a href={`mailto:${EMAIL}`} className="underline decoration-[#EC3814] underline-offset-4 hover:text-[#EC3814]">{EMAIL}</a></dd>
               </div>
             )}
             <div className="py-5">
-              <dt className="mb-1 text-sm text-[#364b9b]/80">Location</dt>
+              <dt className="mb-1 text-sm text-[#364b9b]/90">Location</dt>
               <dd className="text-lg">{LOCATION}</dd>
             </div>
             <div className="py-5">
-              <dt className="mb-1 text-sm text-[#364b9b]/80">Phone</dt>
+              <dt className="mb-1 text-sm text-[#364b9b]/90">Local time</dt>
+              <dd className="text-lg"><LocalTime /></dd>
+            </div>
+            <div className="py-5">
+              <dt className="mb-1 text-sm text-[#364b9b]/90">Phone</dt>
               <dd className="text-lg">Available upon request</dd>
             </div>
           </dl>
@@ -111,7 +119,7 @@ export default function Contact() {
               className="group inline-flex items-center gap-4 text-lg font-medium text-[#364b9b] disabled:opacity-60"
             >
               <span className="transition-colors duration-300 group-hover:text-[#EC3814]">
-                {status === 'sending' ? 'Sending…' : 'Send message'}
+                <RollText>{status === 'sending' ? 'Sending…' : 'Send message'}</RollText>
               </span>
               <Magnetic>
                 <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">

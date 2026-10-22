@@ -1,12 +1,13 @@
 import { useRef } from 'react';
-import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
+import useMotionPref from '../hooks/useMotionPref';
 
 // Il contenuto viene "attirato" leggermente dal puntatore quando gli passa vicino.
 // Solo con il mouse e senza "riduci movimento"; da tastiera e da touch non cambia nulla.
 // Il padding negativo allarga l'area sensibile senza spostare il layout.
 export default function Magnetic({ children, strength = 0.35 }) {
   const ref = useRef(null);
-  const reduce = useReducedMotion();
+  const reduce = useMotionPref();
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const sx = useSpring(x, { stiffness: 260, damping: 18, mass: 0.5 });

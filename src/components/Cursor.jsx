@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion, useMotionValue, useReducedMotion, useSpring } from 'framer-motion';
+import { motion, useMotionValue, useSpring } from 'framer-motion';
+import useMotionPref from '../hooks/useMotionPref';
 
 // Cursore personalizzato: un anello che segue il mouse, si ingrandisce sui link
 // e mostra un'etichetta (es. "View") sugli elementi con data-cursor.
 // È solo decorativo: il cursore del sistema resta visibile, non intercetta click,
 // compare solo con mouse/trackpad e non c'è con "riduci movimento".
 export default function Cursor() {
-  const reduce = useReducedMotion();
+  const reduce = useMotionPref();
   const [enabled, setEnabled] = useState(false);
   const [mode, setMode] = useState('idle'); // idle | link | view
   const [label, setLabel] = useState('');

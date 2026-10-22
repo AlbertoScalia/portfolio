@@ -1,7 +1,9 @@
 import { useRef } from 'react';
-import { motion, useMotionValue, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
+import useMotionPref from '../hooks/useMotionPref';
 import { ArrowDown } from '@phosphor-icons/react';
 import Magnetic from './Magnetic';
+import RollText from './RollText';
 
 /* ---------- Contenuti ---------- */
 
@@ -40,7 +42,7 @@ function Layer({ as = 'div', progress, y = [0, 0], scale = [1, 1], rotate = [0, 
 /* ---------- Hero ---------- */
 
 export default function HeroParallax() {
-  const reduce = useReducedMotion();
+  const reduce = useMotionPref();
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
 
@@ -163,7 +165,9 @@ export default function HeroParallax() {
             <div className="border-t border-[#364b9b]/20 pt-6">
               <p className="text-lg leading-snug text-[#364b9b] md:text-xl">{INTRO}</p>
               <a href="#work" onClick={scrollToWork} className="group mt-8 inline-flex items-center gap-4 text-[#364b9b]">
-                <span className="font-medium transition-colors duration-300 group-hover:text-[#EC3814]">See selected work</span>
+                <span className="font-medium transition-colors duration-300 group-hover:text-[#EC3814]">
+                  <RollText>See selected work</RollText>
+                </span>
                 <Magnetic>
                   <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
                     <ArrowDown size={18} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:translate-y-0.5" />

@@ -1,10 +1,11 @@
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
+import useMotionPref from '../hooks/useMotionPref';
 
 // Entrata morbida quando l'elemento compare nel viewport (una sola volta).
 // Con "riduci movimento" attivo mostra subito il contenuto.
 // Le altre props (onSubmit, aria-label, id...) vengono inoltrate all'elemento.
 export default function Reveal({ as = 'div', delay = 0, className, children, ...rest }) {
-  const reduce = useReducedMotion();
+  const reduce = useMotionPref();
   const Tag = motion[as];
   return (
     <Tag

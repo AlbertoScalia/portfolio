@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import HeroParallax from '../components/HeroParallax';
 import Tape from '../components/Tape';
+import Manifesto from '../components/Manifesto';
 import Work from '../components/Work';
 import Stats from '../components/Stats';
 import ClientsMarquee from '../components/ClientsMarquee';
@@ -27,6 +28,7 @@ export default function Home() {
     <main id="main">
       <HeroParallax />
       <Tape />
+      <Manifesto />
       <Work />
       <Stats />
       <ClientsMarquee />
