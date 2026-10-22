@@ -63,7 +63,7 @@ My role encompassed the end-to-end design process over an 8-week timeline, inclu
           roleDescription: `An editorial design project for Forward #37-43, a magazine published by Il Pensiero Scientifico Editore dedicated to healthcare and medical culture. The project encompasses the layout design and cover design for six consecutive issues across 2025–2026.
 
 My role involved designing the interior spreads to balance complex data, infographics, expert interviews, and long-form articles within a clean, authoritative grid system.`,
-          additionalImages: ['detail8.webp'].map(img),
+          additionalImages: ['detail8.webp', 'detail8.5.webp'].map(img),
         },
       },
       {
