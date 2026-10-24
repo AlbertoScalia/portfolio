@@ -1,28 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alberto Scalia - Portfolio</title>
+    <title>Alberto Scalia — Visual &amp; Interface Designer</title>
 
     <!-- Favicon per la scheda del browser -->
     <link rel="icon" type="image/webp" href="/assets/images/favicon.webp" />
 
     <!-- Meta Description -->
-    <meta name="description" content="Alberto Scalia — UI & Visual Designer" />
+    <meta
+      name="description"
+      content="Portfolio of Alberto Scalia, a visual and interface designer with a background in high-end editorial design. Identities, magazines, packaging and interfaces that stay consistent from print to screen."
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="canonical" href="https://albertoscalia.github.io/portfolio/" />
 
     <!-- Open Graph (LinkedIn, WhatsApp, ecc.) -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Alberto Scalia — Portfolio" />
-    <meta property="og:description" content="Alberto Scalia — UI & Visual Designer" />
+    <meta property="og:site_name" content="Alberto Scalia" />
+    <meta property="og:title" content="Alberto Scalia — Visual &amp; Interface Designer" />
+    <meta
+      property="og:description"
+      content="Portfolio of Alberto Scalia, a visual and interface designer with a background in high-end editorial design."
+    />
     <meta property="og:url" content="https://albertoscalia.github.io/portfolio/" />
-    <meta property="og:image" content="https://albertoscalia.github.io/portfolio/assets/images/favicon.webp" />
+    <meta property="og:image" content="https://albertoscalia.github.io/portfolio/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Editorial precision, digital performance. Alberto Scalia, Visual and Interface Designer." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Alberto Scalia — Visual &amp; Interface Designer" />
+    <meta
+      name="twitter:description"
+      content="Portfolio of Alberto Scalia, a visual and interface designer with a background in high-end editorial design."
+    />
+    <meta name="twitter:image" content="https://albertoscalia.github.io/portfolio/og-image.png" />
 
     <!-- Import Google Font -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">  </head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..700&display=swap" rel="stylesheet" />
+
+    <!-- Il ritratto della hero è l'immagine più grande della prima schermata: parte a scaricarsi subito -->
+    <link rel="preload" as="image" href="/portfolio/assets/images/profile.webp" fetchpriority="high" />
+
+    <!-- Dati strutturati per i motori di ricerca -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Alberto Scalia",
+        "jobTitle": "Visual & Interface Designer",
+        "url": "https://albertoscalia.github.io/portfolio/",
+        "image": "https://albertoscalia.github.io/portfolio/og-image.png",
+        "address": { "@type": "PostalAddress", "addressLocality": "Acireale", "addressCountry": "IT" },
+        "sameAs": [
+          "https://www.behance.net/albescalia",
+          "https://github.com/AlbertoScalia",
+          "https://www.linkedin.com/in/alberto-scalia/"
+        ]
+      }
+    </script>
+
+    <!-- Link diretti su GitHub Pages: ripristina l'indirizzo dopo il reindirizzamento di 404.html -->
+    <script>
+      (function (l) {
+        if (l.search[1] === '/') {
+          var decoded = l.search
+            .slice(1)
+            .split('&')
+            .map(function (s) {
+              return s.replace(/~and~/g, '&');
+            })
+            .join('?');
+          window.history.replaceState(null, null, l.pathname.slice(0, -1) + decoded + l.hash);
+        }
+      })(window.location);
+    </script>
+  </head>
   <body>
+    <noscript>This portfolio needs JavaScript to run. Please enable it, or write to me via LinkedIn.</noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

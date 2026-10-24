@@ -60,7 +60,7 @@ export default function Stats() {
         <ul className="mt-16 grid grid-cols-1 gap-12 md:mt-24 md:grid-cols-2 md:gap-16">
           {STATS.map(({ value, suffix, label }, i) => (
             <Reveal as="li" key={label} delay={i * 0.12} className="border-t border-[#364b9b]/20 pt-6">
-              <p className="text-[clamp(5rem,16vw,14rem)] font-semibold leading-[0.9] tracking-[-0.045em] text-[#364b9b]">
+              <p className="text-[clamp(5rem,16vw,14rem)] font-semibold tabular-nums leading-[0.9] tracking-[-0.045em] text-[#364b9b]">
                 <CountUp to={value} suffix={suffix} />
               </p>
               <p className="mt-4 text-lg text-[#364b9b]/90">{label}</p>

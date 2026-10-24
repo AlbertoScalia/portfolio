@@ -12,7 +12,9 @@ const WORDS = TEXT.split(' ');
 function Word({ progress, index, total, reduce, children }) {
   const start = (index / total) * 0.75;
   const color = useTransform(progress, [start, start + 0.25], ['#364b9b', reduce ? '#364b9b' : '#EC3814']);
-  return <motion.span style={{ color }}>{children}</motion.span>;
+  return <motion.span style={{ color }} className="whitespace-nowrap">
+      {children}
+    </motion.span>;
 }
 
 export default function Manifesto() {

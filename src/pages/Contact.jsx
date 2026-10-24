@@ -10,6 +10,12 @@ import usePageTitle from '../hooks/usePageTitle';
 const EMAIL = ''; // inserisci la tua email: se vuota non viene mostrata
 const LOCATION = 'Acireale, CT, Italy';
 
+const SOCIALS = [
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/alberto-scalia/' },
+  { name: 'Behance', href: 'https://www.behance.net/albescalia' },
+  { name: 'GitHub', href: 'https://github.com/AlbertoScalia' },
+];
+
 // Se definisci le variabili VITE_EMAILJS_* in .env vengono usate quelle; altrimenti restano i valori attuali
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID ?? 'service_7lo9nij';
 const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID ?? 'template_79tdtxs';
@@ -17,10 +23,13 @@ const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY ?? 'UFPDLKi81rCshxD1I
 
 const empty = { name: '', email: '', subject: '', message: '', website: '' };
 
-function Field({ label, as: Tag = 'input', ...props }) {
+function Field({ label, number, as: Tag = 'input', ...props }) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={props.id} className="text-sm text-[#364b9b]/80">{label}</label>
+      <label htmlFor={props.id} className="text-sm text-[#364b9b]/80">
+        <span aria-hidden="true" className="mr-3 font-medium">{number}</span>
+        {label}
+      </label>
       <Tag
         {...props}
         required
@@ -31,7 +40,10 @@ function Field({ label, as: Tag = 'input', ...props }) {
 }
 
 export default function Contact() {
-  usePageTitle('Contact — Alberto Scalia');
+  usePageTitle(
+    'Contact — Alberto Scalia',
+    'Get in touch with Alberto Scalia for freelance projects and full-time roles in visual, brand and interface design.'
+  );
   const [form, setForm] = useState(empty);
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
 
@@ -60,8 +72,10 @@ export default function Contact() {
   };
 
   return (
-    <main id="main" className="relative mx-auto min-h-screen max-w-[1600px] px-6 pb-24 pt-40 text-[#364b9b] lg:px-12">
-      <div aria-hidden="true" className="pointer-events-none absolute -right-[14%] top-24 aspect-square w-[42%] rounded-full border border-[#EC3814]/25" />
+    <main id="main" className="mx-auto min-h-screen max-w-[1600px] px-6 pb-24 pt-40 text-[#364b9b] lg:px-12">
+      <Reveal as="p" className="mb-6 text-sm font-medium text-[#364b9b]/80">
+        03 / Contact
+      </Reveal>
 
       <header className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">
         <Reveal as="h1" className="text-6xl leading-[0.95] md:col-span-7 md:text-9xl">
@@ -95,16 +109,37 @@ export default function Contact() {
               <dt className="mb-1 text-sm text-[#364b9b]/90">Phone</dt>
               <dd className="text-lg">Available upon request</dd>
             </div>
+            <div className="pb-1 pt-5">
+              <dt className="mb-3 text-sm text-[#364b9b]/90">Elsewhere</dt>
+              <dd>
+                <ul className="flex flex-col gap-2">
+                  {SOCIALS.map(({ name, href }) => (
+                    <li key={name}>
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${name} (opens in a new tab)`}
+                        className="group inline-flex items-center gap-2 text-lg transition-colors hover:text-[#EC3814]"
+                      >
+                        <RollText>{name}</RollText>
+                        <ArrowUpRight size={16} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </dd>
+            </div>
           </dl>
         </Reveal>
 
         <Reveal as="form" aria-label="Contact form" delay={0.25} onSubmit={onSubmit} className="flex flex-col gap-10 lg:col-span-8">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-2">
-            <Field label="Name" id="name" name="name" type="text" autoComplete="name" value={form.name} onChange={onChange} placeholder="Your name or company" />
-            <Field label="Email" id="email" name="email" type="email" autoComplete="email" value={form.email} onChange={onChange} placeholder="Where can I reply?" />
+            <Field number="01" label="Name" id="name" name="name" type="text" autoComplete="name" value={form.name} onChange={onChange} placeholder="Your name or company" />
+            <Field number="02" label="Email" id="email" name="email" type="email" autoComplete="email" value={form.email} onChange={onChange} placeholder="Where can I reply?" />
           </div>
-          <Field label="Subject" id="subject" name="subject" type="text" value={form.subject} onChange={onChange} placeholder="What do you want to talk about?" />
-          <Field label="Message" id="message" name="message" as="textarea" rows={5} value={form.message} onChange={onChange} placeholder="Tell me about your project" />
+          <Field number="03" label="Subject" id="subject" name="subject" type="text" value={form.subject} onChange={onChange} placeholder="What do you want to talk about?" />
+          <Field number="04" label="Message" id="message" name="message" as="textarea" rows={5} value={form.message} onChange={onChange} placeholder="Tell me about your project" />
 
           {/* Honeypot anti-spam: invisibile a chi usa il sito */}
           <div aria-hidden="true" className="absolute -left-[9999px]">

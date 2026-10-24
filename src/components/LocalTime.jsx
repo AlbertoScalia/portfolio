@@ -9,7 +9,7 @@ export default function LocalTime({ className }) {
   }, []);
   const time = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome' }).format(now);
   return (
-    <time dateTime={now.toISOString()} className={className}>
+    <time dateTime={now.toISOString()} className={`tabular-nums ${className ?? ''}`}>
       {time}
     </time>
   );

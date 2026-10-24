@@ -4,25 +4,16 @@ import useMotionPref from '../hooks/useMotionPref';
 
 const WORDS = ['Editorial design', 'Visual identity', 'Packaging', 'Typography', 'UX/UI', 'Prototyping'];
 
-// Una fascia di testo che scorre in orizzontale in base allo scroll della pagina.
+// Una riga di parole che scorre in orizzontale in base allo scroll della pagina.
 // Il contenuto è ripetuto tre volte: qualsiasi spostamento tra 0% e -66% copre sempre lo schermo.
-function Band({ progress, from, to, bg, weight }) {
+// Il contorno si disegna prima del riempimento bianco (paint-order): così non si vedono le sovrapposizioni interne dei glifi.
+// Il padding sta sul contenitore che ritaglia, così le code delle lettere (g, p, y) non vengono tagliate.
+function Track({ progress, from, to, className = '', renderWord }) {
   const x = useTransform(progress, [0, 1], [from, to]);
   return (
-    // La striscia colorata è ferma e ritaglia il testo; si sposta solo il testo al suo interno
-    <div className={`absolute -left-[10%] top-1/2 w-[120%] -translate-y-1/2 overflow-hidden py-5 md:py-7 ${bg}`}>
+    <div className={`overflow-hidden ${className}`}>
       <motion.div style={{ x }} className="flex w-max items-center whitespace-nowrap">
-        {[0, 1, 2].flatMap((set) =>
-          WORDS.map((word) => (
-            <span
-              key={`${set}-${word}`}
-              className={`flex items-center gap-8 pr-8 text-[clamp(2.25rem,6vw,5rem)] leading-none tracking-[-0.03em] text-white md:gap-12 md:pr-12 ${weight}`}
-            >
-              {word}
-              <span className="h-3 w-3 shrink-0 rounded-full bg-white md:h-4 md:w-4" />
-            </span>
-          ))
-        )}
+        {[0, 1, 2].flatMap((set) => WORDS.map((word) => renderWord(word, `${set}-${word}`)))}
       </motion.div>
     </div>
   );
@@ -36,13 +27,40 @@ export default function Tape() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
 
   return (
-    <section ref={ref} aria-hidden="true" className="relative h-[17rem] overflow-hidden md:h-[24rem]">
-      <div className="absolute inset-0 -rotate-3">
-        <Band progress={scrollYProgress} from="0%" to={reduce ? '0%' : '-16%'} bg="bg-[#EC3814]" weight="font-semibold" />
-      </div>
-      <div className="absolute inset-0 rotate-3">
-        <Band progress={scrollYProgress} from="-33%" to={reduce ? '-33%' : '-17%'} bg="bg-[#364b9b]" weight="font-light" />
-      </div>
+    <section ref={ref} aria-hidden="true" className="overflow-hidden py-16 md:py-24">
+      {/* Fascia piena: arancione, testo bianco */}
+      <Track
+        progress={scrollYProgress}
+        from="0%"
+        to={reduce ? '0%' : '-16%'}
+        className="bg-[#EC3814] py-5 md:py-7"
+        renderWord={(word, key) => (
+          <span
+            key={key}
+            className="flex items-center gap-8 pr-8 text-[clamp(2rem,4.5vw,4rem)] font-semibold leading-none tracking-[-0.03em] text-white md:gap-12 md:pr-12"
+          >
+            {word}
+            <span className="h-3 w-3 shrink-0 rounded-full bg-white md:h-4 md:w-4" />
+          </span>
+        )}
+      />
+
+      {/* Riga in contorno: blu, più grande, scorre nel verso opposto */}
+      <Track
+        progress={scrollYProgress}
+        from="-33%"
+        to={reduce ? '-33%' : '-17%'}
+        className="py-6 md:py-10"
+        renderWord={(word, key) => (
+          <span
+            key={key}
+            className="flex items-center gap-8 pr-8 text-[clamp(3.5rem,10vw,9rem)] font-semibold leading-[1.2] tracking-[-0.02em] text-white [-webkit-text-stroke:4px_#364b9b] [paint-order:stroke_fill] md:gap-14 md:pr-14"
+          >
+            {word}
+            <span className="h-4 w-4 shrink-0 rounded-full bg-[#EC3814] md:h-6 md:w-6" />
+          </span>
+        )}
+      />
     </section>
   );
 }

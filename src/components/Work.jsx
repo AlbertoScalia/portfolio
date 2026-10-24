@@ -17,7 +17,7 @@ const sections = [
       'I design interfaces where visual hierarchy does the heavy lifting — reducing friction, guiding attention, and making the next action feel obvious.',
     projects: [
       {
-        title: 'IsolaBio',
+        title: 'IsolaBio – Re-design website',
         subtitle:
           'Redesign of the Isola Bio website in desktop and mobile versions, with updated visual hierarchy, layout system, and responsive design.',
         image: img('project12.webp'),
@@ -34,7 +34,7 @@ My role covered the full project execution across four key phases:
         },
       },
       {
-        title: 'Glacier – born to be cold',
+        title: 'Glacier – Prototype app',
         subtitle:
           'Design a mobile app for extreme cold-weather adventure travel. The challenge was creating an interface that felt immersive and destination-specific without sacrificing usability in a content-heavy travel context.',
         image: img('project6.webp'),
@@ -63,7 +63,7 @@ My role encompassed the end-to-end design process over an 8-week timeline, inclu
           roleDescription: `An editorial design project for Forward #37-43, a magazine published by Il Pensiero Scientifico Editore dedicated to healthcare and medical culture. The project encompasses the layout design and cover design for six consecutive issues across 2025–2026.
 
 My role involved designing the interior spreads to balance complex data, infographics, expert interviews, and long-form articles within a clean, authoritative grid system.`,
-          additionalImages: ['detail8.webp', 'detail8.5.webp'].map(img),
+          additionalImages: ['detail8.webp'].map(img),
         },
       },
       {
@@ -87,7 +87,7 @@ My role focused on the magazine's layout and cover design, developed in collabor
       'Visual identities and printed pieces that hold together across posters, programs and social, built to last beyond a single campaign.',
     projects: [
       {
-        title: 'Cassandra',
+        title: 'Cassandra – Poster',
         subtitle:
           'An art installation at Spazio Volta in Bergamo needed a printed piece that functioned as both documentation and object — something a visitor would keep, not discard.',
         image: img('project4.webp'),
@@ -100,7 +100,7 @@ My role focused on designing the folding poster layout, combining a moody, textu
         },
       },
       {
-        title: 'Sócrates. Sport, Storie, Società',
+        title: 'Social Identity Socrates',
         subtitle:
           'A recurring festival needed an identity strong enough to anchor multiple editions while staying flexible across posters, programs, social, and merchandise.',
         image: img('project8.webp'),
@@ -344,7 +344,7 @@ function ProjectCard({ project, number, onOpen }) {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="flex flex-col gap-3 px-6 pt-6 lg:px-12"
       >
-        <p className="text-sm font-medium text-[#364b9b]/80">No. {String(number).padStart(2, '0')}</p>
+        <p className="text-sm font-medium tabular-nums text-[#364b9b]/80">No. {String(number).padStart(2, '0')}</p>
         <h3>
           {project.details ? (
             <button type="button" onClick={() => onOpen(project)} className={stretched}>
@@ -386,14 +386,21 @@ export default function Work() {
   return (
     <section id="work" aria-label="Selected work">
       {sections.map((section, index) => (
-        <div key={section.title} className="mb-28">
-          <div className="border-t border-[#364b9b]/20" />
+        <div key={section.title} className={index % 2 === 1 ? 'bg-[#F3F5FB] pb-28' : 'mb-28'}>
+          <div className="border-t border-[#364b9b]/20">
+            <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
+              <span aria-hidden="true" className="-mt-[5px] block h-2.5 w-2.5 rounded-full bg-[#EC3814]" />
+            </div>
+          </div>
           <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-6 px-6 py-12 md:grid-cols-12 md:items-end lg:px-12">
             <Reveal className="md:col-span-5">
               <p className="mb-4 text-sm font-medium text-[#364b9b]/80">
                 {String(index + 1).padStart(2, '0')} / {String(sections.length).padStart(2, '0')}
               </p>
-              <h2 className="text-4xl font-semibold leading-tight text-[#364b9b] md:text-5xl">{section.title}</h2>
+              <h2 className="text-4xl leading-tight text-[#364b9b] md:text-5xl">
+                <span className="font-semibold">{section.title.split(' ').slice(0, -1).join(' ')} </span>
+                <span className="font-light text-[#EC3814]">{section.title.split(' ').slice(-1)}</span>
+              </h2>
             </Reveal>
             <Reveal delay={0.1} className="md:col-span-5 md:col-start-7">
               <p className="text-lg leading-relaxed text-[#364b9b]/80">{section.description}</p>
