@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useMotionPref from '../hooks/useMotionPref';
-import { Minus, Plus } from '@phosphor-icons/react';
+import { Link } from 'react-router-dom';
+import { ArrowDown, Minus, Plus } from '@phosphor-icons/react';
 import Reveal from '../components/Reveal';
+import Magnetic from '../components/Magnetic';
+import RollText from '../components/RollText';
+import { CV_FILE, CV_URL } from '../utils/site';
 import usePageTitle from '../hooks/usePageTitle';
 
 const A = ({ href, children }) => (
@@ -11,30 +15,166 @@ const A = ({ href, children }) => (
   </a>
 );
 
+// "Case Study Project": porta alla sezione dei lavori del portfolio
+const SiteLink = ({ children }) => (
+  <Link to="/" state={{ scrollTo: 'work' }} className="underline decoration-[#EC3814] underline-offset-4 transition-colors hover:text-[#EC3814]">
+    {children}
+  </Link>
+);
+
+// Competenze, nell'ordine e con le voci del CV
 const skillCategories = [
-  { title: 'Editorial & Visual Arts', skills: ['Visual Identity', 'Editorial Design', 'Branding Strategy', 'Typography', 'Adobe Creative Suite', 'Affinity Suite'] },
-  { title: 'UI & Product', skills: ['Figma', 'Wireframing', 'High-Fidelity Prototyping', 'Miro', 'Khroma', 'Uizard'] },
-  { title: 'AI & Workflow Automation', skills: ['AI Business Strategy', 'Prompt Engineering', 'AI Agents', 'n8n Automation', 'Lovable', 'Claude', 'Perplexity', 'Gemini', 'ChatGPT'] },
-  { title: 'Tech & Growth', skills: ['HTML5', 'CSS3', 'Responsive Design', 'Tailwind CSS', 'Bootstrap'] },
+  {
+    title: 'Design Tools',
+    groups: [
+      { label: 'Software', items: ['Adobe Creative Suite (InDesign, Illustrator, Photoshop)', 'Figma', 'Affinity Suite'] },
+      { label: 'Expertise', items: ['Visual Identity', 'Editorial Design', 'Branding Strategy', 'Typography', 'Wireframing', 'High-Fidelity Prototyping'] },
+      { label: 'Support', items: ['Miro', 'Khroma', 'Uizard'] },
+    ],
+  },
+  {
+    title: 'AI Tools',
+    groups: [
+      { label: 'Strategy', items: ['AI Business Strategy', 'Prompt Engineering', 'AI Agents'] },
+      { label: 'Efficiency', items: ['Advanced workflow automation with n8n and integrated tools'] },
+      { label: 'Platforms', items: ['Lovable', 'Claude', 'Perplexity', 'Gemini', 'ChatGPT'] },
+    ],
+  },
+  {
+    title: 'Languages',
+    groups: [
+      { label: 'Italian', items: ['Native'] },
+      { label: 'English', items: ['B1 Level – Cambridge ESOL International (Council of Europe Level B1)'] },
+    ],
+  },
 ];
 
+// Esperienze e formazione: testi identici al CV
 const experiences = [
-  { date: 'Jun. 2026 – Present', title: 'Visual & Brand Designer', sub: <A href="https://gyadacosmetics.com/">Gyada Cosmetics S.r.l.</A>, desc: <div className="space-y-2"><div className="flex items-start gap-2"><span className="shrink-0 font-bold text-[#EC3814]">•</span><span>Action: Created and managed the end-to-end graphic design for diverse cosmetic lines, developing packaging layouts, realistic product mockups, and comprehensive print-ready artwork.</span></div><div className="flex items-start gap-2"><span className="shrink-0 font-bold text-[#EC3814]">•</span><span>Result: Elevated brand consistency across all new launches, streamlining the print-production workflow and enhancing retail shelf appeal across multiple product lines.</span></div></div> },
-  { date: 'Feb. 2025 – Present', title: 'Visual & Editorial Designer', sub: <A href="https://forward.recentiprogressi.it/it/">Forward magazine (Il Pensiero Scientifico Editore)</A>, desc: <div className="space-y-2"><div className="flex items-start gap-2"><span className="shrink-0 font-bold text-[#EC3814]">•</span><span>Action: Orchestrated the graphic layout and cross-media identity.</span></div><div className="flex items-start gap-2"><span className="shrink-0 font-bold text-[#EC3814]">•</span><span>Result: Streamlined production workflows, shortened approval cycles, and established a cohesive brand language across all issues.</span></div></div> },
-  { date: 'May 2022 – May 2026', title: 'Visual & Editorial Designer', sub: <A href="https://www.layoutmagazine.it/">layout magazine</A>, desc: <div className="space-y-2"><div className="flex items-start gap-2"><span className="shrink-0 font-bold text-[#EC3814]">•</span><span>Action: Curated the layout design, grid systems, and typography for digital and print content.</span></div><div className="flex items-start gap-2"><span className="shrink-0 font-bold text-[#EC3814]">•</span><span>Result: Ensured total visual consistency, optimized the reading experience, and maintained a flawless publishing schedule across all issues.</span></div></div> },
-  { date: 'Jun. 2025 – Jan. 2026', title: 'Visual & Brand Designer', sub: <A href="https://www.life-electronics.com/it">Life Electronics S.p.A.</A>, desc: <div className="space-y-2"><div className="flex items-start gap-2"><span className="shrink-0 font-bold text-[#EC3814]">•</span><span>Action: Designed product packaging and updated website news while utilizing EKR KIT and SAP Business One to manage technical product data.</span></div><div className="flex items-start gap-2"><span className="shrink-0 font-bold text-[#EC3814]">•</span><span>Result: Eliminated manual data-entry errors and accelerated time-to-market for new electronic product lines.</span></div></div> },
-  { date: 'Jul. 2021 – Jan. 2026', title: 'Freelance Visual & Book Designer', sub: <span className="underline decoration-[#EC3814] underline-offset-4">12+ publishers (incl. Flaco Edizioni Group, Editori Riuniti, Ricca Editore)</span>, desc: <div className="space-y-2"><div className="flex items-start gap-2"><span className="shrink-0 font-bold text-[#EC3814]">•</span><span>Action: Directed visual identity and professional typesetting for 12+ independent publishers and academic institutions.</span></div><div className="flex items-start gap-2"><span className="shrink-0 font-bold text-[#EC3814]">•</span><span>Result: Successfully Delivered 50+ high-profile editorial projects with 100% on-time print readiness while upholding strict editorial standards..</span></div></div> },
-  { date: 'Nov. 2021 – Jan. 2023', title: 'Graphic Design Intern', sub: <A href="https://letteraventidue.com/it/">LetteraVentidue Edizioni</A>, desc: <div className="space-y-2"><div className="flex items-start gap-2"><span className="shrink-0 font-bold text-[#EC3814]">•</span><span>Action: Collaborated on architectural book design for international authors (Umberto Riva, Giorgio Grassi).</span></div><div className="flex items-start gap-2"><span className="shrink-0 font-bold text-[#EC3814]">•</span><span>Result: Contributed to the publication of high-value architectural volumes, ensuring total precision from draft to final print.</span></div></div> },
+  {
+    date: 'Jun. 2026 – Present',
+    title: 'Visual & Brand Designer',
+    sub: <A href="https://gyadacosmetics.com/">Gyada Cosmetics S.r.l.</A>,
+    place: 'Catania, Italy',
+    points: [
+      ['Action', 'Created and managed the end-to-end graphic design for diverse cosmetic lines, developing packaging layouts, realistic product mockups, and comprehensive print-ready artwork.'],
+      ['Result', 'Elevated brand consistency across all new launches, streamlining the print-production workflow and enhancing retail shelf appeal across multiple product lines.'],
+    ],
+  },
+  {
+    date: 'Feb. 2025 – Present',
+    title: 'Visual & Editorial Designer',
+    sub: <A href="https://forward.recentiprogressi.it/it/">Forward magazine (Il Pensiero Scientifico Editore)</A>,
+    place: 'Rome, Italy',
+    points: [
+      ['Action', 'Orchestrated the graphic layout and cross-media identity.'],
+      ['Result', 'Streamlined production workflows, shortened approval cycles, and established a cohesive brand language across all issues.'],
+    ],
+  },
+  {
+    date: 'May 2022 – May 2026',
+    title: 'Visual & Editorial Designer',
+    sub: <A href="https://www.layoutmagazine.it/">lay0ut magazine</A>,
+    place: 'Milan, Italy',
+    points: [
+      ['Action', 'Curated the layout design, grid systems, and typography for digital and print content.'],
+      ['Result', 'Ensured total visual consistency, optimized the reading experience, and maintained a flawless publishing schedule across all issues.'],
+    ],
+  },
+  {
+    date: 'Jun. 2025 – Jan. 2026',
+    title: 'Visual & Brand Designer',
+    sub: <A href="https://www.life-electronics.com/it">Life Electronics S.p.A.</A>,
+    place: 'Riposto, Catania, Italy',
+    points: [
+      ['Action', 'Designed product packaging and updated website news while utilizing EKR KIT and SAP Business One to manage technical product data.'],
+      ['Result', 'Eliminated manual data-entry errors and accelerated time-to-market for new electronic product lines.'],
+    ],
+  },
+  {
+    date: 'Jul. 2021 – Jan. 2026',
+    title: 'Freelance Visual & Book Designer',
+    sub: '12+ publishers (incl. Flaco Edizioni Group, Editori Riuniti, Ricca Editore)',
+    place: 'Italy',
+    points: [
+      ['Action', 'Directed visual identity and professional typesetting for 12+ independent publishers and academic institutions.'],
+      ['Result', 'Successfully Delivered 50+ high-profile editorial projects with 100% on-time print readiness while upholding strict editorial standards.'],
+    ],
+  },
+  {
+    date: 'Nov. 2021 – Jan. 2023',
+    title: 'Graphic Design Intern',
+    sub: <A href="https://letteraventidue.com/it/">LetteraVentidue Edizioni</A>,
+    place: 'Syracuse, Italy',
+    points: [
+      ['Action', 'Collaborated on architectural book design for international authors (Umberto Riva, Giorgio Grassi).'],
+      ['Result', 'Contributed to the publication of high-value architectural volumes, ensuring total precision from draft to final print.'],
+    ],
+  },
 ];
 
 const education = [
-  { date: 'Oct. 2025 – Apr. 2026', title: 'Master Growth Marketing and AI Agents', sub: <A href="https://www.start2impact.it">start2impact</A>, desc: 'Competencies: Funnel Marketing, SEO Audit, Growth Marketing, UX/UI Discovery, Wireframing, User Testing, AI-Optimized UI, Prompt Engineering, Meta/Google Ads, Email Marketing, Advanced Excel, SQL, GA4, Tableau, Looker Studio, HTML/CSS, AI Agent Design.' },
-  { date: 'Sep. – Oct. 2024', title: 'UX Design Course', sub: <A href="https://corsoux.it">CorsoUx.it</A>, desc: 'Competencies: Information Architecture, Low/High-Fidelity Wireframing, Interactive Prototyping.' },
-  { date: 'Feb. – Sep. 2023', title: 'Master Full Stack Web Developer', sub: <A href="https://boolean.careers">Boolean</A>, desc: 'Competencies: HTML/CSS, JavaScript, Responsive Web Design, CMS Integration.' },
-  { date: 'Mar. – Jul. 2021', title: 'Master Il lavoro editoriale', sub: <A href="https://www.scuoladellibro.it">Scuola del Libro</A>, desc: 'Competencies: Editorial Project Management, Fiction & Non-fiction Editing, Proofreading, Publishing Supply Chain, Rights & Copyright, Distribution Strategy, Press Office.' },
-  { date: 'Sep. 2017 – Sep. 2020', title: "Bachelor’s Degree in Visual Communication Design", sub: <><A href="https://www.abacatania.it">Academy of Fine Arts of Catania</A> | 110/110 cum laude</>, desc: 'Competencies: Editorial Design, Typography, Brand Identity, Visual Strategy, Art History & Semiotics, Web Design, Print Production, Design Theory.' },
+  {
+    date: 'Oct. 2025 – Apr. 2026',
+    title: 'Master Growth Marketing and AI Agents',
+    sub: <A href="https://www.start2impact.it">start2impact</A>,
+    place: 'Rome, Italy',
+    points: [
+      ['Case Study Project', <SiteLink>IsolaBio</SiteLink>],
+      ['Competencies', 'Funnel Marketing, SEO Audit, Growth Marketing, UX/UI Discovery, Wireframing, User Testing, AI-Optimized UI, Prompt Engineering, Meta/Google Ads, Email Marketing, Advanced Excel, SQL, GA4, Tableau, Looker Studio, HTML/CSS, AI Agent Design.'],
+    ],
+  },
+  {
+    date: 'Sep. – Oct. 2024',
+    title: 'UX Design Course',
+    sub: <A href="https://corsoux.it">CorsoUx.it</A>,
+    points: [
+      ['Case Study Project', <SiteLink>Glacier</SiteLink>],
+      ['Competencies', 'Information Architecture, Low/High-Fidelity Wireframing, Interactive Prototyping.'],
+    ],
+  },
+  {
+    date: 'Feb. – Sep. 2023',
+    title: 'Master Full Stack Web Developer',
+    sub: <A href="https://boolean.careers">Boolean</A>,
+    place: 'Milan, Italy',
+    points: [['Competencies', 'HTML/CSS, JavaScript, Responsive Web Design, CMS Integration.']],
+  },
+  {
+    date: 'Mar. – Jul. 2021',
+    title: 'Master Il lavoro editoriale',
+    sub: <A href="https://www.scuoladellibro.it">Scuola del Libro</A>,
+    place: 'Rome, Italy',
+    points: [['Competencies', 'Editorial Project Management, Fiction & Non-fiction Editing, Proofreading, Publishing Supply Chain, Rights & Copyright, Distribution Strategy, Press Office.']],
+  },
+  {
+    date: 'Sep. 2017 – Sep. 2020',
+    title: 'Bachelor’s Degree in Visual Communication Design',
+    sub: (
+      <>
+        <A href="https://www.abacatania.it">Academy of Fine Arts of Catania</A> | 110/110 cum laude
+      </>
+    ),
+    place: 'Catania, Italy',
+    points: [['Competencies', 'Editorial Design, Typography, Brand Identity, Visual Strategy, Art History & Semiotics, Web Design, Print Production, Design Theory.']],
+  },
 ];
 
+// Elenco puntato di una voce: etichetta in evidenza e cerchietto come segno
+function Points({ points }) {
+  return (
+    <ul className="max-w-[62ch] space-y-2 pt-3 text-[15px] leading-relaxed text-[#364b9b]/80">
+      {points.map(([label, text]) => (
+        <li key={label} className="flex gap-3">
+          <span aria-hidden="true" className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#EC3814]" />
+          <span>
+            <span className="font-medium text-[#364b9b]">{label}:</span> {text}
+          </span>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 // Il contenitore con l'id c'è sempre, così aria-controls punta a un elemento esistente anche a pannello chiuso
 function Panel({ id, isOpen, children }) {
@@ -98,8 +238,9 @@ function Accordion({ items, id }) {
                 </button>
               </h3>
               <p className="mt-1 text-[15px] text-[#364b9b]/85">{item.sub}</p>
+              {item.place && <p className="text-sm text-[#364b9b]/80">{item.place}</p>}
               <Panel id={`${id}-${i}`} isOpen={isOpen}>
-                <div className="max-w-[62ch] pt-3 text-[15px] leading-relaxed text-[#364b9b]/80">{item.desc}</div>
+                <Points points={item.points} />
               </Panel>
             </div>
           </li>
@@ -131,13 +272,20 @@ function SkillsAccordion({ categories, id }) {
               </button>
             </h3>
             <Panel id={`${id}-${i}`} isOpen={isOpen}>
-              <ul className="flex flex-wrap gap-2 pt-4">
-                {cat.skills.map((s) => (
-                  <li key={s} className="rounded-full border border-[#364b9b]/25 px-3.5 py-1.5 text-sm text-[#364b9b]">
-                    {s}
-                  </li>
+              <div className="space-y-5 pt-4">
+                {cat.groups.map((group) => (
+                  <div key={group.label}>
+                    <p className="mb-2 text-sm font-medium text-[#364b9b]/90">{group.label}</p>
+                    <ul className="flex flex-wrap gap-2">
+                      {group.items.map((s) => (
+                        <li key={s} className="rounded-[1.25rem] border border-[#364b9b]/25 px-3.5 py-1.5 text-sm text-[#364b9b]">
+                          {s}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 ))}
-              </ul>
+              </div>
             </Panel>
           </li>
         );
@@ -162,8 +310,21 @@ export default function Bio() {
           <span className="font-semibold text-[#364b9b]">About </span>
           <span className="font-light text-[#EC3814]">me</span>
         </Reveal>
-        <Reveal as="p" delay={0.1} className="text-lg leading-relaxed text-[#364b9b]/80 md:col-span-4 md:col-start-9">
-          An overview of my professional background, skills, and training in design.
+        <Reveal delay={0.1} className="md:col-span-4 md:col-start-9">
+          <p className="text-lg leading-relaxed text-[#364b9b]/80">
+            An overview of my professional background, skills, and training in design.
+          </p>
+          <a href={CV_URL} download={CV_FILE} className="group mt-6 inline-flex items-center gap-4 text-lg font-medium text-[#364b9b]">
+            <span className="transition-colors duration-300 group-hover:text-[#EC3814]">
+              <RollText>Download CV</RollText>
+            </span>
+            <span className="sr-only">(PDF)</span>
+            <Magnetic>
+              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
+                <ArrowDown size={20} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:translate-y-0.5" />
+              </span>
+            </Magnetic>
+          </a>
         </Reveal>
       </header>
 

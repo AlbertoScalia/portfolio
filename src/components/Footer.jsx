@@ -5,10 +5,10 @@ import { GRAIN } from '../utils/grain';
 import Magnetic from './Magnetic';
 import RollText from './RollText';
 import LocalTime from './LocalTime';
+import { EMAIL } from '../utils/site';
 
 const NAME = 'Alberto Scalia';
 const ROLE = 'Visual & Interface Designer';
-const EMAIL = ''; // inserisci la tua email: se vuota non viene mostrata
 
 const socials = [
   { name: 'Behance', icon: BehanceLogo, href: 'https://www.behance.net/albescalia' },

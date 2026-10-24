@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
-import { ArrowUpRight, CheckCircle } from '@phosphor-icons/react';
+import { ArrowDown, ArrowUpRight, CheckCircle } from '@phosphor-icons/react';
 import Reveal from '../components/Reveal';
 import Magnetic from '../components/Magnetic';
 import RollText from '../components/RollText';
 import LocalTime from '../components/LocalTime';
 import usePageTitle from '../hooks/usePageTitle';
+import { CV_FILE, CV_URL, EMAIL } from '../utils/site';
 
-const EMAIL = ''; // inserisci la tua email: se vuota non viene mostrata
 const LOCATION = 'Acireale, CT, Italy';
 
 const SOCIALS = [
@@ -108,6 +108,20 @@ export default function Contact() {
             <div className="py-5">
               <dt className="mb-1 text-sm text-[#364b9b]/90">Phone</dt>
               <dd className="text-lg">Available upon request</dd>
+            </div>
+            <div className="py-5">
+              <dt className="mb-1 text-sm text-[#364b9b]/90">Resume</dt>
+              <dd>
+                <a
+                  href={CV_URL}
+                  download={CV_FILE}
+                  className="group inline-flex items-center gap-2 text-lg transition-colors hover:text-[#EC3814]"
+                >
+                  <RollText>Download CV</RollText>
+                  <span className="sr-only">(PDF)</span>
+                  <ArrowDown size={16} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:translate-y-0.5" />
+                </a>
+              </dd>
             </div>
             <div className="pb-1 pt-5">
               <dt className="mb-3 text-sm text-[#364b9b]/90">Elsewhere</dt>
