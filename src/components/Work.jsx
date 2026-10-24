@@ -86,7 +86,7 @@ My role focused on the magazine's layout and cover design, developed in collabor
       'Visual identities and printed pieces that hold together across posters, programs and social, built to last beyond a single campaign.',
     projects: [
       {
-        title: 'Cassandra – Poster',
+        title: 'Cassandra',
         subtitle:
           'An art installation at Spazio Volta in Bergamo needed a printed piece that functioned as both documentation and object — something a visitor would keep, not discard.',
         image: img('cover-project5.webp'),
@@ -99,7 +99,7 @@ My role focused on designing the folding poster layout, combining a moody, textu
         },
       },
       {
-        title: 'Social Identity Socrates',
+        title: 'Sócrates. Sport, Storie, Società',
         subtitle:
           'A recurring festival needed an identity strong enough to anchor multiple editions while staying flexible across posters, programs, social, and merchandise.',
         image: img('cover-project6.webp'),
