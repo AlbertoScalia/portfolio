@@ -8,7 +8,7 @@ import LocalTime from './LocalTime';
 import { EMAIL, SOCIALS } from '../utils/site';
 
 const NAME = 'Alberto Scalia';
-const ROLE = 'Visual & Interface Designer';
+const ROLE = 'UI & Visual Designer';
 
 const SOCIAL_ICONS = { LinkedIn: LinkedinLogo, Behance: BehanceLogo, GitHub: GithubLogo };
 

@@ -8,9 +8,9 @@ import RollText from './RollText';
 /* ---------- Contenuti ---------- */
 
 const INTRO =
-  "I'm Alberto, a visual and interface designer with a background in high-end editorial design. I build identities, magazines, packaging and interfaces that stay consistent from print to screen.";
+  "I'm Alberto, a UI and Visual Designer with a background in high-end editorial design. I build identities, magazines, packaging and interfaces that stay consistent from print to screen.";
 
-const ROLE = 'Visual & Interface Designer';
+const ROLE = 'UI & Visual Designer';
 
 const PORTRAIT = `${import.meta.env.BASE_URL}assets/images/profile.webp`;
 
