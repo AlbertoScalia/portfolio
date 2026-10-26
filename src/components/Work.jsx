@@ -8,6 +8,15 @@ import RollText from './RollText';
 
 const img = (name) => `${import.meta.env.BASE_URL}assets/images/${name}`;
 
+// Le parole con il trattino non vanno a capo a metà (es. "Re-design")
+const keepWords = (text) =>
+  text.split(' ').map((word, i, all) => (
+    <span key={i} className={word.includes('-') ? 'whitespace-nowrap' : undefined}>
+      {word}
+      {i < all.length - 1 ? ' ' : ''}
+    </span>
+  ));
+
 /* ---------- Dati ---------- */
 
 const sections = [
@@ -23,7 +32,8 @@ const sections = [
         image: img('cover-project1.webp'),
         badges: ['UX/UI Design', 'Web Design'],
         details: {
-roleDescription: `A student concept project developed for the Start2Impact Master’s program (non-commercial project for educational purposes) for "Isola Bio", designed to transform brand identity into a fluid and accessible shopping experience. The platform spans both desktop and mobile web interfaces, featuring interactive banners and custom graphics tailored for organic products.
+          roleDescription: `A narrative e-commerce project for "Isola Bio" designed to transform brand identity into a fluid and accessible shopping experience. The platform spans both desktop and mobile web interfaces, featuring interactive banners and custom graphics tailored for organic products.
+
 My role covered the full project execution across four key phases:
 - Discovery & Strategy: Conducted 1 quantitative survey, 5 competitor analyses, and created 3 user personas with journey maps.
 - User Experience (UX): Developed an optimized sitemap, over 10 wireframe screens, and e-commerce navigation flows.
@@ -33,7 +43,7 @@ My role covered the full project execution across four key phases:
         },
       },
       {
-        title: 'Glacier – Born To Be Cold',
+        title: 'Glacier',
         subtitle:
           'Design a mobile app for extreme cold-weather adventure travel. The challenge was creating an interface that felt immersive and destination-specific without sacrificing usability in a content-heavy travel context.',
         image: img('cover-project2.webp'),
@@ -86,7 +96,7 @@ My role focused on the magazine's layout and cover design, developed in collabor
       'Visual identities and printed pieces that hold together across posters, programs and social, built to last beyond a single campaign.',
     projects: [
       {
-        title: 'Cassandra',
+        title: 'Cassandra – Poster',
         subtitle:
           'An art installation at Spazio Volta in Bergamo needed a printed piece that functioned as both documentation and object — something a visitor would keep, not discard.',
         image: img('cover-project5.webp'),
@@ -99,7 +109,7 @@ My role focused on designing the folding poster layout, combining a moody, textu
         },
       },
       {
-        title: 'Sócrates. Sport, Storie, Società',
+        title: 'Social Identity Socrates',
         subtitle:
           'A recurring festival needed an identity strong enough to anchor multiple editions while staying flexible across posters, programs, social, and merchandise.',
         image: img('cover-project6.webp'),
@@ -225,7 +235,7 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
         </button>
 
         <h2 id="project-modal-title" className="mb-5 pr-12 text-4xl font-semibold leading-tight md:text-6xl text-[#364b9b]">
-          {project.title}
+          {keepWords(project.title)}
         </h2>
         <ul className="mb-8 flex flex-wrap gap-2">
           {project.badges.map((b) => (
@@ -270,7 +280,7 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
             <span>
               <span className="block text-sm font-medium text-[#364b9b]/80">Next project</span>
               <span className="block text-2xl font-semibold text-[#364b9b] transition-colors group-hover:text-[#EC3814] md:text-4xl">
-                {nextProject.title}
+                {keepWords(nextProject.title)}
               </span>
             </span>
             <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#364b9b] text-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
@@ -297,7 +307,7 @@ function ProjectCard({ project, number, onOpen }) {
   const title = (
     <span className="flex items-start justify-between gap-4">
       <span className="text-3xl leading-tight transition-colors group-hover:text-[#EC3814] md:text-4xl text-[#364b9b]">
-        {project.title}
+        {keepWords(project.title)}
       </span>
       <ArrowUpRight
         size={28}

@@ -5,16 +5,12 @@ import { GRAIN } from '../utils/grain';
 import Magnetic from './Magnetic';
 import RollText from './RollText';
 import LocalTime from './LocalTime';
-import { EMAIL } from '../utils/site';
+import { EMAIL, SOCIALS } from '../utils/site';
 
 const NAME = 'Alberto Scalia';
 const ROLE = 'Visual & Interface Designer';
 
-const socials = [
-  { name: 'Behance', icon: BehanceLogo, href: 'https://www.behance.net/albescalia' },
-  { name: 'GitHub', icon: GithubLogo, href: 'https://github.com/AlbertoScalia' },
-  { name: 'LinkedIn', icon: LinkedinLogo, href: 'https://www.linkedin.com/in/alberto-scalia/' },
-];
+const SOCIAL_ICONS = { LinkedIn: LinkedinLogo, Behance: BehanceLogo, GitHub: GithubLogo };
 
 export default function Footer() {
   const { pathname } = useLocation();
@@ -84,7 +80,9 @@ export default function Footer() {
               Elsewhere
             </h2>
             <ul aria-labelledby="footer-social" className="flex flex-col gap-3 text-base text-white">
-              {socials.map(({ name, icon: Icon, href }) => (
+              {SOCIALS.map(({ name, href }) => {
+                const Icon = SOCIAL_ICONS[name];
+                return (
                 <li key={name}>
                   <a
                     href={href}
@@ -99,7 +97,8 @@ export default function Footer() {
                     <RollText>{name}</RollText>
                   </a>
                 </li>
-              ))}
+                );
+              })}
             </ul>
           </div>
         </div>

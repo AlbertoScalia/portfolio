@@ -1,3 +1,13 @@
+/* Font di riserva con le proporzioni di Inter: finché Inter non è caricata il testo occupa quasi lo stesso spazio */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107.4%;
+  ascent-override: 90.2%;
+  descent-override: 22.48%;
+  line-gap-override: 0%;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,7 +21,7 @@
     color-scheme: light;
   }
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Inter', 'Inter Fallback', system-ui, sans-serif;
     background-color: #ffffff;
     color: #364b9b;
     overflow-x: clip;

@@ -3,10 +3,14 @@ import { AnimatePresence, motion, useScroll } from 'framer-motion';
 import useMotionPref from '../hooks/useMotionPref';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '../utils/cn';
+import { BehanceLogo, GithubLogo, LinkedinLogo } from '@phosphor-icons/react';
 import Cursor from './Cursor';
+import LocalTime from './LocalTime';
+import { EMAIL, SOCIALS } from '../utils/site';
 import RollText from './RollText';
 
 const NAME = 'Alberto Scalia';
+const SOCIAL_ICONS = { LinkedIn: LinkedinLogo, Behance: BehanceLogo, GitHub: GithubLogo };
 const LOGO = `${import.meta.env.BASE_URL}assets/images/Logo_nav.webp`;
 
 export default function Navbar() {
@@ -231,23 +235,54 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduce ? 0 : 0.2 }}
-            className="fixed inset-0 z-0 bg-white px-6 pt-28 md:hidden"
+            className="fixed inset-0 z-0 flex flex-col overflow-y-auto bg-white px-6 pb-10 pt-28 md:hidden"
           >
             <ul className="flex flex-col gap-6 border-t border-[#364b9b]/15 pt-8">
               <motion.li {...mobileItem(0)}>
                 <a href="#work" onClick={goWork} className={mobileLink(false)}>
-                  <span className={numClass}>01</span>Work
+                  <span aria-hidden="true" className={numClass}>01</span>Work
                 </a>
               </motion.li>
               {pages.map(({ to, label }, i) => (
                 <motion.li key={to} {...mobileItem(i + 1)}>
                   <Link to={to} onClick={close} aria-current={pathname === to ? 'page' : undefined} className={mobileLink(pathname === to)}>
-                    <span className={numClass}>{String(i + 2).padStart(2, '0')}</span>
+                    <span aria-hidden="true" className={numClass}>{String(i + 2).padStart(2, '0')}</span>
                     {label}
                   </Link>
                 </motion.li>
               ))}
             </ul>
+
+            {/* In fondo al menu: ruolo, ora locale, email e profili */}
+            <motion.div {...mobileItem(pages.length + 1)} className="mt-auto pt-12">
+              <p className="text-sm font-medium text-[#364b9b]/90">Visual & Interface Designer</p>
+              <p className="mt-1 text-sm text-[#364b9b]/90">
+                Acireale, Italy · <LocalTime /> local time
+              </p>
+              {EMAIL && (
+                <a href={`mailto:${EMAIL}`} className="mt-5 inline-block text-lg underline decoration-[#EC3814] underline-offset-4">
+                  {EMAIL}
+                </a>
+              )}
+              <ul className="mt-6 flex gap-3">
+                {SOCIALS.map(({ name, href }) => {
+                  const Icon = SOCIAL_ICONS[name];
+                  return (
+                    <li key={name}>
+                      <a
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`${name} (opens in a new tab)`}
+                        className="flex h-11 w-11 items-center justify-center rounded-full border border-[#364b9b] text-[#364b9b] transition-colors hover:border-[#EC3814] hover:bg-[#EC3814] hover:text-white"
+                      >
+                        <Icon size={18} weight="bold" aria-hidden="true" />
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

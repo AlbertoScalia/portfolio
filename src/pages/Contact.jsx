@@ -1,20 +1,13 @@
 import { useState } from 'react';
-import emailjs from '@emailjs/browser';
 import { ArrowDown, ArrowUpRight, CheckCircle } from '@phosphor-icons/react';
 import Reveal from '../components/Reveal';
 import Magnetic from '../components/Magnetic';
 import RollText from '../components/RollText';
 import LocalTime from '../components/LocalTime';
 import usePageTitle from '../hooks/usePageTitle';
-import { CV_FILE, CV_URL, EMAIL } from '../utils/site';
+import { CV_FILE, CV_URL, EMAIL, SOCIALS } from '../utils/site';
 
 const LOCATION = 'Acireale, CT, Italy';
-
-const SOCIALS = [
-  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/alberto-scalia/' },
-  { name: 'Behance', href: 'https://www.behance.net/albescalia' },
-  { name: 'GitHub', href: 'https://github.com/AlbertoScalia' },
-];
 
 // Se definisci le variabili VITE_EMAILJS_* in .env vengono usate quelle; altrimenti restano i valori attuali
 const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID ?? 'service_7lo9nij';
@@ -57,6 +50,8 @@ export default function Contact() {
     if (form.website) return setStatus('success'); // honeypot: i bot compilano il campo nascosto
     setStatus('sending');
     try {
+      // La libreria di invio si carica solo quando serve: la pagina parte più leggera
+      const { default: emailjs } = await import('@emailjs/browser');
       await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,
