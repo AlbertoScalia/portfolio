@@ -94,7 +94,7 @@ const experiences = [
   {
     date: 'Jul. 2021 – Jan. 2026',
     title: 'Freelance Visual & Book Designer',
-    sub: '12+ publishers (incl. Flaco Edizioni Group, Editori Riuniti, Ricca Editore)',
+    sub: <A href="https://riccaeditore.it">12+ publishers (incl. Flaco Edizioni Group, Editori Riuniti, Ricca Editore)</A>,
     place: 'Italy',
     points: [
       ['Action', 'Directed visual identity and professional typesetting for 12+ independent publishers and academic institutions.'],
@@ -117,10 +117,15 @@ const education = [
   {
     date: 'Oct. 2025 – Apr. 2026',
     title: 'Master Growth Marketing and AI Agents',
-    sub: <A href="https://www.start2impact.it">start2impact</A>,
-    place: 'Rome, Italy',
+sub: (
+    <>
+      <A href="https://www.start2impact.it">start2impact</A> /{' '}
+      <A href="https://www.unimarconi.it/growth-marketing-e-agenti-ai">Unimarconi</A>
+    </>
+  ),
+      place: 'Rome, Italy',
     points: [
-      ['Case Study Project', <SiteLink>IsolaBio</SiteLink>],
+      ['Case Study Project', <SiteLink>Isola Bio</SiteLink>],
       ['Competencies', 'Funnel Marketing, SEO Audit, Growth Marketing, UX/UI Discovery, Wireframing, User Testing, AI-Optimized UI, Prompt Engineering, Meta/Google Ads, Email Marketing, Advanced Excel, SQL, GA4, Tableau, Looker Studio, HTML/CSS, AI Agent Design.'],
     ],
   },

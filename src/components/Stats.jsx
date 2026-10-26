@@ -6,7 +6,7 @@ import Guides from './Guides';
 
 const STATS = [
   { value: 50, suffix: '+', label: 'Book projects delivered' },
-  { value: 12, suffix: '', label: 'Publishers and brands' },
+  { value: 12, suffix: '+', label: 'Publishers and brands' },
 ];
 
 // Numero che conta fino al valore quando entra nel viewport.
