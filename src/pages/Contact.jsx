@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { ArrowDown, ArrowUpRight, CheckCircle } from '@phosphor-icons/react';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowDown, ArrowUpRight, Check, CheckCircle, Copy } from '@phosphor-icons/react';
 import Reveal from '../components/Reveal';
 import Magnetic from '../components/Magnetic';
 import RollText from '../components/RollText';
@@ -39,6 +39,21 @@ export default function Contact() {
   );
   const [form, setForm] = useState(empty);
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
+
+  // Copia l'indirizzo negli appunti (il link mailto resta disponibile)
+  const [copied, setCopied] = useState(false);
+  const copyTimer = useRef(null);
+  useEffect(() => () => clearTimeout(copyTimer.current), []);
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+      setCopied(true);
+      clearTimeout(copyTimer.current);
+      copyTimer.current = setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* appunti non disponibili: si può usare il link */
+    }
+  };
 
   const onChange = (e) => {
     setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
@@ -89,7 +104,19 @@ export default function Contact() {
             {EMAIL && (
               <div className="py-5">
                 <dt className="mb-1 text-sm text-[#364b9b]/90">Email</dt>
-                <dd className="text-lg"><a href={`mailto:${EMAIL}`} className="underline decoration-[#EC3814] underline-offset-4 hover:text-[#EC3814]">{EMAIL}</a></dd>
+                <dd className="flex flex-wrap items-center gap-3 text-lg">
+                  <a href={`mailto:${EMAIL}`} className="underline decoration-[#EC3814] underline-offset-4 hover:text-[#EC3814]">{EMAIL}</a>
+                  <button
+                    type="button"
+                    onClick={copyEmail}
+                    aria-label="Copy email address"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-[#364b9b]/40 px-3 py-1 text-sm font-medium transition-colors hover:border-[#EC3814] hover:text-[#EC3814]"
+                  >
+                    {copied ? <Check size={14} weight="bold" aria-hidden="true" /> : <Copy size={14} weight="bold" aria-hidden="true" />}
+                    {copied ? 'Copied' : 'Copy'}
+                  </button>
+                  <span role="status" aria-live="polite" className="sr-only">{copied ? 'Email address copied' : ''}</span>
+                </dd>
               </div>
             )}
             <div className="py-5">

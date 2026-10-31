@@ -47,10 +47,20 @@ export default function Footer() {
       <div className="relative mx-auto max-w-[1600px]">
         <div className="grid grid-cols-1 gap-14 md:grid-cols-12">
           <div className="md:col-span-5">
-            <img
-              src={`${import.meta.env.BASE_URL}assets/images/Logo_footer.webp`}
-              alt={`${NAME}, ${ROLE}`}
-              className="mb-4 h-12 w-auto object-contain brightness-0 invert"
+            <div
+              role="img"
+              aria-label={`${NAME}, ${ROLE}`}
+              className="logo-mask mb-4 h-12 w-64 max-w-full bg-white"
+              style={{
+                maskImage: `url(${import.meta.env.BASE_URL}assets/images/Logo_footer.webp)`,
+                WebkitMaskImage: `url(${import.meta.env.BASE_URL}assets/images/Logo_footer.webp)`,
+                maskSize: 'contain',
+                WebkitMaskSize: 'contain',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat',
+                maskPosition: 'left center',
+                WebkitMaskPosition: 'left center',
+              }}
             />
             <p className="text-base font-medium text-white">{ROLE}</p>
             <p className="mt-2 text-sm text-white">

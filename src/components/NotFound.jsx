@@ -6,7 +6,7 @@ import RollText from '../components/RollText';
 import usePageTitle from '../hooks/usePageTitle';
 
 export default function NotFound() {
-  usePageTitle('Page not found — Alberto Scalia', 'The page you are looking for does not exist or has moved.');
+  usePageTitle('Page not found — Alberto Scalia', 'The page you are looking for does not exist or has moved.', { noindex: true });
 
   return (
     <main id="main" className="mx-auto flex min-h-screen max-w-[1600px] flex-col justify-center px-6 pb-24 pt-40 text-[#364b9b] lg:px-12">

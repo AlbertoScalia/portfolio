@@ -3,14 +3,10 @@ import { AnimatePresence, motion, useScroll } from 'framer-motion';
 import useMotionPref from '../hooks/useMotionPref';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { cn } from '../utils/cn';
-import { BehanceLogo, GithubLogo, LinkedinLogo } from '@phosphor-icons/react';
 import Cursor from './Cursor';
-import LocalTime from './LocalTime';
-import { EMAIL, SOCIALS } from '../utils/site';
 import RollText from './RollText';
 
 const NAME = 'Alberto Scalia';
-const SOCIAL_ICONS = { LinkedIn: LinkedinLogo, Behance: BehanceLogo, GitHub: GithubLogo };
 const LOGO = `${import.meta.env.BASE_URL}assets/images/Logo_nav.webp`;
 
 export default function Navbar() {
@@ -168,7 +164,7 @@ export default function Navbar() {
           {/* Maschera Blu (#364b9b) di base */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[#364b9b] opacity-100 transition-opacity duration-300 group-hover:opacity-0"
+            className="logo-mask absolute inset-0 bg-[#364b9b] opacity-100 transition-opacity duration-300 group-hover:opacity-0"
             style={{
               maskImage: `url(${LOGO})`,
               WebkitMaskImage: `url(${LOGO})`,
@@ -183,7 +179,7 @@ export default function Navbar() {
           {/* Maschera Arancione/Rossa (#EC3814) all'hover */}
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-[#EC3814] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            className="logo-mask absolute inset-0 bg-[#EC3814] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
             style={{
               maskImage: `url(${LOGO})`,
               WebkitMaskImage: `url(${LOGO})`,
@@ -235,7 +231,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduce ? 0 : 0.2 }}
-            className="fixed inset-0 z-0 flex flex-col overflow-y-auto bg-white px-6 pb-10 pt-28 md:hidden"
+            className="fixed inset-0 z-0 overflow-y-auto bg-white px-6 pt-28 md:hidden"
           >
             <ul className="flex flex-col gap-6 border-t border-[#364b9b]/15 pt-8">
               <motion.li {...mobileItem(0)}>

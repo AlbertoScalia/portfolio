@@ -33,7 +33,7 @@ function Logo({ client, labelled }) {
       {labelled && <span className="sr-only">{client.name}</span>}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[#364b9b]/80 transition-colors duration-300 group-hover:bg-[#EC3814]"
+        className="logo-mask absolute inset-0 bg-[#364b9b]/80 transition-colors duration-300 group-hover:bg-[#EC3814]"
         style={{
           maskImage: `url(${client.logo})`,
           WebkitMaskImage: `url(${client.logo})`,

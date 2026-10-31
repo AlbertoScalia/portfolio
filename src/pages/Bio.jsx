@@ -94,7 +94,11 @@ const experiences = [
   {
     date: 'Jul. 2021 – Jan. 2026',
     title: 'Freelance Visual & Book Designer',
-    sub: <A href="https://riccaeditore.it">12+ publishers (incl. Flaco Edizioni Group, Editori Riuniti, Ricca Editore)</A>,
+    sub: (
+      <>
+        12+ publishers (incl. Flaco Edizioni Group, Editori Riuniti, <A href="https://riccaeditore.it">Ricca Editore</A>)
+      </>
+    ),
     place: 'Italy',
     points: [
       ['Action', 'Directed visual identity and professional typesetting for 12+ independent publishers and academic institutions.'],

@@ -98,3 +98,15 @@
 .no-motion *::after {
   transition-duration: 0.01ms !important;
 }
+/* Modalità a contrasto forzato (es. "Alto contrasto" di Windows):
+   i loghi prendono il colore di sistema e gli elementi solo decorativi spariscono */
+@media (forced-colors: active) {
+  .logo-mask {
+    forced-color-adjust: none;
+    background-color: CanvasText !important;
+  }
+  [aria-hidden='true'].pointer-events-none,
+  section[aria-hidden='true'] {
+    display: none;
+  }
+}
