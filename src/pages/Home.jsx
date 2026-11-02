@@ -11,7 +11,7 @@ import usePageTitle from '../hooks/usePageTitle';
 export default function Home() {
   usePageTitle(
     'Alberto Scalia — UI & Visual Designer',
-    'Portfolio of Alberto Scalia, a UI and Visual Designer with a background in high-end editorial design. Identities, magazines, packaging and interfaces that stay consistent from print to screen.'
+    'Alberto Scalia is a ui and visual designer. Editorial design, brand identities, packaging and interfaces that stay consistent from print to screen.'
   );
   const { state, pathname } = useLocation();
   const navigate = useNavigate();

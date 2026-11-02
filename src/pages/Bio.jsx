@@ -7,19 +7,13 @@ import Reveal from '../components/Reveal';
 import Magnetic from '../components/Magnetic';
 import RollText from '../components/RollText';
 import { CV_FILE, CV_URL } from '../utils/site';
+import { profilePageLd } from '../utils/seo';
 import usePageTitle from '../hooks/usePageTitle';
 
 const A = ({ href, children }) => (
   <a href={href} target="_blank" rel="noopener noreferrer" className="underline decoration-[#EC3814] underline-offset-4 transition-colors hover:text-[#EC3814]">
     {children}
   </a>
-);
-
-// "Case Study Project": porta alla sezione dei lavori del portfolio
-const SiteLink = ({ children }) => (
-  <Link to="/" state={{ scrollTo: 'work' }} className="underline decoration-[#EC3814] underline-offset-4 transition-colors hover:text-[#EC3814]">
-    {children}
-  </Link>
 );
 
 // Competenze, nell'ordine e con le voci del CV
@@ -96,7 +90,7 @@ const experiences = [
     title: 'Freelance Visual & Book Designer',
     sub: (
       <>
-        12+ publishers (incl. Flaco Edizioni Group, Editori Riuniti, <A href="https://riccaeditore.it">Ricca Editore</A>)
+        12+ publishers (incl. Flaco Edizioni Group, <A href="https://editoririuniti.it">Editori Riuniti</A>, <A href="https://riccaeditore.it">Ricca Editore</A>)
       </>
     ),
     place: 'Italy',
@@ -129,7 +123,6 @@ sub: (
   ),
       place: 'Rome, Italy',
     points: [
-      ['Case Study Project', <SiteLink>Isola Bio</SiteLink>],
       ['Competencies', 'Funnel Marketing, SEO Audit, Growth Marketing, UX/UI Discovery, Wireframing, User Testing, AI-Optimized UI, Prompt Engineering, Meta/Google Ads, Email Marketing, Advanced Excel, SQL, GA4, Tableau, Looker Studio, HTML/CSS, AI Agent Design.'],
     ],
   },
@@ -138,7 +131,6 @@ sub: (
     title: 'UX Design Course',
     sub: <A href="https://corsoux.it">CorsoUx.it</A>,
     points: [
-      ['Case Study Project', <SiteLink>Glacier</SiteLink>],
       ['Competencies', 'Information Architecture, Low/High-Fidelity Wireframing, Interactive Prototyping.'],
     ],
   },
@@ -226,7 +218,7 @@ function Accordion({ items, id }) {
             {/* Linea del tempo: tratti che collegano il cerchietto alla voce precedente e a quella successiva */}
             {i > 0 && <span aria-hidden="true" className="absolute left-[4px] top-0 h-[29px] w-px bg-[#364b9b]/25 sm:h-[37px]" />}
             {i < items.length - 1 && <span aria-hidden="true" className="absolute -bottom-px left-[4px] top-[39px] w-px bg-[#364b9b]/25 sm:top-[47px]" />}
-            <p className="mb-1 flex items-center gap-3 self-start text-sm text-[#364b9b]/80 sm:col-span-4 sm:mb-0 sm:pt-2">
+            <p className="mb-1 flex items-center gap-3 self-start text-sm tabular-nums text-[#364b9b]/80 sm:col-span-4 sm:mb-0 sm:pt-2">
               <span
                 aria-hidden="true"
                 className={`h-2.5 w-2.5 shrink-0 rounded-full border-2 transition-colors duration-300 ${isOpen ? 'border-[#EC3814] bg-[#EC3814]' : 'border-[#364b9b]/60'}`}
@@ -304,10 +296,7 @@ function SkillsAccordion({ categories, id }) {
 }
 
 export default function Bio() {
-  usePageTitle(
-    'About — Alberto Scalia',
-    'Professional background, skills and training of Alberto Scalia, visual and interface designer.'
-  );
+  usePageTitle('About — Alberto Scalia', 'Experience, education and skills of Alberto Scalia: editorial design for publishers, brand identity, packaging, UI design and AI-assisted workflows.', { jsonLd: profilePageLd() });
   return (
     <main id="main" className="mx-auto min-h-screen max-w-[1600px] px-6 pb-24 pt-40 text-[#364b9b] lg:px-12">
       <Reveal as="p" className="mb-6 text-sm font-medium text-[#364b9b]/80">
@@ -347,8 +336,8 @@ export default function Bio() {
         <dl className="grid flex-1 grid-cols-1 gap-8 md:grid-cols-3">
           {[
             ['Based in', 'Acireale, Italy'],
-            ['Currently', <><span className="block">Visual & Brand Designer at Gyada Cosmetics</span><span className="mt-2 block">Visual & Editorial Designer at <a href="https://forward.recentiprogressi.it/it/" target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[#EC3814]">Forward magazine (Il Pensiero Scientifico Editore)</a></span></>],
-            ['Availability', 'Open to UX/UI roles — available immediately'],
+            ['Currently', <><span className="block">Visual & Brand Designer at <a href="https://gyadacosmetics.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#EC3814] underline-offset-4 transition-colors hover:text-[#EC3814]">Gyada Cosmetics</a></span><span className="mt-2 block">Visual & Editorial Designer at <a href="https://forward.recentiprogressi.it/it/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#EC3814] underline-offset-4 transition-colors hover:text-[#EC3814]">Forward magazine</a> (Il Pensiero Scientifico Editore)</span></>],
+            ['Availability', 'Open to UX/UI roles — available immediately'],å
           ].map(([term, value]) => (
             <div key={term}>
               <dt className="mb-2 text-sm text-[#364b9b]/90">{term}</dt>

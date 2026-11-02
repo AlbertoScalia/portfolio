@@ -6,6 +6,7 @@ import RollText from '../components/RollText';
 import LocalTime from '../components/LocalTime';
 import usePageTitle from '../hooks/usePageTitle';
 import { CV_FILE, CV_URL, EMAIL, SOCIALS } from '../utils/site';
+import { contactPageLd } from '../utils/seo';
 
 const LOCATION = 'Acireale, CT, Italy';
 
@@ -33,10 +34,7 @@ function Field({ label, number, as: Tag = 'input', ...props }) {
 }
 
 export default function Contact() {
-  usePageTitle(
-    'Contact — Alberto Scalia',
-    'Get in touch with Alberto Scalia for freelance projects and full-time roles in visual, brand and interface design.'
-  );
+  usePageTitle('Contact — Alberto Scalia', 'Get in touch with Alberto Scalia for freelance projects and full-time roles in visual, brand and interface design.', { jsonLd: contactPageLd() });
   const [form, setForm] = useState(empty);
   const [status, setStatus] = useState('idle'); // idle | sending | success | error
 

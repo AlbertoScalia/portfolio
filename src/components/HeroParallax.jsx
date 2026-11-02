@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { Fragment, useRef } from 'react';
 import { motion, useMotionValue, useScroll, useSpring, useTransform } from 'framer-motion';
 import useMotionPref from '../hooks/useMotionPref';
 import { ArrowDown } from '@phosphor-icons/react';
@@ -8,7 +8,7 @@ import RollText from './RollText';
 /* ---------- Contenuti ---------- */
 
 const INTRO =
-  "I'm Alberto, a UI and Visual Designer with a background in high-end editorial design. I build identities, magazines, packaging and interfaces that stay consistent from print to screen.";
+  "I'm Alberto, a UI and visual designer with a background in high-end editorial design. I build identities, magazines, packaging and interfaces that stay consistent from print to screen.";
 
 const ROLE = 'UI & Visual Designer';
 
@@ -110,14 +110,17 @@ export default function HeroParallax() {
           style={{ opacity: titleOpacity, x: titleX }}
           className="relative text-[clamp(2.75rem,15vw,6rem)] leading-[0.95] tracking-[-0.045em] md:text-[min(8.4vw,10rem)]"
         >
+          <span className="sr-only">Alberto Scalia — Visual &amp; Interface Designer. </span>
           {TITLE.map(({ text, weight, color }, i) => (
-            <Layer key={text} as="span" progress={scrollYProgress} y={[0, px(TITLE_LAG[i])]} className="block">
+            <Fragment key={text}>
+            <Layer as="span" progress={scrollYProgress} y={[0, px(TITLE_LAG[i])]} className="block">
               <span className="-mb-[0.14em] block overflow-hidden pb-[0.14em]">
                 <motion.span {...reveal(i)} className={`block ${weight} ${color}`}>
                   {text}
                 </motion.span>
               </span>
-            </Layer>
+            </Layer>{' '}
+            </Fragment>
           ))}
         </motion.h1>
 
