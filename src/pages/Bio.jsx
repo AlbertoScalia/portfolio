@@ -331,13 +331,13 @@ export default function Bio() {
           src={`${import.meta.env.BASE_URL}assets/images/profile.webp`}
           alt=""
           decoding="async"
-          className="h-28 w-28 shrink-0 rounded-full border-[6px] border-[#EC3814] object-cover contrast-125 md:h-36 md:w-36"
+          className="h-28 w-28 shrink-0 rounded-full border-[6px] border-[#364b9b] object-cover contrast-125 md:h-36 md:w-36"
         />
         <dl className="grid flex-1 grid-cols-1 gap-8 md:grid-cols-3">
           {[
             ['Based in', 'Acireale, Italy'],
             ['Currently', <><span className="block">Visual & Brand Designer at <a href="https://gyadacosmetics.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#EC3814] underline-offset-4 transition-colors hover:text-[#EC3814]">Gyada Cosmetics</a></span><span className="mt-2 block">Visual & Editorial Designer at <a href="https://forward.recentiprogressi.it/it/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#EC3814] underline-offset-4 transition-colors hover:text-[#EC3814]">Forward magazine</a> (Il Pensiero Scientifico Editore)</span></>],
-            ['Availability', 'Open to UX/UI roles — available immediately'],å
+            ['Availability', 'Open to UX/UI roles — available immediately'],
           ].map(([term, value]) => (
             <div key={term}>
               <dt className="mb-2 text-sm text-[#364b9b]/90">{term}</dt>
