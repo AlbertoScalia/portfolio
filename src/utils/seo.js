@@ -5,7 +5,7 @@ export const siteUrl = () => `${window.location.origin}${import.meta.env.BASE_UR
 const person = () => ({
   '@type': 'Person',
   name: 'Alberto Scalia',
-  jobTitle: 'Visual & Interface Designer',
+  jobTitle: 'UI & Visual Designer',
   url: siteUrl(),
   address: { '@type': 'PostalAddress', addressLocality: 'Acireale', addressCountry: 'IT' },
   knowsAbout: ['Editorial design', 'Visual identity', 'Packaging design', 'UX/UI design', 'Typography', 'Brand strategy'],

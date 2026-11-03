@@ -27,13 +27,12 @@ const TITLE_LAG = [40, 90, 140, 190];
 
 /* ---------- Livello parallax ---------- */
 
-function Layer({ as = 'div', progress, y = [0, 0], scale = [1, 1], rotate = [0, 0], className, style, children, ...rest }) {
+function Layer({ as = 'div', progress, y = [0, 0], scale = [1, 1], className, style, children, ...rest }) {
   const Tag = motion[as];
   const ty = useTransform(progress, [0, 1], y);
   const ts = useTransform(progress, [0, 1], scale);
-  const tr = useTransform(progress, [0, 1], rotate);
   return (
-    <Tag {...rest} style={{ y: ty, scale: ts, rotate: tr, ...style }} className={className}>
+    <Tag {...rest} style={{ y: ty, scale: ts, ...style }} className={className}>
       {children}
     </Tag>
   );
@@ -140,7 +139,7 @@ export default function HeroParallax() {
         <motion.div {...rise(0)} className="w-fit">
           <Layer progress={scrollYProgress} y={[0, px(-120)]} scale={[1, reduce ? 1 : 0.9]}>
             <motion.div style={{ x: portraitX, y: portraitY }} className="relative">
-              <div className="relative isolate aspect-square w-[clamp(12rem,62vw,18rem)] overflow-hidden rounded-full border-[10px] border-[#EC3814] bg-white md:w-[clamp(12rem,27vw,28rem)]">
+              <div className="relative isolate aspect-square w-[clamp(12rem,62vw,18rem)] overflow-hidden rounded-full border-[10px] border-[#364b9b] bg-white md:w-[clamp(12rem,27vw,28rem)]">
                 <img
                   src={PORTRAIT}
                   alt="Portrait of Alberto Scalia"
@@ -149,15 +148,6 @@ export default function HeroParallax() {
                   className="h-full w-full object-cover object-center contrast-125"
                 />
               </div>
-              {/* Punto che orbita attorno al ritratto mentre scorri (decorativo) */}
-              <Layer
-                progress={scrollYProgress}
-                rotate={[0, px(200)]}
-                aria-hidden="true"
-                className="pointer-events-none absolute -inset-5 rounded-full"
-              >
-                <span className="absolute left-1/2 top-0 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#364b9b]" />
-              </Layer>
             </motion.div>
           </Layer>
         </motion.div>
