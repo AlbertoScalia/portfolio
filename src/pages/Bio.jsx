@@ -38,7 +38,15 @@ const skillCategories = [
     title: 'Languages',
     groups: [
       { label: 'Italian', items: ['Native'] },
-      { label: 'English', items: ['B1 Level – Cambridge ESOL International (Council of Europe Level B1)'] },
+      {
+        label: 'English',
+        items: [
+          'B1 Level – Cambridge ESOL International (Council of Europe Level B1)',
+          <A href="https://efset-pdf-generator-prod-eu-west-1.s3.eu-west-1.amazonaws.com/2026/11/7/1794063224012/EF%20SET%20Certificate.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIA4UHWAWPW6GEQKLIL%2F20261107%2Feu-west-1%2Fs3%2Faws4_request&X-Amz-Date=20261107T145344Z&X-Amz-Expires=86400&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEC4aCWV1LXdlc3QtMSJHMEUCIQDzTcsBRkmZXpgdUespTRnTSVO5l3pitjodPvYkiY23ywIgTo%2BCcJn8jBcNmgU8tiEHvx0d2iiyZKAXVs0jCaNCqRsqlgQI9%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FARAAGgw4NjgwOTkzMzkyNDUiDItty9up692QDI6LISrqA%2FmZCUH%2BSQPBgmWSE9mIqtcoM8HJl%2BoPBuf9mS%2FpgAwkRp1KYArFa68AmffWRHWWb4Qvymn5bOxn3M7msX8111oIEuFfKJrGQRgCV8Fso7Y0%2FEXeg1%2BOZmY78iGzdjmggnOjc%2BMxJrGZypn1Nv0tJTwR9wrY4oBMZp27QqG%2Bm7gxSb6wRZuodHQ6knzbf2K4WMDPkcmqcMIsrubHjyKsAcf%2FGU8nME0H0k38YVCV8cpOnXEHBiH2rF2UwizKzOehHNHDj6VDMpJmWZ4IhqI5bzr6pBFmhsxxkhRAK6oEntEnB%2FSSqnsRJGbMQ8OC0J4U74%2FCFWZ50%2BGoE7yz804wLzngdKJUL0xDOiXS5p%2B5IWc0D025GRPneupEr%2BqurHulDdggu%2BHSyfzVfIR2MhfoNx%2FVbQNrCVuMYdGo6FvoXJIF8%2BeTL6%2F%2B8zIXpU45n9PtBiGv99TRw73LnPQIRtbnUHFlDkK%2B9KDRVVefoTVyFY6Kp%2BfBQfb4%2BXHx%2FusX7xIUOyB0IEnL%2FRb%2B3fveOVoTwR6I3YBKhw6qvLVfsG8J6hf8OKINRsoHdb3dHsGC%2F0ccSNu%2BAh18v6kUQ9XubqquVQqjinMH5mN1AEBXvAkuXirujo9D0lZX8TU5hP%2Fm910OUMQzyewq2%2FU5kMIwwNe81wY6ogHgl7aJRQE7xL8aSGX%2F%2Fyuihr1JAXpjt0Rqivq9btyj82wUv22v4jGh%2BRUcYe1oI54%2BdejQ4MSu9KG0uhQ%2FtaIuGJpgOWh%2BnDAipLsRE6f4iai09Na%2BA5tJ70GYnlbCkQNOV2STWywjNH5fYK7MIL%2BQzyeu2D34py5VAY6iXmT2AL94Jh1GrFLqx3eQFuE6QchQH0H0OWDLH%2FayQYw9We4UxaE%3D&X-Amz-Signature=af9b3c12e0b08296cc77410dadb037a4921fb9b98072986220b29d9611120277&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject">
+            C2 Level - EF SET English Certificate 73/100 (C2 Proficient)
+          </A>,
+        ],
+      },
     ],
   },
 ];
