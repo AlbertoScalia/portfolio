@@ -27,7 +27,7 @@ function Field({ label, number, as: Tag = 'input', ...props }) {
       <Tag
         {...props}
         required
-        className="border-b border-[#000000]/70 bg-transparent py-3 text-lg text-[#000000] transition-colors placeholder:text-[#000000]/80 hover:border-[#000000] focus:border-[#FF0000] focus:shadow-[0_1px_0_0_#FF0000] focus:outline-none"
+        className="resize-y border-b border-[#000000]/70 bg-transparent py-3 text-lg text-[#000000] transition-colors placeholder:text-[#000000]/80 hover:border-[#000000] focus:border-[#EC3814] focus:shadow-[0_1px_0_0_#EC3814] focus:outline-none [&:user-invalid]:border-red-700 [&:user-invalid]:shadow-[0_1px_0_0_#b91c1c]"
       />
     </div>
   );

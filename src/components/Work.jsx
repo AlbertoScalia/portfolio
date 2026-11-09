@@ -20,7 +20,7 @@ const keepWords = (text) =>
 /* ---------- Immagine con dissolvenza ---------- */
 // Mostra un riquadro chiaro finché l'immagine non è arrivata, poi la fa comparire in dissolvenza.
 // Se l'immagine non si carica, resta visibile il testo alternativo.
-function FadeImage({ src, alt, className = '', wrapperClassName = 'bg-[#f4f4f4]' }) {
+function FadeImage({ src, alt, className = '', wrapperClassName = 'bg-[#F3F5FB]' }) {
   const [loaded, setLoaded] = useState(false);
   return (
     <div className={wrapperClassName}>
@@ -114,7 +114,7 @@ My role focused on the magazine's layout and cover design, developed in collabor
     ],
   },
   {
-    title: 'Brand Identity',
+    title: 'Brand & Identity',
     description:
       'Visual identities and printed pieces that hold together across posters, programs and social, built to last beyond a single campaign.',
     projects: [

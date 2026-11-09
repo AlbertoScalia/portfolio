@@ -14,6 +14,7 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [inWork, setInWork] = useState(false);
   const reduce = useMotionPref();
   const { scrollYProgress } = useScroll();
   const headerRef = useRef(null);
@@ -49,6 +50,19 @@ export default function Navbar() {
   }, []);
 
   useEffect(close, [pathname, close]);
+
+  // Nella Home: la voce "Work" resta evidenziata finché la sezione dei lavori è al centro dello schermo
+  useEffect(() => {
+    if (pathname !== '/') {
+      setInWork(false);
+      return;
+    }
+    const section = document.getElementById('work');
+    if (!section) return;
+    const io = new IntersectionObserver(([entry]) => setInWork(entry.isIntersecting), { rootMargin: '-35% 0px -55% 0px' });
+    io.observe(section);
+    return () => io.disconnect();
+  }, [pathname]);
 
   // Cambio pagina: torna in cima (tranne quando si arriva da "Work") e porta il focus sul contenuto,
   // così tastiera e screen reader ripartono dalla nuova pagina
@@ -195,7 +209,7 @@ export default function Navbar() {
 
         <ul className="hidden items-center gap-10 md:flex">
           <li>
-            <a href="#work" onClick={goWork} className={desktopLink(false)}>
+            <a href="#work" onClick={goWork} aria-current={inWork ? 'location' : undefined} className={desktopLink(inWork)}>
               <RollText>Work</RollText>
             </a>
           </li>
@@ -231,7 +245,7 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: reduce ? 0 : 0.2 }}
-            className="fixed inset-0 z-0 overflow-y-auto bg-white px-6 pt-28 md:hidden"
+            className="fixed inset-0 z-0 overflow-y-auto overscroll-contain bg-white px-6 pt-28 md:hidden"
           >
             <ul className="flex flex-col gap-6 border-t border-[#000000]/15 pt-8">
               <motion.li {...mobileItem(0)}>
@@ -252,26 +266,6 @@ export default function Navbar() {
         )}
       </AnimatePresence>
     </header>
-
-    {/* Tende di transizione (decorative, non bloccano i click, assenti con "riduci movimento") */}
-    {curtainKey > 0 && !reduce && (
-      <div key={curtainKey} aria-hidden="true" className="pointer-events-none fixed inset-0 z-[300]">
-        {[
-          { color: '#000000', delay: 0.1 },
-          { color: '#FF0000', delay: 0 },
-        ].map(({ color, delay }) => (
-          <motion.div
-            key={color}
-            initial={{ opacity: 0, y: '0%' }}
-            animate={{ opacity: [0, 1, 1], y: ['0%', '0%', '-115%'] }}
-            transition={{ duration: 0.85, delay, times: [0, 0.15, 1], ease: [0.76, 0, 0.24, 1] }}
-            style={{ backgroundColor: color, borderRadius: '0 0 50% 50% / 0 0 12% 12%' }}
-            className="absolute inset-0"
-          />
-        ))}
-      </div>
-    )}
-
     <Cursor />
     </>
   );

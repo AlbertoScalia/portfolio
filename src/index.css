@@ -34,7 +34,7 @@
     text-wrap: balance;
   }
   ::selection {
-    background-color: #FF0000;
+    background-color: #ff0000;
     color: #ffffff;
   }
   :focus-visible {
@@ -47,6 +47,13 @@
   }
   p {
     text-wrap: pretty;
+  }
+  /* Sul telefono: evidenziazione del tocco nei colori del sito e nessun ritardo sul tocco */
+  a,
+  button,
+  [role='button'] {
+    -webkit-tap-highlight-color: rgba(54, 75, 155, 0.15);
+    touch-action: manipulation;
   }
   /* dissolvenza morbida a ogni cambio pagina */
   main {
@@ -108,5 +115,38 @@
   [aria-hidden='true'].pointer-events-none,
   section[aria-hidden='true'] {
     display: none;
+  }
+}
+
+/* Preferenza "più contrasto" del sistema: testi e bordi a tinta piena, senza trasparenze */
+@media (prefers-contrast: more) {
+  [class*='text-[#000000]/'] {
+    color: #000000 !important;
+  }
+  [class*='placeholder:text-[#000000]/']::placeholder {
+    color: #000000 !important;
+  }
+  [class*='border-[#000000]/'] {
+    border-color: #000000 !important;
+  }
+  [class*='divide-[#000000]/'] > * + * {
+    border-color: #000000 !important;
+  }
+  [class*='text-white/'] {
+    color: #ffffff !important;
+  }
+  [class*='border-white/'] {
+    border-color: #ffffff !important;
+  }
+}
+
+/* Preferenza "meno trasparenza": la barra in alto non sfoca lo sfondo, resta bianca piena */
+@media (prefers-reduced-transparency: reduce) {
+  .backdrop-blur-md {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  header [class*='bg-white/90'] {
+    background-color: #ffffff !important;
   }
 }

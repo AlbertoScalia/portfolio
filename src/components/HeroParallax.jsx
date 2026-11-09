@@ -109,7 +109,7 @@ export default function HeroParallax() {
           style={{ opacity: titleOpacity, x: titleX }}
           className="relative text-[clamp(2.75rem,15vw,6rem)] leading-[0.95] tracking-[-0.045em] md:text-[min(8.4vw,10rem)]"
         >
-          <span className="sr-only">Alberto Scalia — Ui &amp; Visual Designer. </span>
+          <span className="sr-only">Alberto Scalia — UI &amp; Visual Designer. </span>
           {TITLE.map(({ text, weight, color }, i) => (
             <Fragment key={text}>
             <Layer as="span" progress={scrollYProgress} y={[0, px(TITLE_LAG[i])]} className="block">
