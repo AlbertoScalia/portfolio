@@ -33,7 +33,7 @@ function Logo({ client, labelled }) {
       {labelled && <span className="sr-only">{client.name}</span>}
       <div
         aria-hidden="true"
-        className="logo-mask absolute inset-0 bg-[#364b9b]/80 transition-colors duration-300 group-hover:bg-[#EC3814]"
+        className="logo-mask absolute inset-0 bg-[#000000]/80 transition-colors duration-300 group-hover:bg-[#FF0000]"
         style={{
           maskImage: `url(${client.logo})`,
           WebkitMaskImage: `url(${client.logo})`,
@@ -56,13 +56,13 @@ export default function ClientsMarquee() {
 
   return (
     <>
-    <section className="overflow-hidden py-16 md:py-28 text-[#364b9b]">
+    <section className="overflow-hidden py-16 md:py-28 text-[#000000]">
       <header className="mx-auto mb-16 grid max-w-[1600px] grid-cols-1 gap-6 px-6 md:grid-cols-12 md:items-end lg:px-12">
         <Reveal as="h2" className="max-w-4xl text-5xl leading-[1.02] md:col-span-7 md:text-8xl">
-          <span className="font-semibold text-[#364b9b]">Who </span>
-          <span className="font-light text-[#EC3814]">trusted me</span>
+          <span className="font-semibold text-[#000000]">Who </span>
+          <span className="font-light text-[#FF0000]">trusted me</span>
         </Reveal>
-        <Reveal as="p" delay={0.1} className="text-lg leading-relaxed text-[#364b9b]/80 md:col-span-4 md:col-start-9">
+        <Reveal as="p" delay={0.1} className="text-lg leading-relaxed text-[#000000]/80 md:col-span-4 md:col-start-9">
           {clients.length} publishers and brands have trusted me so far, with consistent results.
         </Reveal>
       </header>
@@ -74,7 +74,7 @@ export default function ClientsMarquee() {
           role="region"
           aria-label="Clients and publishers"
           tabIndex={reduce ? 0 : undefined}
-          className={`border-y border-[#364b9b]/20 py-12 ${reduce ? 'overflow-x-auto' : 'overflow-x-hidden'}`}
+          className={`border-y border-[#000000]/20 py-12 ${reduce ? 'overflow-x-auto' : 'overflow-x-hidden'}`}
         >
           <div className="marquee-track flex w-max will-change-transform" data-paused={paused}>
             <ul className={group}>
@@ -96,7 +96,7 @@ export default function ClientsMarquee() {
         <button
           type="button"
           onClick={() => setPaused((p) => !p)}
-          className="inline-flex items-center gap-2 text-sm text-[#364b9b]/80 transition-colors hover:text-[#364b9b]"
+          className="inline-flex items-center gap-2 text-sm text-[#000000]/80 transition-colors hover:text-[#000000]"
         >
           {paused ? <Play size={16} weight="fill" aria-hidden="true" /> : <Pause size={16} weight="fill" aria-hidden="true" />}
           {paused ? 'Play logos' : 'Pause logos'}
@@ -106,7 +106,7 @@ export default function ClientsMarquee() {
     </section>
 
     {/* Chiusura: blocco blu a tutta larghezza, prima del footer rosso */}
-    <section aria-labelledby="cta-title" className="on-brand relative overflow-hidden bg-[#364b9b] py-24 text-white md:py-40">
+    <section aria-labelledby="cta-title" className="on-brand relative overflow-hidden bg-[#000000] py-24 text-white md:py-40">
       <div aria-hidden="true" className="pointer-events-none absolute -right-[10%] -top-[40%] aspect-square w-[55%] rounded-full border border-white/20" />
       <div aria-hidden="true" className="pointer-events-none absolute -bottom-[55%] left-[6%] aspect-square w-[40%] rounded-full border border-white/10" />
 
@@ -118,7 +118,7 @@ export default function ClientsMarquee() {
 
         <Reveal delay={0.1}>
           <p className="mt-8 inline-flex items-center gap-3 rounded-full border border-white/40 px-5 py-2.5 text-sm font-medium text-white">
-            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#EC3814] motion-safe:animate-[pulse_1.8s_ease-in-out_2]" />
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#FF0000] motion-safe:animate-[pulse_1.8s_ease-in-out_2]" />
             {AVAILABILITY}
           </p>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/90">
@@ -127,7 +127,7 @@ export default function ClientsMarquee() {
           <Link to="/contact" className="group mt-10 inline-flex items-center gap-5 text-xl font-medium text-white">
             <RollText>Get in touch</RollText>
             <Magnetic>
-              <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white transition-colors duration-300 group-hover:bg-white group-hover:text-[#364b9b]">
+              <span className="flex h-14 w-14 items-center justify-center rounded-full border border-white transition-colors duration-300 group-hover:bg-white group-hover:text-[#000000]">
                 <ArrowUpRight size={24} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
               </span>
             </Magnetic>

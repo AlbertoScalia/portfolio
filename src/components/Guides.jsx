@@ -6,7 +6,7 @@ export default function Guides({ className = '' }) {
         {[0, 1, 2, 3].map((i) => (
           <div
             key={i}
-            className={`border-l border-[#364b9b]/[0.09] last:border-r ${i > 1 ? 'hidden md:block' : ''} ${i === 1 ? 'border-r md:border-r-0' : ''}`}
+            className={`border-l border-[#000000]/[0.09] last:border-r ${i > 1 ? 'hidden md:block' : ''} ${i === 1 ? 'border-r md:border-r-0' : ''}`}
           />
         ))}
       </div>

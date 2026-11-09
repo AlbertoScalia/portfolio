@@ -39,7 +39,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="on-brand relative isolate overflow-hidden bg-[#C72E0E] px-6 pb-10 pt-20 text-white lg:px-12">
+    <footer className="on-brand relative isolate overflow-hidden bg-[#FF0000] px-6 pb-10 pt-20 text-white lg:px-12">
       {/* Grana e cerchio decorativo: stesso linguaggio della hero */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-25 mix-blend-overlay" style={{ backgroundImage: GRAIN }} />
       <div aria-hidden="true" className="pointer-events-none absolute -right-[10%] -top-[45%] aspect-square w-[48%] rounded-full border border-white/25" />

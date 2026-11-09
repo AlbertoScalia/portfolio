@@ -35,7 +35,7 @@ function CountUp({ to, suffix }) {
     <span ref={ref}>
       <span aria-hidden="true">
         {n}
-        <span className="font-light text-[#EC3814]">{suffix}</span>
+        <span className="font-light text-[#FF0000]">{suffix}</span>
       </span>
       <span className="sr-only">
         {to}
@@ -47,23 +47,23 @@ function CountUp({ to, suffix }) {
 
 export default function Stats() {
   return (
-    <section aria-labelledby="stats-title" className="relative overflow-hidden bg-[#F3F5FB] py-20 md:py-32">
+    <section aria-labelledby="stats-title" className="relative overflow-hidden bg-[#f4f4f4] py-20 md:py-32">
       <Guides />
-      <div aria-hidden="true" className="pointer-events-none absolute -right-[12%] top-1/2 aspect-square w-[44%] -translate-y-1/2 rounded-full border border-[#EC3814]/25" />
+      <div aria-hidden="true" className="pointer-events-none absolute -right-[12%] top-1/2 aspect-square w-[44%] -translate-y-1/2 rounded-full border border-[#FF0000]/25" />
 
       <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
         <Reveal as="h2" id="stats-title" className="max-w-4xl text-5xl leading-[1.02] md:text-8xl">
-          <span className="font-semibold text-[#364b9b]">The work, </span>
-          <span className="font-light text-[#EC3814]">in numbers</span>
+          <span className="font-semibold text-[#000000]">The work, </span>
+          <span className="font-light text-[#FF0000]">in numbers</span>
         </Reveal>
 
         <ul className="mt-16 grid grid-cols-1 gap-12 md:mt-24 md:grid-cols-2 md:gap-16">
           {STATS.map(({ value, suffix, label }, i) => (
-            <Reveal as="li" key={label} delay={i * 0.12} className="border-t border-[#364b9b]/20 pt-6">
-              <p className="text-[clamp(5rem,16vw,14rem)] font-semibold tabular-nums leading-[0.9] tracking-[-0.045em] text-[#364b9b]">
+            <Reveal as="li" key={label} delay={i * 0.12} className="border-t border-[#000000]/20 pt-6">
+              <p className="text-[clamp(5rem,16vw,14rem)] font-semibold tabular-nums leading-[0.9] tracking-[-0.045em] text-[#000000]">
                 <CountUp to={value} suffix={suffix} />
               </p>
-              <p className="mt-4 text-lg text-[#364b9b]/90">{label}</p>
+              <p className="mt-4 text-lg text-[#000000]/90">{label}</p>
             </Reveal>
           ))}
         </ul>

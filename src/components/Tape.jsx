@@ -33,7 +33,7 @@ export default function Tape() {
         progress={scrollYProgress}
         from="0%"
         to={reduce ? '0%' : '-16%'}
-        className="bg-[#EC3814] py-5 md:py-7"
+        className="bg-[#FF0000] py-5 md:py-7"
         renderWord={(word, key) => (
           <span
             key={key}
@@ -54,10 +54,10 @@ export default function Tape() {
         renderWord={(word, key) => (
           <span
             key={key}
-            className="flex items-center gap-8 pr-8 text-[clamp(3.5rem,10vw,9rem)] font-semibold leading-[1.2] tracking-[-0.02em] text-white [-webkit-text-stroke:4px_#364b9b] [paint-order:stroke_fill] md:gap-14 md:pr-14"
+            className="flex items-center gap-8 pr-8 text-[clamp(3.5rem,10vw,9rem)] font-semibold leading-[1.2] tracking-[-0.02em] text-white [-webkit-text-stroke:4px_#000000] [paint-order:stroke_fill] md:gap-14 md:pr-14"
           >
             {word}
-            <span className="h-4 w-4 shrink-0 rounded-full bg-[#EC3814] md:h-6 md:w-6" />
+            <span className="h-4 w-4 shrink-0 rounded-full bg-[#FF0000] md:h-6 md:w-6" />
           </span>
         )}
       />

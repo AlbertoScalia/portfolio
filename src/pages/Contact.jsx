@@ -20,14 +20,14 @@ const empty = { name: '', email: '', subject: '', message: '', website: '' };
 function Field({ label, number, as: Tag = 'input', ...props }) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor={props.id} className="text-sm text-[#364b9b]/80">
+      <label htmlFor={props.id} className="text-sm text-[#000000]/80">
         <span aria-hidden="true" className="mr-3 font-medium">{number}</span>
         {label}
       </label>
       <Tag
         {...props}
         required
-        className="border-b border-[#364b9b]/70 bg-transparent py-3 text-lg text-[#364b9b] transition-colors placeholder:text-[#364b9b]/80 hover:border-[#364b9b] focus:border-[#EC3814] focus:shadow-[0_1px_0_0_#EC3814] focus:outline-none"
+        className="border-b border-[#000000]/70 bg-transparent py-3 text-lg text-[#000000] transition-colors placeholder:text-[#000000]/80 hover:border-[#000000] focus:border-[#FF0000] focus:shadow-[0_1px_0_0_#FF0000] focus:outline-none"
       />
     </div>
   );
@@ -80,35 +80,35 @@ export default function Contact() {
   };
 
   return (
-    <main id="main" className="mx-auto min-h-screen max-w-[1600px] px-6 pb-24 pt-40 text-[#364b9b] lg:px-12">
-      <Reveal as="p" className="mb-6 text-sm font-medium text-[#364b9b]/80">
+    <main id="main" className="mx-auto min-h-screen max-w-[1600px] px-6 pb-24 pt-40 text-[#000000] lg:px-12">
+      <Reveal as="p" className="mb-6 text-sm font-medium text-[#000000]/80">
         03 / Contact
       </Reveal>
 
       <header className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">
         <Reveal as="h1" className="text-6xl leading-[0.95] md:col-span-7 md:text-9xl">
-          <span className="font-semibold text-[#364b9b]">Let's </span>
-          <span className="font-light text-[#EC3814]">talk</span>
+          <span className="font-semibold text-[#000000]">Let's </span>
+          <span className="font-light text-[#FF0000]">talk</span>
         </Reveal>
-        <Reveal as="p" delay={0.1} className="text-lg leading-relaxed text-[#364b9b]/80 md:col-span-4 md:col-start-9">
+        <Reveal as="p" delay={0.1} className="text-lg leading-relaxed text-[#000000]/80 md:col-span-4 md:col-start-9">
           I'm open to freelance projects and full-time roles, especially where design and strategy overlap. Use the form
           {EMAIL ? ' or write to me directly' : ''}.
         </Reveal>
       </header>
 
       <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-24">
-        <Reveal as="aside" delay={0.15} className="bg-[#F3F5FB] p-6 md:p-8 lg:col-span-4 lg:self-start">
-          <dl className="divide-y divide-[#364b9b]/15">
+        <Reveal as="aside" delay={0.15} className="border-y border-black/20 py-8 lg:col-span-4 lg:self-start">
+          <dl className="divide-y divide-[#000000]/15">
             {EMAIL && (
               <div className="py-5">
-                <dt className="mb-1 text-sm text-[#364b9b]/90">Email</dt>
+                <dt className="mb-1 text-sm text-[#000000]/90">Email</dt>
                 <dd className="flex flex-wrap items-center gap-3 text-lg">
-                  <a href={`mailto:${EMAIL}`} className="underline decoration-[#EC3814] underline-offset-4 hover:text-[#EC3814]">{EMAIL}</a>
+                  <a href={`mailto:${EMAIL}`} className="underline decoration-[#FF0000] underline-offset-4 hover:text-[#FF0000]">{EMAIL}</a>
                   <button
                     type="button"
                     onClick={copyEmail}
                     aria-label="Copy email address"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-[#364b9b]/40 px-3 py-1 text-sm font-medium transition-colors hover:border-[#EC3814] hover:text-[#EC3814]"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-[#000000]/40 px-3 py-1 text-sm font-medium transition-colors hover:border-[#FF0000] hover:text-[#FF0000]"
                   >
                     {copied ? <Check size={14} weight="bold" aria-hidden="true" /> : <Copy size={14} weight="bold" aria-hidden="true" />}
                     {copied ? 'Copied' : 'Copy'}
@@ -118,24 +118,24 @@ export default function Contact() {
               </div>
             )}
             <div className="py-5">
-              <dt className="mb-1 text-sm text-[#364b9b]/90">Location</dt>
+              <dt className="mb-1 text-sm text-[#000000]/90">Location</dt>
               <dd className="text-lg">{LOCATION}</dd>
             </div>
             <div className="py-5">
-              <dt className="mb-1 text-sm text-[#364b9b]/90">Local time</dt>
+              <dt className="mb-1 text-sm text-[#000000]/90">Local time</dt>
               <dd className="text-lg"><LocalTime /></dd>
             </div>
             <div className="py-5">
-              <dt className="mb-1 text-sm text-[#364b9b]/90">Phone</dt>
+              <dt className="mb-1 text-sm text-[#000000]/90">Phone</dt>
               <dd className="text-lg">Available upon request</dd>
             </div>
             <div className="py-5">
-              <dt className="mb-1 text-sm text-[#364b9b]/90">Resume</dt>
+              <dt className="mb-1 text-sm text-[#000000]/90">Resume</dt>
               <dd>
                 <a
                   href={CV_URL}
                   download={CV_FILE}
-                  className="group inline-flex items-center gap-2 text-lg transition-colors hover:text-[#EC3814]"
+                  className="group inline-flex items-center gap-2 text-lg transition-colors hover:text-[#FF0000]"
                 >
                   <RollText>Download CV</RollText>
                   <span className="sr-only">(PDF)</span>
@@ -144,7 +144,7 @@ export default function Contact() {
               </dd>
             </div>
             <div className="pb-1 pt-5">
-              <dt className="mb-3 text-sm text-[#364b9b]/90">Elsewhere</dt>
+              <dt className="mb-3 text-sm text-[#000000]/90">Elsewhere</dt>
               <dd>
                 <ul className="flex flex-col gap-2">
                   {SOCIALS.map(({ name, href }) => (
@@ -154,7 +154,7 @@ export default function Contact() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${name} (opens in a new tab)`}
-                        className="group inline-flex items-center gap-2 text-lg transition-colors hover:text-[#EC3814]"
+                        className="group inline-flex items-center gap-2 text-lg transition-colors hover:text-[#FF0000]"
                       >
                         <RollText>{name}</RollText>
                         <ArrowUpRight size={16} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
@@ -185,21 +185,21 @@ export default function Contact() {
               type="submit"
               disabled={status === 'sending'}
               aria-busy={status === 'sending'}
-              className="group inline-flex items-center gap-4 text-lg font-medium text-[#364b9b] disabled:opacity-60"
+              className="group inline-flex items-center gap-4 text-lg font-medium text-[#000000] disabled:opacity-60"
             >
-              <span className="transition-colors duration-300 group-hover:text-[#EC3814]">
+              <span className="transition-colors duration-300 group-hover:text-[#FF0000]">
                 <RollText>{status === 'sending' ? 'Sending…' : 'Send message'}</RollText>
               </span>
               <Magnetic>
-                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#000000] transition-colors duration-300 group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white">
                   <ArrowUpRight size={20} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
                 </span>
               </Magnetic>
             </button>
-            <p role="status" aria-live="polite" className="flex items-center gap-2 text-[#364b9b]/85">
+            <p role="status" aria-live="polite" className="flex items-center gap-2 text-[#000000]/85">
               {status === 'success' && (
                 <>
-                  <CheckCircle size={22} weight="fill" aria-hidden="true" className="shrink-0 text-[#364b9b]" />
+                  <CheckCircle size={22} weight="fill" aria-hidden="true" className="shrink-0 text-[#000000]" />
                   Message sent. Thank you, I will get back to you.
                 </>
               )}

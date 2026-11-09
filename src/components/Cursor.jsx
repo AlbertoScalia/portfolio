@@ -77,9 +77,9 @@ export default function Cursor() {
       className="pointer-events-none fixed left-0 top-0 z-[400]"
     >
       <motion.span
-        animate={{ scale, backgroundColor: mode === 'view' ? '#C72E0E' : 'rgba(236,56,20,0)' }}
+        animate={{ scale, backgroundColor: mode === 'view' ? '#FF0000' : 'rgba(236,56,20,0)' }}
         transition={{ type: 'spring', stiffness: 300, damping: 24 }}
-        className="absolute -left-3.5 -top-3.5 block h-7 w-7 rounded-full border-2 border-[#EC3814] shadow-[0_0_0_1px_rgba(255,255,255,0.9)]"
+        className="absolute -left-3.5 -top-3.5 block h-7 w-7 rounded-full border-2 border-[#FF0000] shadow-[0_0_0_1px_rgba(255,255,255,0.9)]"
       />
       <motion.span
         animate={{ opacity: mode === 'view' ? 1 : 0, scale: mode === 'view' ? 1 : 0.6 }}

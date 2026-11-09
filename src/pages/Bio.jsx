@@ -11,7 +11,7 @@ import { profilePageLd } from '../utils/seo';
 import usePageTitle from '../hooks/usePageTitle';
 
 const A = ({ href, children }) => (
-  <a href={href} target="_blank" rel="noopener noreferrer" className="underline decoration-[#EC3814] underline-offset-4 transition-colors hover:text-[#EC3814]">
+  <a href={href} target="_blank" rel="noopener noreferrer" className="underline decoration-[#FF0000] underline-offset-4 transition-colors hover:text-[#FF0000]">
     {children}
   </a>
 );
@@ -172,12 +172,12 @@ sub: (
 // Elenco puntato di una voce: etichetta in evidenza e cerchietto come segno
 function Points({ points }) {
   return (
-    <ul className="max-w-[62ch] space-y-2 pt-3 text-[15px] leading-relaxed text-[#364b9b]/80">
+    <ul className="max-w-[62ch] space-y-2 pt-3 text-[15px] leading-relaxed text-[#000000]/80">
       {points.map(([label, text]) => (
         <li key={label} className="flex gap-3">
-          <span aria-hidden="true" className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#EC3814]" />
+          <span aria-hidden="true" className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF0000]" />
           <span>
-            <span className="font-medium text-[#364b9b]">{label}:</span> {text}
+            <span className="font-medium text-[#000000]">{label}:</span> {text}
           </span>
         </li>
       ))}
@@ -209,7 +209,7 @@ function Panel({ id, isOpen, children }) {
 
 // Segno più/meno dentro un cerchio: stesso linguaggio dei pulsanti della hero
 const Toggle = ({ isOpen }) => (
-  <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#364b9b]/40 text-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
+  <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#000000]/40 text-[#000000] transition-colors duration-300 group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white">
     {isOpen ? <Minus size={16} aria-hidden="true" /> : <Plus size={16} aria-hidden="true" />}
   </span>
 );
@@ -218,18 +218,18 @@ function Accordion({ items, id }) {
   const [open, setOpen] = useState(0);
 
   return (
-    <ul className="border-t border-[#364b9b]/15 text-[#364b9b]">
+    <ul className="border-t border-[#000000]/15 text-[#000000]">
       {items.map((item, i) => {
         const isOpen = open === i;
         return (
-          <li key={item.title + item.date} className="relative grid grid-cols-1 border-b border-[#364b9b]/15 py-6 sm:grid-cols-12 sm:gap-x-4">
+          <li key={item.title + item.date} className="relative grid grid-cols-1 border-b border-[#000000]/15 py-6 sm:grid-cols-12 sm:gap-x-4">
             {/* Linea del tempo: tratti che collegano il cerchietto alla voce precedente e a quella successiva */}
-            {i > 0 && <span aria-hidden="true" className="absolute left-[4px] top-0 h-[29px] w-px bg-[#364b9b]/25 sm:h-[37px]" />}
-            {i < items.length - 1 && <span aria-hidden="true" className="absolute -bottom-px left-[4px] top-[39px] w-px bg-[#364b9b]/25 sm:top-[47px]" />}
-            <p className="mb-1 flex items-center gap-3 self-start text-sm tabular-nums text-[#364b9b]/80 sm:col-span-4 sm:mb-0 sm:pt-2">
+            {i > 0 && <span aria-hidden="true" className="absolute left-[4px] top-0 h-[29px] w-px bg-[#000000]/25 sm:h-[37px]" />}
+            {i < items.length - 1 && <span aria-hidden="true" className="absolute -bottom-px left-[4px] top-[39px] w-px bg-[#000000]/25 sm:top-[47px]" />}
+            <p className="mb-1 flex items-center gap-3 self-start text-sm tabular-nums text-[#000000]/80 sm:col-span-4 sm:mb-0 sm:pt-2">
               <span
                 aria-hidden="true"
-                className={`h-2.5 w-2.5 shrink-0 rounded-full border-2 transition-colors duration-300 ${isOpen ? 'border-[#EC3814] bg-[#EC3814]' : 'border-[#364b9b]/60'}`}
+                className={`h-2.5 w-2.5 shrink-0 rounded-full border-2 transition-colors duration-300 ${isOpen ? 'border-[#FF0000] bg-[#FF0000]' : 'border-[#000000]/60'}`}
               />
               {item.date}
             </p>
@@ -242,12 +242,12 @@ function Accordion({ items, id }) {
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="group flex w-full items-start justify-between gap-4 text-left"
                 >
-                  <span className="text-2xl leading-snug text-[#364b9b] transition-[color,transform] duration-300 group-hover:translate-x-2 group-hover:text-[#EC3814] motion-reduce:transform-none">{item.title}</span>
+                  <span className="text-2xl leading-snug text-[#000000] transition-[color,transform] duration-300 group-hover:translate-x-2 group-hover:text-[#FF0000] motion-reduce:transform-none">{item.title}</span>
                   <Toggle isOpen={isOpen} />
                 </button>
               </h3>
-              <p className="mt-1 text-[15px] text-[#364b9b]/85">{item.sub}</p>
-              {item.place && <p className="text-sm text-[#364b9b]/80">{item.place}</p>}
+              <p className="mt-1 text-[15px] text-[#000000]/85">{item.sub}</p>
+              {item.place && <p className="text-sm text-[#000000]/80">{item.place}</p>}
               <Panel id={`${id}-${i}`} isOpen={isOpen}>
                 <Points points={item.points} />
               </Panel>
@@ -263,11 +263,11 @@ function SkillsAccordion({ categories, id }) {
   const [open, setOpen] = useState(0);
 
   return (
-    <ul className="border-t border-[#364b9b]/15 text-[#364b9b]">
+    <ul className="border-t border-[#000000]/15 text-[#000000]">
       {categories.map((cat, i) => {
         const isOpen = open === i;
         return (
-          <li key={cat.title} className="border-b border-[#364b9b]/15 py-5">
+          <li key={cat.title} className="border-b border-[#000000]/15 py-5">
             <h3>
               <button
                 type="button"
@@ -276,7 +276,7 @@ function SkillsAccordion({ categories, id }) {
                 onClick={() => setOpen(isOpen ? null : i)}
                 className="group flex w-full items-start justify-between gap-4 text-left"
               >
-                <span className="text-xl leading-snug text-[#364b9b] transition-[color,transform] duration-300 group-hover:translate-x-2 group-hover:text-[#EC3814] motion-reduce:transform-none">{cat.title}</span>
+                <span className="text-xl leading-snug text-[#000000] transition-[color,transform] duration-300 group-hover:translate-x-2 group-hover:text-[#FF0000] motion-reduce:transform-none">{cat.title}</span>
                 <Toggle isOpen={isOpen} />
               </button>
             </h3>
@@ -284,10 +284,10 @@ function SkillsAccordion({ categories, id }) {
               <div className="space-y-5 pt-4">
                 {cat.groups.map((group) => (
                   <div key={group.label}>
-                    <p className="mb-2 text-sm font-medium text-[#364b9b]/90">{group.label}</p>
+                    <p className="mb-2 text-sm font-medium text-[#000000]/90">{group.label}</p>
                     <ul className="flex flex-wrap gap-2">
                       {group.items.map((s) => (
-                        <li key={s} className="rounded-[1.25rem] border border-[#364b9b]/25 px-3.5 py-1.5 text-sm text-[#364b9b]">
+                        <li key={s} className="rounded-[1.25rem] border border-[#000000]/25 px-3.5 py-1.5 text-sm text-[#000000]">
                           {s}
                         </li>
                       ))}
@@ -306,27 +306,27 @@ function SkillsAccordion({ categories, id }) {
 export default function Bio() {
   usePageTitle('About — Alberto Scalia', 'Experience, education and skills of Alberto Scalia: editorial design for publishers, brand identity, packaging, UI design and AI-assisted workflows.', { jsonLd: profilePageLd() });
   return (
-    <main id="main" className="mx-auto min-h-screen max-w-[1600px] px-6 pb-24 pt-40 text-[#364b9b] lg:px-12">
-      <Reveal as="p" className="mb-6 text-sm font-medium text-[#364b9b]/80">
+    <main id="main" className="mx-auto min-h-screen max-w-[1600px] px-6 pb-24 pt-40 text-[#000000] lg:px-12">
+      <Reveal as="p" className="mb-6 text-sm font-medium text-[#000000]/80">
         02 / About
       </Reveal>
 
       <header className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">
         <Reveal as="h1" className="text-6xl leading-[0.95] md:col-span-7 md:text-9xl">
-          <span className="font-semibold text-[#364b9b]">About </span>
-          <span className="font-light text-[#EC3814]">me</span>
+          <span className="font-semibold text-[#000000]">About </span>
+          <span className="font-light text-[#FF0000]">me</span>
         </Reveal>
         <Reveal delay={0.1} className="md:col-span-4 md:col-start-9">
-          <p className="text-lg leading-relaxed text-[#364b9b]/80">
+          <p className="text-lg leading-relaxed text-[#000000]/80">
             An overview of my professional background, skills, and training in design.
           </p>
-          <a href={CV_URL} download={CV_FILE} className="group mt-6 inline-flex items-center gap-4 text-lg font-medium text-[#364b9b]">
-            <span className="transition-colors duration-300 group-hover:text-[#EC3814]">
+          <a href={CV_URL} download={CV_FILE} className="group mt-6 inline-flex items-center gap-4 text-lg font-medium text-[#000000]">
+            <span className="transition-colors duration-300 group-hover:text-[#FF0000]">
               <RollText>Download CV</RollText>
             </span>
             <span className="sr-only">(PDF)</span>
             <Magnetic>
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#000000] transition-colors duration-300 group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white">
                 <ArrowDown size={20} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:translate-y-0.5" />
               </span>
             </Magnetic>
@@ -334,48 +334,48 @@ export default function Bio() {
         </Reveal>
       </header>
 
-      <Reveal className="mb-20 flex flex-col gap-8 bg-[#F3F5FB] p-6 md:flex-row md:items-center md:gap-12 md:p-10">
-        <img
-          src={`${import.meta.env.BASE_URL}assets/images/profile.webp`}
-          alt=""
-          decoding="async"
-          className="h-28 w-28 shrink-0 rounded-full border-[6px] border-[#364b9b] object-cover contrast-125 md:h-36 md:w-36"
-        />
-        <dl className="grid flex-1 grid-cols-1 gap-8 md:grid-cols-3">
-          {[
-            ['Based in', 'Acireale, Italy'],
-            ['Currently', <><span className="block">Visual & Brand Designer at <a href="https://gyadacosmetics.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#EC3814] underline-offset-4 transition-colors hover:text-[#EC3814]">Gyada Cosmetics</a></span><span className="mt-2 block">Visual & Editorial Designer at <a href="https://forward.recentiprogressi.it/it/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#EC3814] underline-offset-4 transition-colors hover:text-[#EC3814]">Forward magazine</a> (Il Pensiero Scientifico Editore)</span></>],
-            ['Availability', 'Open to UX/UI roles — available immediately'],
-          ].map(([term, value]) => (
-            <div key={term}>
-              <dt className="mb-2 text-sm text-[#364b9b]/90">{term}</dt>
-              <dd className="text-xl font-medium leading-snug md:text-2xl">{value}</dd>
-            </div>
-          ))}
-        </dl>
-      </Reveal>
+<Reveal className="my-20 flex flex-col gap-8 border-y border-black/20 py-12 md:flex-row md:items-center md:gap-12">
+  <img
+    src={`${import.meta.env.BASE_URL}assets/images/profile.webp`}
+    alt=""
+    decoding="async"
+    className="h-28 w-28 shrink-0 rounded-full border-[6px] border-[#FF0000] object-cover contrast-14 md:h-36 md:w-36"
+  />
+  <dl className="grid flex-1 grid-cols-1 gap-8 md:grid-cols-3">
+    {[
+      ['Based in', 'Acireale, Italy'],
+      ['Currently', <><span className="block">Visual & Brand Designer at <a href="https://gyadacosmetics.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#FF0000] underline-offset-4 transition-colors hover:text-[#FF0000]">Gyada Cosmetics</a></span><span className="mt-2 block">Visual & Editorial Designer at <a href="https://forward.recentiprogressi.it/it/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#FF0000] underline-offset-4 transition-colors hover:text-[#FF0000]">Forward magazine</a> (Il Pensiero Scientifico Editore)</span></>],
+      ['Availability', 'Open to UX/UI roles — available immediately'],
+    ].map(([term, value]) => (
+      <div key={term}>
+        <dt className="mb-2 text-sm text-[#000000]/90">{term}</dt>
+        <dd className="text-xl font-medium leading-snug md:text-2xl">{value}</dd>
+      </div>
+    ))}
+  </dl>
+</Reveal>
 
       <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-12 lg:gap-20">
         <aside className="lg:sticky lg:top-28 lg:col-span-4">
-          <h2 className="mb-8 text-3xl text-[#364b9b] md:text-4xl">
+          <h2 className="mb-8 text-3xl text-[#000000] md:text-4xl">
             <span className="font-semibold">Skills & </span>
-            <span className="font-light text-[#EC3814]">tech</span>
+            <span className="font-light text-[#FF0000]">tech</span>
           </h2>
           <SkillsAccordion categories={skillCategories} id="skills" />
         </aside>
 
         <div className="space-y-20 lg:col-span-8">
           <section>
-            <h2 className="mb-8 text-3xl text-[#364b9b] md:text-4xl">
+            <h2 className="mb-8 text-3xl text-[#000000] md:text-4xl">
             <span className="font-semibold">Professional </span>
-            <span className="font-light text-[#EC3814]">experience</span>
+            <span className="font-light text-[#FF0000]">experience</span>
           </h2>
             <Accordion items={experiences} id="exp" />
           </section>
           <section>
-            <h2 className="mb-8 text-3xl text-[#364b9b] md:text-4xl">
+            <h2 className="mb-8 text-3xl text-[#000000] md:text-4xl">
             <span className="font-semibold">Education & </span>
-            <span className="font-light text-[#EC3814]">certifications</span>
+            <span className="font-light text-[#FF0000]">certifications</span>
           </h2>
             <Accordion items={education} id="edu" />
           </section>

@@ -11,7 +11,7 @@ const WORDS = TEXT.split(' ');
 // Entrambi i colori rispettano il contrasto per il testo grande, quindi la frase è sempre leggibile.
 function Word({ progress, index, total, reduce, children }) {
   const start = (index / total) * 0.75;
-  const color = useTransform(progress, [start, start + 0.25], ['#364b9b', reduce ? '#364b9b' : '#EC3814']);
+  const color = useTransform(progress, [start, start + 0.25], ['#000000', reduce ? '#000000' : '#FF0000']);
   return (
     <motion.span style={{ color }} className="whitespace-nowrap">
       {children}
@@ -28,7 +28,7 @@ export default function Manifesto() {
     <section ref={ref} aria-label="Approach" className="relative">
       <Guides />
       <div className="relative mx-auto max-w-[1600px] px-6 py-28 md:py-44 lg:px-12">
-        <p className="mb-8 text-sm font-medium text-[#364b9b]/80">Approach</p>
+        <p className="mb-8 text-sm font-medium text-[#000000]/80">Approach</p>
         <p className="max-w-[1300px] text-[clamp(2rem,5.6vw,5.5rem)] font-semibold leading-[1.08] tracking-[-0.035em]">
           {WORDS.map((word, i) => (
             <span key={`${word}-${i}`}>

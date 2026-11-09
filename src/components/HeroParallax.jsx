@@ -16,10 +16,10 @@ const PORTRAIT = `${import.meta.env.BASE_URL}assets/images/profile.webp`;
 
 // Titolo: peso semibold e blu per Editorial precision, light e rosso per digital performance
 const TITLE = [
-  { text: 'Editorial', weight: 'font-semibold', color: 'text-[#364b9b]' },
-  { text: 'precision,', weight: 'font-semibold', color: 'text-[#364b9b]' },
-  { text: 'digital', weight: 'font-light', color: 'text-[#EC3814]' },
-  { text: 'performance', weight: 'font-light', color: 'text-[#EC3814]' },
+  { text: 'Editorial', weight: 'font-semibold', color: 'text-[#000000]' },
+  { text: 'precision,', weight: 'font-semibold', color: 'text-[#000000]' },
+  { text: 'digital', weight: 'font-light', color: 'text-[#FF0000]' },
+  { text: 'performance', weight: 'font-light', color: 'text-[#FF0000]' },
 ];
 
 // Quanto ogni riga del titolo "resta indietro" rispetto allo scroll (px): crea l'effetto a ventaglio
@@ -95,13 +95,13 @@ export default function HeroParallax() {
     <section ref={ref} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave} className="grid min-h-[100svh] grid-cols-1 overflow-hidden md:grid-cols-[58fr_42fr]">
       {/* Colonna sinistra: fondo pulito con titolo bicolore */}
       <div className="relative isolate flex items-end overflow-hidden bg-white px-6 pb-14 pt-36 md:items-center md:pb-20 md:pt-28 lg:px-12">
-        {/* Cerchio decorativo in rosso/arancione (#EC3814) */}
+        {/* Cerchio decorativo in rosso/arancione (#FF0000) */}
         <Layer
           progress={scrollYProgress}
           y={[0, px(-100)]}
           className="pointer-events-none absolute -bottom-[18%] -right-[24%] aspect-square w-[78%]"
         >
-          <motion.div style={{ x: ringX, y: ringY }} className="h-full w-full rounded-full border border-[#EC3814]/25" />
+          <motion.div style={{ x: ringX, y: ringY }} className="h-full w-full rounded-full border border-[#FF0000]/25" />
         </Layer>
 
         {/* Titolo */}
@@ -109,7 +109,7 @@ export default function HeroParallax() {
           style={{ opacity: titleOpacity, x: titleX }}
           className="relative text-[clamp(2.75rem,15vw,6rem)] leading-[0.95] tracking-[-0.045em] md:text-[min(8.4vw,10rem)]"
         >
-          <span className="sr-only">Alberto Scalia — Visual &amp; Interface Designer. </span>
+          <span className="sr-only">Alberto Scalia — Ui &amp; Visual Designer. </span>
           {TITLE.map(({ text, weight, color }, i) => (
             <Fragment key={text}>
             <Layer as="span" progress={scrollYProgress} y={[0, px(TITLE_LAG[i])]} className="block">
@@ -124,9 +124,9 @@ export default function HeroParallax() {
         </motion.h1>
 
         {/* Indicatore di scroll (decorativo): si ferma dopo qualche secondo */}
-        <div aria-hidden="true" className="absolute bottom-8 left-6 hidden h-14 w-px overflow-hidden bg-[#364b9b]/20 md:block lg:left-12">
+        <div aria-hidden="true" className="absolute bottom-8 left-6 hidden h-14 w-px overflow-hidden bg-[#000000]/20 md:block lg:left-12">
           <motion.span
-            className="block h-5 w-px bg-[#364b9b]"
+            className="block h-5 w-px bg-[#000000]"
             initial={{ y: -20 }}
             animate={reduce ? { y: 0 } : { y: [-20, 56] }}
             transition={reduce ? { duration: 0 } : { duration: 1.6, repeat: 2, ease: 'easeInOut' }}
@@ -139,13 +139,13 @@ export default function HeroParallax() {
         <motion.div {...rise(0)} className="w-fit">
           <Layer progress={scrollYProgress} y={[0, px(-120)]} scale={[1, reduce ? 1 : 0.9]}>
             <motion.div style={{ x: portraitX, y: portraitY }} className="relative">
-              <div className="relative isolate aspect-square w-[clamp(12rem,62vw,18rem)] overflow-hidden rounded-full border-[10px] border-[#364b9b] bg-white md:w-[clamp(12rem,27vw,28rem)]">
+              <div className="relative isolate aspect-square w-[clamp(12rem,62vw,18rem)] overflow-hidden rounded-full border-[10px] border-[#FF0000] bg-white md:w-[clamp(12rem,27vw,28rem)]">
                 <img
                   src={PORTRAIT}
                   alt="Portrait of Alberto Scalia"
                   loading="eager"
                   decoding="async"
-                  className="h-full w-full object-cover object-center contrast-125"
+                  className="h-full w-full object-cover object-center contrast-15"
                 />
               </div>
             </motion.div>
@@ -154,15 +154,15 @@ export default function HeroParallax() {
 
         <motion.div {...rise(1)} className="max-w-md">
           <Layer progress={scrollYProgress} y={[0, px(60)]}>
-            <p className="mb-5 text-sm font-medium text-[#364b9b]/80">{ROLE}</p>
-            <div className="border-t border-[#364b9b]/20 pt-6">
-              <p className="text-lg leading-snug text-[#364b9b] md:text-xl">{INTRO}</p>
-              <a href="#work" onClick={scrollToWork} className="group mt-8 inline-flex items-center gap-4 text-[#364b9b]">
-                <span className="font-medium transition-colors duration-300 group-hover:text-[#EC3814]">
+            <p className="mb-5 text-sm font-medium text-[#000000]/80">{ROLE}</p>
+            <div className="border-t border-[#000000]/20 pt-6">
+              <p className="text-lg leading-snug text-[#000000] md:text-xl">{INTRO}</p>
+              <a href="#work" onClick={scrollToWork} className="group mt-8 inline-flex items-center gap-4 text-[#000000]">
+                <span className="font-medium transition-colors duration-300 group-hover:text-[#FF0000]">
                   <RollText>See selected work</RollText>
                 </span>
                 <Magnetic>
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#000000] transition-colors duration-300 group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white">
                     <ArrowDown size={18} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:translate-y-0.5" />
                   </span>
                 </Magnetic>

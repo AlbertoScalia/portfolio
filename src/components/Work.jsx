@@ -17,6 +17,29 @@ const keepWords = (text) =>
     </span>
   ));
 
+/* ---------- Immagine con dissolvenza ---------- */
+// Mostra un riquadro chiaro finché l'immagine non è arrivata, poi la fa comparire in dissolvenza.
+// Se l'immagine non si carica, resta visibile il testo alternativo.
+function FadeImage({ src, alt, className = '', wrapperClassName = 'bg-[#f4f4f4]' }) {
+  const [loaded, setLoaded] = useState(false);
+  return (
+    <div className={wrapperClassName}>
+      <img
+        ref={(el) => {
+          if (el?.complete && el.naturalWidth > 0) setLoaded(true);
+        }}
+        src={src}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setLoaded(true)}
+        onError={() => setLoaded(true)}
+        className={`${className} transition-opacity duration-700 ${loaded ? 'opacity-100' : 'opacity-0'}`}
+      />
+    </div>
+  );
+}
+
 /* ---------- Dati ---------- */
 
 const sections = [
@@ -91,7 +114,7 @@ My role focused on the magazine's layout and cover design, developed in collabor
     ],
   },
   {
-    title: 'Brand & Identity',
+    title: 'Brand Identity',
     description:
       'Visual identities and printed pieces that hold together across posters, programs and social, built to last beyond a single campaign.',
     projects: [
@@ -129,7 +152,7 @@ My role, in collaboration with Giorgia Di Carlo, focused on designing the comple
 
 function Description({ text }) {
   return (
-    <div className="max-w-[68ch] space-y-5 text-lg leading-relaxed text-[#364b9b]/85">
+    <div className="max-w-[68ch] space-y-5 text-lg leading-relaxed text-[#000000]/85">
       {text.split('\n\n').map((block, i) => {
         const lines = block.split('\n');
         const intro = lines.filter((l) => !l.startsWith('- ')).join(' ');
@@ -138,12 +161,12 @@ function Description({ text }) {
           <div key={i} className="space-y-3">
             {intro && <p>{intro}</p>}
             {items.length > 0 && (
-              <ul className="list-disc space-y-2 pl-5 marker:text-[#EC3814]">
+              <ul className="list-disc space-y-2 pl-5 marker:text-[#FF0000]">
                 {items.map((item, j) => {
                   const [head, ...rest] = item.split(': ');
                   return rest.length ? (
                     <li key={j}>
-                      <strong className="font-semibold text-[#364b9b]">{head}:</strong> {rest.join(': ')}
+                      <strong className="font-semibold text-[#000000]">{head}:</strong> {rest.join(': ')}
                     </li>
                   ) : (
                     <li key={j}>{item}</li>
@@ -209,7 +232,7 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
       exit={{ opacity: 0 }}
       transition={{ duration: reduce ? 0 : 0.2 }}
       onClick={onClose}
-      className="fixed inset-0 z-[200] overflow-y-auto bg-black/85"
+      className="fixed inset-0 z-[200] overflow-y-auto overscroll-contain bg-black/85"
     >
       <motion.div
         key={project.title}
@@ -222,24 +245,24 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
         aria-modal="true"
         aria-labelledby="project-modal-title"
         onClick={(e) => e.stopPropagation()}
-        className="relative mx-auto my-6 w-[calc(100%-2rem)] max-w-4xl border border-[#364b9b]/15 bg-[#ffffff] p-6 text-[#364b9b] md:my-16 md:p-12"
+        className="relative mx-auto my-6 w-[calc(100%-2rem)] max-w-4xl border border-[#000000]/15 bg-[#ffffff] p-6 text-[#000000] md:my-16 md:p-12"
       >
         <button
           ref={closeBtn}
           type="button"
           onClick={onClose}
           aria-label="Close project details"
-          className="absolute right-4 top-4 p-2 text-[#364b9b]/80 transition-colors hover:text-[#364b9b]"
+          className="absolute right-4 top-4 p-2 text-[#000000]/80 transition-colors hover:text-[#000000]"
         >
           <X size={28} aria-hidden="true" />
         </button>
 
-        <h2 id="project-modal-title" className="mb-5 pr-12 text-4xl font-semibold leading-tight md:text-6xl text-[#364b9b]">
+        <h2 id="project-modal-title" className="mb-5 pr-12 text-4xl font-semibold leading-tight md:text-6xl text-[#000000]">
           {keepWords(project.title)}
         </h2>
         <ul className="mb-8 flex flex-wrap gap-2">
           {project.badges.map((b) => (
-            <li key={b} className="rounded-full border border-[#364b9b]/25 px-3 py-1 text-[13px] font-medium text-[#364b9b]">
+            <li key={b} className="rounded-full border border-[#000000]/25 px-3 py-1 text-[13px] font-medium text-[#000000]">
               {b}
             </li>
           ))}
@@ -249,13 +272,11 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
 
         <div className="my-10 flex flex-col gap-6">
           {details.additionalImages.map((src, i) => (
-            <img
+            <FadeImage
               key={src}
               src={src}
               alt={`${project.title}, detail ${i + 1} of ${details.additionalImages.length}`}
-              loading="lazy"
-              decoding="async"
-              className="min-h-[200px] w-full bg-[#364b9b]/5 object-cover"
+              className="min-h-[200px] w-full object-cover"
             />
           ))}
         </div>
@@ -275,15 +296,15 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
           <button
             type="button"
             onClick={onNext}
-            className="group mt-12 flex w-full items-center justify-between gap-6 border-t border-[#364b9b]/20 pt-8 text-left"
+            className="group mt-12 flex w-full items-center justify-between gap-6 border-t border-[#000000]/20 pt-8 text-left"
           >
             <span>
-              <span className="block text-sm font-medium text-[#364b9b]/80">Next project</span>
-              <span className="block text-2xl font-semibold text-[#364b9b] transition-colors group-hover:text-[#EC3814] md:text-4xl">
+              <span className="block text-sm font-medium text-[#000000]/80">Next project</span>
+              <span className="block text-2xl font-semibold text-[#000000] transition-colors group-hover:text-[#FF0000] md:text-4xl">
                 {keepWords(nextProject.title)}
               </span>
             </span>
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#364b9b] text-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#000000] text-[#000000] transition-colors duration-300 group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white">
               <ArrowRight size={20} weight="bold" aria-hidden="true" />
             </span>
           </button>
@@ -296,24 +317,25 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
 /* ---------- Card progetto ---------- */
 
 const stretched =
-  "block w-full text-left after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-[#EC3814]";
+  "block w-full text-left after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-[#FF0000]";
 
 function ProjectCard({ project, number, onOpen }) {
   const reduce = useMotionPref();
   const cardRef = useRef(null);
+  const [loaded, setLoaded] = useState(false);
   // Parallasse: l'immagine scorre un po' dentro la sua cornice mentre la card attraversa lo schermo
   const { scrollYProgress } = useScroll({ target: cardRef, offset: ['start end', 'end start'] });
   const imgY = useTransform(scrollYProgress, [0, 1], reduce ? ['0%', '0%'] : ['-5%', '5%']);
   const title = (
     <span className="flex items-start justify-between gap-4">
-      <span className="text-3xl leading-tight transition-colors group-hover:text-[#EC3814] md:text-4xl text-[#364b9b]">
+      <span className="text-3xl leading-tight transition-colors group-hover:text-[#FF0000] md:text-4xl text-[#000000]">
         {keepWords(project.title)}
       </span>
       <ArrowUpRight
         size={28}
         weight="bold"
         aria-hidden="true"
-        className="mt-1.5 shrink-0 text-[#364b9b] opacity-0 transition duration-300 group-hover:rotate-45 group-hover:text-[#EC3814] group-hover:opacity-100 [@media(hover:none)]:opacity-100 motion-reduce:transition-none"
+        className="mt-1.5 shrink-0 text-[#000000] opacity-0 transition duration-300 group-hover:rotate-45 group-hover:text-[#FF0000] group-hover:opacity-100 [@media(hover:none)]:opacity-100 motion-reduce:transition-none"
       />
     </span>
   );
@@ -326,7 +348,7 @@ function ProjectCard({ project, number, onOpen }) {
         whileInView={{ clipPath: 'inset(0 0 0% 0)' }}
         viewport={{ once: true, margin: '0px 0px -10% 0px' }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="aspect-[16/10] overflow-hidden bg-neutral-900"
+        className="aspect-[16/10] overflow-hidden bg-[#E9ECF7]"
       >
         <motion.div
           initial={reduce ? false : { scale: 1.12 }}
@@ -337,11 +359,16 @@ function ProjectCard({ project, number, onOpen }) {
         >
           <motion.div style={{ y: imgY }} className="absolute inset-x-0 -top-[6%] h-[112%]">
             <img
+              ref={(el) => {
+                if (el?.complete && el.naturalWidth > 0) setLoaded(true);
+              }}
               src={project.image}
               alt={`${project.title}, project preview`}
               loading="lazy"
               decoding="async"
-              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transform-none motion-reduce:transition-none"
+              onLoad={() => setLoaded(true)}
+              onError={() => setLoaded(true)}
+              className={`h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transform-none ${loaded ? 'opacity-100' : 'opacity-0'}`}
             />
           </motion.div>
         </motion.div>
@@ -353,7 +380,7 @@ function ProjectCard({ project, number, onOpen }) {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="flex flex-col gap-3 px-6 pt-6 lg:px-12"
       >
-        <p className="text-sm font-medium tabular-nums text-[#364b9b]/80">No. {String(number).padStart(2, '0')}</p>
+        <p className="text-sm font-medium tabular-nums text-[#000000]/80">No. {String(number).padStart(2, '0')}</p>
         <h3>
           {project.details ? (
             <button type="button" onClick={() => onOpen(project)} className={stretched}>
@@ -365,11 +392,11 @@ function ProjectCard({ project, number, onOpen }) {
             </a>
           )}
         </h3>
-        <p className="max-w-xl text-[15px] leading-relaxed text-[#364b9b]/80">{project.subtitle}</p>
-        {project.highlight && <p className="text-[15px] font-medium text-[#364b9b]">{project.highlight}</p>}
+        <p className="max-w-xl text-[15px] leading-relaxed text-[#000000]/80">{project.subtitle}</p>
+        {project.highlight && <p className="text-[15px] font-medium text-[#000000]">{project.highlight}</p>}
         <ul className="mt-1 flex flex-wrap gap-2">
           {project.badges.map((b) => (
-            <li key={b} className="rounded-full border border-[#364b9b]/25 px-3 py-1 text-[13px] font-medium text-[#364b9b]">
+            <li key={b} className="rounded-full border border-[#000000]/25 px-3 py-1 text-[13px] font-medium text-[#000000]">
               {b}
             </li>
           ))}
@@ -395,24 +422,24 @@ export default function Work() {
   return (
     <section id="work" aria-label="Selected work">
       {sections.map((section, index) => (
-        <div key={section.title} className={index % 2 === 1 ? 'bg-[#F3F5FB] pb-28' : 'mb-28'}>
-          <div className="border-t border-[#364b9b]/20">
+        <div key={section.title} className={index % 2 === 1 ? 'bg-[#f4f4f4] pb-28' : 'mb-28'}>
+          <div className="border-t border-[#000000]/20">
             <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
-              <span aria-hidden="true" className="-mt-[5px] block h-2.5 w-2.5 rounded-full bg-[#EC3814]" />
+              <span aria-hidden="true" className="-mt-[5px] block h-2.5 w-2.5 rounded-full bg-[#FF0000]" />
             </div>
           </div>
           <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-6 px-6 py-12 md:grid-cols-12 md:items-end lg:px-12">
             <Reveal className="md:col-span-5">
-              <p className="mb-4 text-sm font-medium text-[#364b9b]/80">
+              <p className="mb-4 text-sm font-medium text-[#000000]/80">
                 {String(index + 1).padStart(2, '0')} / {String(sections.length).padStart(2, '0')}
               </p>
-              <h2 className="text-4xl leading-tight text-[#364b9b] md:text-5xl">
+              <h2 className="text-4xl leading-tight text-[#000000] md:text-5xl">
                 <span className="font-semibold">{section.title.split(' ').slice(0, -1).join(' ')} </span>
-                <span className="font-light text-[#EC3814]">{section.title.split(' ').slice(-1)}</span>
+                <span className="font-light text-[#FF0000]">{section.title.split(' ').slice(-1)}</span>
               </h2>
             </Reveal>
             <Reveal delay={0.1} className="md:col-span-5 md:col-start-7">
-              <p className="text-lg leading-relaxed text-[#364b9b]/80">{section.description}</p>
+              <p className="text-lg leading-relaxed text-[#000000]/80">{section.description}</p>
             </Reveal>
           </div>
           <div className="grid grid-cols-1 gap-y-16 md:grid-cols-2">
@@ -433,13 +460,13 @@ export default function Work() {
           href="https://www.behance.net/gallery/244847487/Personal-Portfolio-2021-2026"
           target="_blank"
           rel="noopener noreferrer"
-          className="group inline-flex items-center gap-4 text-lg font-medium text-[#364b9b]"
+          className="group inline-flex items-center gap-4 text-lg font-medium text-[#000000]"
         >
-          <span className="transition-colors duration-300 group-hover:text-[#EC3814]">
+          <span className="transition-colors duration-300 group-hover:text-[#FF0000]">
             <RollText>View the full archive on Behance</RollText>
           </span>
           <Magnetic>
-            <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#364b9b] transition-colors duration-300 group-hover:border-[#EC3814] group-hover:bg-[#EC3814] group-hover:text-white">
+            <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#000000] transition-colors duration-300 group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white">
               <ArrowUpRight size={20} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
             </span>
           </Magnetic>

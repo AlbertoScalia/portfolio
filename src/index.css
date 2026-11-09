@@ -23,7 +23,7 @@
   body {
     font-family: 'Inter', 'Inter Fallback', system-ui, sans-serif;
     background-color: #ffffff;
-    color: #364b9b;
+    color: #000000;
     overflow-x: clip;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -34,11 +34,11 @@
     text-wrap: balance;
   }
   ::selection {
-    background-color: #EC3814;
+    background-color: #FF0000;
     color: #ffffff;
   }
   :focus-visible {
-    outline: 3px solid #364b9b;
+    outline: 3px solid #000000;
     outline-offset: 3px;
   }
   /* il contenuto riceve il focus via script dopo un cambio pagina: nessun contorno */
