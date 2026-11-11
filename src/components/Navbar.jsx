@@ -178,22 +178,7 @@ export default function Navbar() {
           {/* Maschera Blu (#000000) di base */}
           <div
             aria-hidden="true"
-            className="logo-mask absolute inset-0 bg-[#000000] opacity-100 transition-opacity duration-300 group-hover:opacity-0"
-            style={{
-              maskImage: `url(${LOGO})`,
-              WebkitMaskImage: `url(${LOGO})`,
-              maskSize: 'contain',
-              WebkitMaskSize: 'contain',
-              maskRepeat: 'no-repeat',
-              WebkitMaskRepeat: 'no-repeat',
-              maskPosition: 'left center',
-              WebkitMaskPosition: 'left center',
-            }}
-          />
-          {/* Maschera Arancione/Rossa (#FF0000) all'hover */}
-          <div
-            aria-hidden="true"
-            className="logo-mask absolute inset-0 bg-[#FF0000] opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            className="logo-mask absolute inset-0 bg-[#FF0000]"
             style={{
               maskImage: `url(${LOGO})`,
               WebkitMaskImage: `url(${LOGO})`,
