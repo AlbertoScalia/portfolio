@@ -7,7 +7,6 @@ import Cursor from './Cursor';
 import RollText from './RollText';
 
 const NAME = 'Alberto Scalia';
-const LOGO = `${import.meta.env.BASE_URL}assets/images/Logo_nav.webp`;
 
 export default function Navbar() {
   const { pathname, state } = useLocation();
@@ -174,22 +173,8 @@ export default function Navbar() {
       />
 
       <nav aria-label="Main" className="relative z-10 flex items-center justify-between px-6 py-5 lg:px-12">
-        <Link to="/" onClick={close} aria-label={`${NAME}, home`} className="group relative flex h-8 w-28 shrink-0 items-center rounded-sm">
-          {/* Maschera Blu (#000000) di base */}
-          <div
-            aria-hidden="true"
-            className="logo-mask absolute inset-0 bg-[#FF0000]"
-            style={{
-              maskImage: `url(${LOGO})`,
-              WebkitMaskImage: `url(${LOGO})`,
-              maskSize: 'contain',
-              WebkitMaskSize: 'contain',
-              maskRepeat: 'no-repeat',
-              WebkitMaskRepeat: 'no-repeat',
-              maskPosition: 'left center',
-              WebkitMaskPosition: 'left center',
-            }}
-          />
+        <Link to="/" onClick={close} aria-label={`${NAME}, home`} className="group relative flex items-center rounded-sm font-[Inter] text-[21px] font-bold lowercase text-[#FF0000]">
+          {NAME.toLowerCase()}
         </Link>
 
         <ul className="hidden items-center gap-10 md:flex">
