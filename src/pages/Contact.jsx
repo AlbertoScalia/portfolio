@@ -88,7 +88,7 @@ export default function Contact() {
       <header className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">
         <Reveal as="h1" className="text-6xl leading-[0.95] md:col-span-7 md:text-9xl">
           <span className="font-semibold text-[#000000]">Let's </span>
-          <span className="font-light text-[#FF0000]">talk</span>
+          <span className="font-semibold text-[#FF0000]">talk</span>
         </Reveal>
         <Reveal as="p" delay={0.1} className="text-lg leading-relaxed text-[#000000]/80 md:col-span-4 md:col-start-9">
           I'm open to freelance projects and full-time roles, especially where design and strategy overlap. Use the form

@@ -54,7 +54,7 @@ export default function Stats() {
       <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
         <Reveal as="h2" id="stats-title" className="max-w-4xl text-5xl leading-[1.02] md:text-8xl">
           <span className="font-semibold text-[#000000]">The work, </span>
-          <span className="font-light text-[#FF0000]">in numbers</span>
+          <span className="font-semibold text-[#FF0000]">in numbers</span>
         </Reveal>
 
         <ul className="mt-16 grid grid-cols-1 gap-12 md:mt-24 md:grid-cols-2 md:gap-16">

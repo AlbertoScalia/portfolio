@@ -314,7 +314,7 @@ export default function Bio() {
       <header className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">
         <Reveal as="h1" className="text-6xl leading-[0.95] md:col-span-7 md:text-9xl">
           <span className="font-semibold text-[#000000]">About </span>
-          <span className="font-light text-[#FF0000]">me</span>
+          <span className="font-semibold text-[#FF0000]">me</span>
         </Reveal>
         <Reveal delay={0.1} className="md:col-span-4 md:col-start-9">
           <p className="text-lg leading-relaxed text-[#000000]/80">

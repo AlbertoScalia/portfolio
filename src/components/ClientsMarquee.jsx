@@ -112,8 +112,7 @@ export default function ClientsMarquee() {
 
       <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
         <Reveal as="h2" id="cta-title" className="max-w-4xl text-5xl leading-[1.02] md:text-8xl">
-          <span className="font-semibold">Do you have a </span>
-          <span className="font-light">project in mind?</span>
+          <span className="font-semibold">Do you have a project in mind?</span>
         </Reveal>
 
         <Reveal delay={0.1}>

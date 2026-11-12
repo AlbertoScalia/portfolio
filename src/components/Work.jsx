@@ -435,7 +435,7 @@ export default function Work() {
               </p>
               <h2 className="text-4xl leading-tight text-[#000000] md:text-5xl">
                 <span className="font-semibold">{section.title.split(' ').slice(0, -1).join(' ')} </span>
-                <span className="font-light text-[#FF0000]">{section.title.split(' ').slice(-1)}</span>
+                <span className="font-semibold text-[#FF0000]">{section.title.split(' ').slice(-1)}</span>
               </h2>
             </Reveal>
             <Reveal delay={0.1} className="md:col-span-5 md:col-start-7">

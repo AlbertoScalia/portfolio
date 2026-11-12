@@ -18,8 +18,8 @@ const PORTRAIT = `${import.meta.env.BASE_URL}assets/images/profile.webp`;
 const TITLE = [
   { text: 'Editorial', weight: 'font-semibold', color: 'text-[#000000]' },
   { text: 'precision,', weight: 'font-semibold', color: 'text-[#000000]' },
-  { text: 'digital', weight: 'font-light', color: 'text-[#FF0000]' },
-  { text: 'performance', weight: 'font-light', color: 'text-[#FF0000]' },
+  { text: 'digital', weight: 'font-semibold', color: 'text-[#FF0000]' },
+  { text: 'performance', weight: 'font-semibold', color: 'text-[#FF0000]' },
 ];
 
 // Quanto ogni riga del titolo "resta indietro" rispetto allo scroll (px): crea l'effetto a ventaglio
