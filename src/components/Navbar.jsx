@@ -6,7 +6,7 @@ import { cn } from '../utils/cn';
 import Cursor from './Cursor';
 import RollText from './RollText';
 
-const NAME = 'Alberto Scalia';
+const NAME = 'alberto scalia';
 
 export default function Navbar() {
   const { pathname, state } = useLocation();
@@ -20,7 +20,6 @@ export default function Navbar() {
   const toggleRef = useRef(null);
   const prevPath = useRef(pathname);
 
-  // Transizione tra le pagine: ad ogni cambio rotta due tende (arancione e blu) salgono e scoprono la nuova pagina.
   // Lo stato viene aggiornato durante il render, così la tenda compare nello stesso istante della nuova pagina.
   const [lastPath, setLastPath] = useState(pathname);
   const [curtainKey, setCurtainKey] = useState(0);

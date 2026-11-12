@@ -60,7 +60,7 @@ export default function ClientsMarquee() {
       <header className="mx-auto mb-16 grid max-w-[1600px] grid-cols-1 gap-6 px-6 md:grid-cols-12 md:items-end lg:px-12">
         <Reveal as="h2" className="max-w-4xl text-5xl leading-[1.02] md:col-span-7 md:text-8xl">
           <span className="font-semibold text-[#000000]">Who </span>
-          <span className="font-light text-[#FF0000]">trusted me</span>
+          <span className="font-semibold text-[#FF0000]">trusted me</span>
         </Reveal>
         <Reveal as="p" delay={0.1} className="text-lg leading-relaxed text-[#000000]/80 md:col-span-4 md:col-start-9">
           {clients.length} publishers and brands have trusted me so far, with consistent results.
