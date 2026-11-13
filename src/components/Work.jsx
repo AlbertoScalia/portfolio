@@ -114,7 +114,7 @@ My role focused on the magazine's layout and cover design, developed in collabor
     ],
   },
   {
-    title: 'Brand & Identity',
+    title: 'Brand Identity',
     description:
       'Visual identities and printed pieces that hold together across posters, programs and social, built to last beyond a single campaign.',
     projects: [

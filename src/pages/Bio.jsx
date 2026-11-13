@@ -359,7 +359,7 @@ export default function Bio() {
         <aside className="lg:sticky lg:top-28 lg:col-span-4">
           <h2 className="mb-8 text-3xl text-[#000000] md:text-4xl">
             <span className="font-semibold">Skills & </span>
-            <span className="font-light text-[#FF0000]">tech</span>
+            <span className="font-semibold text-[#FF0000]">tech</span>
           </h2>
           <SkillsAccordion categories={skillCategories} id="skills" />
         </aside>
@@ -368,14 +368,14 @@ export default function Bio() {
           <section>
             <h2 className="mb-8 text-3xl text-[#000000] md:text-4xl">
             <span className="font-semibold">Professional </span>
-            <span className="font-light text-[#FF0000]">experience</span>
+            <span className="font-semibold text-[#FF0000]">experience</span>
           </h2>
             <Accordion items={experiences} id="exp" />
           </section>
           <section>
             <h2 className="mb-8 text-3xl text-[#000000] md:text-4xl">
             <span className="font-semibold">Education & </span>
-            <span className="font-light text-[#FF0000]">certifications</span>
+            <span className="font-semibold text-[#FF0000]">certifications</span>
           </h2>
             <Accordion items={education} id="edu" />
           </section>
