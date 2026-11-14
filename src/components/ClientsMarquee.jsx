@@ -6,7 +6,7 @@ import Reveal from './Reveal';
 import Magnetic from './Magnetic';
 import RollText from './RollText';
 
-const AVAILABILITY = 'OPEN TO UX/UI ROLES — AVAILABLE IMMEDIATELY';
+const AVAILABILITY = 'OPEN TO UX/UI & VISUAL DESIGN ROLES — AVAILABLE IMMEDIATELY';
 
 const logo = (n) => `${import.meta.env.BASE_URL}assets/images/Logo${n}.webp`;
 

@@ -345,7 +345,7 @@ export default function Bio() {
     {[
       ['Based in', 'Acireale, Italy'],
       ['Currently', <><span className="block">Visual & Brand Designer at <a href="https://gyadacosmetics.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#FF0000] underline-offset-4 transition-colors hover:text-[#FF0000]">Gyada Cosmetics</a></span><span className="mt-2 block">Visual & Editorial Designer at <a href="https://forward.recentiprogressi.it/it/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#FF0000] underline-offset-4 transition-colors hover:text-[#FF0000]">Forward magazine</a> (Il Pensiero Scientifico Editore)</span></>],
-      ['Availability', 'Open to UX/UI roles — available immediately'],
+      ['Availability', 'Open to UX/UI & Visual Design roles — available immediately'],
     ].map(([term, value]) => (
       <div key={term}>
         <dt className="mb-2 text-sm text-[#000000]/90">{term}</dt>

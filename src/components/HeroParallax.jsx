@@ -8,9 +8,9 @@ import RollText from './RollText';
 /* ---------- Contenuti ---------- */
 
 const INTRO =
-  "I'm Alberto, a UI and visual designer with a background in high-end editorial design. I build identities, magazines, packaging and interfaces that stay consistent from print to screen.";
+  "I'm Alberto, a visual designer with a background in high-end editorial design. I build identities, magazines, packaging and interfaces that stay consistent from print to screen.";
 
-const ROLE = 'UI & Visual Designer';
+const ROLE = 'Visual Designer';
 
 const PORTRAIT = `${import.meta.env.BASE_URL}assets/images/profile.webp`;
 
@@ -109,7 +109,7 @@ export default function HeroParallax() {
           style={{ opacity: titleOpacity, x: titleX }}
           className="relative text-[clamp(2.75rem,15vw,6rem)] leading-[0.95] tracking-[-0.045em] md:text-[min(8.4vw,10rem)]"
         >
-          <span className="sr-only">Alberto Scalia — UI &amp; Visual Designer. </span>
+          <span className="sr-only">Alberto Scalia — Visual Designer. </span>
           {TITLE.map(({ text, weight, color }, i) => (
             <Fragment key={text}>
             <Layer as="span" progress={scrollYProgress} y={[0, px(TITLE_LAG[i])]} className="block">
