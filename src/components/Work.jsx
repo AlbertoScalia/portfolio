@@ -44,7 +44,7 @@ function FadeImage({ src, alt, className = '', wrapperClassName = 'bg-[#F3F5FB]'
 
 const sections = [
   {
-    title: 'User Interface Design',
+    title: 'UX/UI Design',
     description:
       'I design interfaces where visual hierarchy does the heavy lifting — reducing friction, guiding attention, and making the next action feel obvious.',
     projects: [
