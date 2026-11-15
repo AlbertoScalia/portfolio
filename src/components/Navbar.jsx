@@ -49,7 +49,7 @@ export default function Navbar() {
 
   useEffect(close, [pathname, close]);
 
-  // Nella Home: la voce "Work" resta evidenziata finché la sezione dei lavori è al centro dello schermo
+  // Nella Home: la voce "work" resta evidenziata finché la sezione dei lavori è al centro dello schermo
   useEffect(() => {
     if (pathname !== '/') {
       setInWork(false);
@@ -62,7 +62,7 @@ export default function Navbar() {
     return () => io.disconnect();
   }, [pathname]);
 
-  // Cambio pagina: torna in cima (tranne quando si arriva da "Work") e porta il focus sul contenuto,
+  // Cambio pagina: torna in cima (tranne quando si arriva da "work") e porta il focus sul contenuto,
   // così tastiera e screen reader ripartono dalla nuova pagina
   useEffect(() => {
     if (prevPath.current === pathname) return;
@@ -139,8 +139,8 @@ export default function Navbar() {
   });
 
   const pages = [
-    { to: '/bio', label: 'About' },
-    { to: '/contact', label: 'Contact' },
+    { to: '/bio', label: 'about' },
+    { to: '/contact', label: 'contact' },
   ];
 
   return (
@@ -179,7 +179,7 @@ export default function Navbar() {
         <ul className="hidden items-center gap-10 md:flex">
           <li>
             <a href="#work" onClick={goWork} aria-current={inWork ? 'location' : undefined} className={desktopLink(inWork)}>
-              <RollText>Work</RollText>
+              <RollText>work</RollText>
             </a>
           </li>
           {pages.map(({ to, label }) => (
@@ -219,7 +219,7 @@ export default function Navbar() {
             <ul className="flex flex-col gap-6 border-t border-[#000000]/15 pt-8">
               <motion.li {...mobileItem(0)}>
                 <a href="#work" onClick={goWork} className={mobileLink(false)}>
-                  <span aria-hidden="true" className={numClass}>01</span>Work
+                  <span aria-hidden="true" className={numClass}>01</span>work
                 </a>
               </motion.li>
               {pages.map(({ to, label }, i) => (
