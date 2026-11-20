@@ -128,7 +128,7 @@ My role focused on the magazine's layout and cover design, developed in collabor
           roleDescription: `A graphic design project for Cassandra - Mozzarella Light, featuring a folding poster created for an art installation by the artistic duo Mozzarella Light, exhibited at Spazio Volta in Bergamo in 2023.
 
 My role focused on designing the folding poster layout, combining a moody, texture-rich photographic image of the installation with an experimental typographic treatment for the main title and text layouts.`,
-          additionalImages: ['detail19.webp'].map(img),
+          additionalImages: ['detail19.webp', 'detail20.webp'].map(img),
         },
       },
       {
@@ -141,7 +141,32 @@ My role focused on designing the folding poster layout, combining a moody, textu
           roleDescription: `A full festival identity project for SÓCRATES – Sport Storie Società, a sports literature and culture event organized by Scuola del libro and Liberi Nantes in Rome between 2021 and 2023.
 
 My role, in collaboration with Giorgia Di Carlo, focused on designing the complete visual identity for the festival, which was applied across posters, printed program guides, and promotional materials over multiple editions of the event.`,
-          additionalImages: ['detail20.webp', 'detail21.webp'].map(img),
+          additionalImages: ['detail21.webp', 'detail22.webp'].map(img),
+        },
+      },
+      {
+        title: 'Life Electronics',
+        subtitle:
+          'Visual identity, technical catalogs, and product packaging system for Life, a Catania-based electronics firm, built around clear information architecture and red-and-white industrial branding.',
+        image: img('cover-project7.webp'),
+        badges: ['Graphic Design', 'Branding'],
+        details: {
+          roleDescription: `Developed for a Catania-based electronics company, this visual identity and packaging project unifies technical brochures, product boxes, and digital news sheets through a structured visual hierarchy tailored for installers and technical professionals.   
+Grounded in high-stakes information architecture, the system balances dense technical specifications, regulatory symbols, and spatial constraints with commercial clarity. A clean white-and-red palette pairs crisp sans-serif typography, structured specification tables, and technical icons across multi-fold catalogs, LED lighting packaging, and gas detector boxes.`,
+          additionalImages: ['detail23.webp', 'detail24.webp'].map(img),
+        },
+      },
+            {
+        title: 'Evaporato in una nuvola rossa',
+        subtitle:
+          'Academic exhibition identity for Evaporato in una nuvola rossa, combining bold geometric typography, red accents, and a halftone portrait across posters, banners, and event collateral.',
+        image: img('cover-project8.webp'),
+        badges: ['Graphic Design', 'Branding'],
+        details: {
+          roleDescription: `Developed as an academic project for a cultural exhibition, Evaporato in una nuvola rossa explores a cohesive visual identity across print and environmental touchpoints. The system pairs heavy geometric sans-serif lettering with lighter typographic weights and selective red accents against dark charcoal surfaces.   
+
+A halftone portrait of a singer anchors the key visual, establishing an expressive editorial and musical mood. The identity system is applied across outdoor posters, roll-up banners, envelopes, and multi-colored event cards in charcoal, ochre, olive green, and blue.`,
+          additionalImages: ['detail25.webp', 'detail26.webp', 'detail27.webp'].map(img),
         },
       },
     ],
