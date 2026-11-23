@@ -16,10 +16,7 @@ const PORTRAIT = `${import.meta.env.BASE_URL}assets/images/profile.webp`;
 
 // Titolo: peso semibold e blu per Editorial precision, light e rosso per digital performance
 const TITLE = [
-  { text: 'Editorial', weight: 'font-semibold', color: 'text-[#000000]' },
-  { text: 'precision,', weight: 'font-semibold', color: 'text-[#000000]' },
-  { text: 'digital', weight: 'font-semibold', color: 'text-[#FF0000]' },
-  { text: 'performance', weight: 'font-semibold', color: 'text-[#FF0000]' },
+  { text: 'Editorial precision, digital performance', weight: 'font-semibold' },
 ];
 
 // Quanto ogni riga del titolo "resta indietro" rispetto allo scroll (px): crea l'effetto a ventaglio
@@ -95,13 +92,13 @@ export default function HeroParallax() {
     <section ref={ref} onPointerMove={onPointerMove} onPointerLeave={onPointerLeave} className="grid min-h-[100svh] grid-cols-1 overflow-hidden md:grid-cols-[58fr_42fr]">
       {/* Colonna sinistra: fondo pulito con titolo bicolore */}
       <div className="relative isolate flex items-end overflow-hidden bg-white px-6 pb-14 pt-36 md:items-center md:pb-20 md:pt-28 lg:px-12">
-        {/* Cerchio decorativo in rosso/arancione (#FF0000) */}
+        {/* Cerchio decorativo in rosso/arancione (#D91616) */}
         <Layer
           progress={scrollYProgress}
           y={[0, px(-100)]}
           className="pointer-events-none absolute -bottom-[18%] -right-[24%] aspect-square w-[78%]"
         >
-          <motion.div style={{ x: ringX, y: ringY }} className="h-full w-full rounded-full border border-[#FF0000]/25" />
+          <motion.div style={{ x: ringX, y: ringY }} className="h-full w-full rounded-full border border-[#D91616]/25" />
         </Layer>
 
         {/* Titolo */}
@@ -139,7 +136,7 @@ export default function HeroParallax() {
         <motion.div {...rise(0)} className="w-fit">
           <Layer progress={scrollYProgress} y={[0, px(-120)]} scale={[1, reduce ? 1 : 0.9]}>
             <motion.div style={{ x: portraitX, y: portraitY }} className="relative">
-              <div className="relative isolate aspect-square w-[clamp(12rem,62vw,18rem)] overflow-hidden rounded-full border-[10px] border-[#FF0000] bg-white md:w-[clamp(12rem,27vw,28rem)]">
+              <div className="relative isolate aspect-square w-[clamp(12rem,62vw,18rem)] overflow-hidden rounded-full border-[10px] border-[#D91616] bg-white md:w-[clamp(12rem,27vw,28rem)]">
                 <img
                   src={PORTRAIT}
                   alt="Portrait of Alberto Scalia"
@@ -158,11 +155,11 @@ export default function HeroParallax() {
             <div className="border-t border-[#000000]/20 pt-6">
               <p className="text-lg leading-snug text-[#000000] md:text-xl">{INTRO}</p>
               <a href="#work" onClick={scrollToWork} className="group mt-8 inline-flex items-center gap-4 text-[#000000]">
-                <span className="font-medium transition-colors duration-300 group-hover:text-[#FF0000]">
+                <span className="font-medium transition-colors duration-300 group-hover:text-[#D91616]">
                   <RollText>See selected work</RollText>
                 </span>
                 <Magnetic>
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#000000] transition-colors duration-300 group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#000000] transition-colors duration-300 group-hover:border-[#D91616] group-hover:bg-[#D91616] group-hover:text-white">
                     <ArrowDown size={18} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:translate-y-0.5" />
                   </span>
                 </Magnetic>

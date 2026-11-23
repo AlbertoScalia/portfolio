@@ -87,8 +87,7 @@ export default function Contact() {
 
       <header className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">
         <Reveal as="h1" className="text-6xl leading-[0.95] md:col-span-7 md:text-9xl">
-          <span className="font-semibold text-[#000000]">Let's </span>
-          <span className="font-semibold text-[#FF0000]">talk</span>
+          <span className="font-semibold text-[#000000]">Let's talk</span>
         </Reveal>
         <Reveal as="p" delay={0.1} className="text-lg leading-relaxed text-[#000000]/80 md:col-span-4 md:col-start-9">
           I'm open to freelance projects and full-time roles, especially where design and strategy overlap. Use the form
@@ -103,12 +102,12 @@ export default function Contact() {
               <div className="py-5">
                 <dt className="mb-1 text-sm text-[#000000]/90">Email</dt>
                 <dd className="flex flex-wrap items-center gap-3 text-lg">
-                  <a href={`mailto:${EMAIL}`} className="underline decoration-[#FF0000] underline-offset-4 hover:text-[#FF0000]">{EMAIL}</a>
+                  <a href={`mailto:${EMAIL}`} className="underline decoration-[#D91616] underline-offset-4 hover:text-[#D91616]">{EMAIL}</a>
                   <button
                     type="button"
                     onClick={copyEmail}
                     aria-label="Copy email address"
-                    className="inline-flex items-center gap-1.5 rounded-full border border-[#000000]/40 px-3 py-1 text-sm font-medium transition-colors hover:border-[#FF0000] hover:text-[#FF0000]"
+                    className="inline-flex items-center gap-1.5 rounded-full border border-[#000000]/40 px-3 py-1 text-sm font-medium transition-colors hover:border-[#D91616] hover:text-[#D91616]"
                   >
                     {copied ? <Check size={14} weight="bold" aria-hidden="true" /> : <Copy size={14} weight="bold" aria-hidden="true" />}
                     {copied ? 'Copied' : 'Copy'}
@@ -135,7 +134,7 @@ export default function Contact() {
                 <a
                   href={CV_URL}
                   download={CV_FILE}
-                  className="group inline-flex items-center gap-2 text-lg transition-colors hover:text-[#FF0000]"
+                  className="group inline-flex items-center gap-2 text-lg transition-colors hover:text-[#D91616]"
                 >
                   <RollText>Download CV</RollText>
                   <span className="sr-only">(PDF)</span>
@@ -154,7 +153,7 @@ export default function Contact() {
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label={`${name} (opens in a new tab)`}
-                        className="group inline-flex items-center gap-2 text-lg transition-colors hover:text-[#FF0000]"
+                        className="group inline-flex items-center gap-2 text-lg transition-colors hover:text-[#D91616]"
                       >
                         <RollText>{name}</RollText>
                         <ArrowUpRight size={16} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
@@ -187,11 +186,11 @@ export default function Contact() {
               aria-busy={status === 'sending'}
               className="group inline-flex items-center gap-4 text-lg font-medium text-[#000000] disabled:opacity-60"
             >
-              <span className="transition-colors duration-300 group-hover:text-[#FF0000]">
+              <span className="transition-colors duration-300 group-hover:text-[#D91616]">
                 <RollText>{status === 'sending' ? 'Sending…' : 'Send message'}</RollText>
               </span>
               <Magnetic>
-                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#000000] transition-colors duration-300 group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white">
+                <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#000000] transition-colors duration-300 group-hover:border-[#D91616] group-hover:bg-[#D91616] group-hover:text-white">
                   <ArrowUpRight size={20} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
                 </span>
               </Magnetic>

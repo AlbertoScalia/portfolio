@@ -35,7 +35,7 @@ function CountUp({ to, suffix }) {
     <span ref={ref}>
       <span aria-hidden="true">
         {n}
-        <span className="font-light text-[#FF0000]">{suffix}</span>
+        <span className="font-light text-[#D91616]">{suffix}</span>
       </span>
       <span className="sr-only">
         {to}
@@ -49,12 +49,11 @@ export default function Stats() {
   return (
     <section aria-labelledby="stats-title" className="relative overflow-hidden bg-[#f4f4f4] py-20 md:py-32">
       <Guides />
-      <div aria-hidden="true" className="pointer-events-none absolute -right-[12%] top-1/2 aspect-square w-[44%] -translate-y-1/2 rounded-full border border-[#FF0000]/25" />
+      <div aria-hidden="true" className="pointer-events-none absolute -right-[12%] top-1/2 aspect-square w-[44%] -translate-y-1/2 rounded-full border border-[#D91616]/25" />
 
       <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
         <Reveal as="h2" id="stats-title" className="max-w-4xl text-5xl leading-[1.02] md:text-8xl">
-          <span className="font-semibold text-[#000000]">The work, </span>
-          <span className="font-semibold text-[#FF0000]">in numbers</span>
+          <span className="font-semibold">The work, in numbers </span>
         </Reveal>
 
         <ul className="mt-16 grid grid-cols-1 gap-12 md:mt-24 md:grid-cols-2 md:gap-16">

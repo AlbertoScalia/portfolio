@@ -34,7 +34,7 @@
     text-wrap: balance;
   }
   ::selection {
-    background-color: #ff0000;
+    background-color: #D91616;
     color: #ffffff;
   }
   :focus-visible {

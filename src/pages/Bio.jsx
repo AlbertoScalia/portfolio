@@ -11,7 +11,7 @@ import { profilePageLd } from '../utils/seo';
 import usePageTitle from '../hooks/usePageTitle';
 
 const A = ({ href, children }) => (
-  <a href={href} target="_blank" rel="noopener noreferrer" className="underline decoration-[#FF0000] underline-offset-4 transition-colors hover:text-[#FF0000]">
+  <a href={href} target="_blank" rel="noopener noreferrer" className="underline decoration-[#D91616] underline-offset-4 transition-colors hover:text-[#D91616]">
     {children}
   </a>
 );
@@ -173,7 +173,7 @@ function Points({ points }) {
     <ul className="max-w-[62ch] space-y-2 pt-3 text-[15px] leading-relaxed text-[#000000]/80">
       {points.map(([label, text]) => (
         <li key={label} className="flex gap-3">
-          <span aria-hidden="true" className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#FF0000]" />
+          <span aria-hidden="true" className="mt-[0.6rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[#D91616]" />
           <span>
             <span className="font-medium text-[#000000]">{label}:</span> {text}
           </span>
@@ -207,7 +207,7 @@ function Panel({ id, isOpen, children }) {
 
 // Segno più/meno dentro un cerchio: stesso linguaggio dei pulsanti della hero
 const Toggle = ({ isOpen }) => (
-  <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#000000]/40 text-[#000000] transition-colors duration-300 group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white">
+  <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[#000000]/40 text-[#000000] transition-colors duration-300 group-hover:border-[#D91616] group-hover:bg-[#D91616] group-hover:text-white">
     {isOpen ? <Minus size={16} aria-hidden="true" /> : <Plus size={16} aria-hidden="true" />}
   </span>
 );
@@ -227,7 +227,7 @@ function Accordion({ items, id }) {
             <p className="mb-1 flex items-center gap-3 self-start text-sm tabular-nums text-[#000000]/80 sm:col-span-4 sm:mb-0 sm:pt-2">
               <span
                 aria-hidden="true"
-                className={`h-2.5 w-2.5 shrink-0 rounded-full border-2 transition-colors duration-300 ${isOpen ? 'border-[#FF0000] bg-[#FF0000]' : 'border-[#000000]/60'}`}
+                className={`h-2.5 w-2.5 shrink-0 rounded-full border-2 transition-colors duration-300 ${isOpen ? 'border-[#D91616] bg-[#D91616]' : 'border-[#000000]/60'}`}
               />
               {item.date}
             </p>
@@ -240,7 +240,7 @@ function Accordion({ items, id }) {
                   onClick={() => setOpen(isOpen ? null : i)}
                   className="group flex w-full items-start justify-between gap-4 text-left"
                 >
-                  <span className="text-2xl leading-snug text-[#000000] transition-[color,transform] duration-300 group-hover:translate-x-2 group-hover:text-[#FF0000] motion-reduce:transform-none">{item.title}</span>
+                  <span className="text-2xl leading-snug text-[#000000] transition-[color,transform] duration-300 group-hover:translate-x-2 group-hover:text-[#D91616] motion-reduce:transform-none">{item.title}</span>
                   <Toggle isOpen={isOpen} />
                 </button>
               </h3>
@@ -274,7 +274,7 @@ function SkillsAccordion({ categories, id }) {
                 onClick={() => setOpen(isOpen ? null : i)}
                 className="group flex w-full items-start justify-between gap-4 text-left"
               >
-                <span className="text-xl leading-snug text-[#000000] transition-[color,transform] duration-300 group-hover:translate-x-2 group-hover:text-[#FF0000] motion-reduce:transform-none">{cat.title}</span>
+                <span className="text-xl leading-snug text-[#000000] transition-[color,transform] duration-300 group-hover:translate-x-2 group-hover:text-[#D91616] motion-reduce:transform-none">{cat.title}</span>
                 <Toggle isOpen={isOpen} />
               </button>
             </h3>
@@ -311,20 +311,19 @@ export default function Bio() {
 
       <header className="mb-20 grid grid-cols-1 gap-6 md:grid-cols-12 md:items-end">
         <Reveal as="h1" className="text-6xl leading-[0.95] md:col-span-7 md:text-9xl">
-          <span className="font-semibold text-[#000000]">About </span>
-          <span className="font-semibold text-[#FF0000]">me</span>
+          <span className="font-semibold text-[#000000]">About me </span>
         </Reveal>
         <Reveal delay={0.1} className="md:col-span-4 md:col-start-9">
           <p className="text-lg leading-relaxed text-[#000000]/80">
             An overview of my professional background, skills, and training in design.
           </p>
           <a href={CV_URL} download={CV_FILE} className="group mt-6 inline-flex items-center gap-4 text-lg font-medium text-[#000000]">
-            <span className="transition-colors duration-300 group-hover:text-[#FF0000]">
+            <span className="transition-colors duration-300 group-hover:text-[#D91616]">
               <RollText>Download CV</RollText>
             </span>
             <span className="sr-only">(PDF)</span>
             <Magnetic>
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#000000] transition-colors duration-300 group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white">
+              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#000000] transition-colors duration-300 group-hover:border-[#D91616] group-hover:bg-[#D91616] group-hover:text-white">
                 <ArrowDown size={20} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:translate-y-0.5" />
               </span>
             </Magnetic>
@@ -337,12 +336,12 @@ export default function Bio() {
     src={`${import.meta.env.BASE_URL}assets/images/profile.webp`}
     alt=""
     decoding="async"
-    className="h-28 w-28 shrink-0 rounded-full border-[6px] border-[#FF0000] object-cover contrast-14 md:h-36 md:w-36"
+    className="h-28 w-28 shrink-0 rounded-full border-[6px] border-[#D91616] object-cover contrast-14 md:h-36 md:w-36"
   />
   <dl className="grid flex-1 grid-cols-1 gap-8 md:grid-cols-3">
     {[
       ['Based in', 'Acireale, Italy'],
-      ['Currently', <><span className="block">Visual & Brand Designer at <a href="https://gyadacosmetics.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#FF0000] underline-offset-4 transition-colors hover:text-[#FF0000]">Gyada Cosmetics</a></span><span className="mt-2 block">Visual & Editorial Designer at <a href="https://forward.recentiprogressi.it/it/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#FF0000] underline-offset-4 transition-colors hover:text-[#FF0000]">Forward magazine</a> (Il Pensiero Scientifico Editore)</span></>],
+      ['Currently', <><span className="block">Visual & Brand Designer at <a href="https://gyadacosmetics.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#D91616] underline-offset-4 transition-colors hover:text-[#D91616]">Gyada Cosmetics</a></span><span className="mt-2 block">Visual & Editorial Designer at <a href="https://forward.recentiprogressi.it/it/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#D91616] underline-offset-4 transition-colors hover:text-[#D91616]">Forward magazine</a> (Il Pensiero Scientifico Editore)</span></>],
       ['Availability', 'Open to UX/UI & Visual Design roles — available immediately'],
     ].map(([term, value]) => (
       <div key={term}>
@@ -356,8 +355,7 @@ export default function Bio() {
       <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-12 lg:gap-20">
         <aside className="lg:sticky lg:top-28 lg:col-span-4">
           <h2 className="mb-8 text-3xl text-[#000000] md:text-4xl">
-            <span className="font-semibold">Skills & </span>
-            <span className="font-semibold text-[#FF0000]">tech</span>
+            <span className="font-semibold">Skills & tech</span>
           </h2>
           <SkillsAccordion categories={skillCategories} id="skills" />
         </aside>
@@ -365,15 +363,13 @@ export default function Bio() {
         <div className="space-y-20 lg:col-span-8">
           <section>
             <h2 className="mb-8 text-3xl text-[#000000] md:text-4xl">
-            <span className="font-semibold">Professional </span>
-            <span className="font-semibold text-[#FF0000]">experience</span>
+            <span className="font-semibold">Professional experience</span>
           </h2>
             <Accordion items={experiences} id="exp" />
           </section>
           <section>
             <h2 className="mb-8 text-3xl text-[#000000] md:text-4xl">
-            <span className="font-semibold">Education & </span>
-            <span className="font-semibold text-[#FF0000]">certifications</span>
+            <span className="font-semibold">Education & certifications</span>
           </h2>
             <Accordion items={education} id="edu" />
           </section>

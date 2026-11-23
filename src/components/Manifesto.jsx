@@ -11,7 +11,7 @@ const WORDS = TEXT.split(' ');
 // Entrambi i colori rispettano il contrasto per il testo grande, quindi la frase è sempre leggibile.
 function Word({ progress, index, total, reduce, children }) {
   const start = (index / total) * 0.75;
-  const color = useTransform(progress, [start, start + 0.25], ['#000000', reduce ? '#000000' : '#FF0000']);
+  const color = useTransform(progress, [start, start + 0.25], ['#000000', reduce ? '#000000' : '#D91616']);
   return (
     <motion.span style={{ color }} className="whitespace-nowrap">
       {children}

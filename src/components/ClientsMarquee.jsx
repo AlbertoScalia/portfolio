@@ -33,7 +33,7 @@ function Logo({ client, labelled }) {
       {labelled && <span className="sr-only">{client.name}</span>}
       <div
         aria-hidden="true"
-        className="logo-mask absolute inset-0 bg-[#000000]/80 transition-colors duration-300 group-hover:bg-[#FF0000]"
+        className="logo-mask absolute inset-0 bg-[#000000]/80 transition-colors duration-300 group-hover:bg-[#D91616]"
         style={{
           maskImage: `url(${client.logo})`,
           WebkitMaskImage: `url(${client.logo})`,
@@ -59,8 +59,7 @@ export default function ClientsMarquee() {
     <section className="overflow-hidden py-16 md:py-28 text-[#000000]">
       <header className="mx-auto mb-16 grid max-w-[1600px] grid-cols-1 gap-6 px-6 md:grid-cols-12 md:items-end lg:px-12">
         <Reveal as="h2" className="max-w-4xl text-5xl leading-[1.02] md:col-span-7 md:text-8xl">
-          <span className="font-semibold text-[#000000]">Who </span>
-          <span className="font-semibold text-[#FF0000]">trusted me</span>
+          <span className="font-semibold">Who trusted me</span>
         </Reveal>
         <Reveal as="p" delay={0.1} className="text-lg leading-relaxed text-[#000000]/80 md:col-span-4 md:col-start-9">
           {clients.length} publishers and brands have trusted me so far, with consistent results.
@@ -117,7 +116,7 @@ export default function ClientsMarquee() {
 
         <Reveal delay={0.1}>
           <p className="mt-8 inline-flex items-center gap-3 rounded-full border border-white/40 px-5 py-2.5 text-sm font-medium text-white">
-            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#FF0000] motion-safe:animate-[pulse_1.8s_ease-in-out_2]" />
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-[#D91616] motion-safe:animate-[pulse_1.8s_ease-in-out_2]" />
             {AVAILABILITY}
           </p>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/90">

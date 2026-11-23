@@ -186,7 +186,7 @@ function Description({ text }) {
           <div key={i} className="space-y-3">
             {intro && <p>{intro}</p>}
             {items.length > 0 && (
-              <ul className="list-disc space-y-2 pl-5 marker:text-[#FF0000]">
+              <ul className="list-disc space-y-2 pl-5 marker:text-[#D91616]">
                 {items.map((item, j) => {
                   const [head, ...rest] = item.split(': ');
                   return rest.length ? (
@@ -325,11 +325,11 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
           >
             <span>
               <span className="block text-sm font-medium text-[#000000]/80">Next project</span>
-              <span className="block text-2xl font-semibold text-[#000000] transition-colors group-hover:text-[#FF0000] md:text-4xl">
+              <span className="block text-2xl font-semibold text-[#000000] transition-colors group-hover:text-[#D91616] md:text-4xl">
                 {keepWords(nextProject.title)}
               </span>
             </span>
-            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#000000] text-[#000000] transition-colors duration-300 group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#000000] text-[#000000] transition-colors duration-300 group-hover:border-[#D91616] group-hover:bg-[#D91616] group-hover:text-white">
               <ArrowRight size={20} weight="bold" aria-hidden="true" />
             </span>
           </button>
@@ -342,7 +342,7 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
 /* ---------- Card progetto ---------- */
 
 const stretched =
-  "block w-full text-left after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-[#FF0000]";
+  "block w-full text-left after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-[#D91616]";
 
 function ProjectCard({ project, number, onOpen }) {
   const reduce = useMotionPref();
@@ -353,14 +353,14 @@ function ProjectCard({ project, number, onOpen }) {
   const imgY = useTransform(scrollYProgress, [0, 1], reduce ? ['0%', '0%'] : ['-5%', '5%']);
   const title = (
     <span className="flex items-start justify-between gap-4">
-      <span className="text-3xl leading-tight transition-colors group-hover:text-[#FF0000] md:text-4xl text-[#000000]">
+      <span className="text-3xl leading-tight transition-colors group-hover:text-[#D91616] md:text-4xl text-[#000000]">
         {keepWords(project.title)}
       </span>
       <ArrowUpRight
         size={28}
         weight="bold"
         aria-hidden="true"
-        className="mt-1.5 shrink-0 text-[#000000] opacity-0 transition duration-300 group-hover:rotate-45 group-hover:text-[#FF0000] group-hover:opacity-100 [@media(hover:none)]:opacity-100 motion-reduce:transition-none"
+        className="mt-1.5 shrink-0 text-[#000000] opacity-0 transition duration-300 group-hover:rotate-45 group-hover:text-[#D91616] group-hover:opacity-100 [@media(hover:none)]:opacity-100 motion-reduce:transition-none"
       />
     </span>
   );
@@ -450,7 +450,7 @@ export default function Work() {
         <div key={section.title} className={index % 2 === 1 ? 'bg-[#f4f4f4] pb-28' : 'mb-28'}>
           <div className="border-t border-[#000000]/20">
             <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
-              <span aria-hidden="true" className="-mt-[5px] block h-2.5 w-2.5 rounded-full bg-[#FF0000]" />
+              <span aria-hidden="true" className="-mt-[5px] block h-2.5 w-2.5 rounded-full bg-[#D91616]" />
             </div>
           </div>
           <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-6 px-6 py-12 md:grid-cols-12 md:items-end lg:px-12">
@@ -460,7 +460,7 @@ export default function Work() {
               </p>
               <h2 className="text-4xl leading-tight text-[#000000] md:text-5xl">
                 <span className="font-semibold">{section.title.split(' ').slice(0, -1).join(' ')} </span>
-                <span className="font-semibold text-[#FF0000]">{section.title.split(' ').slice(-1)}</span>
+                <span className="font-semibold">{section.title.split(' ').slice(-1)}</span>
               </h2>
             </Reveal>
             <Reveal delay={0.1} className="md:col-span-5 md:col-start-7">
@@ -487,11 +487,11 @@ export default function Work() {
           rel="noopener noreferrer"
           className="group inline-flex items-center gap-4 text-lg font-medium text-[#000000]"
         >
-          <span className="transition-colors duration-300 group-hover:text-[#FF0000]">
+          <span className="transition-colors duration-300 group-hover:text-[#D91616]">
             <RollText>View the full archive on Behance</RollText>
           </span>
           <Magnetic>
-            <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#000000] transition-colors duration-300 group-hover:border-[#FF0000] group-hover:bg-[#FF0000] group-hover:text-white">
+            <span className="flex h-12 w-12 items-center justify-center rounded-full border border-[#000000] transition-colors duration-300 group-hover:border-[#D91616] group-hover:bg-[#D91616] group-hover:text-white">
               <ArrowUpRight size={20} weight="bold" aria-hidden="true" className="transition-transform duration-300 group-hover:rotate-45" />
             </span>
           </Magnetic>

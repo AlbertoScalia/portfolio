@@ -122,13 +122,13 @@ export default function Navbar() {
   // Link desktop: sottolineatura che scorre da sinistra
   const desktopLink = (active) =>
     cn(
-      "group relative py-1 text-[15px] transition-colors duration-200 hover:text-[#FF0000] after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:bg-[#FF0000] after:transition-transform after:duration-300 after:content-['']",
+      "group relative py-1 text-[15px] transition-colors duration-200 hover:text-[#D91616] after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:bg-[#D91616] after:transition-transform after:duration-300 after:content-['']",
       active
         ? 'text-[#000000] after:scale-x-100'
         : 'text-[#000000]/85 after:scale-x-0 hover:after:scale-x-100 motion-reduce:after:transition-none'
     );
   const mobileLink = (active) =>
-    cn('text-5xl font-semibold transition-colors hover:text-[#FF0000]', active ? 'text-[#FF0000]' : 'text-[#000000]');
+    cn('text-5xl font-semibold transition-colors hover:text-[#D91616]', active ? 'text-[#D91616]' : 'text-[#000000]');
   const numClass = 'mr-4 align-top text-sm font-medium text-[#000000]/80';
 
   // Entrata a cascata delle voci del menu mobile
@@ -166,13 +166,13 @@ export default function Navbar() {
         aria-hidden="true"
         style={{ scaleX: scrollYProgress }}
         className={cn(
-          'absolute inset-x-0 bottom-0 h-0.5 origin-left bg-[#FF0000] transition-opacity duration-300',
+          'absolute inset-x-0 bottom-0 h-0.5 origin-left bg-[#D91616] transition-opacity duration-300',
           scrolled && !isOpen && !reduce ? 'opacity-100' : 'opacity-0'
         )}
       />
 
       <nav aria-label="Main" className="relative z-10 flex items-center justify-between px-6 py-5 lg:px-12">
-        <Link to="/" onClick={close} aria-label={`${NAME}, home`} className="group relative flex items-center rounded-sm font-[Inter] text-[21px] font-bold lowercase text-[#FF0000]">
+        <Link to="/" onClick={close} aria-label={`${NAME}, home`} className="group relative flex items-center rounded-sm font-[Inter] text-[21px] font-bold lowercase text-[#D91616]">
           {NAME.toLowerCase()}
         </Link>
 
