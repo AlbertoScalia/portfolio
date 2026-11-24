@@ -19,19 +19,28 @@ const A = ({ href, children }) => (
 // Competenze, nell'ordine e con le voci del CV
 const skillCategories = [
   {
-    title: 'Design Tools',
+    title: 'UI & Digital Design',
     groups: [
-      { label: 'Software', items: ['Adobe Creative Suite (InDesign, Illustrator, Photoshop)', 'Figma', 'Affinity Suite'] },
-      { label: 'Expertise', items: ['Visual Identity', 'Editorial Design', 'Branding Strategy', 'Typography', 'Wireframing', 'High-Fidelity Prototyping'] },
-      { label: 'Support', items: ['Miro', 'Khroma', 'Uizard'] },
+      { label: 'Expertise', items: ['UI Design', 'Design Systems', 'Information Architecture', 'User Flows', 'Wireframing', 'High-Fidelity Prototyping', 'Usability Testing', 'Responsive Web Design', 'HTML/CSS'] },
     ],
   },
   {
-    title: 'AI Tools',
+    title: 'Visual, Brand & Editorial Design',
     groups: [
-      { label: 'Strategy', items: ['AI Business Strategy', 'Prompt Engineering', 'AI Agents'] },
-      { label: 'Efficiency', items: ['Advanced workflow automation with n8n and integrated tools'] },
-      { label: 'Platforms', items: ['Lovable', 'Claude', 'Perplexity', 'Gemini', 'ChatGPT'] },
+      { label: 'Expertise', items: ['Visual Identity', 'Brand Strategy', 'Packaging Design', 'Art Direction', 'Editorial Design', 'Book Design', 'Layout Design', 'Typography', 'Grid Systems', 'Pre-Press', 'Print Production'] },
+    ],
+  },
+  {
+    title: 'Design & Enterprise Tools',
+    groups: [
+      { label: 'Tools', items: ['Figma', 'Adobe InDesign', 'Illustrator', 'Photoshop', 'Affinity Suite', 'Miro', 'Uizard', 'SAP Business One', 'EKR KIT'] },
+    ],
+  },
+  {
+    title: 'AI & Automation',
+    groups: [
+      { label: 'Workflows', items: ['AI-Assisted Design Workflows', 'Prompt Engineering', 'AI Agents', 'n8n'] },
+      { label: 'Platforms', items: ['Lovable', 'Claude', 'ChatGPT', 'Gemini', 'Perplexity'] },
     ],
   },
   {
@@ -41,8 +50,7 @@ const skillCategories = [
       {
         label: 'English',
         items: [
-          'B1 Level – Cambridge ESOL International (Council of Europe Level B1)',
-          'C2 Level - EF SET English Certificate 73/100 (C2 Proficient)'
+          'C2 – EF SET English Certificate (73/100)'
         ],
       },
     ],
@@ -53,56 +61,56 @@ const skillCategories = [
 const experiences = [
   {
     date: 'Jun. 2026 – Present',
-    title: 'Visual & Brand Designer',
+    title: 'Visual & Brand Designer (Freelance)',
     sub: <A href="https://gyadacosmetics.com/">Gyada Cosmetics S.r.l.</A>,
     place: 'Catania, Italy',
     points: [
-      ['Action', 'Created and managed the end-to-end graphic design for diverse cosmetic lines, developing packaging layouts, realistic product mockups, and comprehensive print-ready artwork.'],
-      ['Result', 'Elevated brand consistency across all new launches, streamlining the print-production workflow and enhancing retail shelf appeal across multiple product lines.'],
+      ['Action', 'Design packaging and visual communication across multiple cosmetic product lines, from structural layouts and mockups to print-ready artwork.'],
+      ['Result', 'Define brand consistency guidelines for new product launches and streamline pre-press production workflows.'],
     ],
   },
   {
     date: 'Feb. 2025 – Present',
-    title: 'Visual & Editorial Designer',
+    title: 'Visual & Editorial Designer (Freelance)',
     sub: <A href="https://forward.recentiprogressi.it/it/">Forward magazine (Il Pensiero Scientifico Editore)</A>,
     place: 'Rome, Italy',
     points: [
-      ['Action', 'Orchestrated the graphic layout and cross-media identity.'],
-      ['Result', 'Streamlined production workflows, shortened approval cycles, and established a cohesive brand language across all issues.'],
+      ['Action', 'Lead editorial layout systems and cross-media visual identity for print and digital editions, aligning visual direction with editorial strategy.'],
+      ['Result', 'Rebuild production workflows to shorten approval cycles and keep a consistent visual system across all issues.'],
     ],
   },
   {
     date: 'May 2022 – May 2026',
-    title: 'Visual & Editorial Designer',
+    title: 'Visual & Editorial Designer (Freelance)',
     sub: <A href="https://www.layoutmagazine.it/">lay0ut magazine</A>,
     place: 'Milan, Italy',
     points: [
-      ['Action', 'Curated the layout design, grid systems, and typography for digital and print content.'],
-      ['Result', 'Ensured total visual consistency, optimized the reading experience, and maintained a flawless publishing schedule across all issues.'],
+      ['Action', 'Designed editorial layouts, modular grid systems, and typographic hierarchies for print and digital publications.'],
+      ['Result', 'Kept visual consistency and readability across issues and met every publishing deadline.'],
     ],
   },
   {
     date: 'Jun. 2025 – Jan. 2026',
     title: 'Visual & Brand Designer',
     sub: <A href="https://www.life-electronics.com/it">Life Electronics S.p.A.</A>,
-    place: 'Riposto, Catania, Italy',
+    place: 'Riposto (CT), Italy',
     points: [
-      ['Action', 'Designed product packaging and updated website news while utilizing EKR KIT and SAP Business One to manage technical product data.'],
-      ['Result', 'Eliminated manual data-entry errors and accelerated time-to-market for new electronic product lines.'],
+      ['Action', 'Designed retail packaging and website/digital updates for electronic product lines.'],
+      ['Result', 'Synchronized technical product data through EKR KIT and SAP Business One, reducing manual data entry and speeding up time-to-market.'],
     ],
   },
   {
     date: 'Jul. 2021 – Jan. 2026',
-    title: 'Freelance Visual & Book Designer',
+    title: 'Visual & Book Designer (Freelance)',
     sub: (
       <>
-        12+ publishers (incl. Flaco Edizioni Group, <A href="https://editoririuniti.it">Editori Riuniti</A>, <A href="https://riccaeditore.it">Ricca Editore</A>)
+        Independent clients: Flaco Edizioni Group, <A href="https://editoririuniti.it">Editori Riuniti</A>, <A href="https://riccaeditore.it">Ricca Editore</A>, and other publishers
       </>
     ),
     place: 'Italy',
     points: [
-      ['Action', 'Directed visual identity and professional typesetting for 12+ independent publishers and academic institutions.'],
-      ['Result', 'Successfully Delivered 50+ high-profile editorial projects with 100% on-time print readiness while upholding strict editorial standards.'],
+      ['Action', 'Developed visual identity, editorial systems, and typesetting for 12+ independent publishers and academic institutions.'],
+      ['Result', 'Delivered 50+ editorial and brand projects, all print-ready on schedule.'],
     ],
   },
   {
@@ -111,8 +119,8 @@ const experiences = [
     sub: <A href="https://letteraventidue.com/it/">LetteraVentidue Edizioni</A>,
     place: 'Syracuse, Italy',
     points: [
-      ['Action', 'Collaborated on architectural book design for international authors (Umberto Riva, Giorgio Grassi).'],
-      ['Result', 'Contributed to the publication of high-value architectural volumes, ensuring total precision from draft to final print.'],
+      ['Action', 'Worked on book architecture, grid systems, and layout for international architecture monographs, including works by Umberto Riva and Giorgio Grassi.'],
+      ['Result', 'Supported production from first layout draft to final print-ready files.'],
     ],
   },
 ];
@@ -120,7 +128,7 @@ const experiences = [
 const education = [
   {
     date: 'Oct. 2025 – Apr. 2026',
-    title: 'Master Growth Marketing and AI Agents',
+    title: 'Master in Growth Marketing & AI Agents',
 sub: (
     <>
       <A href="https://www.start2impact.it">start2impact</A> /{' '}
@@ -129,7 +137,7 @@ sub: (
   ),
       place: 'Rome, Italy',
     points: [
-      ['Competencies', 'Funnel Marketing, SEO Audit, Growth Marketing, UX/UI Discovery, Wireframing, User Testing, AI-Optimized UI, Prompt Engineering, Meta/Google Ads, Email Marketing, Advanced Excel, SQL, GA4, Tableau, Looker Studio, HTML/CSS, AI Agent Design.'],
+      ['Competencies', 'UX/UI Discovery, Wireframing, User Testing, SEO Audit, Funnel Marketing, Meta/Google Ads, GA4, SQL, Looker Studio, AI Agent Design.'],
     ],
   },
   {
@@ -137,7 +145,7 @@ sub: (
     title: 'UX Design Course',
     sub: <A href="https://corsoux.it">CorsoUx.it</A>,
     points: [
-      ['Competencies', 'Information Architecture, Low/High-Fidelity Wireframing, Interactive Prototyping.'],
+      ['Competencies', 'Information Architecture, Wireframing, Interactive Prototyping.'],
     ],
   },
   {
@@ -149,10 +157,10 @@ sub: (
   },
   {
     date: 'Mar. – Jul. 2021',
-    title: 'Master Il lavoro editoriale',
+    title: 'Master in Editorial Publishing (Il lavoro editoriale)',
     sub: <A href="https://www.scuoladellibro.it">Scuola del Libro</A>,
     place: 'Rome, Italy',
-    points: [['Competencies', 'Editorial Project Management, Fiction & Non-fiction Editing, Proofreading, Publishing Supply Chain, Rights & Copyright, Distribution Strategy, Press Office.']],
+    points: [['Competencies', 'Editorial Project Management, Editing, Proofreading, Publishing Supply Chain, Rights & Copyright.']],
   },
   {
     date: 'Sep. 2017 – Sep. 2020',
@@ -163,7 +171,7 @@ sub: (
       </>
     ),
     place: 'Catania, Italy',
-    points: [['Competencies', 'Editorial Design, Typography, Brand Identity, Visual Strategy, Art History & Semiotics, Web Design, Print Production, Design Theory.']],
+    points: [['Competencies', 'Editorial Design, Typography, Brand Identity, Web Design, Print Production, Design Theory.']],
   },
 ];
 
@@ -341,7 +349,7 @@ export default function Bio() {
   <dl className="grid flex-1 grid-cols-1 gap-8 md:grid-cols-3">
     {[
       ['Based in', 'Acireale, Italy'],
-      ['Currently', <><span className="block">Visual & Brand Designer at <a href="https://gyadacosmetics.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#D91616] underline-offset-4 transition-colors hover:text-[#D91616]">Gyada Cosmetics</a></span><span className="mt-2 block">Visual & Editorial Designer at <a href="https://forward.recentiprogressi.it/it/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#D91616] underline-offset-4 transition-colors hover:text-[#D91616]">Forward magazine</a> (Il Pensiero Scientifico Editore)</span></>],
+      ['Currently', <><span className="block">Visual & Brand Designer (Freelance) at <a href="https://gyadacosmetics.com/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#D91616] underline-offset-4 transition-colors hover:text-[#D91616]">Gyada Cosmetics</a></span><span className="mt-2 block">Visual & Editorial Designer (Freelance) at <a href="https://forward.recentiprogressi.it/it/" target="_blank" rel="noopener noreferrer" className="underline decoration-[#D91616] underline-offset-4 transition-colors hover:text-[#D91616]">Forward magazine</a> (Il Pensiero Scientifico Editore)</span></>],
       ['Availability', 'Open to UX/UI & Visual Design roles — available immediately'],
     ].map(([term, value]) => (
       <div key={term}>
