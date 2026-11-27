@@ -8,7 +8,6 @@ import RollText from './RollText';
 
 const img = (name) => `${import.meta.env.BASE_URL}assets/images/${name}`;
 
-// Le parole con il trattino non vanno a capo a metà (es. "Re-design")
 const keepWords = (text) =>
   text.split(' ').map((word, i, all) => (
     <span key={i} className={word.includes('-') ? 'whitespace-nowrap' : undefined}>
@@ -17,9 +16,6 @@ const keepWords = (text) =>
     </span>
   ));
 
-/* ---------- Immagine con dissolvenza ---------- */
-// Mostra un riquadro chiaro finché l'immagine non è arrivata, poi la fa comparire in dissolvenza.
-// Se l'immagine non si carica, resta visibile il testo alternativo.
 function FadeImage({ src, alt, className = '', wrapperClassName = 'bg-[#F3F5FB]' }) {
   const [loaded, setLoaded] = useState(false);
   return (
@@ -39,8 +35,6 @@ function FadeImage({ src, alt, className = '', wrapperClassName = 'bg-[#F3F5FB]'
     </div>
   );
 }
-
-/* ---------- Dati ---------- */
 
 const sections = [
   {
@@ -114,7 +108,7 @@ My role focused on the magazine's layout and cover design, developed in collabor
       {
         title: 'Le chitarre del Pedrollo',
         subtitle:
-          'Layout and cover design for a scholarly volume documenting the historic guitar collection of the Conservatoire of Vicenza "Arrigo Pedrollo", combining full-bleed instrument photography with bilingual Italian-English text.', //[cite: 1]
+          'Layout and cover design for a scholarly volume documenting the historic guitar collection of the Conservatoire of Vicenza "Arrigo Pedrollo", combining full-bleed instrument photography with bilingual Italian-English text.',
         image: img('cover-project5.webp'),
         badges: ['Editorial Design', 'Book Design'],
         details: {
@@ -127,7 +121,7 @@ My role, in collaboration with Giorgia Di Carlo, focused on designing the cover 
       {
         title: 'Flacowski',
         subtitle:
-          'Interior layout design for a large number of titles published by Flaco Edizioni Group (2023–2025), creating consistent yet adaptable typographic systems for high-volume publishing.', //[cite: 2]
+          'Interior layout design for a large number of titles published by Flaco Edizioni Group (2023–2025), creating consistent yet adaptable typographic systems for high-volume publishing.',
         image: img('cover-project6.webp'),
         badges: ['Editorial Design', 'Book Design'],
         details: {
@@ -182,7 +176,7 @@ Grounded in high-stakes information architecture, the system balances dense tech
           additionalImages: ['detail25.webp', 'detail26.webp'].map(img),
         },
       },
-            {
+      {
         title: 'Evaporato in una nuvola rossa',
         subtitle:
           'Academic exhibition identity for Evaporato in una nuvola rossa, combining bold geometric typography, red accents, and a halftone portrait across posters, banners, and event collateral.',
@@ -198,8 +192,6 @@ A halftone portrait of a singer anchors the key visual, establishing an expressi
     ],
   },
 ];
-
-/* ---------- Modale progetto (accessibile: Esc, focus trap, scroll lock) ---------- */
 
 function Description({ text }) {
   return (
@@ -267,7 +259,6 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
     };
   }, [onClose]);
 
-  // Passando al progetto successivo: si riparte dall'alto e il focus torna sul pulsante di chiusura
   useEffect(() => {
     overlay.current?.scrollTo?.({ top: 0 });
     closeBtn.current?.focus();
@@ -308,12 +299,17 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
           <X size={28} aria-hidden="true" />
         </button>
 
+        <div className="mb-3 flex items-center gap-4 font-mono text-xs uppercase tracking-[0.14em] text-[#000000]/65">
+          <span>{project.code}</span>
+          <span>{project.year}</span>
+        </div>
+
         <h2 id="project-modal-title" className="mb-5 pr-12 text-4xl font-semibold leading-tight md:text-6xl text-[#000000]">
           {keepWords(project.title)}
         </h2>
         <ul className="mb-8 flex flex-wrap gap-2">
           {project.badges.map((b) => (
-            <li key={b} className="rounded-full border border-[#000000]/25 px-3 py-1 text-[13px] font-medium text-[#000000]">
+            <li key={b} className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#000000]/80">
               {b}
             </li>
           ))}
@@ -350,7 +346,7 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
             className="group mt-12 flex w-full items-center justify-between gap-6 border-t border-[#000000]/20 pt-8 text-left"
           >
             <span>
-              <span className="block text-sm font-medium text-[#000000]/80">Next project</span>
+              <span className="block font-mono text-xs uppercase tracking-[0.14em] text-[#000000]/70">Next project</span>
               <span className="block text-2xl font-semibold text-[#000000] transition-colors group-hover:text-[#D91616] md:text-4xl">
                 {keepWords(nextProject.title)}
               </span>
@@ -365,41 +361,24 @@ function ProjectModal({ project, nextProject, onNext, onClose }) {
   );
 }
 
-/* ---------- Card progetto ---------- */
-
 const stretched =
   "block w-full text-left after:absolute after:inset-0 after:content-[''] focus-visible:outline-none focus-visible:after:outline focus-visible:after:outline-2 focus-visible:after:outline-offset-4 focus-visible:after:outline-[#D91616]";
 
-function ProjectCard({ project, number, onOpen }) {
+function ProjectCard({ project, onOpen }) {
   const reduce = useMotionPref();
   const cardRef = useRef(null);
   const [loaded, setLoaded] = useState(false);
-  // Parallasse: l'immagine scorre un po' dentro la sua cornice mentre la card attraversa lo schermo
   const { scrollYProgress } = useScroll({ target: cardRef, offset: ['start end', 'end start'] });
   const imgY = useTransform(scrollYProgress, [0, 1], reduce ? ['0%', '0%'] : ['-5%', '5%']);
-  const title = (
-    <span className="flex items-start justify-between gap-4">
-      <span className="text-3xl leading-tight transition-colors group-hover:text-[#D91616] md:text-4xl text-[#000000]">
-        {keepWords(project.title)}
-      </span>
-      <ArrowUpRight
-        size={28}
-        weight="bold"
-        aria-hidden="true"
-        className="mt-1.5 shrink-0 text-[#000000] opacity-0 transition duration-300 group-hover:rotate-45 group-hover:text-[#D91616] group-hover:opacity-100 [@media(hover:none)]:opacity-100 motion-reduce:transition-none"
-      />
-    </span>
-  );
 
   return (
     <article ref={cardRef} data-cursor={project.details ? 'View' : 'Visit'} className="group relative flex w-full flex-col">
-      {/* L'immagine si scopre dall'alto quando entra nel viewport */}
       <motion.div
         initial={reduce ? false : { clipPath: 'inset(0 0 100% 0)' }}
         whileInView={{ clipPath: 'inset(0 0 0% 0)' }}
         viewport={{ once: true, margin: '0px 0px -10% 0px' }}
         transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-        className="aspect-[16/10] overflow-hidden bg-[#E9ECF7]"
+        className="aspect-[16/10] overflow-hidden border border-transparent bg-[#E9ECF7] transition-[border-color] duration-300 group-hover:border-[#D91616]"
       >
         <motion.div
           initial={reduce ? false : { scale: 1.12 }}
@@ -424,46 +403,64 @@ function ProjectCard({ project, number, onOpen }) {
           </motion.div>
         </motion.div>
       </motion.div>
+
       <motion.div
         initial={reduce ? false : { opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, margin: '0px 0px -10% 0px' }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="flex flex-col gap-3 px-6 pt-6 lg:px-12"
+        className="flex flex-col gap-2 pt-3"
       >
-        <p className="text-sm font-medium tabular-nums text-[#000000]/80">No. {String(number).padStart(2, '0')}</p>
-        <h3>
-          {project.details ? (
-            <button type="button" onClick={() => onOpen(project)} className={stretched}>
-              {title}
-            </button>
-          ) : (
-            <a href={project.link} target="_blank" rel="noopener noreferrer" className={stretched}>
-              {title}
-            </a>
-          )}
-        </h3>
-        <p className="max-w-xl text-[15px] leading-relaxed text-[#000000]/80">{project.subtitle}</p>
-        {project.highlight && <p className="text-[15px] font-medium text-[#000000]">{project.highlight}</p>}
-        <ul className="mt-1 flex flex-wrap gap-2">
-          {project.badges.map((b) => (
-            <li key={b} className="rounded-full border border-[#000000]/25 px-3 py-1 text-[13px] font-medium text-[#000000]">
-              {b}
-            </li>
-          ))}
-        </ul>
+        <div className="flex items-center justify-between gap-4 border-b border-[#000000]/15 pb-2 font-mono text-[11px] uppercase tracking-[0.12em] text-[#000000]/65">
+          <span>{project.code}</span>
+          <span>{project.year}</span>
+        </div>
+
+        <div className="flex flex-col gap-2 pt-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
+          <h3 className="min-w-0">
+            {project.details ? (
+              <button type="button" onClick={() => onOpen(project)} className={stretched}>
+                <span className="inline-flex items-center gap-1.5 text-xl font-semibold leading-snug text-[#000000] transition-colors group-hover:text-[#D91616] md:text-2xl">
+                  <span>{keepWords(project.title)}</span>
+                  <ArrowUpRight
+                    size={20}
+                    weight="bold"
+                    aria-hidden="true"
+                    className="shrink-0 text-[#000000] opacity-0 transition duration-300 group-hover:rotate-45 group-hover:text-[#D91616] group-hover:opacity-100 [@media(hover:none)]:opacity-100 motion-reduce:transition-none"
+                  />
+                </span>
+              </button>
+            ) : (
+              <a href={project.link} target="_blank" rel="noopener noreferrer" className={stretched}>
+                <span className="inline-flex items-center gap-1.5 text-xl font-semibold leading-snug text-[#000000] transition-colors group-hover:text-[#D91616] md:text-2xl">
+                  <span>{keepWords(project.title)}</span>
+                  <ArrowUpRight
+                    size={20}
+                    weight="bold"
+                    aria-hidden="true"
+                    className="shrink-0 text-[#000000] opacity-0 transition duration-300 group-hover:rotate-45 group-hover:text-[#D91616] group-hover:opacity-100 [@media(hover:none)]:opacity-100 motion-reduce:transition-none"
+                  />
+                </span>
+              </a>
+            )}
+          </h3>
+
+          <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.12em] text-[#000000]/70">
+            {project.badges.join(', ')}
+          </span>
+        </div>
+
+        <p className="max-w-xl text-sm leading-relaxed text-[#000000]/75">{project.subtitle}</p>
+        {project.highlight && <p className="text-sm font-medium text-[#000000]">{project.highlight}</p>}
       </motion.div>
     </article>
   );
 }
 
-/* ---------- Sezione lavori ---------- */
-
 export default function Work() {
   const [selected, setSelected] = useState(null);
   const closeModal = useCallback(() => setSelected(null), []);
 
-  // Progetti che hanno una scheda: servono per il pulsante "Next project" del modale
   const withDetails = sections.flatMap((s) => s.projects).filter((p) => p.details);
   const nextOf = (p) => {
     const i = withDetails.findIndex((x) => x.title === p.title);
@@ -473,40 +470,38 @@ export default function Work() {
   return (
     <section id="work" aria-label="Selected work">
       {sections.map((section, index) => (
-        <div key={section.title} className={index % 2 === 1 ? 'bg-[#f4f4f4] pb-28' : 'mb-28'}>
-          <div className="border-t border-[#000000]/20">
-            <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
-              <span aria-hidden="true" className="-mt-[5px] block h-2.5 w-2.5 rounded-full bg-[#D91616]" />
+        <div key={section.title} className={index % 2 === 1 ? 'py-10 md:py-12' : 'py-10 md:py-12'}>
+          <div className="mx-auto max-w-[1600px] px-6 lg:px-12">
+            <div className="mb-8 flex flex-col gap-4 border-t border-[#000000]/20 pt-5 md:grid md:grid-cols-12 md:items-end md:gap-6">
+              <Reveal className="md:col-span-6">
+                <div className="mb-2 flex items-center gap-4 font-mono text-xs uppercase tracking-[0.14em] text-[#000000]/65">
+                  <span>{String(index + 1).padStart(2, '0')} / {String(sections.length).padStart(2, '0')}</span>
+                  <span>{section.code}</span>
+                  <span>{section.year}</span>
+                </div>
+                <h2 className="text-3xl font-semibold leading-tight text-[#000000] md:text-5xl">
+                  {section.title}
+                </h2>
+              </Reveal>
+              <Reveal delay={0.1} className="md:col-span-6">
+                <p className="text-base leading-relaxed text-[#000000]/80">{section.description}</p>
+              </Reveal>
             </div>
-          </div>
-          <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-6 px-6 py-12 md:grid-cols-12 md:items-end lg:px-12">
-            <Reveal className="md:col-span-5">
-              <p className="mb-4 text-sm font-medium text-[#000000]/80">
-                {String(index + 1).padStart(2, '0')} / {String(sections.length).padStart(2, '0')}
-              </p>
-              <h2 className="text-4xl leading-tight text-[#000000] md:text-5xl">
-                <span className="font-semibold">{section.title.split(' ').slice(0, -1).join(' ')} </span>
-                <span className="font-semibold">{section.title.split(' ').slice(-1)}</span>
-              </h2>
-            </Reveal>
-            <Reveal delay={0.1} className="md:col-span-5 md:col-start-7">
-              <p className="text-lg leading-relaxed text-[#000000]/80">{section.description}</p>
-            </Reveal>
-          </div>
-          <div className="grid grid-cols-1 gap-y-16 md:grid-cols-2">
-            {section.projects.map((project, i) => (
-              <ProjectCard
-                key={project.title}
-                project={project}
-                number={sections.slice(0, index).reduce((n, s) => n  + s.projects.length, 0) + i + 1}
-                onOpen={setSelected}
-              />
-            ))}
+
+            <div className="grid grid-cols-1 gap-x-8 gap-y-10 md:grid-cols-2">
+              {section.projects.map((project) => (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  onOpen={setSelected}
+                />
+              ))}
+            </div>
           </div>
         </div>
       ))}
 
-      <div className="mx-auto flex max-w-[1600px] px-6 pb-8 lg:px-12">
+      <div className="mx-auto flex max-w-[1600px] px-6 py-10 lg:px-12">
         <a
           href="https://www.behance.net/gallery/244847487/Personal-Portfolio-2021-2026"
           target="_blank"

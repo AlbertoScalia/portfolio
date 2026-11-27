@@ -56,7 +56,7 @@ export default function ClientsMarquee() {
 
   return (
     <>
-    <section className="overflow-hidden py-16 md:py-28 text-[#000000]">
+    <section className="overflow-hidden py-16 md:py-24 text-[#000000]">
       <header className="mx-auto mb-16 grid max-w-[1600px] grid-cols-1 gap-6 px-6 md:grid-cols-12 md:items-end lg:px-12">
         <Reveal as="h2" className="max-w-4xl text-5xl leading-[1.02] md:col-span-7 md:text-8xl">
           <span className="font-semibold">Who trusted me</span>
@@ -105,7 +105,7 @@ export default function ClientsMarquee() {
     </section>
 
     {/* Chiusura: blocco blu a tutta larghezza, prima del footer rosso */}
-    <section aria-labelledby="cta-title" className="on-brand relative overflow-hidden bg-[#000000] py-24 text-white md:py-40">
+    <section aria-labelledby="cta-title" className="on-brand relative overflow-hidden bg-[#000000] py-24 text-white md:py-24">
       <div aria-hidden="true" className="pointer-events-none absolute -right-[10%] -top-[40%] aspect-square w-[55%] rounded-full border border-white/20" />
       <div aria-hidden="true" className="pointer-events-none absolute -bottom-[55%] left-[6%] aspect-square w-[40%] rounded-full border border-white/10" />
 

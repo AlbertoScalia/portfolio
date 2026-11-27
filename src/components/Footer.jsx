@@ -28,7 +28,6 @@ export default function Footer() {
     }
   };
 
-  // Torna in cima e sposta anche il focus, così chi usa la tastiera non resta in fondo alla pagina
   const toTop = () => {
     window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' });
     const main = document.getElementById('main');
@@ -40,7 +39,6 @@ export default function Footer() {
 
   return (
     <footer className="on-brand relative isolate overflow-hidden bg-[#D91616] px-6 pb-10 pt-20 text-white lg:px-12">
-      {/* Grana e cerchio decorativo: stesso linguaggio della hero */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-25 mix-blend-overlay" style={{ backgroundImage: GRAIN }} />
       <div aria-hidden="true" className="pointer-events-none absolute -right-[10%] -top-[45%] aspect-square w-[48%] rounded-full border border-white/25" />
 
@@ -65,11 +63,11 @@ export default function Footer() {
             <h2 id="footer-index" className="mb-5 border-b border-white/30 pb-3 text-sm font-medium text-white">
               Index
             </h2>
-            <ul className="flex flex-col gap-3 text-base text-white">
-              <li><Link to="/" className={link}><RollText>Home</RollText></Link></li>
-              <li><a href="#work" onClick={goWork} className={link}><RollText>Work</RollText></a></li>
-              <li><Link to="/bio" className={link}><RollText>About</RollText></Link></li>
-              <li><Link to="/contact" className={link}><RollText>Contact</RollText></Link></li>
+            <ul className="flex flex-col gap-3 text-base lowercase text-white">
+              <li><Link to="/" className={link}><RollText>home</RollText></Link></li>
+              <li><a href="#work" onClick={goWork} className={link}><RollText>projects</RollText></a></li>
+              <li><Link to="/bio" className={link}><RollText>about</RollText></Link></li>
+              <li><Link to="/contact" className={link}><RollText>contact</RollText></Link></li>
             </ul>
           </nav>
 
@@ -81,20 +79,20 @@ export default function Footer() {
               {SOCIALS.map(({ name, href }) => {
                 const Icon = SOCIAL_ICONS[name];
                 return (
-                <li key={name}>
-                  <a
-                    href={href}
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={`${name} (opens in a new tab)`}
-                    className="group inline-flex items-center gap-3 font-medium text-white"
-                  >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white transition-colors duration-300 group-hover:bg-white group-hover:text-[#C72E0E]">
-                      <Icon size={16} weight="bold" aria-hidden="true" />
-                    </span>
-                    <RollText>{name}</RollText>
-                  </a>
-                </li>
+                  <li key={name}>
+                    <a
+                      href={href}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`${name} (opens in a new tab)`}
+                      className="group inline-flex items-center gap-3 font-medium text-white"
+                    >
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full border border-white transition-colors duration-300 group-hover:bg-white group-hover:text-[#C72E0E]">
+                        <Icon size={16} weight="bold" aria-hidden="true" />
+                      </span>
+                      <RollText>{name.toLowerCase()}</RollText>
+                    </a>
+                  </li>
                 );
               })}
             </ul>
@@ -106,9 +104,7 @@ export default function Footer() {
             <p className="text-sm text-white">
               &copy; {new Date().getFullYear()} {NAME}. All rights reserved.
             </p>
-            {/* Colophon, come in un libro */}
             <p className="text-sm text-white">Set in Inter. Built with React, Tailwind CSS and Framer Motion.</p>
-            {/* Interruttore: spegne cursore, tende, parallasse e animazioni (si somma all'impostazione del sistema) */}
             <button
               type="button"
               aria-pressed={motionOff}

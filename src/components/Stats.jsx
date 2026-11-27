@@ -5,12 +5,10 @@ import Reveal from './Reveal';
 import Guides from './Guides';
 
 const STATS = [
-  { value: 50, suffix: '+', label: 'Book projects delivered' },
-  { value: 12, suffix: '+', label: 'Publishers and brands' },
+  { value: 50, suffix: '+', label: 'BOOK PROJECTS DELIVERED', tag: 'Editorial' },
+  { value: 12, suffix: '+', label: 'PUBLISHERS AND BRANDS', tag: 'Identity' },
 ];
 
-// Numero che conta fino al valore quando entra nel viewport.
-// Per gli screen reader c'è solo il valore finale; con "riduci movimento" non conta.
 function CountUp({ to, suffix }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '0px 0px -10% 0px' });
@@ -35,7 +33,7 @@ function CountUp({ to, suffix }) {
     <span ref={ref}>
       <span aria-hidden="true">
         {n}
-        <span className="font-light text-[#D91616]">{suffix}</span>
+        <span className="font-semibold text-[#D91616]">{suffix}</span>
       </span>
       <span className="sr-only">
         {to}
@@ -47,22 +45,41 @@ function CountUp({ to, suffix }) {
 
 export default function Stats() {
   return (
-    <section aria-labelledby="stats-title" className="relative overflow-hidden bg-[#f4f4f4] py-20 md:py-32">
+    <section
+      aria-labelledby="stats-title"
+      className="relative overflow-hidden border-y border-[#000000]/20 bg-[#0b0b0b] py-20 text-white md:py-20"
+    >
       <Guides />
-      <div aria-hidden="true" className="pointer-events-none absolute -right-[12%] top-1/2 aspect-square w-[44%] -translate-y-1/2 rounded-full border border-[#D91616]/25" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-[12%] top-1/2 aspect-square w-[44%] -translate-y-1/2 rounded-full border border-white/15"
+      />
 
       <div className="relative mx-auto max-w-[1600px] px-6 lg:px-12">
-        <Reveal as="h2" id="stats-title" className="max-w-4xl text-5xl leading-[1.02] md:text-8xl">
-          <span className="font-semibold">The work, in numbers </span>
+
+        <Reveal as="h2" id="stats-title" className="mt-8 max-w-4xl text-5xl leading-[1.02] text-white md:text-8xl">
+          <span className="font-semibold">The work, in numbers</span>
         </Reveal>
 
-        <ul className="mt-16 grid grid-cols-1 gap-12 md:mt-24 md:grid-cols-2 md:gap-16">
-          {STATS.map(({ value, suffix, label }, i) => (
-            <Reveal as="li" key={label} delay={i * 0.12} className="border-t border-[#000000]/20 pt-6">
-              <p className="text-[clamp(5rem,16vw,14rem)] font-semibold tabular-nums leading-[0.9] tracking-[-0.045em] text-[#000000]">
-                <CountUp to={value} suffix={suffix} />
-              </p>
-              <p className="mt-4 text-lg text-[#000000]/90">{label}</p>
+        <ul className="mt-16 grid grid-cols-1 divide-y divide-white/15 border-y border-white/15 md:mt-24 md:grid-cols-2 md:divide-x md:divide-y-0">
+          {STATS.map(({ value, suffix, label, tag }, i) => (
+            <Reveal
+              as="li"
+              key={label}
+              delay={i * 0.12}
+              className="flex flex-col justify-between py-8 md:px-10 md:py-10 first:md:pl-0 last:md:pr-0"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <p className="text-[clamp(4.5rem,13vw,11.5rem)] font-bold tabular-nums leading-[0.88] tracking-[-0.05em] text-white">
+                  <CountUp to={value} suffix={suffix} />
+                </p>
+              </div>
+
+              <div className="mt-8 flex items-center justify-between gap-4 border-t border-white/15 pt-4">
+                <p className="font-mono text-xs uppercase tracking-[0.16em] text-white/80">
+                  {label}
+                </p>
+              </div>
             </Reveal>
           ))}
         </ul>
